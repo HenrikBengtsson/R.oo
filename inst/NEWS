@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.4.9 [2009-07-07]
+o Added protected method registerFinalizer() for Object.
+
+
 Version: 1.4.8 [2009-05-18]
 o DOC FIX: The titles for intToChar() and charToInt() where mixed up.
   Thanks to Jens Philip Hoehmann for reporting this.

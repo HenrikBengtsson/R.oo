@@ -1975,8 +1975,99 @@ setMethodS3("gc", "Object", function(this, ...) {
 });
 
 
+###########################################################################/**
+# @RdocMethod registerFinalizer
+#
+# @title "Registers a finalizer hook for the object"
+#
+# \description{
+#  @get "title". 
+#  The finalizer hook calls @seemethod "finalize()" on the @see Object when
+#  it is garbage collected.
+#  This method is only intended to be called inside the constructor, if
+#  at all.
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{...}{Not used.}
+# }
+#
+# \value{
+#  Returns nothing.
+# }
+#
+# @author
+#
+# \seealso{
+#   Internally, @see "base::reg.finalizer" is used.
+#   @seeclass
+# }
+#
+# @keyword programming
+# @keyword methods
+#*/########################################################################### 
+setMethodS3("registerFinalizer", "Object", function(this, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  localFinalizer <- function(env) {
+    # Note, R.oo might be detached when this is called!  If so, reload
+    # it, this will be our best chance to run the correct finalizer(),
+    # which might be in a subclass of a different package that is still
+    # loaded.
+    isRooLoaded <- any(is.element(c("package:R.oo", "dummy:R.oo"), search()));
+    if (isRooLoaded) {
+      finalize(this);
+    } else {
+      suppressMessages({
+        isRooLoaded <- require("R.oo", quietly=TRUE);
+      })
+
+      # For unknown reasons R.oo might not have been loaded.
+      if (isRooLoaded) {
+        finalize(this);
+      } else {
+        warning("Failed to temporarily reload 'R.oo' and finalize().");
+      }
+
+      # NOTE! Before detach R.oo again, we have to make sure the Object:s
+      # allocated by R.oo itself (e.g. an Package object), will not reload
+      # R.oo again when being garbage collected, resulting in an endless
+      # loop.  We do this by creating a dummy finalize() function, detach
+      # R.oo, call garbage collect to clean out all R.oo's objects, and
+      # then remove the dummy finalize() function.
+      # (1) Put a dummy finalize() function on the search path.
+      attach(list(finalize = function(...) { }), name="dummy:R.oo",
+                                                    warn.conflicts=FALSE);
+      # (2) Detach R.oo
+      detach("package:R.oo");
+      # (3) Force all R.oo's Object:s to be finalize():ed.
+      gc();
+      # (4) Remove the dummy finalize():er again.
+      detach("dummy:R.oo");
+    }
+  } # localFinalizer()
+
+
+  # Note, we cannot register the finalizer here, because then
+  # the reference variable 'this' will be of the wrong class,
+  # that is, not the "final" class. However, we still do it so
+  # that pure Object:s will be finalized too.  This will be
+  # overridden if extend(<Object>) is called.
+  reg.finalizer(attr(this, ".env"), localFinalizer);
+
+  invisible(this);
+}, protected=TRUE) # registerFinalizer()
+  
+
 ############################################################################
 # HISTORY:
+# 2009-07-07
+# o Added Rdoc comments to registerFinalizer() and added it to the package.
+# 2009-06-11
+# o Added registerFinalizer() for Object.
 # 2008-05-28
 # o SPELL CORRECTION: Used '...instanciation' instead of 'instantiation'.
 # 2008-03-25

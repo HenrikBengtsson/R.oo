@@ -55,6 +55,7 @@
 # @alias load
 # @alias load.default
 # @alias novirtual
+# @alias registerFinalizer
 # @alias save
 # @alias save.default
 # @alias staticCode

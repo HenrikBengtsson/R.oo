@@ -67,6 +67,7 @@
  \tab \code{\link[R.oo:novirtual.Object]{novirtual}} \tab Returns a reference to the same Object with virtual fields turned off.\cr
  \tab \code{\link[R.oo:objectSize.Object]{objectSize}} \tab Gets the size of the Object in bytes.\cr
  \tab \code{\link[R.oo:print.Object]{print}} \tab Prints an Object.\cr
+ \tab \code{\link[R.oo:registerFinalizer.Object]{registerFinalizer}} \tab Registers a finalizer hook for the object.\cr
  \tab \code{\link[R.oo:save.Object]{save}} \tab Saves an Object to a file or a connection.\cr
  \tab \code{\link[R.oo:staticCode.Object]{staticCode}} \tab Method that will be call each time a new instance of a class is created.\cr
 }
