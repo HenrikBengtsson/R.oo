@@ -33,7 +33,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[base]{object.size}}.
+  \code{\link[utils]{object.size}}.
   For more information see \code{\link{BasicObject}}.
 }
 

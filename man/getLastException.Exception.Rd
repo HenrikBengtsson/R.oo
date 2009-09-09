@@ -34,7 +34,7 @@
 
 \seealso{
   For more information see \code{\link{Exception}}.
-  See also \code{\link[base:conditions]{tryCatch}}().
+  See also \code{\link[base:conditions]{tryCatch}()}.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

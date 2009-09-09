@@ -22,10 +22,6 @@
 #
 # @author
 #
-# \seealso{
-#   @seemethod "setNameFormat"
-# }
-#
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("getKnownSubclasses", "classRepresentation", function(this, ...) {
@@ -56,16 +52,13 @@ setMethodS3("getKnownSubclasses", "classRepresentation", function(this, ...) {
 #
 # @author
 #
-# \seealso{
-#   @seemethod "setNameFormat"
-# }
-#
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("getSuperclasses", "classRepresentation", function(this, ...) {
   superClasses <- NULL;
-  for (contain in attr(this, "contains")$vector)
+  for (contain in attr(this, "contains")$vector) {
     superClasses <- c(superClasses, contain@superClass);
+  }
   superClasses;
 })
 

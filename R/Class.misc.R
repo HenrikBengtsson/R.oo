@@ -22,7 +22,6 @@
 # @author
 #
 # \seealso{
-#   @seemethod "setNameFormat"
 #   @seeclass
 # }
 #
@@ -172,7 +171,6 @@ setMethodS3("getRdMethods", "Class", function(class, visibilities=c("private", "
 # @author
 #
 # \seealso{
-#   @seemethod "setNameFormat"
 #   @seeclass
 # }
 #

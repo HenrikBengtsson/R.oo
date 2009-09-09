@@ -30,10 +30,6 @@
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
-\seealso{
-  \code{\link[R.oo:setNameFormat.classRepresentation]{*setNameFormat}()}
-}
-
 
 \keyword{methods}
 \keyword{internal}

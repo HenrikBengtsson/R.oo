@@ -17,7 +17,7 @@
 
 \description{
  Registers a finalizer hook for the object.
- The finalizer hook calls \code{\link[R.oo:finalize().Object]{*finalize()}()} on the \code{\link{Object}} when
+ The finalizer hook calls \code{\link[R.oo:finalize.Object]{*finalize}()} on the \code{\link{Object}} when
  it is garbage collected.
  This method is only intended to be called inside the constructor, if
  at all.

@@ -43,7 +43,7 @@
 \seealso{
   To clear fields that are declared \code{cached},
   see \code{\link[R.oo:clearCache.Object]{*clearCache}()}.
-  \code{\link[base]{object.size}}.
+  \code{\link[utils]{object.size}}.
   For more information see \code{\link{Object}}.
 }
 

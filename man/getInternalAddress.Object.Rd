@@ -38,7 +38,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[getName.environment]{getName()}}.
+  \code{\link[=getName.environment]{getName()}}.
   For more information see \code{\link{Object}}.
 }
 

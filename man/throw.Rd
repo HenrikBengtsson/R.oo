@@ -25,7 +25,7 @@
    \code{throw(Exception("Value out of range: ", value, "."))}.
 
  Note that \code{throw()} can be defined for specific classes, which can
- then be caught (or not) using \code{\link[base:conditions]{tryCatch}}().
+ then be caught (or not) using \code{\link[base:conditions]{tryCatch}()}.
 }
 
 \usage{\method{throw}{default}(...)}

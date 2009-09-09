@@ -35,8 +35,6 @@
 
 \seealso{
   To check if a field exists or not, see \code{\link[R.oo:hasField.BasicObject]{*hasField}()}.
-  For more extensive information about the fields in an Object see
-  \code{\link[R.oo:ll.BasicObject]{*ll}()}.
   For more information see \code{\link{BasicObject}}.
 }
 

@@ -34,8 +34,6 @@
 
 \seealso{
   To get the fields of an Object, see \code{\link[R.oo:getFields.BasicObject]{*getFields}()}.
-  For more extensive information about the fields in an Object see
-  \code{\link[R.oo:ll.BasicObject]{*ll}()}.
   For more information see \code{\link{BasicObject}}.
 }
 

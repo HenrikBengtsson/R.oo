@@ -481,7 +481,7 @@ setMethodS3("hashCode", "Object", function(this, ...) {
 # @author
 #
 # \seealso{
-#   \code{\link[getName.environment]{getName()}}.
+#   \code{\link[=getName.environment]{getName()}}.
 #   @seeclass
 # }
 #
@@ -905,7 +905,7 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
 # \seealso{
 #   To clear fields that are declared \code{cached}, 
 #   see @seemethod "clearCache".
-#   @see "base::object.size".
+#   @see "utils::object.size".
 #   @seeclass
 # }
 #
@@ -1982,7 +1982,7 @@ setMethodS3("gc", "Object", function(this, ...) {
 #
 # \description{
 #  @get "title". 
-#  The finalizer hook calls @seemethod "finalize()" on the @see Object when
+#  The finalizer hook calls @seemethod "finalize" on the @see Object when
 #  it is garbage collected.
 #  This method is only intended to be called inside the constructor, if
 #  at all.

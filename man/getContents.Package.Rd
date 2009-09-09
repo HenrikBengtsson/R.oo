@@ -32,7 +32,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[base]{read.dcf}}().
+  \code{\link[base]{dcf}}.
   For more information see \code{\link{Package}}.
 }
 \keyword{internal}

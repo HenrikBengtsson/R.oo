@@ -40,7 +40,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[base]{environmentName}}().
+  \code{\link[base:environment]{environmentName}()}.
 }
 
 \keyword{programming}

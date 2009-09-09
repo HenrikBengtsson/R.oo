@@ -206,7 +206,7 @@ setMethodS3("hashCode", "BasicObject", function(this, ...) {
 #  5) \emph{consistent}, i.e. \code{equals(o1,o2)} should return the same
 #  result on multiple invocations as long as noting has changed.
 #
-#  6) \code{equals(o1,@NULL)} should return @FALSE.
+#  6) \code{equals(o1,NULL)} should return @FALSE.
 #
 #  By default, the method returns @TRUE if and only if the two
 #  references compared refer to the same @see "BasicObject", i.e.
@@ -297,7 +297,7 @@ setMethodS3("print", "BasicObject", function(x, ...) {
 # @author
 #
 # \seealso{
-#   @see "base::object.size".
+#   @see "utils::object.size".
 #   @seeclass
 # }
 #
@@ -336,8 +336,6 @@ setMethodS3("objectSize", "BasicObject", function(this, ...) {
 #
 # \seealso{
 #   To check if a field exists or not, see @seemethod "hasField".
-#   For more extensive information about the fields in an Object see
-#   @seemethod "ll".
 #   @seeclass
 # }
 #
@@ -379,8 +377,6 @@ setMethodS3("getFields", "BasicObject", function(this, private=FALSE, ...) {
 #
 # \seealso{
 #   To get the fields of an Object, see @seemethod "getFields".
-#   For more extensive information about the fields in an Object see
-#   @seemethod "ll".
 #   @seeclass
 # }
 #

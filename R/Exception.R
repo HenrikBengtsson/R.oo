@@ -28,7 +28,7 @@
 # @author
 #
 # \seealso{
-#   See also \code{\link[base:conditions]{tryCatch}}() (and @see "base::try").
+#   See also \code{\link[base:conditions]{tryCatch}()} (and @see "base::try").
 # }
 #
 # \keyword{programming}
@@ -248,7 +248,7 @@ setMethodS3("getMessage", "Exception", function(this, ...) {
 #
 # \seealso{
 #   @seeclass
-#   See also \code{\link[base:conditions]{tryCatch}}().
+#   See also \code{\link[base:conditions]{tryCatch}()}.
 #   This method overrides (and is fully backward compatible with) the one
 #   defined in the \pkg{R.methodsS3} package.
 # }
@@ -290,7 +290,7 @@ setMethodS3("throw", "Exception", function(this, ...) {
 #
 # \seealso{
 #   @seeclass
-#   See also \code{\link[base:conditions]{tryCatch}}().
+#   See also \code{\link[base:conditions]{tryCatch}()}.
 # }
 #
 # @author
@@ -330,8 +330,8 @@ setMethodS3("getLastException", "Exception", function(this, ...) {
 #
 # \seealso{
 #   @seemethod "printStackTrace".
-#   \code{\link[utils:debugger]{dump.frames}}().
-#   \code{\link[base:conditions]{tryCatch}}().
+#   \code{\link[utils:debugger]{dump.frames}()}.
+#   \code{\link[base:conditions]{tryCatch}()}.
 #   @seeclass
 # }
 #
@@ -417,7 +417,7 @@ setMethodS3("getStackTraceString", "Exception", function(this, ...) {
 #
 # \seealso{
 #   @seemethod "getStackTrace".
-#   \code{\link[base:conditions]{tryCatch}}().
+#   \code{\link[base:conditions]{tryCatch}()}.
 #   @seeclass
 # }
 #

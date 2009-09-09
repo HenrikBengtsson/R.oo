@@ -33,7 +33,7 @@
 
 \seealso{
   \code{\link[R.oo:getStackTrace.Exception]{*getStackTrace}()}.
-  \code{\link[base:conditions]{tryCatch}}().
+  \code{\link[base:conditions]{tryCatch}()}.
   For more information see \code{\link{Exception}}.
 }
 

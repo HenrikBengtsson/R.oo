@@ -30,7 +30,7 @@
 # @author
 #
 # \seealso{
-#   @see "base::environmentName".
+#   \code{\link[base:environment]{environmentName}()}.
 # }
 #
 # \keyword{programming}

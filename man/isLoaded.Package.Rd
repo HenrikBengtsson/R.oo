@@ -38,7 +38,7 @@
 
 \seealso{
   \code{\link[R.oo:load.Package]{*load}()}.
-  \code{\link[base]{search.}}
+  \code{\link[base]{search}}().
   For more information see \code{\link{Package}}.
 }
 \keyword{internal}

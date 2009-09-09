@@ -157,7 +157,7 @@ cat("The logarithm of ", x, " is ", l, ".\n\n", sep="")
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  See also \code{\link[base:conditions]{tryCatch}}() (and \code{\link[base]{try}}()).
+  See also \code{\link[base:conditions]{tryCatch}()} (and \code{\link[base]{try}}()).
 }
 
 \keyword{programming}

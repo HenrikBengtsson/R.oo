@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.5.0 [2009-09-09]
+o Fixed broken/missing Rd links.
+
+
 Version: 1.4.9 [2009-07-07]
 o Added protected method registerFinalizer() for Object.
 

@@ -37,8 +37,8 @@
 
 \seealso{
   \code{\link[R.oo:printStackTrace.Exception]{*printStackTrace}()}.
-  \code{\link[utils:debugger]{dump.frames}}().
-  \code{\link[base:conditions]{tryCatch}}().
+  \code{\link[utils:debugger]{dump.frames}()}.
+  \code{\link[base:conditions]{tryCatch}()}.
   For more information see \code{\link{Exception}}.
 }
 

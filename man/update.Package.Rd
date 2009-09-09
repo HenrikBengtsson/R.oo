@@ -43,7 +43,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[base]{update.packages}} and \code{\link[base]{install.packages}}.
+  \code{\link[utils]{update.packages}}.
   For more information see \code{\link{Package}}.
 }
 \keyword{internal}

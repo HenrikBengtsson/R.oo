@@ -33,7 +33,6 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[R.oo:getRdHierarchy.Rdoc]{*getRdHierarchy}()}
   For more information see \code{\link{Rdoc}}.
 }
 

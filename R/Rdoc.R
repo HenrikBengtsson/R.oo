@@ -1759,7 +1759,6 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 # @author
 #
 # \seealso{
-#   @seemethod "getRdHierarchy"
 #   @seeclass
 # }
 #
@@ -1834,7 +1833,6 @@ setMethodS3("hierarchy", "Rdoc", function(this, class, ...) {
 # @author
 #
 # \seealso{
-#   @seemethod "getRdHierarchy"
 #   @seeclass
 # }
 #
@@ -1901,7 +1899,6 @@ setMethodS3("declaration", "Rdoc", function(this, class, ...) {
 # @author
 #
 # \seealso{
-#   @seemethod "getRdHierarchy"
 #   @seeclass
 # }
 #

@@ -183,7 +183,7 @@ setMethodS3("getName", "Package", function(this, ...) {
 # @author
 #
 # \seealso{
-#   @see "base::read.dcf".
+#   @see "base::dcf".
 #   @seeclass
 # }
 #*/#########################################################################
@@ -583,7 +583,7 @@ setMethodS3("getDescription", "Package", function(this, replaceNewlines=" ", ...
 #
 # \seealso{
 #   @seemethod "getEnvironment".
-#   @see base::search.
+#   @see "base::search".
 #   @seeclass
 # }
 #*/#########################################################################
@@ -660,7 +660,7 @@ setMethodS3("getEnvironment", "Package", function(this, ...) {
 #
 # \seealso{
 #   @seemethod "load".
-#   @see base::search.
+#   @see "base::search".
 #   @seeclass
 # }
 #*/#########################################################################
@@ -1491,7 +1491,7 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 # @author
 #
 # \seealso{
-#   @see "base::update.packages" and @see "base::install.packages".
+#   @see "utils::update.packages".
 #   @seeclass
 # }
 #*/#########################################################################
