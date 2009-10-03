@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.6.0 [2009-10-02]
+o Added the Interface class, which is in an alpha version.
+
+
 Version: 1.5.0 [2009-09-09]
 o Fixed broken/missing Rd links.
 
