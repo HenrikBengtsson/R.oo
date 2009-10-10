@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.6.1 [2009-10-09]
+BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) : 
+subscript out of bounds" starting with R v2.10.0.
+
+
 Version: 1.6.0 [2009-10-02]
 o Added the Interface class, which is in an alpha version.
 

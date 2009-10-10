@@ -1166,8 +1166,12 @@ setMethodS3("getBundle", "Package", function(this, ...) {
   if (is.null(this$.inBundle)) {
     # installed.packages() may be slow()!
     pkgs <- installed.packages();
-    names <- pkgs[,"Package"];
-    bundle <- pkgs[names == getName(this), "Bundle"];
+    if (is.element("Bundle", colnames(pkgs))) {
+      names <- pkgs[,"Package"];
+      bundle <- pkgs[names == getName(this), "Bundle"];
+    } else {
+      bundle <- NA;
+    }
     this$.inBundle <- bundle;
   }
   if (is.na(this$.inBundle)) {
@@ -1578,6 +1582,9 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2008-10-09
+# BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) : 
+# subscript out of bounds" starting with R v2.10.0.
 # 2008-08-11
 # o Replace all 'a %in% b' with is.element(a,b) due to weird bug, cf.
 #   my R-devel post 'Argument "nomatch" matched by multiple actual 
