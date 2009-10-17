@@ -608,7 +608,7 @@ print(fields);
 ###########################################################################/**
 # @RdocMethod attach
 #
-# @title "Attaches an Object to the \R search path"
+# @title "Attaches an Object to the R search path"
 #
 # \description{
 #  Attach the members of an Object to the \R search path.
@@ -665,7 +665,7 @@ setMethodS3("attach", "Object", function(this, private=FALSE, pos=2, ...) {
 ###########################################################################/**
 # @RdocMethod detach
 #
-# @title "Detach an Object from the \R search path"
+# @title "Detach an Object from the R search path"
 #
 # \description{
 #  Detach, from the \R search path, an Object that has previously been

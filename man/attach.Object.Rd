@@ -13,7 +13,7 @@
 \alias{attach,Object-method}
 
 
-\title{Attaches an Object to the \R search path}
+\title{Attaches an Object to the R search path}
 
 \description{
  Attach the members of an Object to the \R search path.

@@ -13,7 +13,7 @@
 \alias{attach,BasicObject-method}
 
 
-\title{Attach an BasicObject to the \R search path}
+\title{Attach an BasicObject to the R search path}
 
 \description{
  Attach the members of an BasicObject to the \R search path.

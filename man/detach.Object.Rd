@@ -13,7 +13,7 @@
 \alias{detach,Object-method}
 
 
-\title{Detach an Object from the \R search path}
+\title{Detach an Object from the R search path}
 
 \description{
  Detach, from the \R search path, an Object that has previously been

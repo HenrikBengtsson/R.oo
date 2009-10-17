@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.6.2 [2009-10-16]
+o Some cleanup of Rd files to meet the stricter requirements. 
+
+
 Version: 1.6.1 [2009-10-09]
 BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) : 
 subscript out of bounds" starting with R v2.10.0.

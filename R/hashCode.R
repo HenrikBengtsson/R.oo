@@ -1,7 +1,7 @@
 ###########################################################################/**
 # @RdocDefault hashCode
 #
-# @title "Gets an integer hashcoded for \R objects"
+# @title "Gets an integer hashcoded for R objects"
 #
 # \description{
 #  @get "title".

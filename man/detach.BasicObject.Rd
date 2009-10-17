@@ -13,7 +13,7 @@
 \alias{detach,BasicObject-method}
 
 
-\title{Detach an BasicObject from the \R search path}
+\title{Detach an BasicObject from the R search path}
 
 \description{
  Detach, from the \R search path, an BasicObject that has previously been

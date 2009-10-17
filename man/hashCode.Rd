@@ -10,10 +10,10 @@
 \alias{hashCode.default}
 \alias{hashCode}
 
-\title{Gets an integer hashcoded for \R objects}
+\title{Gets an integer hashcoded for R objects}
 
 \description{
- Gets an integer hashcoded for \R objects.
+ Gets an integer hashcoded for R objects.
 }
 
 \usage{\method{hashCode}{default}(object, ...)}

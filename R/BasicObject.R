@@ -393,7 +393,7 @@ setMethodS3("hasField", "BasicObject", function(this, field, ...) {
 ###########################################################################/**
 # @RdocMethod attach
 #
-# @title "Attach an BasicObject to the \R search path"
+# @title "Attach an BasicObject to the R search path"
 #
 # \description{
 #  Attach the members of an BasicObject to the \R search path.
@@ -451,7 +451,7 @@ setMethodS3("attach", "BasicObject", function(this, private=FALSE, pos=2, ...) {
 ###########################################################################/**
 # @RdocMethod detach
 #
-# @title "Detach an BasicObject from the \R search path"
+# @title "Detach an BasicObject from the R search path"
 #
 # \description{
 #  Detach, from the \R search path, an BasicObject that has previously been
