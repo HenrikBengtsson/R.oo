@@ -29,13 +29,13 @@
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.oo:DOLLAR.BasicObject]{$}} \tab Makes the fields and methods of an BasicObject accessable via the \$ and the [[ operator.\cr
- \tab \code{\link[R.oo:DOLLARLT_-.BasicObject]{$<-}} \tab Makes the fields and methods of an BasicObject assignable via the \$<- and the [[<- operator.\cr
+ \tab \code{$} \tab  -\cr
+ \tab \code{$<-} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
  \tab \code{\link[R.oo:as.character.BasicObject]{as.character}} \tab Gets a character string representing the object.\cr
- \tab \code{\link[R.oo:attach.BasicObject]{attach}} \tab Attach an BasicObject to the \R search path.\cr
- \tab \code{\link[R.oo:detach.BasicObject]{detach}} \tab Detach an BasicObject from the \R search path.\cr
+ \tab \code{\link[R.oo:attach.BasicObject]{attach}} \tab Attach an BasicObject to the R search path.\cr
+ \tab \code{\link[R.oo:detach.BasicObject]{detach}} \tab Detach an BasicObject from the R search path.\cr
  \tab \code{\link[R.oo:equals.BasicObject]{equals}} \tab Compares an object with another.\cr
  \tab \code{\link[R.oo:extend.BasicObject]{extend}} \tab Extends another class.\cr
  \tab \code{\link[R.oo:getFields.BasicObject]{getFields}} \tab Returns the field names of an BasicObject.\cr

@@ -1658,14 +1658,28 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
         # Check Rd code?
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
         if (check) {
-          tryCatch({
-            rdParse <- tools::Rd_parse(text=rd);
-            if (length(rdParse$rest) > 0) {
-              throw(RdocException("Unknown top-level text in generated Rd code for Rdoc comment '", attr(rd, "name"), "' (in '", attr(rd, "sourcefile"), "') (typically due to too many or a missing bracket): ", paste(rdParse$rest, collapse=", ", sep="")));
-            }
-          }, error = function(e) {
+          if (compareVersion(as.character(getRversion()), "2.10.0") >= 0) {
+            # R v2.10.0 and newer
+            tryCatch({
+              con <- textConnection(rd);
+              rdParse <- tools::parse_Rd(file=con);
+            }, warning = function(w) {
+              throw(RdocException("Syntax error in generated Rd code for Rdoc comment '", attr(rd, "name"), "' (in '", attr(rd, "sourcefile"), "') was detected by tools:parse_Rd(): ", as.character(w)));
+            }, finally = {
+              close(con);
+              con <- NULL;
+            })
+          } else {
+            # R v2.9.2 and before
+            tryCatch({
+              rdParse <- tools::Rd_parse(text=rd);
+              if (length(rdParse$rest) > 0) {
+                throw(RdocException("Unknown top-level text in generated Rd code for Rdoc comment '", attr(rd, "name"), "' (in '", attr(rd, "sourcefile"), "') (typically due to too many or a missing bracket): ", paste(rdParse$rest, collapse=", ", sep="")));
+              }
+            }, error = function(e) {
               throw(RdocException("Syntax error in generated Rd code for Rdoc comment '", attr(rd, "name"), "' (in '", attr(rd, "sourcefile"), "') was detected by tools:Rd_parse(): ", as.character(e)));
-          })
+            })
+          }
         } # if (check)
 
         rds <- c(rds, list(rd));
@@ -2223,23 +2237,44 @@ setMethodS3("getRdTitle", "Rdoc", function(this, class, method, ...) {
     methodName <- paste(method, ".", getName(class), sep="");
     packageName <- Rdoc$getPackageNameOf(methodName, mode="function");
     if (length(packageName) == 1) {
-      package <- Package(packageName);
-      tryCatch({
-        contents <- getContents(package);
-        pos <- which(contents[,"Entry"] == name);
-        if (length(pos) == 0) {
-          warning(paste("Reverted to the CONTENTS file of package '", packageName, "', but found not matching entry: ", name, sep=""));
-        } else if (length(pos) > 2) {
-          warning(paste("Found more than one matching entry in the CONTENTS file of package '", packageName, "'. Using the first one only: ", name, sep=""));
-          pos <- pos[1];
-        }
-        if (length(pos) != 0) {
-          title <- as.character(contents[pos, "Description"]);
-          attr(title, "package") <- packageName;
-        }
-      }, error=function(ex) {
-        warning(as.character(ex));
-      })
+      if (compareVersion(as.character(getRversion()), "2.10.0") >= 0) {
+        # R v2.10.0 and newer
+        path <- system.file("help", package=packageName);
+        filebase <- file.path(path, packageName);
+        tryCatch({
+          entry <- tools:::fetchRdDB(filebase, key=methodName);
+          tags <- lapply(entry, FUN=attr, "Rd_tag");
+          idx <- which(tags == "\\title");
+          if (length(idx) > 1) {
+            idx <- idx[1];
+          }
+          if (length(idx) == 1) {
+            entry <- entry[[idx]];
+            entry <- entry[[1]];
+            title <- entry[1];
+          }
+        }, error = function(ex) {
+          warning(as.character(ex));
+        });
+      } else {
+        package <- Package(packageName);
+        tryCatch({
+          contents <- getContents(package);
+          pos <- which(contents[,"Entry"] == name);
+          if (length(pos) == 0) {
+            warning(paste("Reverted to the CONTENTS file of package '", packageName, "', but found not matching entry: ", name, sep=""));
+          } else if (length(pos) > 2) {
+            warning(paste("Found more than one matching entry in the CONTENTS file of package '", packageName, "'. Using the first one only: ", name, sep=""));
+            pos <- pos[1];
+          }
+          if (length(pos) != 0) {
+            title <- as.character(contents[pos, "Description"]);
+            attr(title, "package") <- packageName;
+          }
+        }, error=function(ex) {
+          warning(as.character(ex));
+        })
+      }
     }
   }
 
@@ -2335,16 +2370,25 @@ setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FA
   if (verbose)
     cat("Checking Rd files in '", manPath, "'...\n", sep="");
 
-  res <- tools:::check_Rd_files_in_man_dir(manPath);
-  if (length(res$files_with_surely_bad_Rd) > 0) {
-    throw("Syntax error in Rd file(s): ", 
+  if (compareVersion(as.character(getRversion()), "2.10.0") >= 0) {
+    # R v2.10.0 and newer
+    pathnames <- list.files(pattern="[.]Rd$", path=manPath, full.names=TRUE);
+    for (kk in seq(along=pathnames)) {
+      pathname <- pathnames[kk];
+      res <- tools::checkRd(pathname);
+    }
+  } else {
+    res <- tools:::check_Rd_files_in_man_dir(manPath);
+    if (length(res$files_with_surely_bad_Rd) > 0) {
+      throw("Syntax error in Rd file(s): ", 
                           paste(res$files_with_surely_bad_Rd, collapse=", "));
-  }  
+    }  
 
-  if (length(res$files_with_likely_bad_Rd) > 0) {
-    print(res$files_with_likely_bad_Rd);
-    throw("Syntax error in Rd file(s): ", 
+    if (length(res$files_with_likely_bad_Rd) > 0) {
+      print(res$files_with_likely_bad_Rd);
+      throw("Syntax error in Rd file(s): ", 
                           paste(res$files_with_surely_bad_Rd, collapse=", "));
+    }
   }
 
   if (verbose)
@@ -2410,6 +2454,8 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2009-10-26
+# o BUG FIX: Rdoc$compile() did not work with R v2.10.0 and newer.
 # 2008-08-11
 # o Replace all 'a %in% b' with is.element(a,b) due to weird bug, cf.
 #   my R-devel post 'Argument "nomatch" matched by multiple actual 

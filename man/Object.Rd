@@ -38,16 +38,16 @@
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.oo:DOLLAR.Object]{$}} \tab Makes the fields and methods of an Object accessable via the \$ and the [[ operator.\cr
- \tab \code{\link[R.oo:DOLLARLT_-.Object]{$<-}} \tab Makes the fields and methods of an Object assignable via the \$<- and the [[<- operator.\cr
+ \tab \code{$} \tab  -\cr
+ \tab \code{$<-} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
  \tab \code{\link[R.oo:as.character.Object]{as.character}} \tab Gets a character string representing the object.\cr
- \tab \code{\link[R.oo:attach.Object]{attach}} \tab Attaches an Object to the \R search path.\cr
+ \tab \code{\link[R.oo:attach.Object]{attach}} \tab Attaches an Object to the R search path.\cr
  \tab \code{\link[R.oo:attachLocally.Object]{attachLocally}} \tab Attaches an Object locally to an environment.\cr
  \tab \code{\link[R.oo:clearCache.Object]{clearCache}} \tab Clear fields that are defined to have cached values.\cr
  \tab \code{\link[R.oo:clone.Object]{clone}} \tab Clones an Object.\cr
- \tab \code{\link[R.oo:detach.Object]{detach}} \tab Detach an Object from the \R search path.\cr
+ \tab \code{\link[R.oo:detach.Object]{detach}} \tab Detach an Object from the R search path.\cr
  \tab \code{\link[R.oo:equals.Object]{equals}} \tab Compares an object with another.\cr
  \tab \code{\link[R.oo:extend.Object]{extend}} \tab Extends another class.\cr
  \tab \code{\link[R.oo:finalize.Object]{finalize}} \tab Finalizer methods called when object is clean out.\cr

@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.6.3 [2009-10-26]
+o BUG FIX: Rdoc$compile() did not work with R v2.10.0 and newer.
+
+
 Version: 1.6.2 [2009-10-16]
 o Some cleanup of Rd files to meet the stricter requirements. 
 

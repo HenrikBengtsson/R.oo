@@ -44,8 +44,8 @@ extends \link[R.oo]{Object}\cr
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.oo:DOLLAR.Class]{$}} \tab Makes the fields and methods of an Class accessable via the \$ and the [[ operator.\cr
- \tab \code{\link[R.oo:DOLLARLT_-.Class]{$<-}} \tab Makes the fields and methods of an Class assignable via the \$<- and the [[<- operator.\cr
+ \tab \code{$} \tab  -\cr
+ \tab \code{$<-} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
  \tab \code{\link[R.oo:argsToString.Class]{argsToString}} \tab Gets the arguments of a function as a character string.\cr
