@@ -728,6 +728,9 @@ setMethodS3("detach", "Object", function(this, ...) {
 #  \item{path}{The path where the file should be saved.}
 #  \item{compress}{If @TRUE, the file is compressed to, otherwise not.}
 #  \item{...}{Other arguments accepted by \code{save()} in the base package.}
+#  \item{safe}{If @TRUE and \code{file} is a file, then, in order to lower
+#    the risk for incomplete files, the object is first written to a
+#    temporary file, which is then renamed to the final name.}
 # }
 #
 # \value{
@@ -747,12 +750,14 @@ setMethodS3("detach", "Object", function(this, ...) {
 # \keyword{methods}
 # \keyword{IO}
 #*/###########################################################################
-setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE, ...) {
+setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE) {
   if (is.null(file)) {
     file <- sprintf("%s.%d.RData", class(this)[1], getInternalAddress(this));
   } 
 
-  if (!inherits(file, "connection")) {
+  # Saving to a file?
+  saveToFile <- (!inherits(file, "connection"));
+  if (saveToFile) {
     if (!is.null(path) && path != "") {
       # 1. Remove any '/' or '\' at the end of the path string.
       path <- gsub("[/\\]*$", "", path);
@@ -765,11 +770,40 @@ setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE
     }
   }
 
+  # Write to a temporary file?
+  if (safe && saveToFile) {
+    # Final pathname
+    pathname <- file;
+    # Temporary pathname
+    pathnameT <- sprintf("%s.tmp", pathname);
+    if (file.exists(pathnameT)) {
+      throw("Cannot save to file. Temporary file already exists: ", pathnameT);
+    }
+    # Write to a temporary file
+    file <- pathnameT;
+    on.exit({
+      if (file.exists(pathnameT)) {
+        file.remove(pathnameT);
+      }
+    }, add=TRUE);
+  }
+
   # For some unknown reason is save.default() adding the variables
   # 'exp', 'object', 'row' and 'value' to environment of this object.
   # /HB 031020
   saveLoadReference <- this;
-  save.default(saveLoadReference, file=file, ..., compress=compress);
+  res <- base::save(saveLoadReference, file=file, ..., compress=compress);
+
+  # Rename temporary file?
+  if (safe && saveToFile) {
+    file.rename(pathnameT, pathname);
+    if (!file.exists(pathname) || file.exists(pathnameT)) {
+      throw("Failed to rename temporary file: ", pathnameT, " -> ", pathname);
+    }
+    file <- pathname;
+  }
+
+  invisible(res);
 }) # save()
 
 
@@ -2063,6 +2097,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2009-10-30
+# o ROBUSTIFICATION: Added argument 'safe=TRUE' to save() of Object.
 # 2009-10-27
 # o Removed a stray print() statement in attachLocally() for Object:s.
 # 2009-07-07

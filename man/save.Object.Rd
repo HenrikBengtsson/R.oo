@@ -19,7 +19,7 @@
   Saves an Object to a file or a connection.
 }
 
-\usage{\method{save}{Object}(this, file=NULL, path=NULL, compress=TRUE, ...)}
+\usage{\method{save}{Object}(this, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)}
 
 \arguments{
  \item{file}{Filename or \code{\link[base:connections]{connection}} to which the Object should be saved.
@@ -28,6 +28,9 @@
  \item{path}{The path where the file should be saved.}
  \item{compress}{If \code{\link[base:logical]{TRUE}}, the file is compressed to, otherwise not.}
  \item{...}{Other arguments accepted by \code{save()} in the base package.}
+ \item{safe}{If \code{\link[base:logical]{TRUE}} and \code{file} is a file, then, in order to lower
+   the risk for incomplete files, the object is first written to a
+   temporary file, which is then renamed to the final name.}
 }
 
 \value{
