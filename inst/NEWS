@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.6.4 [2009-10-27]
+o Removed a stray print() statement in attachLocally() for Object:s.
+
+
 Version: 1.6.3 [2009-10-26]
 o Added objectSize() for environments.
 o BUG FIX: Rdoc$compile() did not work with R v2.10.0 and newer.

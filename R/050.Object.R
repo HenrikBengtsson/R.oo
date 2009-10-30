@@ -590,7 +590,6 @@ setMethodS3("attachLocally", "Object", function(this, private=FALSE, fields=NULL
   if (is.null(fields))
     fields <- getFields(this, private=private);
   fields <- setdiff(fields, excludeFields);
-print(fields);
 
   attachedFields <- c();
   for (field in fields) {
@@ -2064,6 +2063,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2009-10-27
+# o Removed a stray print() statement in attachLocally() for Object:s.
 # 2009-07-07
 # o Added Rdoc comments to registerFinalizer() and added it to the package.
 # 2009-06-11
