@@ -3,7 +3,7 @@ Package: R.oo
 
 Version: 1.6.5 [2009-10-30]
 o ROBUSTIFICATION: Lowered the risk for save() of Object to leave an
-  imcomplete file due to say power failures etc.  This is done by
+  incomplete file due to say power failures etc.  This is done by
   first writing to a temporary file, which is then renamed.  If the
   temporary file already exists, an exception is thrown.
 
