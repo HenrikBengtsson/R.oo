@@ -782,7 +782,7 @@ setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE
     # Write to a temporary file
     file <- pathnameT;
     on.exit({
-      if (file.exists(pathnameT)) {
+      if (!is.null(pathnameT) && file.exists(pathnameT)) {
         file.remove(pathnameT);
       }
     }, add=TRUE);
@@ -800,6 +800,7 @@ setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE
     if (!file.exists(pathname) || file.exists(pathnameT)) {
       throw("Failed to rename temporary file: ", pathnameT, " -> ", pathname);
     }
+    pathnameT <- NULL;
     file <- pathname;
   }
 
