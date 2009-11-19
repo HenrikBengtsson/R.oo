@@ -33,6 +33,7 @@
 
 \seealso{
   For more information see \code{\link{Package}}.
+  \code{\link[R.oo:isOlderThan.Package]{*isOlderThan}()}.
 }
 \keyword{internal}
 \keyword{methods}

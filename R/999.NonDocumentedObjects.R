@@ -89,6 +89,7 @@
 # @alias getUrl
 # @alias getVersion
 # @alias isLoaded
+# @alias isOlderThan
 # @alias showChangeLog
 # @alias showContents
 # @alias showDescriptionFile

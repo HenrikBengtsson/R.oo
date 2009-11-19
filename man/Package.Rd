@@ -70,6 +70,7 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.oo:getUrl.Package]{getUrl}} \tab Gets the URL of this package.\cr
  \tab \code{\link[R.oo:getVersion.Package]{getVersion}} \tab Gets the version of this package.\cr
  \tab \code{\link[R.oo:isLoaded.Package]{isLoaded}} \tab Checks if the package is installed on the search path or not.\cr
+ \tab \code{\link[R.oo:isOlderThan.Package]{isOlderThan}} \tab Checks if the package is older than a given version.\cr
  \tab \code{\link[R.oo:ll.Package]{ll}} \tab Generates a list of informative properties of all members of the package.\cr
  \tab \code{\link[R.oo:load.Package]{load}} \tab Loads a package.\cr
  \tab \code{\link[R.oo:showChangeLog.Package]{showChangeLog}} \tab Show the change log of this package.\cr

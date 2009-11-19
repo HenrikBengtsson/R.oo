@@ -373,10 +373,45 @@ setMethodS3("getPath", "Package", function(this, ...) {
 #
 # \seealso{
 #   @seeclass
+#   @seemethod "isOlderThan".
 # }
 #*/#########################################################################
 setMethodS3("getVersion", "Package", function(this, ...) {
   this$.version;
+})
+
+
+#########################################################################/**
+# @RdocMethod isOlderThan
+#
+# @title "Checks if the package is older than a given version"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{version}{A @character string specifying a version to compare with.}
+#   \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns @TRUE if the version of the package is less than the
+#   specified version.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seeclass
+#   @seemethod "getVersion".
+# }
+#*/#########################################################################
+setMethodS3("isOlderThan", "Package", function(this, version, ...) {
+  res <- compareVersion(getVersion(this), version);
+  (res < 0);
 })
 
 
@@ -1582,6 +1617,8 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2009-11-19
+# o Added isOlderThan() for Package.
 # 2008-10-09
 # BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) : 
 # subscript out of bounds" starting with R v2.10.0.
