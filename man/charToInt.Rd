@@ -38,8 +38,9 @@
 }
 
 \seealso{
-  \code{\link[base]{utf8Conversion}}.
   \code{\link{intToChar}}()
+  \code{\link[base]{utf8Conversion}}.
+  \code{\link[base]{rawConversion}}
 }
 
 

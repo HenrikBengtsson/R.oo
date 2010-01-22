@@ -128,8 +128,9 @@ ASCII.ESC <- "\033";
 # }
 #
 # \seealso{
-#   @see "base::utf8Conversion".
 #   @see intToChar
+#   @see "base::utf8Conversion".
+#   @see "base::rawConversion"
 # }
 #
 # @keyword character
