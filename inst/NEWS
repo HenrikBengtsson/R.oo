@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.7.0 [2010-03-13]
+o Added a NAMESPACE.
+
+
 Version: 1.6.7 [2010-01-21]
 o Added some more "get started" help to help(R.oo).
 

@@ -71,5 +71,10 @@
 # \references{
 #  [1] @include "../incl/BengtssonH_2003.bib.Rdoc" \cr
 # }
+#
+# \seealso{
+#   People interested in \pkg{R.oo} may also be interested in 
+#   packages \pkg{proto} and \pkg{mutatr}.
+# }
 #*/#########################################################################  
 

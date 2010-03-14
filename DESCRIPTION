@@ -1,6 +1,6 @@
 Package: R.oo
-Version: 1.6.7
-Date: 2010-01-21
+Version: 1.7.0
+Date: 2010-03-13
 Title: R object-oriented programming with or without references
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
