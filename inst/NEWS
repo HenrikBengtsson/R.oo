@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.7.1 [2010-03-17]
+o CLEAN UP: Loading the package would generate warnings of
+  of several conflicts.  Forgot to export '.conflicts.OK'
+  after adding the name space.
+
+
 Version: 1.7.0 [2010-03-13]
 o Added a NAMESPACE.
 
