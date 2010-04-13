@@ -28,32 +28,32 @@
 # \keyword{methods}
 #*/###########################################################################
 setConstructorS3("Package", function(name=NULL) {
+  libPath <- NULL;
+  version <- NULL;
+
   if (!is.null(name)) {
-    libPath <- NULL;
     tryCatch({
       package <- packageDescription(name);
+      version <- as.character(package$Version);
       libPath <- dirname(system.file(package=name));
-    }, warning=function(warn) {
+    }, warning = function(warn) {
       # installed.packages() may be slow()!
       packages <- as.data.frame(installed.packages());
-      idx <- (packages$Package == name);
-      if(!any(idx))
+      idxs <- (packages$Package == name);
+      if(!any(idxs)) {
         throw("Package is not installed: ", name);
-      package <- packages[idx,];
-      libPath <<- as.character(package$LibPath);
-      if (length(libPath) > 1) {
-        warning(paste("Multiple installations of package '", name, "' was found. Using the first. Paths too all installations: ", paste(libPath, collapse=", "), sep=""));
-        libPath <- libPath[1];
       }
-      libPath <- gsub("/$", "", libPath);
-#     if (regexpr("/$", libPath) == -1)
-#       libPath <- paste(libPath, "/", sep="");
+      packages <- packages[idxs,,drop=FALSE];
+      libPath <<- as.character(packages$LibPath);
+      if (length(libPath) > 1) {
+        warning(paste("Multiple installations of package '", name, "' was found. Using the first. Paths to all installations: ", paste(libPath, collapse=", "), sep=""));
+        libPath <<- libPath[1];
+      }
+      libPath <<- gsub("/$", "", libPath);
+      version <<- as.character(packages$Version[1]);
     })
-    version <- as.character(package$Version);
-  } else {
-    libPath <- NULL;
-    version <- NULL;
   }
+
   extend(Object(), "Package",
     .name = name,
     .libPath = libPath,
@@ -1617,6 +1617,10 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2010-04-13
+# o BUG FIX: Package(pkg) would throw "Error in Package(pkgname) : object
+#   'package' not found", if 'pkg' is installed in multiple libraries.
+# o LANGUAGE FIX: Warning message of Package() said "too" instead of "to".
 # 2009-11-19
 # o Added isOlderThan() for Package.
 # 2008-10-09

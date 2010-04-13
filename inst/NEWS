@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.7.2 [2010-04-13]
+o BUG FIX: Package(pkg) would throw "Error in Package(pkgname) : object
+  'package' not found", if 'pkg' is installed in multiple libraries.
+
+
 Version: 1.7.1 [2010-03-17]
 o CLEAN UP: Loading the package would generate warnings of
   of several conflicts.  Forgot to export '.conflicts.OK'
