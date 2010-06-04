@@ -39,7 +39,7 @@
 \section{To get started}{
   To get started,It is very useful to understand that:
   \enumerate{
-  \item The \code{\link[R.methodsS3]{setMethodS3}} function, which is
+  \item The \code{\link[R.methodsS3]{setMethodS3}}() function, which is
     defined in the \pkg{R.methodsS3} package (used to be part of
     \pkg{R.oo}), is nothing but a conveniency wrapper for setting
     up S3 methods, and automatically create an S3 generic
@@ -60,12 +60,12 @@
     For instance, you can reassign a whole matrix \code{X} part of
     the object this way, but you cannot reassign \code{X[1,1]}
     without creating a completely new copy.
- }
+  }
 }
 
 \section{Further readings}{
-  For a detailed introduction to the package see [1].
-  To define static fields, see help on \code{\link{Object}}.
+  For a detailed introduction to the package see [1] (part of the
+  package distribution).
 }
 
 \section{How to cite this package}{
@@ -98,5 +98,10 @@
 \references{
  [1] H. Bengtsson, \emph{The R.oo package - Object-Oriented Programming with References Using Standard R Code}, In Kurt Hornik, Friedrich Leisch and Achim Zeileis, editors, Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003), March 20-22, Vienna, Austria. \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2003/Proceedings/}
  \cr
+}
+
+\seealso{
+  People interested in \pkg{R.oo} may also be interested in
+  packages \pkg{proto} and \pkg{mutatr}.
 }
 \keyword{package}

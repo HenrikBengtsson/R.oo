@@ -23,8 +23,8 @@
  this method.}
 }
 
-\synopsis{compile.Rdoc(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=TRUE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)}
-\usage{Rdoc$compile(filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=TRUE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)}
+\synopsis{compile.Rdoc(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)}
+\usage{Rdoc$compile(filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)}
 
 \arguments{
   \item{filename}{The pathname or filename pattern of the Rdoc files to be

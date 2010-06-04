@@ -49,7 +49,7 @@
 
 
  \bold{Methods inherited from logical}:\cr
-as.data.frame, whichVector
+as.data.frame, as.raster, whichVector
 
  }
 

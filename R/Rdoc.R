@@ -494,7 +494,7 @@ setMethodS3("escapeRdFilename", "Rdoc", function(static, filename, ...) {
 #
 # @keyword documentation
 #*/###########################################################################
-setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=TRUE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...) {
+setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...) {
   isCapitalized <- function(str) {
     first <- substring(str,1,1);
     (first == toupper(first))
@@ -2373,6 +2373,7 @@ setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FA
   if (compareVersion(as.character(getRversion()), "2.10.0") >= 0) {
     # R v2.10.0 and newer
     pathnames <- list.files(pattern="[.]Rd$", path=manPath, full.names=TRUE);
+    res <- NULL;
     for (kk in seq(along=pathnames)) {
       pathname <- pathnames[kk];
       res <- tools::checkRd(pathname);
@@ -2454,6 +2455,14 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2010-06-04
+# o Now argument 'addTimestamp' of Rdoc$compile() default to FALSE.
+#   This way the generate Rd file will remain identical unless there
+#   are real Rdoc/code changes.  Not adding timestamps is better when
+#   working with a version control systems.
+# 2010-06-01
+# o BUG FIX: If there are no Rd files, then check() of Rdoc would
+#   throw the error "object 'res' not found".
 # 2009-10-26
 # o BUG FIX: Rdoc$compile() did not work with R v2.10.0 and newer.
 # 2008-08-11

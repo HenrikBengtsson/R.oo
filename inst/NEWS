@@ -1,6 +1,15 @@
 Package: R.oo
 =============
 
+Version: 1.7.3 [2010-06-04]
+o Now argument 'addTimestamp' of Rdoc$compile() defaults to FALSE.
+  This way the generate Rd file will remain identical unless there
+  are real Rdoc/code changes.  Not adding timestamps is better when
+  working with a version control systems.
+o BUG FIX: If there are no Rd files, then check() of Rdoc would
+  throw the error "object 'res' not found".
+
+
 Version: 1.7.2 [2010-04-13]
 o BUG FIX: Package(pkg) would throw "Error in Package(pkgname) : object
   'package' not found", if 'pkg' is installed in multiple libraries.
