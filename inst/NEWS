@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.7.4 [2010-09-21]
+o Now Rdoc lines are allowed to start with double ('##') comment
+  characters in addition to single ('#') ones.
+
+
 Version: 1.7.3 [2010-06-04]
 o Now argument 'addTimestamp' of Rdoc$compile() defaults to FALSE.
   This way the generate Rd file will remain identical unless there
