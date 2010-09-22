@@ -636,7 +636,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       tmp[last] <- gsub("^#.*\\*/.*", "", tmp[last]);
   
       # Remove all leading single and double comment characters
-      tmp <- gsub("^#{1,2}", "", tmp);
+      tmp <- gsub("^#{1,3}", "", tmp);
   
       # Find (minimum) indentation
       indents <- regexpr("[^ ]", tmp[nchar(tmp) > 0])
@@ -2455,9 +2455,9 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
-# 2010-09-21
-# o Now Rdoc lines are allowed to start with double ('##') comment
-#   characters in addition to single ('#') ones.
+# 2010-09-22
+# o Now Rdoc lines are allowed to start with double ('##') or tripple
+#   ('###') comment characters in addition to single ('#') ones.
 # 2010-06-04
 # o Now argument 'addTimestamp' of Rdoc$compile() default to FALSE.
 #   This way the generate Rd file will remain identical unless there

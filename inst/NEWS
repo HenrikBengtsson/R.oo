@@ -1,9 +1,9 @@
 Package: R.oo
 =============
 
-Version: 1.7.4 [2010-09-21]
-o Now Rdoc lines are allowed to start with double ('##') comment
-  characters in addition to single ('#') ones.
+Version: 1.7.4 [2010-09-22]
+o Now Rdoc lines are allowed to start with double ('##') or tripple
+  ('###') comment characters in addition to single ('#') ones.
 
 
 Version: 1.7.3 [2010-06-04]
