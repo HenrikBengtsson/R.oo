@@ -818,7 +818,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
       typeOfClass <- typeOfClass(class);
       if (is.na(typeOfClass)) {
-        throw(RdocException("Class in either not defined or loaded, or not an S4/setClass() or S3/setConstructorS3() class: ", class));
+        throw(RdocException("Class is either not defined or loaded, or not an S4/setClass() or S3/setConstructorS3() class: ", class));
       }
 
       if (typeOfClass == "S4") {
@@ -845,7 +845,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
   
       rd <<- paste(rd, line, sep="");
       bfr;
-    }
+    } # tagRdocClass()
   
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
