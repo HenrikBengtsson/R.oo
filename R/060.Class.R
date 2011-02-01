@@ -1296,7 +1296,7 @@ setMethodS3("$", "Class", function(this, name) {
   # For static method calls, e.g. Class$load, 'static' has no
   # environment assigned and therefore, for now, no static
   # fields.
-  if (!is.null(envir) && exists(name, envir=envir, inherit=FALSE))
+  if (!is.null(envir) && exists(name, envir=envir, inherits=FALSE))
     return(get(name, envir=envir));
 
   # 3. Is it an attribute field (slot)?
@@ -1435,6 +1435,9 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2011-02-01
+# o ROBUSTNESS: Now using 'inherits' (not 'inherit') in all calls to
+#   get() and exists().
 # 2007-06-09
 # o Removed internal function formalsToString() of getDetails() for class
 #   Class, because it was never used.

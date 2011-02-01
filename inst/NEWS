@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.7.5 [2011-02-01]
+o ROBUSTNESS: Now using 'inherits' (not 'inherit') in all calls to
+  get() and exists().
+
+
 Version: 1.7.4 [2010-09-22]
 o Now Rdoc lines are allowed to start with double ('##') or tripple
   ('###') comment characters in addition to single ('#') ones.

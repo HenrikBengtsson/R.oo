@@ -1465,7 +1465,7 @@ setMethodS3("$", "Object", function(this, name) {
   # Check if there is a cache lookup available.
   envir <- attr(this, ".env");
   cacheName <- paste("...$.lookup", name, sep=".");
-  if (!is.null(envir) && exists(cacheName, envir=envir, inherit=FALSE)) {
+  if (!is.null(envir) && exists(cacheName, envir=envir, inherits=FALSE)) {
     envirCache <- envir;
     lookup <- get(cacheName, envir=envirCache);
     if (identical(attr(lookup, "memberAccessorOrder"), memberAccessorOrder)) {
@@ -1532,7 +1532,7 @@ setMethodS3("$", "Object", function(this, name) {
       # For static method calls, e.g. Object$load, 'this' has no
       # environment assigned and therefore, for now, no static
       # fields.
-      if (!is.null(envir) && exists(name, envir=envir, inherit=FALSE)) {
+      if (!is.null(envir) && exists(name, envir=envir, inherits=FALSE)) {
         lookup <- memberAccessor;
         attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
         assign(cacheName, lookup, envir=envir);
@@ -1571,7 +1571,7 @@ setMethodS3("$", "Object", function(this, name) {
       # For static method calls, e.g. Object$load, 'this' has no
       # environment assigned and therefore, for now, no static
       # fields.
-      if (!is.null(static.envir) && exists(name, envir=static.envir, inherit=FALSE)) {
+      if (!is.null(static.envir) && exists(name, envir=static.envir, inherits=FALSE)) {
         lookup <- memberAccessor;
         attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
         attr(lookup, "static.envir") <- static.envir;
@@ -1720,7 +1720,7 @@ setMethodS3("$<-", "Object", function(this, name, value) {
       # For static method calls, e.g. Object$load, 'this' has no
       # environment assigned and therefore, for now, no static
       # fields.
-      if (!is.null(static.envir) && exists(name, envir=static.envir, inherit=FALSE)) {
+      if (!is.null(static.envir) && exists(name, envir=static.envir, inherits=FALSE)) {
         assign(name, value, envir=static.envir);
         return(invisible(this));
       }
@@ -2098,6 +2098,9 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2011-02-01
+# o ROBUSTNESS: Now using 'inherits' (not 'inherit') in all calls to
+#   get() and exists().
 # 2009-10-30
 # o ROBUSTIFICATION: Added argument 'safe=TRUE' to save() of Object.
 # 2009-10-27
