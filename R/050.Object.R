@@ -1378,7 +1378,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
       # (4) Remove the dummy finalize():er again.
       detach("dummy:R.oo");
     }
-  });
+  }, onexit=FALSE); # reg.finalizer()
 
 
   # Finally, create the static instance?
@@ -2090,7 +2090,7 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
   # that is, not the "final" class. However, we still do it so
   # that pure Object:s will be finalized too.  This will be
   # overridden if extend(<Object>) is called.
-  reg.finalizer(attr(this, ".env"), localFinalizer);
+  reg.finalizer(attr(this, ".env"), localFinalizer, onexit=FALSE);
 
   invisible(this);
 }, protected=TRUE) # registerFinalizer()
@@ -2098,6 +2098,13 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2011-03-11
+# o Added explicit 'onexit=FALSE' to all reg.finalizer():s so it is clear
+#   that they are not finalized when quitting R.
+#   Why? Because in the future we may want to change this to onexit=TRUE,
+#   but for now I don't fully understand the implications of doing so,
+#   e.g. at what stage of the quitting process is the finalizer called
+#   and what environments/objects/packages are available at that time?
 # 2011-02-01
 # o ROBUSTNESS: Now using 'inherits' (not 'inherit') in all calls to
 #   get() and exists().

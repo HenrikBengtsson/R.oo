@@ -52,7 +52,7 @@ attach(list(
         # (4) Remove the dummy finalize():er again.
         detach("dummy:R.oo");
       }
-    });
+    }, onexit=FALSE); # reg.finalizer()
 
     this;
   },
@@ -87,6 +87,9 @@ attach(list(
 
 ############################################################################
 # HISTORY:
+# 2011-03-11
+# o Added explicit 'onexit=FALSE' to all reg.finalizer():s so it is clear
+#   that they are not finalized when quitting R.  See 050.Object.R too.
 # 2008-05-28
 # o SPELL CORRECTION: Used '...instanciation' instead of 'instantiation'.
 # 2008-01-10
