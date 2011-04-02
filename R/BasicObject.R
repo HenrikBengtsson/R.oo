@@ -32,7 +32,11 @@ setConstructorS3("BasicObject", function(core=NULL) {
     core <- NA;
   this <- core;
   class(this) <- c("BasicObject", class(this));
-  attr(this, "...instantiationTime") <- Sys.time();
+
+  if (getOption("R.oo::BasicObject/instantiationTime", FALSE)) {
+    attr(this, "...instantiationTime") <- Sys.time();
+  }
+
   this; 
 })
 
@@ -110,7 +114,6 @@ setMethodS3("as.character", "BasicObject", function(x, ...) {
 
 ###########################################################################/**
 # @RdocMethod getInstantiationTime
-# @aliasmethod getInstanciationTime 
 #
 # @title "Gets the time when the object was instantiated"
 #
@@ -128,6 +131,11 @@ setMethodS3("as.character", "BasicObject", function(x, ...) {
 #   Returns a POSIXt object, which extends class POSIXct.
 # }
 #
+# \details{
+#   The instantiation timestamp is set when the object is created, and
+#   only of option \code{"R.oo::BasicObject/instantiationTime"} is @TRUE.
+# }
+#
 # \seealso{
 #   For more about time formats and POSIX see @see "base::DateTimeClasses".
 #   @seeclass
@@ -140,9 +148,12 @@ setMethodS3("as.character", "BasicObject", function(x, ...) {
 #*/########################################################################### 
 setMethodS3("getInstantiationTime", "BasicObject", function(this, ...) {
   time <- attr(this, "...instantiationTime");
-  if (is.null(time))
-    time <- attr(this, "...instanciationTime");
-  time;
+  if (!is.null(time)) return(time);
+
+  # Backward compatibility (due to a SPELLING ERROR in an earlier version)
+  time <- attr(this, "...instanciationTime");
+
+  NULL;
 })
 
 
@@ -786,6 +797,11 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2011-04-02
+# o Added option "R.oo::Object/instantiationTime", which controls
+#   whether the instantiation timestamp should be set when instantiating
+#   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime" 
+#   controls ditto for a BasicObject.
 # 2008-05-28
 # o SPELL CORRECTION: Used '...instanciation' instead of 'instantiation'.
 # 2005-02-15

@@ -30,7 +30,7 @@
 \code{~~~~~~~~~~~~~~~~~~~~~~+--}\code{Exception}\cr
 
 \bold{Directly known subclasses:}\cr
-\link[R.oo]{InternalErrorException}, \link[R.oo]{RccViolationException}, \link[R.oo]{RdocException}\cr
+\link[R.oo]{InternalErrorException}, \link[R.oo]{RccViolationException}, \link[R.oo]{RdocException}, \link[R.utils]{TimeoutException}\cr
 
 public static class \bold{Exception}\cr
 extends simpleError\cr
@@ -73,7 +73,7 @@ as.character, throw
 as.character, conditionCall, conditionMessage, print
 
  \bold{Methods inherited from Object}:\cr
-$, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, registerFinalizer, save
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, registerFinalizer, save
 
 
 }

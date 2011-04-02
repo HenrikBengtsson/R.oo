@@ -8,15 +8,18 @@ attach(list(
     this <- core;
     attr(this, ".env") <- new.env();
     class(this) <- "Object";
-    ## attr(this, "...instanciationTime") <- Sys.time(); # SPELLING ERROR
-    attr(this, "...instantiationTime") <- Sys.time();
+
+    if (getOption("R.oo::Object/instantiationTime", FALSE)) {
+      attr(this, "...instantiationTime", Sys.time());
+    }
 
     # Note, we cannot register the finalizer here, because then
     # the reference variable 'this' will be of the wrong class,
     # that is, not the "final" class. However, we still do it so
     # that pure Object:s will be finalized too.  This will be
     # overridden if extend(<Object>) is called.
-    reg.finalizer(attr(this, ".env"), function(env) {
+    # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
+    finalizer <- function(env) {
       # Note, R.oo might be detached when this is called!  If so, reload
       # it, this will be our best chance to run the correct finalizer(),
       # which might be in a subclass of a different package that is still
@@ -52,7 +55,8 @@ attach(list(
         # (4) Remove the dummy finalize():er again.
         detach("dummy:R.oo");
       }
-    }, onexit=FALSE); # reg.finalizer()
+    } # finalizer()
+    reg.finalizer(attr(this, ".env"), finalizer, onexit=TRUE);
 
     this;
   },
@@ -87,6 +91,14 @@ attach(list(
 
 ############################################################################
 # HISTORY:
+# 2011-04-02
+# o Now finalizers for Object:s are registered to be called also when
+#   R is quit.  Previously, they were only executed when an Object
+#   was cleaned up by the garbage collector. 
+# o Added option "R.oo::Object/instantiationTime", which controls
+#   whether the instantiation timestamp should be set when instantiating
+#   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime" 
+#   controls ditto for a BasicObject.
 # 2011-03-11
 # o Added explicit 'onexit=FALSE' to all reg.finalizer():s so it is clear
 #   that they are not finalized when quitting R.  See 050.Object.R too.

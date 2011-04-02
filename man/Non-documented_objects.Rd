@@ -48,6 +48,7 @@
 \alias{attach.default}
 \alias{attachLocally}
 \alias{clone}
+\alias{clearLookupCache}
 \alias{clearCache}
 \alias{detach}
 \alias{detach.default}
@@ -61,6 +62,8 @@
 \alias{getInstanciationTime.default}
 \alias{getInstantiationTime}
 \alias{getInternalAddress}
+\alias{getFieldModifier}
+\alias{getFieldModifiers}
 \alias{hasField}
 \alias{load}
 \alias{load.default}

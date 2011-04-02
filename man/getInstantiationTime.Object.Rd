@@ -12,10 +12,6 @@
 \alias{getInstantiationTime.Object}
 \alias{getInstantiationTime,Object-method}
 
-\alias{Object.getInstanciationTime}
-\alias{getInstanciationTime.Object}
-\alias{getInstanciationTime,Object-method}
-
 
 \title{Gets the time when the object was instantiated}
 
@@ -33,9 +29,16 @@
   Returns a POSIXt object, which extends class POSIXct.
 }
 
+\details{
+  The instantiation time stamp is set when the object is created, and
+  only of option \code{"R.oo::BasicObject/instantiationTime"} is \code{\link[base:logical]{TRUE}}.
+}
+
 \examples{
+  oopts <- options("R.oo::Object/instantiationTime"=TRUE)
   obj <- Object()
   print(getInstantiationTime(obj))
+  options(oopts)
 }
 
 \seealso{

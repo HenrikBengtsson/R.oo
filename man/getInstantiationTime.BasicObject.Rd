@@ -12,10 +12,6 @@
 \alias{getInstantiationTime.BasicObject}
 \alias{getInstantiationTime,BasicObject-method}
 
-\alias{BasicObject.getInstanciationTime}
-\alias{getInstanciationTime.BasicObject}
-\alias{getInstanciationTime,BasicObject-method}
-
 
 \title{Gets the time when the object was instantiated}
 
@@ -31,6 +27,11 @@
 
 \value{
   Returns a POSIXt object, which extends class POSIXct.
+}
+
+\details{
+  The instantiation timestamp is set when the object is created, and
+  only of option \code{"R.oo::BasicObject/instantiationTime"} is \code{\link[base:logical]{TRUE}}.
 }
 
 \seealso{
