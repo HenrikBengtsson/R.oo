@@ -1385,7 +1385,8 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
       detach("dummy:R.oo");
     }
   } # finalizer()
-  reg.finalizer(attr(this, ".env"), finalizer, onexit=TRUE);
+  reg.finalizer(attr(this, ".env"), finalizer, 
+                onexit=getOption("R.oo::Object/finalizeOnExit", FALSE));
 
 
   # Finally, create the static instance?
@@ -2213,6 +2214,7 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 ############################################################################
 # HISTORY:
 # 2011-04-03
+# o Added option "R.oo::Object/finalizeOnExit".
 # o Added argument 'recursive' to clearCache() for recursively traversing
 #   all elements are clearing the cache of all detected Object:s.
 # 2011-04-02

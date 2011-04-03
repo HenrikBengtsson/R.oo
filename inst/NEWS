@@ -3,8 +3,9 @@ Package: R.oo
 
 Version: 1.8.0 [2011-04-03]
 o ROBUSTNESS: Now finalizers for Object:s are registered to be called 
-  also when R is quit.  Previously, they were only executed when an 
-  Object was cleaned up by the garbage collector.
+  also when the R session is quit, if the "R.oo::Object/finalizeOnExit"
+  option is TRUE.  If FALSE (default), as before, the finalizers were
+  only executed when Object:s were cleaned up by the garbage collector.
 o Turned of the default instantiation timestamp for Object and 
   BasicObject.  The main reason is that it makes it very complicated
   to calculate reproducible checksums.  However, for backward

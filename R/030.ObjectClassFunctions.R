@@ -56,7 +56,8 @@ attach(list(
         detach("dummy:R.oo");
       }
     } # finalizer()
-    reg.finalizer(attr(this, ".env"), finalizer, onexit=TRUE);
+    reg.finalizer(attr(this, ".env"), finalizer, 
+                  onexit=getOption("R.oo::Object/finalizeOnExit", FALSE));
 
     this;
   },
@@ -92,9 +93,7 @@ attach(list(
 ############################################################################
 # HISTORY:
 # 2011-04-02
-# o Now finalizers for Object:s are registered to be called also when
-#   R is quit.  Previously, they were only executed when an Object
-#   was cleaned up by the garbage collector. 
+# o Added option "R.oo::Object/finalizeOnExit".
 # o Added option "R.oo::Object/instantiationTime", which controls
 #   whether the instantiation timestamp should be set when instantiating
 #   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime" 
