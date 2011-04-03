@@ -1989,12 +1989,16 @@ setMethodS3("clearLookupCache", "Object", function(this, ...) {
 # @synopsis
 #
 # \arguments{
+#   \item{recursive}{If @TRUE, the same method is called also on all
+#      fields that are @see "Object":s. Circular dependencies can exists.}
 #   \item{...}{Not used.}
 # }
 #
 # \value{
 #   Returns itself (invisible).
 # }
+#
+# @examples "../incl/gc.clearCache.Rex"
 #
 # @author
 #
@@ -2007,7 +2011,7 @@ setMethodS3("clearLookupCache", "Object", function(this, ...) {
 # @keyword programming
 # @keyword methods
 #*/###########################################################################
-setMethodS3("clearCache", "Object", function(this, ...) {
+setMethodS3("clearCache", "Object", function(this, recursive=TRUE, ...) {
   env <- attr(this, ".env");
 
   fields <- getFieldModifier(this, "cached");
@@ -2017,6 +2021,22 @@ setMethodS3("clearCache", "Object", function(this, ...) {
   }
 
   this <- clearLookupCache(this);
+
+  if (recursive) {
+    # Make sure that this object has not already been called 
+    # earlier in the same clear-cache request.  
+    if (!exists("...clearCache", envir=env)) {
+      assign("...clearCache", TRUE, envir=env);
+      on.exit(rm("...clearCache", envir=env));
+      fields <- getFields(this, private=TRUE);
+      for (field in fields) {
+        object <- get(field, envir=env);
+        if (inherits(object, "Object")) {
+          clearCache(object, recursive=TRUE);
+        }
+      }
+    }
+  }
 
   invisible(this);
 })
@@ -2098,8 +2118,7 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("gc", "Object", function(this, ...) {
-  clearCache(this);
-  clearLookupCache(this);
+  clearCache(this, ...);
   gc();
 });
 
@@ -2193,6 +2212,9 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2011-04-03
+# o Added argument 'recursive' to clearCache() for recursively traversing
+#   all elements are clearing the cache of all detected Object:s.
 # 2011-04-02
 # o Added protected getFieldModifiers() and getFieldModifier().
 # o Added clearLookupCache() for clearing internal objects stored in

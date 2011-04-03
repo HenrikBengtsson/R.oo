@@ -1,7 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.8.0 [2011-04-02]
+Version: 1.8.0 [2011-04-03]
 o ROBUSTNESS: Now finalizers for Object:s are registered to be called 
   also when R is quit.  Previously, they were only executed when an 
   Object was cleaned up by the garbage collector.
@@ -12,6 +12,8 @@ o Turned of the default instantiation timestamp for Object and
   option "R.oo::Object/instantiationTime".  For BasicObject there is
   option "R.oo::BasicObject/instantiationTime".
 o Added protected getFieldModifiers() and getFieldModifier().
+o Added argument 'recursive' to clearCache() for recursively traversing
+  all elements are clearing the cache of all detected Object:s.
 o Now clearCache() also calls clearLookupCache().
 o Added protected clearLookupCache() for clearing internal objects 
   stored in the Object and that are used for faster field lookups.
