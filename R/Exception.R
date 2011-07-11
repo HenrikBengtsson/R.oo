@@ -344,7 +344,10 @@ setMethodS3("getLastException", "Exception", function(this, ...) {
 setMethodS3("getStackTrace", "Exception", function(this, ...) {
   this$.stackTrace;
 }) 
-setMethodS3("getCall", "Exception", function(this, ...) {
+setMethodS3("getCall", "Exception", function(x, ...) {
+  # To please R CMD check (R >= 2.14.0)
+  this <- x;
+
   getStackTrace(this);
 }) 
 
@@ -438,6 +441,9 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2011-07-10
+# o Changed first argument of getCall() to 'x', because that is what
+#   the new getCall() method of 'stats' in R v2.14.0 uses.
 # 2005-02-20
 # o Updated broken link to tryCatch().
 # 2005-02-15

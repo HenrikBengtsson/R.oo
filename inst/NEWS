@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.8.1 [2011-07-10]
+o Changed first argument of getCall() to 'x', because that is what
+  the new getCall() method of 'stats' in R v2.14.0 uses.
+
+
 Version: 1.8.0 [2011-04-03]
 o ROBUSTNESS: Now finalizers for Object:s are registered to be called 
   also when the R session is quit, if the "R.oo::Object/finalizeOnExit"
