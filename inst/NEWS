@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.8.2 [2011-08-25]
+o DOCUMENTATION: Added further clarification to help(setConstructorS3)
+  about the requirment that constructors defined by setConstructorS3()
+  have to be callable without arguments.
+
+
 Version: 1.8.1 [2011-07-10]
 o Changed first argument of getCall() to 'x', because that is what
   the new getCall() method of 'stats' in R v2.14.0 uses.
