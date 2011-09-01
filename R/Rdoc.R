@@ -1532,7 +1532,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
           }
         }
       } # for
-  
+
       # ==============================================================
       # 2. Compile the remaining lines
       #
@@ -1585,10 +1585,10 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
           }
         }
   
-        if (!is.null(tagFunction) > 0) {
+
+        if (!is.null(tagFunction)) {
           # Shift the Rdoc buffer
           rdoc <- substring(rdoc, len+1);
-  
           if (is.function(tagFunction)) {
             # Evaluate the tag function in the current environment
             # so all variables can be shared between tags.
@@ -2455,6 +2455,8 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2011-07-27
+# o CLEANUP: Replaced a (!is.null(foo) > 0) with (!is.null(foo)).
 # 2010-09-22
 # o Now Rdoc lines are allowed to start with double ('##') or tripple
 #   ('###') comment characters in addition to single ('#') ones.
