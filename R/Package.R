@@ -267,14 +267,7 @@ setMethodS3("showContents", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDescriptionFile", "Package", function(this, fields=NULL, ...) {
-  # package.description() was immediately made deprecate in R v1.9.0.
-  # This is a workaround to be compatible with old and new versions of R.
-  # /HB 2004-04-21
-  if (exists("packageDescription", mode="function")) {
-    unlist(packageDescription(this$.name, fields=fields));
-  } else {
-    package.description(this$.name, fields=fields);
-  }
+  unlist(packageDescription(this$.name, fields=fields));
 }, protected=TRUE)
 
 
@@ -1617,6 +1610,9 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2010-11-01
+# o CLEANUP/FIX: Dropped package.description() from getDescriptionFile()
+#   for Package, which was used for pre-R v1.9.0 compatibility reasons.
 # 2010-04-13
 # o BUG FIX: Package(pkg) would throw "Error in Package(pkgname) : object
 #   'package' not found", if 'pkg' is installed in multiple libraries.

@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.8.3 [2011-11-01]
+o CLEANUP/FIX: Dropped package.description() from getDescriptionFile()
+  for Package, which was done for compatibility reasons when it was
+  deprecated in R v1.9.0.  It will be dropped completely in R v2.15.0.
+
+
 Version: 1.8.2 [2011-08-25]
 o DOCUMENTATION: Added further clarification to help(setConstructorS3)
   about the requirment that constructors defined by setConstructorS3()
