@@ -760,13 +760,9 @@ setMethodS3("load", "Package", function(this, ...) {
 #   Returns nothing.
 # }
 #
-# \examples{
-#   pkg <- Package("boot")
-#   load(pkg)
-#   print(isLoaded(pkg))
-#   unload(pkg)
-#   print(isLoaded(pkg))
-# }
+# \examples{\dontrun{
+# @include "../incl/Package.unload.Rex"
+# }}
 #
 # @author
 #
@@ -1610,6 +1606,8 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2012-12-23
+# o Now Package() loads the 'utils' package, if needed.
 # 2010-11-01
 # o CLEANUP/FIX: Dropped package.description() from getDescriptionFile()
 #   for Package, which was used for pre-R v1.9.0 compatibility reasons.

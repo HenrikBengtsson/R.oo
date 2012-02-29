@@ -32,7 +32,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  Internally \code{\link[utils]{object.size}}.
+  Internally \code{\link[utils]{object.size}} is used.
 }
 
 \keyword{attribute}

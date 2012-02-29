@@ -31,13 +31,14 @@
   Returns nothing.
 }
 
-\examples{
-  pkg <- Package("boot")
-  load(pkg)
-  print(isLoaded(pkg))
-  unload(pkg)
-  print(isLoaded(pkg))
-}
+\examples{\dontrun{
+pkg <- Package("boot")
+load(pkg)
+print(isLoaded(pkg))
+unload(pkg)
+print(isLoaded(pkg))
+
+}}
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 

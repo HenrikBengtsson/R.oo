@@ -22,7 +22,7 @@
 # @author
 #
 # \seealso{
-#   Internally @see "utils::object.size".
+#   Internally @see "utils::object.size" is used.
 # }
 #
 # \keyword{attribute}
