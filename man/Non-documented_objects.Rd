@@ -141,10 +141,6 @@
 % The RdocException class
 \alias{getSource}
 
-% Utility functions
-\alias{environment}
-\alias{environment.default}
-
 % Trial functions
 \alias{gc.default}
 \alias{callSuperMethodS3}

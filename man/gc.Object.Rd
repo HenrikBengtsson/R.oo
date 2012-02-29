@@ -22,7 +22,7 @@
 \usage{\method{gc}{Object}(this, ...)}
 
 \arguments{
-  \item{...}{Not used.}
+  \item{...}{Passed to \code{\link[base]{gc}}() returns.}
 }
 
 \value{

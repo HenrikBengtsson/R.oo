@@ -91,7 +91,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     envir <- as.environment(pos);
   }
 
-  members <- .Internal(ls(envir, private));  # .Internal() so 'pos==-1' works.
+  members <- ls(envir=envir, all.names=private);
 
   # Any members at all?
   if (length(members) == 0)
@@ -249,6 +249,8 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
 
 ############################################################################
 # HISTORY:
+# 2012-02-29
+# o CLEANUP: Dropped an .Internal() call in the default ll() method.
 # 2008-08-11
 # o Replace all 'a %in% b' with is.element(a,b) due to weird bug, cf.
 #   my R-devel post 'Argument "nomatch" matched by multiple actual 

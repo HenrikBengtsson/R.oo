@@ -957,7 +957,9 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
   positions <- seq(along=searchPaths);
   envirs <- as.environment(positions);
 
-  members <- lapply(envirs, function(env) .Internal(ls(env, private)) );
+  members <- lapply(envirs, function(env) {
+    ls(envir=env, all.names=private);
+  });
   members <- unlist(members);
 
   # First, remove all members that does not contain a . (period), because
@@ -1435,6 +1437,8 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-02-29
+# o CLEANUP: Dropped an .Internal() call in getMethods() for Class objects.
 # 2011-02-01
 # o ROBUSTNESS: Now using 'inherits' (not 'inherit') in all calls to
 #   get() and exists().

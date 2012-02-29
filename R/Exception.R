@@ -258,10 +258,29 @@ setMethodS3("getMessage", "Exception", function(this, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("throw", "Exception", function(this, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Record this Exception
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   Exception$.lastException <- this;
-  message <- getStackTraceString(this);
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Signal the exception as a condition
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   signalCondition(this);
- .Internal(.dfltStop(paste("\n", getStackTraceString(this), sep=""), getCall(this)));
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # If not caught by any handlers, *abort* with a message containing
+  # also the stack trace.
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # The error message to be displayed
+  msg <- getStackTraceString(this);
+  msg <- paste("\n", msg, sep="");
+
+  # The call behind this exception
+  call <- getCall(this);
+
+  # Abort 
+  abort(msg, call=call);
 }, overwrite=TRUE, conflict="quiet")
 
 
@@ -437,10 +456,11 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 
 
 
-
-
 ############################################################################
 # HISTORY:
+# 2012-02-29
+# o Now throw() of Exception utilizes new abort().
+# o CLEANUP: Restructured the code of throw() for Exception.
 # 2011-07-10
 # o Changed first argument of getCall() to 'x', because that is what
 #   the new getCall() method of 'stats' in R v2.14.0 uses.

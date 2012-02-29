@@ -1,6 +1,22 @@
 Package: R.oo
 =============
 
+Version: 1.9.1 [2012-02-29]
+o Added abort() for aborting a call such that it cannot be caught
+  by signal handlers.
+o Replaced all appendVarArgs() for 'base' functions that do .Internal()
+  calls, because they would then appear as local functions of this
+  package and hence not be accepted by CRAN according to their new
+  policies.  Instead we now create "default" functions that are
+  wrappers to the corresponding functions in the 'base' package.
+  Extra care has to be taken for functions that have arguments whose
+  values are dependent on the call environment/closure.
+o CLEANUP: Dropped .Internal() calls in the default ll() method, in
+  getMethods() for Class objects.
+o CLEANUP: throw() for 'error' is now just a wrapper for stop(). 
+  Previously it had to do what stop() now does for 'condition' objects.
+
+
 Version: 1.9.0 [2012-02-23]
 o Now the package imports 'utils' instead of depending on it.
   This means that all packages that depends on 'R.oo' for loading

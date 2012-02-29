@@ -30,16 +30,16 @@
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("throw", "error", function(error, ...) {
-  message <- conditionMessage(error);
-  call = conditionCall(error);
-  .Internal(.signalCondition(error, message, call));
-  .Internal(.dfltStop(message, call));
+  base::stop(error);
 })
 
 
 
 ############################################################################
 # HISTORY:
+# 2012-02-29
+# o CLEANUP: throw() for 'error' is now just a wrapper for stop(). 
+#   Previously it had to do what stop() now does for 'condition' objects.
 # 2005-02-15
 # o Added arguments '...' in order to match any generic functions.
 # 2004-03-03
