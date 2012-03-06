@@ -28,10 +28,12 @@
 # @author
 #
 # \seealso{
+#   @see "throw".
 #   @see "base::stop".
 # }
 #
-# \keyword{error}
+# @keyword error
+# @keyword internal
 #*/###########################################################################
 setMethodS3("abort", "default", function(message, call=NULL, ...) {
   cond <- simpleError(message, call=call);
@@ -51,6 +53,10 @@ setMethodS3("abort", "condition", function(cond, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-03-05
+# o The abort() method is hidden and is not used by any R.oo methods.
+#   Will keep it until it is fully certain that throw() for Exception
+#   will work as expected without it.
 # 2012-02-29
 # o KNOWN ISSUES: abort() for 'condition' still uses .Internal().
 # o Added abort(), which is available as default function as well as

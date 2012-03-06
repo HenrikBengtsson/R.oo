@@ -27,8 +27,6 @@
   To install this package do\cr
 
   \code{install.packages("R.oo")}
-
-  To get the "devel" version, see \url{http://www.braju.com/R/}.
 }
 
 \section{Dependancies and other requirements}{

@@ -60,8 +60,11 @@ bar()
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
+  \code{\link{throw}}().
   \code{\link[base]{stop}}().
 }
 
-\keyword{error}
 
+
+\keyword{error}
+\keyword{internal}

@@ -59,5 +59,5 @@
   See the \code{\link{Exception}} class for more detailed information.
 }
 
-\keyword{error}
 
+\keyword{error}

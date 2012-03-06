@@ -268,19 +268,33 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   signalCondition(this);
 
+  # Question: Are there ways to catch the above signals, and then via
+  # some revoking mechanism continue below?!? /HB 2012-03-05
+
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # If not caught by any handlers, *abort* with a message containing
   # also the stack trace.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # The error message to be displayed
+  # Create an error message containing the stacktrace
   msg <- getStackTraceString(this);
   msg <- paste("\n", msg, sep="");
 
   # The call behind this exception
   call <- getCall(this);
 
-  # Abort 
-  abort(msg, call=call);
+  # Call stop() again, which will resignal a condition and the abort.
+  # The resignalled condition should not really be caught by anything,
+  # because if so, it would have caught by the above signal.  This
+  # is based on the assumption that it is not possible to continue
+  # after the above signal, iff it is caught. /HB 2012-03-05
+  cond <- simpleError(msg, call=call);
+  stop(cond);
+
+
+  # The alternative would be to use abort(), but that utilizes
+  # .Internal(), which is no longer "allowed" by CRAN.
+  # abort(msg, call=call);
 }, overwrite=TRUE, conflict="quiet")
 
 

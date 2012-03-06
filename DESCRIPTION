@@ -1,10 +1,10 @@
 Package: R.oo
 Version: 1.9.1
-Date: 2012-02-29
+Date: 2012-03-05
 Title: R object-oriented programming with or without references
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
-Depends: R (>= 2.4.0), R.methodsS3 (>= 1.2.1)
+Depends: R (>= 2.4.0), R.methodsS3 (>= 1.2.2)
 Suggests: tools
 Imports: methods, utils
 Description: Methods and classes for object-oriented programming in R with or without references.  Large effort has been made on making definition of methods as simple as possible with a minimum of maintenance for package developers.  The package has been developed since 2001 and is now considered very stable.  This is a cross-platform package implemented in pure R that defines standard S3 classes without any tricks.
