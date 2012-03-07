@@ -12,7 +12,7 @@ detach("R.oo")
 
   # Remove temporary extend.default() created by the extend() 
   # defined in 030.ObjectClassFunctions.R.
-#  remove("extend.default", pos=pos);
+#  rm("extend.default", pos=pos);
 
   # Set default 'properties' argument for ll(), if missing
   key <- paste(pkgname, "::ll/properties", sep="");
