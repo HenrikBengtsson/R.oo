@@ -35,6 +35,7 @@
 \alias{newInstance}
 
 % The Exception class
+\alias{getCalls}
 \alias{getCall}
 \alias{getLastException}
 \alias{getMessage}

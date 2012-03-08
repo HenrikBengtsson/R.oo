@@ -19,7 +19,7 @@
  .
 }
 
-\usage{\method{getStackTraceString}{Exception}(this, ...)}
+\usage{\method{getStackTraceString}{Exception}(this, ..., details=TRUE)}
 
 \arguments{
   \item{...}{Not used.}

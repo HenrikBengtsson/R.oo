@@ -1,18 +1,22 @@
 Package: R.oo
 =============
 
+Version: 1.9.2 [2012-03-07]
+o Stack traces reported by Exception:s are now cleaner and more informative.
+
+
 Version: 1.9.1 [2012-03-05]
-o Replaced all appendVarArgs() for 'base' functions that do .Internal()
-  calls, because they would then appear as local functions of this
-  package and hence not be accepted by CRAN according to their new
-  policies.  Instead we now create "default" functions that are
+o CLEANUP: throw() for 'error' is now just a wrapper for stop(). 
+  Previously it had to do what stop() now does for 'condition' objects.
+o CRAN POLICY: Replaced all appendVarArgs() for 'base' functions that
+  do .Internal() calls, because they would then appear as local functions
+  of this package and hence not be accepted by CRAN according to their
+  new policies.  Instead we now create "default" functions that are
   wrappers to the corresponding functions in the 'base' package.
   Extra care has to be taken for functions that have arguments whose
   values are dependent on the call environment/closure.
-o CLEANUP: Dropped .Internal() calls in the default ll() method, in
-  getMethods() for Class objects, and in throw() for Exceptions.
-o CLEANUP: throw() for 'error' is now just a wrapper for stop(). 
-  Previously it had to do what stop() now does for 'condition' objects.
+o CRAN POLICY: Dropped .Internal() calls in the default ll() method,
+  in getMethods() for Class objects, and in throw() for Exceptions.
 
 
 Version: 1.9.0 [2012-02-23]

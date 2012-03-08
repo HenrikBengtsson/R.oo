@@ -12,10 +12,6 @@
 \alias{getStackTrace.Exception}
 \alias{getStackTrace,Exception-method}
 
-\alias{Exception.getCall}
-\alias{getCall.Exception}
-\alias{getCall,Exception-method}
-
 
 \title{Gets the stack trace saved when the exception was created}
 
@@ -23,7 +19,7 @@
  .
 }
 
-\usage{\method{getStackTrace}{Exception}(this, ...)}
+\usage{\method{getStackTrace}{Exception}(this, cleanup=TRUE, ...)}
 
 \arguments{
   \item{...}{Not used.}
