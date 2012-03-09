@@ -4,10 +4,10 @@
 # @title "Throws an Exception"
 #
 # \description{
-#  Throws an exception similar to stop(), but with support for exception
-#  classes. The first argument (\code{object}) is by default pasted together
-#  with other arguments (@...) and with seperator \code{sep=""}.
-#  For instance, to throw an exception, write
+#  Throws an exception similar to \code{stop()}, but with support for
+#  @see "Exception" classes. The first argument (\code{object}) is by 
+#  default pasted together with other arguments (@...) and with seperator
+#  \code{sep=""}.  For instance, to throw an exception, write
 #
 #    \code{throw("Value out of range: ", value, ".")}.
 #
@@ -15,8 +15,9 @@
 #
 #    \code{throw(Exception("Value out of range: ", value, "."))}.
 #
-#  Note that \code{throw()} can be defined for specific classes, which can
-#  then be caught (or not) using \code{\link[base:conditions]{tryCatch}()}.
+#  Note that \code{throw()} can be defined for classes inheriting
+#  @see "Exception", which can then be caught (or not)
+#  using \code{\link[base:conditions]{tryCatch}()}.
 # }
 #
 # @synopsis
@@ -54,12 +55,15 @@
 #*/###########################################################################
 setMethodS3("throw", "default", function(...) {
   throw(Exception(...));
-})
+}, overwrite=TRUE, conflict="quiet")
 
 
 
 ############################################################################
 # HISTORY:
+# 2012-03-08
+# o Now the default throw() of R.methodsS3 is "quietly" overwritten,
+#   i.e. there is no longer a warning about it when R.oo is loaded.
 # 2005-02-20
 # o Updated broken link to tryCatch().
 # 2005-02-10

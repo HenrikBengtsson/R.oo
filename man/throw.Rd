@@ -13,10 +13,10 @@
 \title{Throws an Exception}
 
 \description{
- Throws an exception similar to stop(), but with support for exception
- classes. The first argument (\code{object}) is by default pasted together
- with other arguments (\code{...}) and with seperator \code{sep=""}.
- For instance, to throw an exception, write
+ Throws an exception similar to \code{stop()}, but with support for
+ \code{\link{Exception}} classes. The first argument (\code{object}) is by
+ default pasted together with other arguments (\code{...}) and with seperator
+ \code{sep=""}.  For instance, to throw an exception, write
 
    \code{throw("Value out of range: ", value, ".")}.
 
@@ -24,8 +24,9 @@
 
    \code{throw(Exception("Value out of range: ", value, "."))}.
 
- Note that \code{throw()} can be defined for specific classes, which can
- then be caught (or not) using \code{\link[base:conditions]{tryCatch}()}.
+ Note that \code{throw()} can be defined for classes inheriting
+ \code{\link{Exception}}, which can then be caught (or not)
+ using \code{\link[base:conditions]{tryCatch}()}.
 }
 
 \usage{\method{throw}{default}(...)}

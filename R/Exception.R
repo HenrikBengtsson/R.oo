@@ -325,18 +325,17 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # The call behind this exception
   call <- getCall(this);
 
-  # Call stop() again, which will resignal a condition and the abort.
-  # The resignalled condition should not really be caught by anything,
-  # because if so, it would have caught by the above signal.  This
-  # is based on the assumption that it is not possible to continue
-  # after the above signal, iff it is caught. /HB 2012-03-05
-  cond <- simpleError(msg, call=call);
-  stop(cond);
+  # Abort the current evaluation
+  abort(msg, call=call);
 
-
-  # The alternative would be to use abort(), but that utilizes
-  # .Internal(), which is no longer "allowed" by CRAN.
-  # abort(msg, call=call);
+  # An alternative is to call stop() again, which will resignal a 
+  # condition and the abort.  The resignalled condition should not
+  # really be caught by anything, because if so, it would have
+  # caught by the above signal.  This is based on the assumption that
+  # it is not possible to continue after the above signal,
+  # iff it is caught. /HB 2012-03-05
+  ##  cond <- simpleError(msg, call=call);
+  ##  stop(cond);
 }, overwrite=TRUE, conflict="quiet")
 
 
@@ -492,6 +491,9 @@ setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
   # To please R CMD check (R >= 2.14.0)
   this <- x;
   calls <- getCalls(this, ...);
+  if (length(calls) == 0) {
+    return(NULL);
+  }
   calls[[which]];
 }) 
 
@@ -529,10 +531,15 @@ setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE) {
+  head <- sprintf("%s\n", as.character(this));
+
   stackTrace <- getStackTrace(this, ...);
 
-  calls <- sapply(stackTrace, FUN=function(trace) trace$call);
+  if (length(stackTrace) == 0) {
+    return(head);
+  }
 
+  calls <- sapply(stackTrace, FUN=function(trace) trace$call);
   res <- character(length=length(calls));
   for (kk in seq(along=calls)) {
     call <- calls[[kk]];
@@ -573,13 +580,12 @@ setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE
 
     res <- sprintf("%s\n", res);
   } # if (details)
-
   res <- paste(res, collapse="\n");
 
   if (details) {
-    res <- sprintf("%s\n\n%s\n", as.character(this), res);
+    res <- sprintf("%s\n%s\n", head, res);
   } else {
-    res <- sprintf("%s\n%s\n", as.character(this), res);
+    res <- sprintf("%s%s\n", head, res);
   }
 
   res;
@@ -631,6 +637,7 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 ############################################################################
 # HISTORY:
 # 2012-03-08
+# o Now throw() for Exception utilizes abort().
 # o Now Exception stores much more information about the stacktrace.
 # 2012-03-07
 # o Added getCalls() and getCall() for Exception.  Now Exception()

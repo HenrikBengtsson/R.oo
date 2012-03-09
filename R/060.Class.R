@@ -1023,7 +1023,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
   result <- result[sapply(result, FUN=function(x) (length(x) > 0))];
 
   result;
-}) # getMethods()
+}, dontWarn="base") # getMethods()
 
 
 
@@ -1437,6 +1437,10 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-03-08
+# o Now package no longer warnings about renaming existing functions
+#   getMethods() and getClasses() of 'base' to default methods during
+#   installation, iff R.methodsS3 (>= 1.2.3).
 # 2012-02-29
 # o CLEANUP: Dropped an .Internal() call in getMethods() for Class objects.
 # 2011-02-01

@@ -1,8 +1,13 @@
 Package: R.oo
 =============
 
-Version: 1.9.2 [2012-03-07]
-o Stack traces reported by Exception:s are now cleaner and more informative.
+Version: 1.9.2 [2012-03-08]
+o Made stack traces of Exception:s more informative and cleaner.
+o Now the default throw() of R.methodsS3 is "quietly" overwritten,
+  i.e. there is no longer a warning about it when R.oo is loaded.
+o Now package no longer warns about renaming existing functions
+  getMethods() and getClasses() of 'base' to default methods during
+  installation, iff R.methodsS3 (>= 1.2.3).
 
 
 Version: 1.9.1 [2012-03-05]

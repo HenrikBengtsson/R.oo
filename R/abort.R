@@ -42,11 +42,22 @@ setMethodS3("abort", "default", function(message, call=NULL, ...) {
 
 
 setMethodS3("abort", "condition", function(cond, ...) {
-  message <- conditionMessage(cond);
-  call <- conditionCall(cond);
-
-  expr <- parse(text=".Internal(.dfltStop(message, call));");
-  eval(expr);  
+  # Create a local copy of base::stop() and modify it such that
+  # it does not signal the condition.  The effect of this is the
+  # same as calling .Internal(.dfltStop(message, call)), but
+  # safer, because it will be agile to changes in the latter.
+  body <- deparse(base::stop);
+  pattern <- ".Internal(.signalCondition";
+  excl <- grep(pattern, body, fixed=TRUE);
+  if (length(excl) == 1) {
+    body <- body[-excl];
+    modStop <- eval(parse(text=body));
+    modStop(cond);
+  } else {
+    # As a backup solution, call stop()
+    warning("INTERNAL ERROR of abort(): Please contact the maintainer of R.oo.");
+    stop(cond);
+  }
 })
 
 

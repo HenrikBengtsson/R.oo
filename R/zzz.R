@@ -1,9 +1,9 @@
 # Detach the 'R.oo' attached in file 030.ObjectClassFunctions.R
-detach("R.oo")
+detach("R.oo");
 
 # Allows conflicts. For more information, see library() and
 # conflicts() in [R] base.
-.conflicts.OK <- TRUE 
+.conflicts.OK <- TRUE;
 
 ## .First.lib <- function(libname, pkgname) {
 .onAttach <- function(libname, pkgname) {

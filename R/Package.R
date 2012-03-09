@@ -877,7 +877,7 @@ setMethodS3("getClasses", "Package", function(this, ...) {
     }
   }
   classes;
-});
+}, dontWarn="base")
 
 
 
@@ -1606,7 +1606,11 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
-# 2012-12-23
+# 2012-03-08
+# o Now package no longer warnings about renaming existing functions
+#   getMethods() and getClasses() of 'base' to default methods during
+#   installation, iff R.methodsS3 (>= 1.2.3).
+# 2011-12-23
 # o Now Package() loads the 'utils' package, if needed.
 # 2010-11-01
 # o CLEANUP/FIX: Dropped package.description() from getDescriptionFile()
