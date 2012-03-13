@@ -437,7 +437,6 @@ setMethodS3("getStackTrace", "Exception", function(this, cleanup=TRUE, ...) {
       keep <- seq(length=idx-1L);
       stackTrace <- stackTrace[keep];
     }
-    names <- sapply(stackTrace, FUN=function(x) x$name);
   }
 
   stackTrace <- rev(stackTrace);
