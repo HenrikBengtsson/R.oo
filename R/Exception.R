@@ -414,7 +414,7 @@ setMethodS3("getLastException", "Exception", function(this, ...) {
 # \keyword{methods}
 # \keyword{error}
 #*/###########################################################################
-setMethodS3("getStackTrace", "Exception", function(this, cleanup=TRUE, ...) {
+setMethodS3("getStackTrace", "Exception", function(this, cleanup=getOption("R.oo::Exception/getStackTrace/args/cleanup", TRUE), ...) {
   stackTrace <- this$.stackTrace;
   names(stackTrace) <- seq(along=stackTrace);
 
@@ -635,6 +635,9 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-03-18
+# o Now it is possible to set the default value of argument 'cleanup'
+#   of getStackTrace() for Exception via an option.
 # 2012-03-08
 # o Now throw() for Exception utilizes abort().
 # o Now Exception stores much more information about the stacktrace.
