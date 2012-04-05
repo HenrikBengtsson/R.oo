@@ -3,11 +3,12 @@ importFrom("utils", install.packages)
 importFrom("utils", object.size)
 importFrom("utils", packageDescription)
 importFrom("utils", update.packages)
-
+importFrom("stats", getCall)
 
 # Export all public methods, that is, those without a preceeding dot
 # in their names.
 exportPattern("^[^\\.]")
+export(getCall)
 
 # Object that must exported explicitly
 export(.conflicts.OK)

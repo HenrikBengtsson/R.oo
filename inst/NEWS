@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.9.4 [2012-04-05]
+o Now package imports and exports getCall() from the 'stats' package
+  so that generic function getCall() is available for Exception:s 
+  also when 'stats' is not loaded, e.g. during executing .Rprofile.
+
+
 Version: 1.9.3 [2012-03-18]
 o Now it is possible to set the default value of argument 'cleanup'
   of getStackTrace() for Exception via an option.
