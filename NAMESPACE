@@ -1,9 +1,12 @@
+import("R.methodsS3")
+
 # Import from 'utils'
 importFrom("utils", install.packages)
 importFrom("utils", object.size)
 importFrom("utils", packageDescription)
 importFrom("utils", update.packages)
 importFrom("stats", getCall)
+
 
 # Export all public methods, that is, those without a preceeding dot
 # in their names.

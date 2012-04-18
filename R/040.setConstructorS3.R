@@ -22,6 +22,7 @@
 #      otherwise not. Currently this has no effect expect as an indicator.}
 #   \item{private}{If @TRUE this class is defined to be private.}
 #   \item{protected}{If @TRUE this class is defined to be protected.}
+#   \item{export}{A @logical setting attribute \code{"export"}.}
 #   \item{trial}{If @TRUE this class is defined to be a trial class,
 #      otherwise not. A trial class is a class that is introduced to be
 #      tried out and it might be modified, replaced or even removed in a
@@ -81,9 +82,7 @@
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
-setMethodS3("setConstructorS3", "default", function(name, definition,
-    private=FALSE, protected=FALSE, static=FALSE, abstract=FALSE, trial=FALSE,
-               deprecated=FALSE, envir=parent.frame(), enforceRCC=TRUE, ...) {
+setMethodS3("setConstructorS3", "default", function(name, definition, private=FALSE, protected=FALSE, export=TRUE, static=FALSE, abstract=FALSE, trial=FALSE, deprecated=FALSE, envir=parent.frame(), enforceRCC=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Assert that RCC naming conventions are followed.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -129,15 +128,17 @@ setMethodS3("setConstructorS3", "default", function(name, definition,
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create the constructor function (by default in the parent frame)
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  retValue <- eval(substitute({
+  # Create
+  expr <- substitute({
       fcn <- Class(name, definition);
-      attr(fcn, "formals") <- modifiers;   # To be removed.
+      attr(fcn, "export") <- export;
       attr(fcn, "modifiers") <- modifiers;
-    }, 
-    list(fcn=as.name(name), name=name, definition=definition, 
-                                                      modifiers=modifiers)),
-    envir=envir
+    }, list(fcn=as.name(name), name=name, definition=definition, 
+            export=export, modifiers=modifiers)
   );
+
+  # Assign
+  retValue <- eval(expr, envir=envir); 
 
   invisible();
 })
@@ -147,6 +148,10 @@ setMethodS3("setConstructorS3", "default", function(name, definition,
 
 ############################################################################
 # HISTORY:
+# 2012-04-17
+# o Added argument 'export' to setConstructorS3(). 
+# o CLEANUP: setConstructorS3() no longer sets attribute "formals".  It
+#   has been deprecated since April 2003.
 # 2007-06-09
 # o Removed (incorrect) argument name 'list' from all substitute() calls.
 # 2006-05-30
@@ -180,4 +185,3 @@ setMethodS3("setConstructorS3", "default", function(name, definition,
 # o Created from R.oo Object.R and ideas as described on
 #    http://www.maths.lth.se/help/R/
 ############################################################################
-

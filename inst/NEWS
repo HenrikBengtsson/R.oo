@@ -1,6 +1,15 @@
 Package: R.oo
 =============
 
+Version: 1.9.5 [2012-04-17]
+o Added argument 'export' to setConstructorS3().
+o Now Rdoc$getUsage() searches also the package namespace for 
+  the function/method definition.  This is done, before looking
+  in the global search path.
+o CLEANUP: setConstructorS3() no longer sets attribute "formals".  It
+  has been deprecated since April 2003.
+
+
 Version: 1.9.4 [2012-04-05]
 o Now package imports and exports getCall() from the 'stats' package
   so that generic function getCall() is available for Exception:s 
