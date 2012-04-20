@@ -1,13 +1,14 @@
+
 ######################################################################
 # 1. To catch a regular "error" exception thrown by e.g. stop().
 ######################################################################
 x <- NA
 y <- NA
 tryCatch({
-  x <- log(123);
-  y <- log("a");
+  x <- log(123)
+  y <- log("a")
 }, error = function(ex) {
-  print(ex);
+  print(ex)
 })
 print(x)
 print(y)
@@ -20,7 +21,7 @@ print(y)
 filename <- tempfile("R.methodsS3.example")
 con <- file(filename)
 tryCatch({
-  open(con, "r");
+  open(con, "r")
 }, error = function(ex) {
   cat("Could not open ", filename, " for reading.\n", sep="")
 }, finally = {
@@ -41,11 +42,11 @@ setConstructorS3("NegativeLogValueException", function(
 })
 
 setMethodS3("as.character", "NegativeLogValueException", function(this, ...) {
-  paste(as.character.Exception(this), ": ", getValue(this), sep="");
+  paste(as.character.Exception(this), ": ", getValue(this), sep="")
 })
 
 setMethodS3("getValue", "NegativeLogValueException", function(this, ...) {
-  this$.value;
+  this$.value
 })
 
 
@@ -58,10 +59,10 @@ mylog <- function(x, base=exp(1)) {
 
 
 # Note that the order of the catch list is important:
-l <- NA;
-x <- 123;
+l <- NA
+x <- 123
 tryCatch({
-  l <- mylog(x);
+  l <- mylog(x)
 }, NegativeLogValueException = function(ex) {
   cat(as.character(ex), "\n")
 }, "try-error" = function(ex) {
