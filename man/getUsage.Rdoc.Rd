@@ -25,6 +25,7 @@
 \arguments{
   \item{method}{A method name (\code{\link[base]{character}} string).}
   \item{class}{An optional class name (\code{\link[base]{character}} string).}
+  \item{package}{An optional package name (\code{\link[base]{character}} string).}
   \item{...}{Not used.}
 }
 

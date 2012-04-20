@@ -116,6 +116,7 @@
 # @alias getClassS4Usage
 # @alias getKeywords
 # @alias getNameFormat
+# @alias getObject.Rdoc
 # @alias getPackageNameOf
 # @alias getRdDeclaration
 # @alias getRdHierarchy

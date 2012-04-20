@@ -18,7 +18,7 @@
  function for the class.
 }
 
-\usage{\method{setConstructorS3}{default}(name, definition, private=FALSE, protected=FALSE, static=FALSE, abstract=FALSE, trial=FALSE, deprecated=FALSE, envir=parent.frame(), enforceRCC=TRUE, ...)}
+\usage{\method{setConstructorS3}{default}(name, definition, private=FALSE, protected=FALSE, export=TRUE, static=FALSE, abstract=FALSE, trial=FALSE, deprecated=FALSE, envir=parent.frame(), enforceRCC=TRUE, ...)}
 
 \arguments{
   \item{name}{The name of the class.}
@@ -31,6 +31,7 @@
      otherwise not. Currently this has no effect expect as an indicator.}
   \item{private}{If \code{\link[base:logical]{TRUE}} this class is defined to be private.}
   \item{protected}{If \code{\link[base:logical]{TRUE}} this class is defined to be protected.}
+  \item{export}{A \code{\link[base]{logical}} setting attribute \code{"export"}.}
   \item{trial}{If \code{\link[base:logical]{TRUE}} this class is defined to be a trial class,
      otherwise not. A trial class is a class that is introduced to be
      tried out and it might be modified, replaced or even removed in a

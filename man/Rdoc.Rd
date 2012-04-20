@@ -48,6 +48,7 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.oo:getKeywords.Rdoc]{getKeywords}} \tab Gets the keywords defined in R with descriptions.\cr
  \tab \code{\link[R.oo:getManPath.Rdoc]{getManPath}} \tab Gets the path to the directory where the Rd files will be saved.\cr
  \tab \code{\link[R.oo:getNameFormat.Rdoc]{getNameFormat}} \tab Gets the current name format.\cr
+ \tab \code{getObject} \tab  -\cr
  \tab \code{\link[R.oo:getPackageNameOf.Rdoc]{getPackageNameOf}} \tab Gets the package of a method or an object.\cr
  \tab \code{\link[R.oo:getRdTitle.Rdoc]{getRdTitle}} \tab Extracts the title string of a Rd file.\cr
  \tab \code{\link[R.oo:getUsage.Rdoc]{getUsage}} \tab Gets the usage of a method.\cr

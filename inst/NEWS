@@ -1,7 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.9.5 [2012-04-17]
+Version: 1.9.5 [2012-04-20]
 o Added argument 'export' to setConstructorS3().
 o Now Rdoc$getUsage() searches also the package namespace for 
   the function/method definition.  This is done, before looking
