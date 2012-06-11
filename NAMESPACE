@@ -23,6 +23,7 @@ import("R.methodsS3")
 exportPattern("^[^\\.]")
 export(getCall)
 
+S3method("setConstructorS3", "default")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Misc.

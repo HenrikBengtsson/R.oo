@@ -153,13 +153,32 @@ setMethodS3("setNameFormat", "Rdoc", function(static, nameFormat, ...) {
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("getKeywords", "Rdoc", function(this, fullInfo=FALSE, ...) {
-  rhome <- Sys.getenv("R_HOME");
-  if (is.null(rhome))
-    throw("Can not determine the directory R_HOME.");
-  file <- file.path(rhome, "/doc/KEYWORDS.db");
-  if (!file.exists(file))
-    throw("The KEYWORDS.db file was not found: ", file);
-  keywords <- readLines(file, warn=FALSE);
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Locate the KEYWORDS.db file
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  path <- Sys.getenv("R_DOC_DIR");
+  if (is.null(path) || nchar(path) == 0) {
+    # Backward compatibility
+    path <- file.path(Sys.getenv("R_HOME"), "doc");
+    tryCatch({
+      path <- R.home("doc");
+    }, error = function(ex) {});
+
+    if (!file.exists(path)) {
+      throw("Cannot determine the R doc directory. R_DOC_DIR was not set and R_HOME/doc/ does not exist: ", path);
+    }
+  }
+
+  pathname <- file.path(path, "KEYWORDS.db");
+  if (!file.exists(pathname)) {
+    throw("The KEYWORDS.db file was not found: ", pathname);
+  }
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Read keywords
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  keywords <- readLines(pathname, warn=FALSE);
   keywords <- strsplit(keywords, ":");
   names <- lapply(keywords, FUN=function(x) x[1]);
   names <- unlist(names);
@@ -173,6 +192,7 @@ setMethodS3("getKeywords", "Rdoc", function(this, fullInfo=FALSE, ...) {
   keywords <- keywords[len > 1];
   desc <- desc[len > 1];
   names(keywords) <- desc;
+
   keywords;
 }, static=TRUE);
 
@@ -2498,6 +2518,10 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2012-06-11
+# o BUG FIX/GENERALIZATION: Rdoc$getKeywords() now uses system
+#   environment variable R_DOC_DIR for locating the internal
+#   KEYWORDS.db.  Thanks to Charles Hogg at NIST for suggesting this.
 # 2012-04-17
 # o Now Rdoc$getUsage() searches also the package namespace for 
 #   the function definition.  This is done, before searching the
