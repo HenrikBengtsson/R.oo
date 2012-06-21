@@ -55,9 +55,6 @@
 \alias{detach.default}
 \alias{finalize}
 \alias{gc}
-\alias{getClass}
-\alias{getClass.Object}
-\alias{getClass.default}
 \alias{getFields}
 \alias{getInstanciationTime}
 \alias{getInstanciationTime.default}

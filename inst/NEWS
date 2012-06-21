@@ -2,6 +2,9 @@ Package: R.oo
 =============
 
 Version: 1.9.7 [2012-06-20]
+o CLEANUP: Dropped non-used adjusted getClass() generic function,
+  which means that now there is one less function masking the
+  'methods' package.
 o BUG FIX/GENERALIZATION: throw() for Exception would give an error on
   R < 2.14.0, where no generic getCall() exists.  Now it works for
   all versions of R.

@@ -38,7 +38,7 @@ setMethodS3("gc", "default", function(...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Methods in 'methods'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-getClass <- appendVarArgs(getClass)
+## getClass <- appendVarArgs(getClass)
 getClasses <- appendVarArgs(getClasses)
 getMethods <- appendVarArgs(getMethods)
 
@@ -46,6 +46,8 @@ getMethods <- appendVarArgs(getMethods)
 
 ############################################################################
 # HISTORY:
+# 2012-06-20
+# o CLEANUP: Dropped non-used adjusted getClass() generic function.
 # 2012-02-29
 # o Replaced all appendVarArgs() for 'base' functions that do .Internal()
 #   calls, because they would then appear as local functions of this
