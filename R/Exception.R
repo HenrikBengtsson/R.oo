@@ -301,14 +301,6 @@ setMethodS3("getMessage", "Exception", function(this, ...) {
 #*/###########################################################################
 setMethodS3("throw", "Exception", function(this, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Backward compatibility for R < 2.14.0 where getCall() does not exist.
-#  if (!exists("getCall", mode="function") || !isGenericS3("getCall")) {
-#    getCall <- function(x, ...) UseMethod("getCall");
-#  }
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Record this Exception
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   Exception$.lastException <- this;
@@ -502,9 +494,6 @@ setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
   }
   calls[[which]];
 }) 
-
-
-## setGenericS3("getCall", force=TRUE);
 
 
 
