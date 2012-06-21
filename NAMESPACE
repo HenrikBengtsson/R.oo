@@ -5,7 +5,7 @@ importFrom("utils", install.packages)
 importFrom("utils", object.size)
 importFrom("utils", packageDescription)
 importFrom("utils", update.packages)
-importFrom("stats", getCall)
+#importFrom("stats", getCall)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -14,14 +14,13 @@ importFrom("stats", getCall)
 import("R.methodsS3")
 
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # R.oo
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Export all public methods, that is, those without a preceeding dot
 # in their names.
 exportPattern("^[^\\.]")
-export(getCall)
+
 
 S3method("setConstructorS3", "default")
 

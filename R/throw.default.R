@@ -58,9 +58,13 @@ setMethodS3("throw", "default", function(...) {
 }, overwrite=TRUE, conflict="quiet")
 
 
+## setGenericS3("throw", force=TRUE);
+
 
 ############################################################################
 # HISTORY:
+# 2012-06-17
+# o Override generic function throw() of R.methodsS3 with one here.
 # 2012-03-08
 # o Now the default throw() of R.methodsS3 is "quietly" overwritten,
 #   i.e. there is no longer a warning about it when R.oo is loaded.

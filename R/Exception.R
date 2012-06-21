@@ -301,6 +301,14 @@ setMethodS3("getMessage", "Exception", function(this, ...) {
 #*/###########################################################################
 setMethodS3("throw", "Exception", function(this, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Backward compatibility for R < 2.14.0 where getCall() does not exist.
+#  if (!exists("getCall", mode="function") || !isGenericS3("getCall")) {
+#    getCall <- function(x, ...) UseMethod("getCall");
+#  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Record this Exception
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   Exception$.lastException <- this;
@@ -337,7 +345,6 @@ setMethodS3("throw", "Exception", function(this, ...) {
   ##  cond <- simpleError(msg, call=call);
   ##  stop(cond);
 }, overwrite=TRUE, conflict="quiet")
-
 
 
 
@@ -497,6 +504,9 @@ setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
 }) 
 
 
+## setGenericS3("getCall", force=TRUE);
+
+
 
 
 ###########################################################################/**
@@ -635,6 +645,10 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-06-17
+# o BUG FIX/GENERALIZATION: throw() for Exception would give an error on
+#   R < 2.14.0, where no generic getCall() exists.  Now it works for
+#   all versions of R.
 # 2012-03-18
 # o Now it is possible to set the default value of argument 'cleanup'
 #   of getStackTrace() for Exception via an option.

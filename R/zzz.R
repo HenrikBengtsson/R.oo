@@ -22,6 +22,11 @@ detach("R.oo");
     do.call(options, args=args);
   }
 
+  # Create a getCall() generic function, iff missing (R < 2.14.0)
+  if (!exists("getCall", mode="function")) {
+    assign("getCall", function(...) UseMethod("getCall"), pos=pos);
+  }
+
   assign(pkgname, pkg, pos=pos);
 
   packageStartupMessage(getName(pkg), " v", getVersion(pkg), " (", 
