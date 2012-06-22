@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.9.8 [2012-06-22]
+o GENERALIZATION: Added newInstance() for BasicObject.
+o ROBUSTNESS: Now constructor BasicObject() is guaranteed to
+  return an object with non-duplicated class attribute elements.
+
+
 Version: 1.9.7 [2012-06-20]
 o CLEANUP: Dropped non-used adjusted getClass() generic function,
   which means that now there is one less function masking the

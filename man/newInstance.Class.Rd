@@ -33,16 +33,18 @@
 }
 
 \examples{
-  obj <- newInstance(Object)
+  obj <- newInstance(Object, NA)
 
   # equivalent to
 
-  obj <- Object()
+  obj <- Object(NA)
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
+  \code{\link{newInstance.Object}}().
+  \code{\link{newInstance.BasicObject}}().
   For more information see \code{\link{Class}}.
 }
 

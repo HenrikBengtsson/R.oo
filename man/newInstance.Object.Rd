@@ -22,7 +22,8 @@
 \usage{\method{newInstance}{Object}(this, ...)}
 
 \arguments{
-  \item{...}{Not used.}
+  \item{...}{Arguments passed to the constructor of the corresponding
+    \code{\link{Object}} class.}
 }
 
 \value{
@@ -33,6 +34,7 @@
 
 \seealso{
   \code{\link{newInstance.Class}}().
+  \code{\link{newInstance.BasicObject}}().
   For more information see \code{\link{Object}}.
 }
 

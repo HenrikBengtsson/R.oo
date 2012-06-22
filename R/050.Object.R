@@ -1872,7 +1872,8 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
 # @synopsis
 #
 # \arguments{
-#   \item{...}{Not used.}
+#   \item{...}{Arguments passed to the constructor of the corresponding
+#     @see "Object" class.}
 # }
 #
 # \value{
@@ -1883,6 +1884,7 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
 #
 # \seealso{
 #   @see "newInstance.Class".
+#   @see "newInstance.BasicObject".
 #   @seeclass
 # }
 #

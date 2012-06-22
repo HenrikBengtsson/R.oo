@@ -31,7 +31,7 @@ setConstructorS3("BasicObject", function(core=NULL) {
   if (is.null(core))
     core <- NA;
   this <- core;
-  class(this) <- c("BasicObject", class(this));
+  class(this) <- unique(c("BasicObject", class(this)));
 
   if (getOption("R.oo::BasicObject/instantiationTime", FALSE)) {
     attr(this, "...instantiationTime") <- Sys.time();
@@ -570,6 +570,45 @@ setMethodS3("extend", "BasicObject", function(this, ...className, ...) {
 
 
 ###########################################################################/**
+# @RdocMethod newInstance
+#
+# @title "Creates a new instance of the same class as this object"
+#
+# \description{
+#  @get "title". 
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{...}{Arguments passed to the constructor of the corresponding
+#     @see "BasicObject" class.}
+# }
+#
+# \value{
+#   Returns a reference to an instance of @see "BasicObject" or a subclass thereof.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "newInstance.Object".
+#   @see "newInstance.Class".
+#   @seeclass
+# }
+#
+# @keyword programming
+# @keyword methods
+#*/###########################################################################
+setMethodS3("newInstance", "BasicObject", function(this, ...) {
+  # Creates a new instance of the same class
+  clazz <- Class$forName(class(this)[1]);
+  newInstance(clazz, ...);
+}, private=TRUE) 
+
+
+
+###########################################################################/**
 # @RdocMethod $
 # @aliasmethod [[
 #
@@ -797,6 +836,10 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-06-22
+# o ROBUSTNESS: Now constructor BasicObject() is guaranteed to return
+#   an object with non-duplicated class attribute elements.
+# o GENERALIZATION: Added newInstance() for BasicObject.
 # 2011-04-02
 # o Added option "R.oo::Object/instantiationTime", which controls
 #   whether the instantiation timestamp should be set when instantiating

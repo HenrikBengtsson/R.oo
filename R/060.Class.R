@@ -348,16 +348,18 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
 # }
 #
 # \examples{
-#   obj <- newInstance(Object)
+#   obj <- newInstance(Object, NA)
 #
 #   # equivalent to
 #
-#   obj <- Object()
+#   obj <- Object(NA)
 # }
 #
 # @author
 #
 # \seealso{
+#   @see "newInstance.Object".
+#   @see "newInstance.BasicObject".
 #   @seeclass
 # }
 #
