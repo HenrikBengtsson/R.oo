@@ -43,7 +43,7 @@
  \tab \code{\link[R.oo:hasField.BasicObject]{hasField}} \tab Checks if a field exists or not.\cr
  \tab \code{\link[R.oo:hashCode.BasicObject]{hashCode}} \tab Gets a hash code for the object.\cr
  \tab \code{\link[R.oo:isReferable.BasicObject]{isReferable}} \tab Checks if the object is referable or not.\cr
- \tab \code{newInstance} \tab  -\cr
+ \tab \code{\link[R.oo:newInstance.BasicObject]{newInstance}} \tab Creates a new instance of the same class as this object.\cr
  \tab \code{\link[R.oo:objectSize.BasicObject]{objectSize}} \tab Gets the size of the BasicObject in bytes.\cr
  \tab \code{\link[R.oo:print.BasicObject]{print}} \tab Prints an BasicObject.\cr
 }

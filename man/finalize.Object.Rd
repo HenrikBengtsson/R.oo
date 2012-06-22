@@ -16,9 +16,15 @@
 \title{Finalizer methods called when object is clean out}
 
 \description{
- \bold{The finalizer method should never be called explicitly!}.
- Finalizer methods called just before the object is about to be deleted
- by the garbage collector.
+ Finalizer methods are called just the moment before the object is
+ about to be deleted by the garbage collector.
+
+ \bold{If creating a custom \code{finalize()} method for a subclass
+       in a package, then it needs to be exported in the NAMESPACE of
+       that package.  If not, it will not be found nor called and
+       there will be no error message.}
+
+ \bold{A finalizer method should never be called explicitly!}
 }
 
 \usage{\method{finalize}{Object}(this, ...)}
