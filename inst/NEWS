@@ -19,7 +19,7 @@ o BUG FIX/GENERALIZATION: throw() for Exception would give an error on
 Version: 1.9.6 [2012-06-11]
 o BUG FIX/GENERALIZATION: Rdoc$getKeywords() now uses system
   environment variable R_DOC_DIR for locating the internal
-  KEYWORDS.db.  Thanks to Charles Hogg at NIST for suggesting this.
+  KEYWORDS.db.  Thanks Charles Hogg at NIST for suggesting this.
 
 
 Version: 1.9.5 [2012-04-20]
