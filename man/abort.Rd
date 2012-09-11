@@ -9,6 +9,7 @@
 \name{abort}
 \alias{abort.default}
 \alias{abort}
+\alias{abort.condition}
 
 \title{Aborts the current expression call}
 
@@ -17,11 +18,12 @@
  \emph{without signalling a condition}.
 }
 
-\usage{\method{abort}{default}(message=NULL, ...)}
+\usage{\method{abort}{default}(..., call.=TRUE, domain=NULL)}
 
 \arguments{
-  \item{message}{An optional error message.}
-  \item{...}{Not used.}
+  \item{...}{(optional) Objects coerced to \code{\link[base]{character}} and pasted together without a separator, or a @condition object. If no object are given, no message is printed.}
+  \item{call.}{If \code{\link[base:logical]{TRUE}}, the call is added to the message, otherwise not.}
+  \item{domain}{Used to translate the message (see \code{\link[base]{gettext}}()). If \code{\link[base]{NA}}, messages will not be translated.}
 }
 
 \value{
@@ -52,6 +54,9 @@ foo()
 
 # ...which is not possible when using abort()
 bar()
+
+# This expression is never reached
+cat("This line will never be outputted.\n")
 
 }}
 

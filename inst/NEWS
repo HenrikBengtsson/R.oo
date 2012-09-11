@@ -1,7 +1,9 @@
 Package: R.oo
 =============
 
-Version: 1.9.9 [2012-09-10]
+Version: 1.9.9 [2012-09-11]
+o Now abort() immitates how stop() works but without the signalling
+  of a condition.
 o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
   invokeRestart("abort").  This avoids having to call 
   .Internal(.signalCondition(...)).  It also means that the message

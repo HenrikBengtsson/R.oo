@@ -21,3 +21,6 @@ foo()
 
 # ...which is not possible when using abort()
 bar()
+
+# This expression is never reached
+cat("This line will never be outputted.\n")

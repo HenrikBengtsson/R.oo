@@ -1,5 +1,6 @@
 ###########################################################################/**
 # @RdocDefault abort
+# @alias abort.condition
 #
 # @title "Aborts the current expression call"
 #
@@ -11,8 +12,9 @@
 # @synopsis
 #
 # \arguments{
-#   \item{message}{An optional error message.}
-#   \item{...}{Not used.}
+#   \item{...}{(optional) Objects coerced to @character and pasted together without a separator, or a @condition object. If no object are given, no message is printed.}
+#   \item{call.}{If @TRUE, the call is added to the message, otherwise not.}
+#   \item{domain}{Used to translate the message (see @see "base::gettext"). If @NA, messages will not be translated.}
 # }
 #
 # \value{
@@ -34,9 +36,39 @@
 # @keyword error
 # @keyword internal
 #*/###########################################################################
-setMethodS3("abort", "default", function(message=NULL, ...) {
-  if (!is.null(message)) {
-    cat(message, file=stderr());
+setMethodS3("abort", "condition", function(cond, ..., call.=TRUE, domain=NULL) {
+  message <- conditionMessage(cond);
+  call <- conditionCall(cond);
+  if (is.null(call)) {
+    msg <- sprintf("%s", .makeMessage("Abort", domain=domain));
+  } else {
+    call <- deparse(call);
+    msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call);
+  }
+  msg <- sprintf("%s: %s\n", msg, message);
+  cat(msg, file=stderr());
+  invokeRestart("abort");
+})
+
+setMethodS3("abort", "default", function(..., call.=TRUE, domain=NULL) {
+  args <- list(...);
+  if (nargs() > 0) {
+    message <- .makeMessage(..., domain=domain);
+    nframe <- sys.nframe();
+    if (nframe <= 2) call. <- FALSE;
+    if (call.) {
+      call <- sys.call(which=nframe-2L);
+      if (is.null(call)) {
+        msg <- sprintf("%s", .makeMessage("Abort", domain=domain));
+      } else {
+        call <- deparse(call);
+        msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call);
+      }
+      msg <- sprintf("%s: %s\n", msg, message);
+    } else {
+      msg <- sprintf("%s: %s\n", .makeMessage("Abort", domain=domain), message);
+    }
+    cat(msg, file=stderr());
   }
   invokeRestart("abort");
 })
@@ -45,6 +77,9 @@ setMethodS3("abort", "default", function(message=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-09-11
+# o Now abort() immitates how stop() works but without the signalling
+#   of a condition.
 # 2012-09-10
 # o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
 #   invokeRestart("abort").  This avoids having to call 
