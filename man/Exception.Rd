@@ -71,7 +71,7 @@ extends simpleError\cr
 as.character, throw
 
  \bold{Methods inherited from condition}:\cr
-abort, as.character, conditionCall, conditionMessage, print
+as.character, conditionCall, conditionMessage, print
 
  \bold{Methods inherited from Object}:\cr
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, registerFinalizer, save

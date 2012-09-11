@@ -9,7 +9,6 @@
 \name{abort}
 \alias{abort.default}
 \alias{abort}
-\alias{abort.condition}
 
 \title{Aborts the current expression call}
 
@@ -18,11 +17,10 @@
  \emph{without signalling a condition}.
 }
 
-\usage{\method{abort}{default}(message, call=NULL, ...)}
+\usage{\method{abort}{default}(message=NULL, ...)}
 
 \arguments{
-  \item{message}{A \code{\link[base]{character}} string giving the abort message.}
-  \item{call}{An optional call \code{\link[base]{expression}}.}
+  \item{message}{An optional error message.}
   \item{...}{Not used.}
 }
 
@@ -62,6 +60,7 @@ bar()
 \seealso{
   \code{\link{throw}}().
   \code{\link[base]{stop}}().
+  Internally, \code{\link[base]{invokeRestart}}()\code{("abort")} is utilized.
 }
 
 

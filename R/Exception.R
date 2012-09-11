@@ -320,13 +320,9 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create an error message containing the stacktrace
   msg <- getStackTraceString(this, ...);
-  msg <- paste("\n", msg, sep="");
-
-  # The call behind this exception
-  call <- getCall(this);
 
   # Abort the current evaluation
-  abort(msg, call=call);
+  abort(msg);
 
   # An alternative is to call stop() again, which will resignal a 
   # condition and the abort.  The resignalled condition should not
@@ -634,6 +630,8 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-09-10
+# o Updated throw() for Exception to utilize new abort().
 # 2012-06-17
 # o BUG FIX/GENERALIZATION: throw() for Exception would give an error on
 #   R < 2.14.0, where no generic getCall() exists.  Now it works for

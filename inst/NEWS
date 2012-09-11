@@ -1,6 +1,16 @@
 Package: R.oo
 =============
 
+Version: 1.9.9 [2012-09-10]
+o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
+  invokeRestart("abort").  This avoids having to call 
+  .Internal(.signalCondition(...)).  It also means that the message
+  outputted by abort() no longer starts with a "Error in ...:" line.
+o BUG FIX: getContribUrl() and getDevelUrl() would give an error if
+  corresponding fields did not exists in the DESCRIPTION file.  Now
+  they return NAs just as getUrl().
+
+
 Version: 1.9.8 [2012-06-22]
 o GENERALIZATION: Added newInstance() for BasicObject.
 o ROBUSTNESS: Now constructor BasicObject() is guaranteed to

@@ -952,8 +952,12 @@ setMethodS3("getUrl", "Package", function(this, ...) {
 #*/#########################################################################
 setMethodS3("getContribUrl", "Package", function(this, ...) {
   urls <- getDescriptionFile(this, fields="ContribURL");
-  if (is.null(urls) || is.na(urls))
+  if (is.null(urls) || is.na(urls)) {
     urls <- getDescriptionFile(this, fields="URL");
+    if (is.null(urls) || is.na(urls)) {
+      return(NA);
+    }
+  }
   urls <- strsplit(urls, "[,;]")[[1]];
   urls <- gsub("^[ \t]*", "", urls);
   urls <- gsub("[ \t]*$", "", urls);
@@ -996,6 +1000,9 @@ setMethodS3("getContribUrl", "Package", function(this, ...) {
 #*/#########################################################################
 setMethodS3("getDevelUrl", "Package", function(this, ...) {
   urls <- getDescriptionFile(this, fields="DevelURL");
+  if (is.null(urls) || is.na(urls)) {
+    return(NA);
+  }
   urls <- strsplit(urls, "[,;]")[[1]];
   urls <- gsub("^[ \t]*", "", urls);
   urls <- gsub("[ \t]*$", "", urls);
@@ -1606,6 +1613,10 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2012-09-10
+# o BUG FIX: getContribUrl() and getDevelUrl() would give an error if
+#   corresponding fields did not exists in the DESCRIPTION file.  Now
+#   they return NAs just as getUrl().
 # 2012-03-08
 # o Now package no longer warnings about renaming existing functions
 #   getMethods() and getClasses() of 'base' to default methods during
