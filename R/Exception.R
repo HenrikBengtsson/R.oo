@@ -318,11 +318,12 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # If not caught by any handlers, *abort* with a message containing
   # also the stack trace.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Create an error message containing the stacktrace
+  # Output an error message containing the stacktrace
   msg <- getStackTraceString(this, ...);
+  cat(msg, file=stderr());
 
   # Abort the current evaluation
-  abort(msg);
+  abort();
 
   # An alternative is to call stop() again, which will resignal a 
   # condition and the abort.  The resignalled condition should not
