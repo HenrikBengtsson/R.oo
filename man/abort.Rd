@@ -30,6 +30,10 @@
   Returns nothing.
 }
 
+\details{
+  There are still cases where one can "catch" the abort and undo it, cf. [1].
+}
+
 \examples{\dontrun{
  foo <- function() {
   tryCatch({
@@ -66,6 +70,11 @@ cat("This line will never be outputted.\n")
   \code{\link{throw}}().
   \code{\link[base]{stop}}().
   Internally, \code{\link[base]{invokeRestart}}()\code{("abort")} is utilized.
+}
+
+\references{
+  [1] R-devel thread '', Sept 11, 2012,
+  \url{https://stat.ethz.ch/pipermail/r-devel/2012-September/064838.html}.\cr
 }
 
 

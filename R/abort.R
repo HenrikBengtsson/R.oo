@@ -21,6 +21,10 @@
 #   Returns nothing.
 # }
 #
+# \details{
+#   There are still cases where one can "catch" the abort and undo it, cf. [1].
+# }
+#
 # \examples{\dontrun{
 #  @include "../incl/abort.Rex"
 # }}
@@ -31,6 +35,11 @@
 #   @see "throw".
 #   @see "base::stop".
 #   Internally, @see "base::invokeRestart"\code{("abort")} is utilized.
+# }
+#
+# \references{
+#   [1] R-devel thread '', Sept 11, 2012,
+#   \url{https://stat.ethz.ch/pipermail/r-devel/2012-September/064838.html}.\cr
 # }
 #
 # @keyword error
@@ -47,7 +56,7 @@ setMethodS3("abort", "condition", function(cond, ..., call.=TRUE, domain=NULL) {
   }
   msg <- sprintf("%s: %s\n", msg, message);
   cat(msg, file=stderr());
-  invokeRestart("abort");
+  abort();
 })
 
 setMethodS3("abort", "default", function(..., call.=TRUE, domain=NULL) {
@@ -70,6 +79,8 @@ setMethodS3("abort", "default", function(..., call.=TRUE, domain=NULL) {
     }
     cat(msg, file=stderr());
   }
+
+  # Now abort R.
   invokeRestart("abort");
 })
 

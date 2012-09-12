@@ -315,24 +315,29 @@ setMethodS3("throw", "Exception", function(this, ...) {
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # If not caught by any handlers, *abort* with a message containing
-  # also the stack trace.
+  # If not caught by any handlers, output message containing the stack trace
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Output an error message containing the stacktrace
   msg <- getStackTraceString(this, ...);
   cat(msg, file=stderr());
 
-  # Abort the current evaluation
-  abort();
 
-  # An alternative is to call stop() again, which will resignal a 
-  # condition and the abort.  The resignalled condition should not
-  # really be caught by anything, because if so, it would have
-  # caught by the above signal.  This is based on the assumption that
-  # it is not possible to continue after the above signal,
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # ...and *abort*
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Alt 1: Abort the current evaluation, but unfortunately abort()
+  # is not guaranteed to not be "caught", cf. help("abort").
+  # abort();
+
+  # Alt 2: An alternative is to call stop() again, which will resignal
+  # a condition and then abort.  The resignalled condition should not
+  # really be caught by anything, because if so, it would have been
+  # caught by the above signalling.  This is based on the assumption 
+  # that it is not possible to continue after the above signal,
   # iff it is caught. /HB 2012-03-05
-  ##  cond <- simpleError(msg, call=call);
-  ##  stop(cond);
+  cond <- simpleCondition("");
+  class(cond) <- "condition";
+  stop(cond);
 }, overwrite=TRUE, conflict="quiet")
 
 
@@ -632,7 +637,10 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 ############################################################################
 # HISTORY:
 # 2012-09-10
-# o Updated throw() for Exception to utilize new abort().
+# o Updated throw() for Exception to "abort" after signalling the condition
+#   by calling stop() with an empty condition.  This is not perfect,
+#   because it outputs an "Error:" message at the end, but it's better
+#   than nothing.
 # 2012-06-17
 # o BUG FIX/GENERALIZATION: throw() for Exception would give an error on
 #   R < 2.14.0, where no generic getCall() exists.  Now it works for

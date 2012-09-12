@@ -2,12 +2,14 @@ Package: R.oo
 =============
 
 Version: 1.9.9 [2012-09-11]
-o Now abort() immitates how stop() works but without the signalling
-  of a condition.
+o Now throw() for Exception aborts (after signalling and outputting
+  the message) by calling stop().  Ideally it should utilize abort(),
+  but the new version of abort() may be "caught" is certain cases.
 o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
   invokeRestart("abort").  This avoids having to call 
   .Internal(.signalCondition(...)).  It also means that the message
   outputted by abort() no longer starts with a "Error in ...:" line.
+  abort() immitates how stop() works but without the signalling.
 o BUG FIX: getContribUrl() and getDevelUrl() would give an error if
   corresponding fields did not exists in the DESCRIPTION file.  Now
   they return NAs just as getUrl().
