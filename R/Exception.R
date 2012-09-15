@@ -57,8 +57,11 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
 
   fcnName <- function(call) {
     code <- deparse(call[1]);
-    if (regexpr("^function\\(", code) != -1) return("");
-    gsub("\\(.*", "", code);
+    code <- grep("^function\\(", code, value=TRUE);
+    if (length(code) == 0) return("");
+    code <- code[1];
+    code <- gsub("\\(.*", "", code);
+    code;
   } # fcnName()
 
   fcnBody <- function(fcn) {
@@ -636,6 +639,12 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-09-14
+# o ROBUSTNESS/BUG FIX: The Exception constructor could generate warning
+#   'In if (regexpr("^function\\(", code) != -1) return("") : the 
+#   condition has length > 1 and only the first element will be used'
+#   occuring in its local fcnName() function.  Now code no longer assumes
+#   that 'code' is of length 1.
 # 2012-09-10
 # o Updated throw() for Exception to "abort" after signalling the condition
 #   by calling stop() with an empty condition.  This is not perfect,

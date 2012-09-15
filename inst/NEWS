@@ -1,6 +1,14 @@
 Package: R.oo
 =============
 
+Version: 1.9.10 [2012-09-14]
+o ROBUSTNESS/BUG FIX: The Exception constructor could generate warning
+  'In if (regexpr("^function\\(", code) != -1) return("") : the 
+  condition has length > 1 and only the first element will be used'
+  occuring in its local fcnName() function.  Now code no longer assumes
+  that 'code' is of length 1.
+
+
 Version: 1.9.9 [2012-09-11]
 o Now throw() for Exception aborts (after signalling and outputting
   the message) by calling stop().  Ideally it should utilize abort(),
