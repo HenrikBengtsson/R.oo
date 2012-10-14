@@ -1308,12 +1308,20 @@ setMethodS3("$", "Class", function(this, name) {
     return(attr(static, name));
   }
 
-  # 4. Is it a method?
+  # 4. Is it a static S3 method?
   methodNames <- paste(name, class(static), sep=".");
   for (methodName in methodNames) {
     if (exists(methodName, mode="function")) {
-      method <- get(methodName, mode="function");
-      return( function(...) method(static, ...) );
+      # Alt 1. Rather "obfuscated" code
+#      method <- get(methodName, mode="function");
+#      fcn <- function(...) method(static, ...);
+      # Alt 2. More explicit code
+#      code <- sprintf("function(...) %s(static, ...)", methodName);
+#      fcn <- eval(base::parse(text=code));
+      # Alt 3. Using explicit UseMethod() code
+      code <- sprintf("function(...) \"%s\"(static, ...)", name);
+      fcn <- eval(base::parse(text=code));
+      return(fcn);
     }
   }
    
@@ -1439,6 +1447,11 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-10-14
+# o Now <Class>$<staticFcn>(...) calls the generic function as
+#   <staticFcn>(<staticObjectOfClass>, ...).  Also, the body of the
+#   function <Class>$<staticFcn> explicitly shows the name of the
+#   generic function called.
 # 2012-03-08
 # o Now package no longer warnings about renaming existing functions
 #   getMethods() and getClasses() of 'base' to default methods during
