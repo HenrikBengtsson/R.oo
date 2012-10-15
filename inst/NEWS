@@ -5,7 +5,8 @@ Version: 1.10.0 [2012-10-14]
 o GENERALIZATION: Now <Class>$<staticFcn>(...) calls the corresponding
   generic function <staticFcn>(static, ...), where 'static' is the
   static object of Class <Class>.  This allows for using NextMethod()
-  in static functions.
+  in static functions.  Calls to <Object>$<staticFcn>(...) and
+  <BasicObject>$<staticFcn>(...) were adjusted analogously.
 
 
 Version: 1.9.10 [2012-09-14]

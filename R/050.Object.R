@@ -1493,8 +1493,14 @@ setMethodS3("$", "Object", function(this, name) {
       } else if (lookup == 3) {
         return( attr(this, name) );
       } else if (lookup == 4) {
-         method <- attr(lookup, "method");
-         return( function(...) method(this, ...) );
+         fcn <- attr(lookup, "fcn");
+         if (is.null(fcn)) {
+           # Backward compatibility for Object:s saved with R.oo < 1.10.0.
+           method <- attr(lookup, "method");
+           code <- sprintf("function(...) \"%s\"(this, ...)", method);
+           fcn <- eval(base::parse(text=code));
+         }
+         return(fcn);
       } else if (lookup == 5) {
          return( get(name, envir=attr(lookup, "static.envir")) );
       }
@@ -1556,7 +1562,7 @@ setMethodS3("$", "Object", function(this, name) {
       }
     } else if (memberAccessor == 3) {
   
-      # 2. Is it an attribute field (slot)?
+      # 3. Is it an attribute field (slot)?
       if (is.element(name, names(attributes(this)))) {
         lookup <- memberAccessor;
         attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
@@ -1565,22 +1571,27 @@ setMethodS3("$", "Object", function(this, name) {
       }
 
     } else if (memberAccessor == 4) {
-   
-      # 3. Is it a method?
+
+      # 4. Is it a static S3 method?
       methodNames <- paste(name, class(this), sep=".");
       for (methodName in methodNames) {
         if (exists(methodName, mode="function")) {
-          method <- get(methodName, mode="function");
+#          # Alt 1. Rather "obfuscated" code
+#          method <- get(methodName, mode="function");
+#          fcn <- function(...) method(this, ...);
+          # Alt 3. Using explicit UseMethod() code
+          code <- sprintf("function(...) \"%s\"(this, ...)", name);
+          fcn <- eval(base::parse(text=code));
           lookup <- memberAccessor;
           attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
-          attr(lookup, "method") <- method;
+          attr(lookup, "fcn") <- fcn;
           assign(cacheName, lookup, envir=envir);
-          return(function(...) method(this, ...));
+          return(fcn);
         }
       }
     } else if (memberAccessor == 5) {
     
-      # 4. Finally, if nothing is found, it might be that it is a static field
+      # 5. Finally, if nothing is found, it might be that it is a static field
       static <- getStaticInstance(get(class(this)[1]));
       static.envir <- attr(static, ".env");
       # For static method calls, e.g. Object$load, 'this' has no
@@ -2222,6 +2233,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-10-14
+# o Now <Object>$<staticFcn>(...) calls <staticFcn>(<Object>, ...).
 # 2012-06-22
 # o Added an Rdoc paragraph to finalize() that custom finalize() methods
 #   must be exported.

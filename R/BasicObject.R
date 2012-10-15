@@ -677,12 +677,17 @@ setMethodS3("$", "BasicObject", function(this, name) {
 
     } else if (memberAccessor == 3) {
    
-      # 3. Is it a method?
+      # 3. Is it a static S3 method?
       methodNames <- paste(name, class(this), sep=".");
       for (methodName in methodNames) {
   	if (exists(methodName, mode="function")) {
-  	  method <- get(methodName, mode="function");
-  	  return( function(...) method(this, ...) );
+#         # Alt 1. Rather "obfuscated" code
+#         method <- get(methodName, mode="function");
+#         fcn <- function(...) method(this, ...);
+          # Alt 3. Using explicit UseMethod() code
+          code <- sprintf("function(...) \"%s\"(this, ...)", name);
+          fcn <- eval(base::parse(text=code));
+          return(fcn); 
   	}
       }
     }
@@ -836,6 +841,8 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-10-14
+# o Now <BasicObject>$<staticFcn>(...) calls <staticFcn>(<BasicObject>, ...). 
 # 2012-06-22
 # o ROBUSTNESS: Now constructor BasicObject() is guaranteed to return
 #   an object with non-duplicated class attribute elements.
