@@ -7,6 +7,11 @@ o GENERALIZATION: Now <Class>$<staticFcn>(...) calls the corresponding
   static object of Class <Class>.  This allows for using NextMethod()
   in static functions.  Calls to <Object>$<staticFcn>(...) and
   <BasicObject>$<staticFcn>(...) were adjusted analogously.
+o Now throw() for Exception outputs the error message both above and
+  below the stack trace, which is particularly useful when the stack
+  trace is long.
+o BUG FIX: The stacktrace details collected by Exception dropped
+  the names of the functions.
 
 
 Version: 1.9.10 [2012-09-14]

@@ -57,7 +57,7 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
 
   fcnName <- function(call) {
     code <- deparse(call[1]);
-    code <- grep("^function\\(", code, value=TRUE);
+#    code <- grep("^function\\(", code, value=TRUE);
     if (length(code) == 0) return("");
     code <- code[1];
     code <- gsub("\\(.*", "", code);
@@ -338,7 +338,7 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # caught by the above signalling.  This is based on the assumption 
   # that it is not possible to continue after the above signal,
   # iff it is caught. /HB 2012-03-05
-  cond <- simpleCondition("");
+  cond <- simpleCondition(getMessage(this));
   class(cond) <- "condition";
   stop(cond);
 }, overwrite=TRUE, conflict="quiet")
@@ -639,6 +639,10 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-10-14
+# o Now throw() for Exception outputs the error message both above and
+#   below the stack trace, which is particularly useful when the stack
+#   trace is long.
 # 2012-09-14
 # o ROBUSTNESS/BUG FIX: The Exception constructor could generate warning
 #   'In if (regexpr("^function\\(", code) != -1) return("") : the 
