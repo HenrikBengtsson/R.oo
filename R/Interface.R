@@ -158,7 +158,7 @@ setMethodS3("as.character", "Interface", function(x, ...) {
   if (isLast) {
     s <- paste(class(this), collapse=", ");
   } else {
-    s <- NextMethod("as.character", this, ...);
+    s <- NextMethod("as.character");
   }
   s;
 }, private=TRUE)
