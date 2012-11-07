@@ -1494,17 +1494,16 @@ setMethodS3("$", "Object", function(this, name) {
         return( attr(this, name) );
       } else if (lookup == 4) {
          fcn <- attr(lookup, "fcn");
-         if (is.null(fcn)) {
-           # Backward compatibility for Object:s saved with R.oo < 1.10.0.
-           method <- attr(lookup, "method");
-           code <- sprintf("function(...) \"%s\"(this, ...)", method);
-           fcn <- eval(base::parse(text=code));
+         if (!is.null(fcn)) {
+           return(fcn);
          }
-         return(fcn);
+         # Backward compatibility for Object:s saved with R.oo < 1.10.0,
+         # which used deprecated attr(lookup, "method").  The below code
+         # will NULL the 'lookup' and force an updated.
       } else if (lookup == 5) {
          return( get(name, envir=attr(lookup, "static.envir")) );
       }
-    }
+    } # if (identical(attr(lookup, ...)))
     lookup <- NULL;
   } else {
     lookup <- NULL;
@@ -2233,6 +2232,10 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-11-07
+# o BUG FIX: obj$<method>(...) would throw an error iff the Object 'obj'
+#   was saved/instanciated by R.oo (< 1.10.0).  Code is now backward
+#   compatible with this case.
 # 2012-10-14
 # o Now <Object>$<staticFcn>(...) calls <staticFcn>(<Object>, ...).
 # 2012-06-22

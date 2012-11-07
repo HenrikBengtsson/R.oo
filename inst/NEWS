@@ -1,6 +1,14 @@
 Package: R.oo
 =============
 
+Version: 1.10.2 [2012-11-07]
+o BUG FIX: obj$<method>(...) would throw an error iff the Object 'obj'
+  was saved/instanciated by R.oo (< 1.10.0).  Code is now backward
+  compatible with this case.  Thanks Roger Day at University of
+  Pittsburgh Cancer Institute and Dan Tenenbaum (BioC core) for
+  reporting on this.
+
+
 Version: 1.10.1 [2012-10-16]
 o ROBUSTNESS/BUG FIX: No longer passing '...' to NextMethod(), cf.
   R-devel thread 'Do *not* pass '...' to NextMethod() - it'll do it 
