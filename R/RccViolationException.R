@@ -135,7 +135,7 @@ setMethodS3("as.character", "RccViolationException", function(x, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getRccUrl", "RccViolationException", function(this, ...) {
-  "http://www.maths.lth.se/help/R/RCC/";
+  "http://aroma-project.org/developers/RCC/"
 }, static=TRUE)
 
 
@@ -145,6 +145,8 @@ setMethodS3("getRccUrl", "RccViolationException", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-11-18
+# o Updated the URL returned by RccViolationException$getRccUrl().
 # 2005-02-15
 # o Added arguments '...' in order to match any generic functions.
 # 2003-03-18
