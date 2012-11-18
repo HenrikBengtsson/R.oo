@@ -13,6 +13,17 @@ importFrom("utils", update.packages)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# EXPORTS
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Object that must exported explicitly
+export(.conflicts.OK)
+
+# Export all public methods, that is, those without a preceeding dot
+# in their names.
+exportPattern("^[^\\.]")
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 S3method("callSuperMethodS3", "default")
@@ -208,19 +219,3 @@ S3method("getRdTitle", "Rdoc")
 S3method("getPackageNameOf", "Rdoc")
 S3method("check", "Rdoc")
 S3method("isVisible", "Rdoc")
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-# R.oo
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-# Export all public methods, that is, those without a preceeding dot
-# in their names.
-exportPattern("^[^\\.]")
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-# Misc.
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-# Object that must exported explicitly
-export(.conflicts.OK)
-
