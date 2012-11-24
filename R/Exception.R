@@ -97,7 +97,6 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
   } # for (kk ...)
   rm(calls, parents, functions);
 
-
   # The new class is Exception, but for convenience it should also
   # derive from 'try-error', which is used by try() etc.
   extend(Object(), c("Exception", "simpleError", "error", "condition", "try-error"), 

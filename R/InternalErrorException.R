@@ -119,10 +119,13 @@ setMethodS3("getPackage", "InternalErrorException", function(this, ...) {
 setMethodS3("getMessage", "InternalErrorException", function(this, ...) {
   msg <- getMessage.Exception(this);
   msg <- paste(msg, " This error is likely to be due to an internal error", sep="");
+
   pkg <- getPackage(this);
   if (!is.null(pkg)) {
     msg <- paste(msg, " related to package ", getName(pkg), " v", getVersion(pkg), ". Please report this problem to the maintainer ", getMaintainer(pkg), " or the author ", getAuthor(pkg), " of that package", sep="");
   }
+
+  R.oo <- Package("R.oo");
   msg <- paste(msg, ". Do not forget to report that you are using R v", getVersion(Package("base")), " on a ", R.Version()$platform, " platform together with R.oo v", getVersion(R.oo), ".", sep="");
   msg;
 })
@@ -130,6 +133,9 @@ setMethodS3("getMessage", "InternalErrorException", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-11-13
+# o ROBUSTNESS: Now getMessage() for InternalErrorException setups an
+#   Package("R.oo") object, instead of assuming that R.oo is loaded.
 # 2007-04-07
 # o Removed reportBug() for InternalErrorException.  Never completed/used.
 # 2005-02-15

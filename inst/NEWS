@@ -1,6 +1,13 @@
 Package: R.oo
 =============
 
+Version: 1.11.0 [2012-11-23]
+o GENERALIZATION: Preparing for better support for Object/Class
+  in import-only namespaces, i.e. without packages being loaded.
+o Now getStaticInstance() for Class sets the environment for the 
+  returned Object to that of the Class.
+
+
 Version: 1.10.3 [2012-11-18]
 o ROBUSTNESS: Now nearly all S3 methods are declared properly in 
   the namespace.  

@@ -18,7 +18,7 @@
 \description{
  Static method to get a URL where one can find details about the
  R Code Convention (RCC).
- Currently the URL is \url{http://www.maths.lth.se/help/R/RCC/}.
+ Currently the URL is \url{http://aroma-project.org/developers/RCC/}.
 }
 
 \synopsis{getRccUrl.RccViolationException(this, ...)}

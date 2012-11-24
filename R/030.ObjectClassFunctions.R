@@ -48,12 +48,19 @@ attach(list(
         # (1) Put a dummy finalize() function on the search path.
         attach(list(finalize = function(...) { }), name="dummy:R.oo",
                                                       warn.conflicts=FALSE);
+
         # (2) Detach R.oo
-        detach("package:R.oo");
+        if (is.element("package:R.oo", search())) {
+          detach("package:R.oo");
+        }
+
         # (3) Force all R.oo's Object:s to be finalize():ed.
         gc();
+
         # (4) Remove the dummy finalize():er again.
-        detach("dummy:R.oo");
+        if (is.element("dummy:R.oo", search())) {
+          detach("dummy:R.oo");
+        }
       }
     } # finalizer()
     reg.finalizer(attr(this, ".env"), finalizer, 

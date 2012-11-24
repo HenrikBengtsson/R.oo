@@ -16,7 +16,7 @@
 \title{Gets a string representing of the RCC violation}
 
 \description{
- Gets a string representing of the RCC violation of format "[\{POSIX date string\}] \{class name\}: \{msg\}, cf. http://www.maths.lth.se/help/R/RCC/".
+ Gets a string representing of the RCC violation of format "[\{POSIX date string\}] \{class name\}: \{msg\}, cf. http://aroma-project.org/developers/RCC/".
 }
 
 \usage{\method{as.character}{RccViolationException}(x, ...)}

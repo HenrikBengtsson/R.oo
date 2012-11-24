@@ -95,7 +95,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
    See also \code{\link[base]{try}}() and \code{\link[base:conditions]{tryCatch}()}.
    For detailed information about exceptions see \code{\link{Exception}}.
    The R Coding Conventions (RCC) can be found at
-   \url{http://www.maths.lth.se/help/R/RCC/}.
+   \url{http://aroma-project.org/developers/RCC/}.
  }
 
  \keyword{programming}

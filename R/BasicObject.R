@@ -498,7 +498,7 @@ setMethodS3("detach", "BasicObject", function(this, ...) {
   }
 
   pos <- which(search() == attachName);
-  detach(pos=pos);
+  if (length(pos) == 1L) detach(pos=pos);
 
   return(invisible(TRUE));
 }) # detach()

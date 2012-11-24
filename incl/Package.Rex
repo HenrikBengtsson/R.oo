@@ -1,4 +1,4 @@
-# By defining .First.lib() as follows in zzz.R for a package, an
+# By defining .onAttach() as follows in zzz.R for a package, an
 # instance of class Package with the same name as the package will
 # be made available on the search path. More over, the code below
 # will also inform the user that the package has been loaded:
@@ -6,7 +6,7 @@
 #  > library(R.oo)
 #  R.oo v0.52 (2003/04/13) was successfully loaded.
 #
-.First.lib <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) {
   pkg <- Package(pkgname);
   assign(pkgname, pkg, pos=getPosition(pkg));
   cat(getName(pkg), " v", getVersion(pkg), " (", getDate(pkg), ")",
@@ -24,12 +24,8 @@ print(pkg)
 print(list.files(Package("base")$dataPath))
 
 # Some information about the R.oo package
-print(R.oo)
+print(R.oo::R.oo)
 # [1] "Package: R.oo v0.52 (2003/04/13) is loaded (pos=2). The official
 #      webpage is http://www.braju.com/R/ and the maintainer is Henrik 
 #      Bengtsson <henrikb@braju.com>. The package is installed in 
 #      c:/PROGRA~1/R/rw1062/library/R.oo/."
-
-# To check for updates and update a package, just do
-update(R.oo)
-

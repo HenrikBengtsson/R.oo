@@ -56,10 +56,10 @@ setConstructorS3("Package", function(name=NULL) {
 
   extend(Object(), "Package",
     .name = name,
+    .version = version,
     .libPath = libPath,
     .inBundle = NULL,
-    .bundlePackages = NULL,
-    .version = version
+    .bundlePackages = NULL
   )
 })
 
@@ -776,8 +776,7 @@ setMethodS3("load", "Package", function(this, ...) {
 setMethodS3("unload", "Package", function(this, ...) {
   name <- paste("package:", getName(this), sep="");
   pos <- which(name == search());
-  if (length(pos) == 1)
-    detach(pos=pos);
+  if (length(pos) == 1L) detach(pos=pos);
 })
 
 
