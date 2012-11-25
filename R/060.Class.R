@@ -1012,9 +1012,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
 
       # Keep only non-private methods?
       if (!is.null(exclMods)) { 
-print(namesT);
-str(namesT);
-       keep <- sapply(namesT, FUN=function(name) {
+        keep <- sapply(namesT, FUN=function(name) {
     	  fcn <- get(name, mode="function", envir=envir);
           modifiers <- attr(fcn, "modifiers");
     	  !any(is.element(exclMods, modifiers));
