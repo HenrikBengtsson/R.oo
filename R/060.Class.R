@@ -299,19 +299,11 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
     # Nothing to do?
     if (length(objectNames) == 0L) return(NULL);
 
-    # Keep only functions
+    # Keep only functions that are Class objects
     keep <- sapply(objectNames, FUN=function(objectName) {
-      expr <- substitute(is.function(x), list(x=as.name(objectName)));
-      eval(expr, envir=envir);
-    });
-    objectNames <- objectNames[keep];
-
-    # Nothing to do?
-    if (length(objectNames) == 0L) return(NULL);
-
-    # Keep only Class objects
-    keep <- sapply(objectNames, FUN=function(objectName) {
-      expr <- substitute(inherits(x, "Class"), list(x=as.name(objectName)));
+      expr <- substitute({
+        is.function(x) && inherits(x, "Class")
+      }, list(x=as.name(objectName)));
       eval(expr, envir=envir);
     });
     objectNames <- objectNames[keep];
