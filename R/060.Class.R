@@ -296,18 +296,37 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
     # Exclude itself (to avoid recursive calls)
     objectNames <- setdiff(objectNames, name);
 
-    # For each object, check if it is a function...
+    # Nothing to do?
+    if (length(objectNames) == 0L) return(NULL);
+
+    # Keep only functions
+    keep <- sapply(objectNames, FUN=function(objectName) {
+      expr <- substitute(is.function(x), list(x=as.name(objectName)));
+      eval(expr, envir=envir);
+    });
+    objectNames <- objectNames[keep];
+
+    # Nothing to do?
+    if (length(objectNames) == 0L) return(NULL);
+
+    # Keep only Class objects
+    keep <- sapply(objectNames, FUN=function(objectName) {
+      expr <- substitute(inherits(x, "Class"), list(x=as.name(objectName)));
+      eval(expr, envir=envir);
+    });
+    objectNames <- objectNames[keep];
+
+    # Nothing to do?
+    if (length(objectNames) == 0L) return(NULL);
+
+    classes <- NULL;
     for (objectName in objectNames) {
-      if (exists(objectName, mode="function", envir=envir, inherits=FALSE)) {
-        object <- get(objectName, mode="function", envir=envir, inherits=FALSE);
-        # ...and then if it is a Class function (constructor).
-        if (inherits(object, "Class")) {
-          # If it is a Class object, get all its super classes.
-          extends <- getSuperclasses(object);
-          if (is.element(name, extends)) {
-            classes <- c(classes, getName(object));
-          }
-        }
+      clazz <- get(objectName, mode="function", envir=envir, inherits=FALSE);
+      # Get all its super classes...
+      extends <- getSuperclasses(clazz);
+      # Does it extend this class?
+      if (is.element(name, extends)) {
+        classes <- c(classes, getName(clazz));
       }
     } # for (objectName ...)
 
@@ -1549,6 +1568,9 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-11-29
+# o getKnownSubclasses() for Class is now faster (and yday's update
+#   introduced a bug causing it to use huge amounts of memory.
 # 2012-11-28
 # o UNDO: getMethods() and getKnownSubclasses() for Class does not
 #   search loaded namespaces.

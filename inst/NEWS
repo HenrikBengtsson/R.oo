@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.11.2 [2012-11-29]
+o Made getKnownSubclasses() for Class a bit faster.
+
+
 Version: 1.11.1 [2012-11-28]
 o LIMITATION: Registered finalizer for pure Object:s (i.e. excluding
   those which are of a subclass of Object) will no longer be called
