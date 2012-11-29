@@ -1293,7 +1293,9 @@ setMethodS3("staticCode", "Object", function(static, ...) {
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
-rm("extend", pos="R.oo"); # To avoid warning about renaming existing extend()
+if (is.element("R.oo", search())) {
+  rm("extend", pos="R.oo"); # To avoid warning about renaming existing extend()
+}
 setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
@@ -1325,30 +1327,33 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Main
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # The environment of 'this' Object
+  this.env <- attr(this, ".env");
+
   fields <- c(list(...), ...fields);
 
   # Identify and renamed fields that have modifiers in their names
   fields <- parseModifiers(fields);
 
   names <- names(fields);
-  for (k in seq(fields)) {
-    name <- names[k];
+  for (ii in seq(fields)) {
+    name <- names[ii];
     if (is.null(name) || nchar(name) == 0) {
       callNames <- names(sys.call());
       callNames <- callNames[nchar(callNames) > 0];
       matchNames <- paste("^", callNames, sep="");
-      for (k in seq(matchNames)) {
-        if (regexpr(matchNames[k], "...className") != -1) {
+      for (jj in seq(matchNames)) {
+        if (regexpr(matchNames[jj], "...className") != -1) {
           className <- sys.call()[[3]];
           throw("Could not set field of class (probably called ", className, 
                 ") because the field name is a prefix to the argument name ",
-                "\"...className\": ", callNames[k]);
+                "\"...className\": ", callNames[jj]);
         }
-      }
-      throw("Missing name of field #", k, " in class definition: ", ...className);
+      } # for (jj ...)
+      throw("Missing name of field #", ii, " in class definition: ", ...className);
     }
-    assign(name, fields[[k]], envir=attr(this, ".env"));
-  }
+    assign(name, fields[[ii]], envir=this.env);
+  } # for (ii ...)
 
   # Set class
   class(this) <- unique(c(...className, class(this)));
@@ -1400,8 +1405,9 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
       }
     }
   } # finalizer()
-  reg.finalizer(attr(this, ".env"), finalizer, 
-                onexit=getOption("R.oo::Object/finalizeOnExit", FALSE));
+
+  onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
+  reg.finalizer(this.env, finalizer, onexit=onexit);
 
 
   # Finally, create the static instance?
@@ -1411,8 +1417,24 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
       staticCode(static);
   }
 
-  # Record which fields are cached
-  assign("...modifiers", attr(fields, "modifiers"), envir=attr(this, ".env"));
+  # Record field modifiers
+  # Get the field modifiers (always a list)
+  modifiers <- attr(fields, "modifiers");
+
+  # Append already existing modifiers?
+  if (exists("...modifiers", envir=this.env)) {
+    modifiersT <- get("...modifiers", envir=this.env);
+    for (key in names(modifiersT)) {
+      modifiers[[key]] <- c(modifiers[[key]], modifiersT[[key]]);
+    }
+  }
+
+  # Drop duplicated modifier entries and sort
+  modifiers <- lapply(modifiers, FUN=function(mods) {
+    sort(unique(mods));
+  });
+
+  assign("...modifiers", modifiers, envir=this.env);
 
   this;
 }) # extend()
@@ -2243,6 +2265,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-11-28
+# o BUG FIX: extend() for Object dropped already existing field modifiers.
 # 2012-11-23
 # o GENERALIZATION: Now getStaticInstance(), "$"(), and "$<-"() for Object
 #   finds static instances also in loaded namespaces (without the

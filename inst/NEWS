@@ -1,6 +1,14 @@
 Package: R.oo
 =============
 
+Version: 1.11.1 [2012-11-28]
+o LIMITATION: Registered finalizer for pure Object:s (i.e. excluding
+  those which are of a subclass of Object) will no longer be called
+  if the R.oo package has been detached.  This should be a very 
+  unlikely scenario.
+o BUG FIX: extend() for Object dropped existing field modifiers.
+
+
 Version: 1.11.0 [2012-11-23]
 o GENERALIZATION: Preparing for better support for Object/Class
   in import-only namespaces, i.e. without packages being loaded.

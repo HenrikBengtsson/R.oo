@@ -318,14 +318,14 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
   name <- getName(this);
   classes <- c();
 
-  # (a) Search loaded namespaces
-  for (ns in loadedNamespaces()) {
-    envir <- asNamespace(ns);
-    classesT <- getKnownSubclassesInEnvironment(name, envir=envir);
-    classes <- c(classes, classesT);
-  }
+##  # (a) Search loaded namespaces
+##  for (ns in loadedNamespaces()) {
+##    envir <- asNamespace(ns);
+##    classesT <- getKnownSubclassesInEnvironment(name, envir=envir);
+##    classes <- c(classes, classesT);
+##  }
 
-  # (b) Search attached search paths
+  # (a) Search attached search paths
   for (pos in seq(along=search())) {
     envir <- as.environment(pos);
     classesT <- getKnownSubclassesInEnvironment(name, envir=envir);
@@ -1048,7 +1048,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
       }
     }
   
-    # (b) Search attached search paths
+    # (a) Search attached search paths
     if (is.element("search", where)) {
       for (pos in seq(along=search())) {
         envir <- as.environment(pos);
@@ -1549,6 +1549,9 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-11-28
+# o UNDO: getMethods() and getKnownSubclasses() for Class does not
+#   search loaded namespaces.
 # 2012-11-23
 # o Updated "$"() for Class to return static methods that also work
 #   when they are only access via an imported namespace and not an

@@ -29,14 +29,14 @@ attach(list(
         finalize(this);
       } else {
         suppressMessages({
-          isRooLoaded <- require("R.oo", quietly=TRUE);
+##          isRooLoaded <- require("R.oo", quietly=TRUE);
         })
 
         # For unknown reasons R.oo might not have been loaded.
         if (isRooLoaded) {
           finalize(this);
         } else {
-          warning("Failed to temporarily reload 'R.oo' and finalize().");
+##          warning("Failed to temporarily reload 'R.oo' and finalize().");
         }
 
         # NOTE! Before detach R.oo again, we have to make sure the Object:s
@@ -63,8 +63,9 @@ attach(list(
         }
       }
     } # finalizer()
-    reg.finalizer(attr(this, ".env"), finalizer, 
-                  onexit=getOption("R.oo::Object/finalizeOnExit", FALSE));
+
+    onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
+    reg.finalizer(attr(this, ".env"), finalizer, onexit=onexit);
 
     this;
   },
@@ -99,6 +100,10 @@ attach(list(
 
 ############################################################################
 # HISTORY:
+# 2012-11-28
+# o LIMITATION: Registered finalizer for pure Object:s (i.e. excluding
+#   those which are of a subclass of Object) will no longer be called
+#   if the R.oo package has been detached.
 # 2011-04-02
 # o Added option "R.oo::Object/finalizeOnExit".
 # o Added option "R.oo::Object/instantiationTime", which controls

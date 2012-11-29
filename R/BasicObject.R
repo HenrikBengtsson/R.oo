@@ -543,24 +543,25 @@ setMethodS3("detach", "BasicObject", function(this, ...) {
 setMethodS3("extend", "BasicObject", function(this, ...className, ...) {
   fields <- list(...);
   names <- names(fields);
-  for (k in seq(fields)) {
-    name <- names[k];
+  for (ii in seq(fields)) {
+    name <- names[ii];
     if (is.null(name) || nchar(name) == 0) {
       callNames <- names(sys.call());
       callNames <- callNames[nchar(callNames) > 0];
       matchNames <- paste("^", callNames, sep="");
-      for (k in seq(matchNames)) {
-        if (regexpr(matchNames[k], "...className") != -1) {
+      for (jj in seq(matchNames)) {
+        if (regexpr(matchNames[jj], "...className") != -1) {
           className <- sys.call()[[3]];
           throw("Could not set field of class (probably called ", className, 
                 ") because the field name is a prefix to the argument name ",
-                "\"...className\": ", callNames[k]);
+                "\"...className\": ", callNames[jj]);
         }
-      }
-      throw("Missing name of field #", k, " in class definition: ", ...className);
+      } # for (jj ...)
+
+      throw("Missing name of field #", ii, " in class definition: ", ...className);
     }
-    attr(this, name) <- fields[[k]];
-  }
+    attr(this, name) <- fields[[ii]];
+  } # for (ii ...)
 
   class(this) <- c(...className, class(this));
   this;
