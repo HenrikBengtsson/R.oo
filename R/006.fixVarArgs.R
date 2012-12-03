@@ -38,7 +38,6 @@ setMethodS3("gc", "default", function(...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Methods in 'methods'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-## getClass <- appendVarArgs(getClass)
 getClasses <- appendVarArgs(getClasses)
 getMethods <- appendVarArgs(getMethods)
 

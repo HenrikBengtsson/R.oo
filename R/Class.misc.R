@@ -96,7 +96,7 @@ setMethodS3("getRdDeclaration", "Class", function(this, ...) {
 #*/###########################################################################
 setMethodS3("getRdMethods", "Class", function(class, visibilities=c("private", "protected", "public"), ...) {
   className <- getName(class);
-  methods <- getMethods(class, private=TRUE);  # Excludes empty classes!
+  methods <- getMethodNames(class, private=TRUE);  # Excludes empty classes!
   methods <- methods[[className]];
   methods <- names(methods);
   src <- "\\bold{Methods:}\\cr\n";

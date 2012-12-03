@@ -21,6 +21,7 @@
 \alias{getKnownSubclasses}
 \alias{getMethods}
 \alias{getMethods.default}
+\alias{getMethodNames}
 \alias{getName}
 \alias{getPackage}
 \alias{getStaticInstance}
@@ -78,6 +79,7 @@
 \alias{getChangeLog}
 \alias{getClasses}
 \alias{getClasses.default}
+\alias{getClassNames}
 \alias{getContribUrl}
 \alias{getContents}
 \alias{getDataPath}

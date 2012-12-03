@@ -54,6 +54,7 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.oo:getDetails.Class]{getDetails}} \tab Lists the fields and methods of a class.\cr
  \tab \code{\link[R.oo:getFields.Class]{getFields}} \tab Returns the field names of a class.\cr
  \tab \code{\link[R.oo:getKnownSubclasses.Class]{getKnownSubclasses}} \tab Gets all subclasses that are currently loaded.\cr
+ \tab \code{getMethodNames} \tab  -\cr
  \tab \code{\link[R.oo:getMethods.Class]{getMethods}} \tab Returns the method names of class and its super classes.\cr
  \tab \code{\link[R.oo:getName.Class]{getName}} \tab Gets the name of the class.\cr
  \tab \code{\link[R.oo:getPackage.Class]{getPackage}} \tab Gets the package to which the class belongs.\cr

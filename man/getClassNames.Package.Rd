@@ -6,8 +6,12 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getClasses.Package}
-\alias{getClasses.Package}
+\name{getClassNames.Package}
+\alias{getClassNames.Package}
+\alias{Package.getClassNames}
+\alias{getClassNames.Package}
+\alias{getClassNames,Package-method}
+
 \alias{Package.getClasses}
 \alias{getClasses.Package}
 \alias{getClasses,Package-method}
@@ -19,7 +23,7 @@
   Gets all classes of a package.
 }
 
-\usage{\method{getClasses}{Package}(this, ...)}
+\usage{\method{getClassNames}{Package}(this, ...)}
 
 \arguments{
   \item{...}{Not used.}
@@ -31,7 +35,7 @@
 
 \examples{
   pkg <- Package("R.oo")
-  print(getClasses(pkg))
+  print(getClassNames(pkg))
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

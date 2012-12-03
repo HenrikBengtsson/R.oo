@@ -6,8 +6,12 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getMethods.Class}
-\alias{getMethods.Class}
+\name{getMethodNames.Class}
+\alias{getMethodNames.Class}
+\alias{Class.getMethodNames}
+\alias{getMethodNames.Class}
+\alias{getMethodNames,Class-method}
+
 \alias{Class.getMethods}
 \alias{getMethods.Class}
 \alias{getMethods,Class-method}
@@ -19,7 +23,7 @@
   Returns the method names of class and its super classes as a list.
 }
 
-\usage{\method{getMethods}{Class}(this, private=FALSE, deprecated=TRUE, unique=TRUE, ...)}
+\usage{\method{getMethodNames}{Class}(this, private=FALSE, deprecated=TRUE, unique=TRUE, ...)}
 
 \arguments{
   \item{private}{If \code{\link[base:logical]{TRUE}}, private methods are also returned,
@@ -35,8 +39,8 @@
 }
 
 \examples{
-  l <- getMethods(Exception)
-  print(l)
+  names <- getMethodNames(Exception)
+  print(names)
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

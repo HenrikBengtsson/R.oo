@@ -837,7 +837,8 @@ setMethodS3("ll", "Package", function(this, envir=pos.to.env(getPosition(this)),
 
 
 #########################################################################/**
-# @RdocMethod getClasses
+# @RdocMethod getClassNames
+# @aliasmethod getClasses
 #
 # @title "Gets all classes of a package"
 #
@@ -857,7 +858,7 @@ setMethodS3("ll", "Package", function(this, envir=pos.to.env(getPosition(this)),
 #
 # \examples{
 #   pkg <- Package("R.oo")
-#   print(getClasses(pkg))
+#   print(getClassNames(pkg))
 # }
 #
 # @author
@@ -866,7 +867,7 @@ setMethodS3("ll", "Package", function(this, envir=pos.to.env(getPosition(this)),
 #   @seeclass
 # }
 #*/#########################################################################
-setMethodS3("getClasses", "Package", function(this, ...) {
+setMethodS3("getClassNames", "Package", function(this, ...) {
   classes <- c();
   for (name in ls(pos=getPosition(this))) {
     if (exists(name, mode="function")) {
@@ -1610,8 +1611,12 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
   invisible(updated);
 })
 
+
 ############################################################################
 # HISTORY:
+# 2012-12-02
+# o Renamed getClasses() to getClassNames() for Package.  Keeping the
+#   old version for backward compatibility.
 # 2012-09-10
 # o BUG FIX: getContribUrl() and getDevelUrl() would give an error if
 #   corresponding fields did not exists in the DESCRIPTION file.  Now
