@@ -1493,6 +1493,42 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 
 
 #########################################################################/**
+# @RdocMethod startupMessage
+#
+# @title "Generates a 'package successfully loaded' package startup message"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{...}{Additional arguments passed to 
+#              @see "base::packageStartupMessage".}
+# }
+#
+# \value{
+#   Returns nothing.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "base::packageStartupMessage".
+#
+#   @seeclass
+# }
+#*/#########################################################################
+setMethodS3("startupMessage", "Package", function(this, ...) {
+  msg <- sprintf("%s v%s (%s) successfully loaded. See ?%s for help.",
+       getName(this), getVersion(this), getDate(this), getName(this));
+  packageStartupMessage(msg, ...);
+}, protected=TRUE)
+
+
+
+#########################################################################/**
 # @RdocMethod update
 #
 # @title "Updates the package is a newer version is available"
@@ -1613,6 +1649,8 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2012-12-19
+# o Added startupMessage() for Package.
 # 2012-09-10
 # o BUG FIX: getContribUrl() and getDevelUrl() would give an error if
 #   corresponding fields did not exists in the DESCRIPTION file.  Now

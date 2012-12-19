@@ -97,6 +97,7 @@
 # @alias showHistory
 # @alias showHowToCite
 # @alias showNews
+# @alias startupMessage
 # @alias unload
 #
 # % The RccViolationException class

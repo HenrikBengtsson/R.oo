@@ -38,7 +38,6 @@ if (is.element("R.oo", search())) detach("R.oo");
     }
 
     pkg <- Package(pkgname);
-    packageStartupMessage(getName(pkg), " v", getVersion(pkg), " (", 
-      getDate(pkg), ") successfully loaded. See ?", pkgname, " for help.");
+    startupMessage(pkg);
   }
 } # .onAttach()
