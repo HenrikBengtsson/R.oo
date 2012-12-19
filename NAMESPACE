@@ -195,6 +195,7 @@ S3method("showNews", "Package")
 S3method("showHistory", "Package")
 S3method("getHowToCite", "Package")
 S3method("showHowToCite", "Package")
+S3method("startupMessage", "Package")
 S3method("update", "Package")
 
 # Rdoc
