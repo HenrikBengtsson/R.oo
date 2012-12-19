@@ -47,8 +47,7 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.oo:getBundle.Package]{getBundle}} \tab Gets the Bundle that this package might belong to.\cr
  \tab \code{\link[R.oo:getBundlePackages.Package]{getBundlePackages}} \tab Gets the names of the other packages that is in the same bundle as this package.\cr
  \tab \code{\link[R.oo:getChangeLog.Package]{getChangeLog}} \tab Gets the change log of this package.\cr
- \tab \code{\link[R.oo:getClasses.Package]{getClasses}} \tab Gets all classes of a package.\cr
- \tab \code{getClassNames} \tab  -\cr
+ \tab \code{getClasses} \tab  -\cr
  \tab \code{\link[R.oo:getContents.Package]{getContents}} \tab Gets the contents of this package.\cr
  \tab \code{\link[R.oo:getContribUrl.Package]{getContribUrl}} \tab Gets the URL(s) from where this package can be installed.\cr
  \tab \code{\link[R.oo:getDataPath.Package]{getDataPath}} \tab Gets the path to the data (data/) directory of this package.\cr

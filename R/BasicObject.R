@@ -438,20 +438,26 @@ setMethodS3("hasField", "BasicObject", function(this, field, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("attach", "BasicObject", function(this, private=FALSE, pos=2, ...) {
+  # To please R CMD check
+  attachX <- base::attach;
+
   attachName <- as.character.BasicObject(this);
   if (is.element(attachName, search())) {
     warning(paste("Object is already attached:", attachName));
     return(invisible(FALSE));
   }
 
-  if (is.list(this))
-    attach(unclass(this), name=attachName, pos=pos)
-  else
-    attach(list(), name=attachName, pos=pos);
+  if (is.list(this)) {
+    attachX(unclass(this), name=attachName, pos=pos);
+  } else {
+    attachX(list(), name=attachName, pos=pos);
+  }
   members <- names(attributes(this));
   
-  for (member in members)
+  for (member in members) {
     assign(member, attr(this, member), pos=pos);
+  }
+
   return(invisible(TRUE));
 }) # attach() 
 
@@ -842,6 +848,8 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-12-18
+# o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-10-14
 # o Now <BasicObject>$<staticFcn>(...) calls <staticFcn>(<BasicObject>, ...). 
 # 2012-06-22

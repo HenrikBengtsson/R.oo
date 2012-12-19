@@ -654,6 +654,9 @@ setMethodS3("attachLocally", "Object", function(this, private=FALSE, fields=NULL
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("attach", "Object", function(this, private=FALSE, pos=2, ...) {
+  # To please R CMD check
+  attachX <- base::attach;
+
   attachName <- as.character.Object(this);
   if (is.element(attachName, search())) {
     warning(paste("Object is already attached:", attachName));
@@ -661,10 +664,13 @@ setMethodS3("attach", "Object", function(this, private=FALSE, pos=2, ...) {
   }
 
   envir <- attr(this, ".env");
-  attach(list(), name=attachName, pos=pos);
+  attachX(list(), name=attachName, pos=pos);
+
   members <- ls(envir=envir, all.names=private);
-  for (member in members)
+  for (member in members) {
     assign(member, get(member, envir=envir), pos=pos);
+  }
+
   return(invisible(TRUE));
 }) # attach()
 
@@ -1389,7 +1395,9 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
       # R.oo, call garbage collect to clean out all R.oo's objects, and
       # then remove the dummy finalize() function.
       # (1) Put a dummy finalize() function on the search path.
-      attach(list(finalize = function(...) { }), name="dummy:R.oo",
+      # To please R CMD check
+      attachX <- base::attach;
+      attachX(list(finalize = function(...) { }), name="dummy:R.oo",
                                                     warn.conflicts=FALSE);
       # (2) Detach R.oo
       if (is.element("package:R.oo", search())) {
@@ -2240,7 +2248,9 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
       # R.oo, call garbage collect to clean out all R.oo's objects, and
       # then remove the dummy finalize() function.
       # (1) Put a dummy finalize() function on the search path.
-      attach(list(finalize = function(...) { }), name="dummy:R.oo",
+      # To please R CMD check
+      attachX <- base::attach;
+      attachX(list(finalize = function(...) { }), name="dummy:R.oo",
                                                     warn.conflicts=FALSE);
       # (2) Detach R.oo
       detach("package:R.oo");
@@ -2265,6 +2275,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-12-18
+# o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-11-28
 # o BUG FIX: extend() for Object dropped already existing field modifiers.
 # 2012-11-23

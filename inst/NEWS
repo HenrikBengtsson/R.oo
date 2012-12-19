@@ -1,10 +1,8 @@
 Package: R.oo
 =============
 
-Version: 1.11.3 [2012-12-02]
-o CLEANUP: Renamed getMethods() to getMethodNames() for Object, 
-  and getClasses() to getClassNames() for Package.  Keeping the
-  old versions, which are deprecated, for backward compatibility.
+Version: 1.11.3 [2012-12-18]
+o R CMD check for R devel no longer gives a NOTE on attach().
 
 
 Version: 1.11.2 [2012-11-29]

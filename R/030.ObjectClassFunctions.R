@@ -2,7 +2,10 @@
 # This source code file contains constructor and function definitions that
 # are used for loading this package only.
 ############################################################################
-attach(list(
+# To please R CMD check
+attachX <- base::attach;
+
+attachX(list(
   Object = function(core=NA) {
     # Create a new environment and wrap it up as a private field of a list.
     this <- core;
@@ -46,7 +49,9 @@ attach(list(
         # R.oo, call garbage collect to clean out all R.oo's objects, and
         # then remove the dummy finalize() function.
         # (1) Put a dummy finalize() function on the search path.
-        attach(list(finalize = function(...) { }), name="dummy:R.oo",
+        # To please R CMD check
+        attachX <- base::attach;
+        attachX(list(finalize = function(...) { }), name="dummy:R.oo",
                                                       warn.conflicts=FALSE);
 
         # (2) Detach R.oo
@@ -96,10 +101,14 @@ attach(list(
   }
 ), name="R.oo");
 
+# Cleanup
+rm(attachX);
 
 
 ############################################################################
 # HISTORY:
+# 2012-12-18
+# o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-11-28
 # o LIMITATION: Registered finalizer for pure Object:s (i.e. excluding
 #   those which are of a subclass of Object) will no longer be called

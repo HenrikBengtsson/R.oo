@@ -1965,7 +1965,7 @@ setMethodS3("methodsInheritedFrom", "Rdoc", function(this, class, visibility=c("
       methods <- gsub(pattern, "", methods);
     } else {
       # Get all methods of this Class
-      methods <- getMethodNames(clazz, private=private, deprecated=showDeprecated);
+      methods <- getMethods(clazz, private=private, deprecated=showDeprecated);
       methods <- methods[[extend]];
       methods <- names(methods);
     }

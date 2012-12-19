@@ -85,7 +85,7 @@ setMethodS3("as.character", "Class", function(x, ...) {
 
   fields <- getFields(this);
   nbrOfFields <- length(fields);
-  methods <- getMethodNames(this, unique=TRUE);
+  methods <- getMethods(this, unique=TRUE);
   count <- unlist(lapply(methods, FUN=length));
   names(count) <- names(methods);
   nbrOfMethods <- sum(count);
@@ -439,7 +439,7 @@ setMethodS3("newInstance", "Class", function(this, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("isAbstract", "Class", function(this, ...) {
-  methods <- getMethodNames(this);
+  methods <- getMethods(this);
   methods <- unlist(methods);
   methods <- methods[nchar(methods) > 0L];
   for (method in methods) {
@@ -488,7 +488,7 @@ setMethodS3("isAbstract", "Class", function(this, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("isStatic", "Class", function(this, ...) {
-  methods <- getMethodNames(this);
+  methods <- getMethods(this);
   methods <- unlist(methods);
   methods <- methods[nchar(methods) > 0L];
   for (method in methods) {
@@ -957,8 +957,7 @@ setMethodS3("getFields", "Class", function(this, private=FALSE, ...) {
 
 
 ###########################################################################/**
-# @RdocMethod getMethodNames
-# @aliasmethod getMethods
+# @RdocMethod getMethods
 #
 # @title "Returns the method names of class and its super classes"
 #
@@ -982,7 +981,7 @@ setMethodS3("getFields", "Class", function(this, private=FALSE, ...) {
 # }
 #
 # \examples{
-#   names <- getMethodNames(Exception)
+#   names <- getMethods(Exception)
 #   print(names)
 # }
 #
@@ -995,7 +994,7 @@ setMethodS3("getFields", "Class", function(this, private=FALSE, ...) {
 # @keyword programming
 # @keyword methods
 #*/###########################################################################
-setMethodS3("getMethodNames", "Class", function(this, private=FALSE, deprecated=TRUE, unique=TRUE, ...) {
+setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE, unique=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1120,7 +1119,7 @@ setMethodS3("getMethodNames", "Class", function(this, private=FALSE, deprecated=
   result <- result[sapply(result, FUN=function(x) (length(x) > 0L))];
 
   result;
-}, protected=TRUE, dontWarn="base") # getMethodNames()
+}, protected=TRUE, dontWarn="base") # getMethods()
 
 
 
@@ -1268,7 +1267,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 ##     s <- paste(sep="", s, methodName, "(", args, ")\n");
 ##   } ## formalsToString(...)
 
-  methodsPerClass <- getMethodNames(this, private=private);
+  methodsPerClass <- getMethods(this, private=private);
   if (length(methodsPerClass) > 0L) {
     for (methods in methodsPerClass) {
       if (length(methods) > 0L) {
@@ -1558,9 +1557,6 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
-# 2012-12-02
-# o Renamed getMethods() to getMethodNames() for Object.  Keeping the
-#   old versions for backward compatibility.
 # 2012-11-29
 # o getKnownSubclasses() for Class is now faster (and yday's update
 #   introduced a bug causing it to use huge amounts of memory.
