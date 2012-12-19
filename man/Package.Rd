@@ -79,7 +79,7 @@ extends \link[R.oo]{Object}\cr
  \tab \code{showHistory} \tab  -\cr
  \tab \code{\link[R.oo:showHowToCite.Package]{showHowToCite}} \tab Show the HOWTOCITE file of this package.\cr
  \tab \code{showNews} \tab  -\cr
- \tab \code{startupMessage} \tab  -\cr
+ \tab \code{\link[R.oo:startupMessage.Package]{startupMessage}} \tab Generates a 'package successfully loaded' package startup message.\cr
  \tab \code{\link[R.oo:unload.Package]{unload}} \tab Unloads a package.\cr
  \tab \code{\link[R.oo:update.Package]{update}} \tab Updates the package is a newer version is available.\cr
 }

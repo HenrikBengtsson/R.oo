@@ -1250,6 +1250,7 @@ setMethodS3("staticCode", "Object", function(static, ...) {
 # @title "Extends another class"
 #
 # \description{
+#   via a mechanism known as "parasitic inheritance".
 #   Simply speaking this method "extends another class". What is actually
 #   happening is that it creates an instance of class name \code{...className},
 #   by taking another Object instance and add \code{...className} to the class

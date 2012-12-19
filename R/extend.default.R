@@ -4,6 +4,7 @@
 # @title "Extends a object"
 #
 # \description{
+#   via a mechanism known as "parasitic inheritance".
 #   Simply speaking this method "extends" the class of an object. What is actually
 #   happening is that it creates an instance of class name \code{...className},
 #   by taking another object and add \code{...className} to the class
