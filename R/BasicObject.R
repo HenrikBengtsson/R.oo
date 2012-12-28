@@ -105,7 +105,7 @@ setMethodS3("as.character", "BasicObject", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  paste(data.class(this), ": ", getInstantiationTime(this), sep="");
+  paste(class(this)[1L], ": ", getInstantiationTime(this), sep="");
 }) # as.character()
  
 
@@ -849,6 +849,8 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-12-28
+# o Replaced all data.class(obj) with class(obj)[1].
 # 2012-12-18
 # o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-10-14
