@@ -728,7 +728,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     # Validate arguments
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (!is.list(rdocs))
-      throw(RdocException("Internal error: Expected a list: ", data.class(rdocs)));
+      throw(RdocException("Internal error: Expected a list: ", class(rdocs)[1L]));
   
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2518,6 +2518,8 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2012-12-28
+# o Replaced all data.class(obj) with class(obj)[1].
 # 2012-06-11
 # o BUG FIX/GENERALIZATION: Rdoc$getKeywords() now uses system
 #   environment variable R_DOC_DIR for locating the internal

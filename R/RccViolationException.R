@@ -95,7 +95,7 @@ setMethodS3("as.character", "RccViolationException", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  paste("[", getWhen(this), "] ", data.class(this), ": ", getMessage(this), ", cf. ", getRccUrl(this), sep="");
+  paste("[", getWhen(this), "] ", class(this)[1L], ": ", getMessage(this), ", cf. ", getRccUrl(this), sep="");
 })
 
 
@@ -145,6 +145,8 @@ setMethodS3("getRccUrl", "RccViolationException", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-12-28
+# o Replaced all data.class(obj) with class(obj)[1].
 # 2012-11-18
 # o Updated the URL returned by RccViolationException$getRccUrl().
 # 2005-02-15

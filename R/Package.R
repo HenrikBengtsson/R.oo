@@ -95,7 +95,7 @@ setMethodS3("as.character", "Package", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  s <- paste(data.class(this), ": ", getName(this), " v", getVersion(this), " (", getDate(this), ")", sep="");
+  s <- paste(class(this)[1L], ": ", getName(this), " v", getVersion(this), " (", getDate(this), ")", sep="");
   pos <- getPosition(this);
   if (pos != -1)
     s <- paste(s, " is loaded (pos=", pos, ").", sep="")
@@ -1649,6 +1649,8 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2012-12-28
+# o Replaced all data.class(obj) with class(obj)[1].
 # 2012-12-19
 # o Added startupMessage() for Package.
 # 2012-09-10

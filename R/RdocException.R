@@ -72,7 +72,7 @@ setMethodS3("as.character", "RdocException", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  paste("[", getWhen(this), "] ", data.class(this), " in ", getSource(this), 
+  paste("[", getWhen(this), "] ", class(this)[1L], " in ", getSource(this), 
                                           ": ", getMessage(this), sep = "");
 })
 
@@ -114,6 +114,8 @@ setMethodS3("getSource", "RdocException", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2012-12-28
+# o Replaced all data.class(obj) with class(obj)[1].
 # 2005-02-15
 # o Added arguments '...' in order to match any generic functions.
 # 2004-10-17
