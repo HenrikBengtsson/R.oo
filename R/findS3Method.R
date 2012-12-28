@@ -1,15 +1,23 @@
-.findS3Method <- function(name, where=c("ns", "search")[-1L], mustExist=TRUE) {
-  # (a) Search loaded namespaces
-  if (is.element("ns", where)) {
-    for (ns in loadedNamespaces()) {
-      envir <- asNamespace(ns);
-      if (exists(name, mode="function", envir=envir)) {
-        return(get(name, mode="function", envir=envir));
-      }
+.findS3Method <- function(name, where=c("ns", "search")[-1L], envir=NULL, mustExist=TRUE) {
+##  # (a) Search loaded namespaces
+##  if (is.element("ns", where)) {
+##    for (ns in loadedNamespaces()) {
+##      envir <- asNamespace(ns);
+##      if (exists(name, mode="function", envir=envir)) {
+##        return(get(name, mode="function", envir=envir));
+##      }
+##    }
+##  }
+
+  # 1. Search a specific environment?
+  #    (which should be a namespace of package)
+  if (!is.null(envir)) {
+    if (exists(name, mode="function", envir=envir, inherits=TRUE)) {
+      return(get(name, mode="function", envir=envir, inherits=TRUE));
     }
   }
 
-  # (b) Search attached search paths
+  # 2. Search attached search paths
   if (is.element("search", where)) {
     for (pos in seq(along=search())) {
       envir <- as.environment(pos);
@@ -29,6 +37,8 @@
 
 ############################################################################
 # HISTORY:
+# 2012-12-27
+# o Added argument 'envir' to .findS3Method().
 # 2012-11-24
 # o Added argument 'where' to .findS3Method().
 # 2012-11-23
