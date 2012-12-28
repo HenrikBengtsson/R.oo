@@ -1,6 +1,17 @@
 Package: R.oo
 =============
 
+Version: 1.11.5 [2012-12-28]
+o GENERALIZATION: Further preparation for supporting R.oo and its 
+  derived packages to be imported without attaching ("loading") them.
+o Replaced all data.class(obj) with class(obj)[1L].
+o ROBUSTNESS/BUG FIX: getMethods() for Class would give an error if
+  no methods were found for the queried Class.
+o ROBUSTNESS/BUG FIX: In the rare case where getStaticInstance() for
+  Class failed to setup a static instance, the temporary state set
+  internally would not be unset.
+
+
 Version: 1.11.4 [2012-12-19]
 o Added startupMessage() for Package.
 

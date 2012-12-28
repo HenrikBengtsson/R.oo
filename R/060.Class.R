@@ -91,7 +91,7 @@ setMethodS3("as.character", "Class", function(x, ...) {
   nbrOfMethods <- sum(count);
   count <- count[-1];
     
-  s <- paste(data.class(this), " ", getName(this), " has ", 
+  s <- paste(class(this)[1L], " ", getName(this), " has ", 
   nbrOfFields,  " field" , if (nbrOfFields  != 1L) "s", " and ",
   nbrOfMethods, " method", if (nbrOfMethods != 1L) "s", sep="");
 
@@ -187,7 +187,8 @@ setMethodS3("print", "Class", function(x, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("getName", "Class", function(this, ...) {
-  data.class(getStaticInstance(this));
+  static <- getStaticInstance(this);
+  class(static)[1L];
 }) # getName()
 
 
@@ -443,7 +444,7 @@ setMethodS3("isAbstract", "Class", function(this, ...) {
   methods <- unlist(methods);
   methods <- methods[nchar(methods) > 0L];
   for (method in methods) {
-    mtd <- .findS3Method(method);
+    mtd <- .findS3Method(method, envir=environment(this));
     if (is.element("abstract", attr(mtd, "modifiers")))
       return(TRUE);
   }
@@ -492,7 +493,7 @@ setMethodS3("isStatic", "Class", function(this, ...) {
   methods <- unlist(methods);
   methods <- methods[nchar(methods) > 0L];
   for (method in methods) {
-    mtd <- .findS3Method(method);
+    mtd <- .findS3Method(method, envir=environment(this));
     if (is.element("static", attr(mtd, "modifiers")))
       return(TRUE);
   }
@@ -697,11 +698,13 @@ setMethodS3("isDeprecated", "Class", function(this, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("forName", "Class", function(this, name, ...) {
-  if (!exists(name, mode="function"))
+  if (!exists(name, mode="function")) {
     throw("No such class: ", name);
+  }
   fcn <- get(name, mode="function");
-  if (!inherits(fcn, "Class"))
+  if (!inherits(fcn, "Class")) {
     throw("Can not find Class: ", name);
+  }
   fcn;
 }, static=TRUE) # forName()
 
@@ -808,43 +811,43 @@ setMethodS3("getPackage", "Class", function(this, ...) {
 setMethodS3("getStaticInstance", "Class", function(this, ...) {
   # First, make sure you have a reference to the actual Class object.
   if (!is.function(this)) {
-    this <- get(data.class(this), mode="function")
-    if (!inherits(this, "Class")) {
-      throw("Not a Class object: ", class(this)[1]);
-    }
+    this <- .getClassByName(class(this)[1L], envir=environment(this));
   }
 
   # If the static instance of this class is missing create one.
   envir <- attr(this, ".env");
-  staticInstance <- get(".staticInstance", envir=envir);
-  if (is.null(staticInstance)) {
+  static <- get(".staticInstance", envir=envir);
+  if (is.null(static)) {
     if (!exists(".isCreatingStaticInstance", envir=envir)) {
       assign(".isCreatingStaticInstance", TRUE, envir=envir);
+      on.exit({
+        rm(list=".isCreatingStaticInstance", envir=envir);
+      }, add=TRUE);
+
       constructor <- this;
-      staticInstance <- constructor();
+      static <- constructor();
 
       # Set the environment of the static instance to be the same
       # as the constructor function, i.e. the Class.
-      environment(staticInstance) <- environment(this);
+      environment(static) <- environment(this);
 
-      assign(".staticInstance", staticInstance, envir=envir);
-      rm(list=".isCreatingStaticInstance", envir=envir);
+      assign(".staticInstance", static, envir=envir);
     } else {
       # Otherwise, just create a dummy instance in case any code is trying
       # to access it.
-      staticInstance <- Object();
+      static <- Object();
 
       # Set the environment of the static instance to be the same
       # as the constructor function, i.e. the Class.
-      environment(staticInstance) <- environment(this);
+      environment(static) <- environment(this);
     }
   } else {
     # BACKWARD PATCH: In case an old static object has been loaded
     # then it may not have the proper environment set.
-    environment(staticInstance) <- environment(this);
+    environment(static) <- environment(this);
   }
 
-  staticInstance;
+  static;
 }) # getStaticInstance()
 
 
@@ -887,7 +890,7 @@ setMethodS3("getStaticInstance", "Class", function(this, ...) {
 setMethodS3("isBeingCreated", "Class", function(this, ...) {
   # First, make sure you have a reference to the actual Class object.
   if (!is.function(this)) {
-    this <- get(data.class(this), mode="function")
+    this <- get(class(this)[1L], mode="function")
     if (!inherits(this, "Class"))
       throw("Not a Class object: ", class(this)[1]);
   }
@@ -1045,20 +1048,24 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
     res;
   } # findS3MethodsByEnvironment()
 
-  findS3Methods <- function(classNames, where=c("ns", "search")[-1L], exclMods=NULL) {
+  findS3Methods <- function(classNames, where=c("ns", "search")[-1L], envir=NULL, exclMods=NULL) {
     res <- list();
 
     # Nothing todo?
     if (length(classNames) == 0L) return(res);
 
-    # (a) Search loaded namespaces
-    if (is.element("ns", where)) {
-      for (ns in loadedNamespaces()) {
-        envir <- asNamespace(ns);
-        res <- findS3MethodsByEnvironment(classNames, envir=envir, exclMods=exclMods, res=res);
-      }
+    if (!is.null(envir)) {
+      res <- findS3MethodsByEnvironment(classNames, envir=envir, exclMods=exclMods, res=res);
     }
   
+##    # (a) Search loaded namespaces
+##    if (is.element("ns", where)) {
+##      for (ns in loadedNamespaces()) {
+##        envir <- asNamespace(ns);
+##        res <- findS3MethodsByEnvironment(classNames, envir=envir, exclMods=exclMods, res=res);
+##      }
+##    }
+
     # (a) Search attached search paths
     if (is.element("search", where)) {
       for (pos in seq(along=search())) {
@@ -1088,35 +1095,37 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
   }
 
   # Scan for such methods
-  classNames <- class(getStaticInstance(this));
-  result <- findS3Methods(classNames, exclMods=exclMods);
+  static <- getStaticInstance(this);
+  classNames <- class(static);
+  envir <- environment(static);
+  result <- findS3Methods(classNames, envir=envir, exclMods=exclMods);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Cleanup
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Keep only unique method names, regardless of Class?
-  if (unique) {
+  nClasses <- length(result);
+  if (unique && nClasses >= 2L) {
     names <- lapply(result, FUN=names);
-    nClasses <- length(result);
-    if (nClasses >= 2L) {
-      for (kk in seq(length.out=nClasses-1L)) {
+    for (kk in seq(length.out=nClasses-1L)) {
+      # Nothing todo?
+      if (length(names[[kk]]) == 0L) next;
+      for (ll in (kk+1L):nClasses) {
         # Nothing todo?
-        if (length(names[[kk]]) == 0L) next;
-        for (ll in (kk+1L):nClasses) {
-          # Nothing todo?
-          if (length(names[[ll]]) == 0L) next;
-          uniqueNames <- setdiff(names[[ll]], names[[kk]]);
-          unique <- match(uniqueNames, names[[ll]]);
-          result[[ll]] <- result[[ll]][unique];
-          names[[ll]] <- names[[ll]][unique];
-        } # for (ll ...)
-      } # for (kk ...)
-    }
+        if (length(names[[ll]]) == 0L) next;
+        uniqueNames <- setdiff(names[[ll]], names[[kk]]);
+        unique <- match(uniqueNames, names[[ll]]);
+        result[[ll]] <- result[[ll]][unique];
+        names[[ll]] <- names[[ll]][unique];
+      } # for (ll ...)
+    } # for (kk ...)    }
   } # if (unique)
 
   # Remove classes with no methods
-  result <- result[sapply(result, FUN=function(x) (length(x) > 0L))];
+  if (nClasses > 0L) {
+    result <- result[sapply(result, FUN=function(x) (length(x) > 0L))];
+  }
 
   result;
 }, protected=TRUE, dontWarn="base") # getMethods()
@@ -1269,6 +1278,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 
   methodsPerClass <- getMethods(this, private=private);
   if (length(methodsPerClass) > 0L) {
+    envir <- environment(this);
     for (methods in methodsPerClass) {
       if (length(methods) > 0L) {
         methodNames <- names(methods);
@@ -1276,7 +1286,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
         isPrivate <- (regexpr("^\\.", methodNames) != -1L);
         modifiers[isPrivate] <- "private";
         for (kk in seq(along=methodNames)) {
-          fcn <- .findS3Method(methods[kk]);
+          fcn <- .findS3Method(methods[kk], envir=envir, mustExist=TRUE);
           fcnModifiers <- attr(fcn, "modifiers");
           if (is.element("protected", fcnModifiers)) {
             modifiers[kk] <- "protected";
@@ -1366,10 +1376,11 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("$", "Class", function(this, name) {
-  if (is.function(this))
+  if (is.function(this)) {
     static <- getStaticInstance(this)
-  else
+  } else {
     static <- this;
+  }
 
   firstChar <- substr(name, start=1L, stop=1L);
   isPrivate <- identical(firstChar, ".");
@@ -1383,11 +1394,12 @@ setMethodS3("$", "Class", function(this, name) {
     capitalizedName <- name;
     substr(capitalizedName, start=1L, stop=1L) <- toupper(firstChar);
     getMethodNames <- paste("get", capitalizedName, ".", class(static), sep="");
+    envir <- environment(static);
     for (getMethodName in getMethodNames) {
-      if (exists(getMethodName, mode="function")) {
+      fcn <- .findS3Method(getMethodName, envir=envir, mustExist=FALSE);
+      if (!is.null(fcn)) {
         ref <- static;
         attr(ref, "disableGetMethods") <- TRUE;
-        fcn <- .findS3Method(getMethodName);
         return(fcn(ref));
       }
     }
@@ -1408,9 +1420,10 @@ setMethodS3("$", "Class", function(this, name) {
   }
 
   # 4. Is it a static S3 method?
+  envir <- environment(static);
   methodNames <- paste(name, class(static), sep=".");
   for (methodName in methodNames) {
-    mtd <- .findS3Method(methodName, mustExist=FALSE);
+    mtd <- .findS3Method(methodName, envir=envir, mustExist=FALSE);
     if (!is.null(mtd)) {
       # Using explicit UseMethod() code
       code <- sprintf("function(...) \"%s\"(static, ...)", name);
@@ -1518,8 +1531,9 @@ setMethodS3("$<-", "Class", function(this, name, value) {
     capitalizedName <- name;
     substr(capitalizedName,start=1L, stop=1L) <- toupper(firstChar);
     setMethodNames <- paste("set", capitalizedName, ".", class(static), sep="");
+    envir <- environment(static);
     for (setMethodName in setMethodNames) {
-      mtd <- .findS3Method(setMethodName, mustExist=FALSE);
+      mtd <- .findS3Method(setMethodName, envir=envir, mustExist=FALSE);
       if (!is.null(mtd)) {
         ref <- static;
         attr(ref, "disableSetMethods") <- TRUE;
@@ -1557,6 +1571,16 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2012-12-28
+# o Replaced all data.class(obj) with class(obj)[1].
+# 2012-12-27
+# o GENERALIZATION: Now getMethods() for Class also search the loaded
+#   namespace, i.e. it works also when the package is not attached.
+# o ROBUSTNESS/BUG FIX: getMethods() for Class would give an error if
+#   there are no methods for the queries class.
+# o ROBUSTNESS/BUG FIX: In the rare case where getStaticInstance() for
+#   Class failed to setup a static instance, the temporary state set
+#   internally would not be unset.
 # 2012-11-29
 # o getKnownSubclasses() for Class is now faster (and yday's update
 #   introduced a bug causing it to use huge amounts of memory.

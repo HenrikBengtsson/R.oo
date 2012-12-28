@@ -10,26 +10,26 @@
 ##       }
 ##     } # for (kk ...)
 ##   }
-   # 1. Search a specific environment?
-   #    (which should be a namespace of package)
-   if (!is.null(envir)) {
-     if (exists(name, mode="function", envir=envir, inherits=TRUE)) {
-       res <- get(name, mode="function", envir=envir, inherits=TRUE);
-       if (inherits(res, "Class")) return(res);
-     }
-   }
+  # 1. Search a specific environment?
+  #    (which should be a namespace of package)
+  if (!is.null(envir) && is.element("ns", where)) {
+    if (exists(name, mode="function", envir=envir, inherits=TRUE)) {
+      res <- get(name, mode="function", envir=envir, inherits=TRUE);
+      if (inherits(res, "Class")) return(res);
+    }
+  }
 
-   # 2. Search globally
-   if (is.element("search", where)) {
-     if (exists(name, mode="function")) {
-       res <- get(name, mode="function");
-       if (inherits(res, "Class")) return(res);
-     }
-   }
+  # 2. Search globally
+  if (is.element("search", where)) {
+    if (exists(name, mode="function")) {
+      res <- get(name, mode="function");
+      if (inherits(res, "Class")) return(res);
+    }
+  }
 
-   # Don't use throw() here, because it may result in an endless loop
-   # if Exception is not found. /HB 2012-11-23
-   stop("No such Class: ", name);
+  # Don't use throw() here, because it may result in an endless loop
+  # if Exception is not found. /HB 2012-11-23
+  stop("No such Class: ", name);
 } # .getClassByName()
 
 

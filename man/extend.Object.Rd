@@ -26,13 +26,14 @@
    The method should be used by the constructor of a class and nowhere else.
  }
 
- \usage{\method{extend}{Object}(this, ...className, ..., ...fields=NULL)}
+ \usage{\method{extend}{Object}(this, ...className, ..., ...fields=NULL, ...envir=parent.frame())}
 
  \arguments{
    \item{...className}{The name of new class.}
    \item{...}{Named values representing the fields of the new instance.}
    \item{...fields}{An optional named \code{\link[base]{list}} of fields.  This makes it possible
      to specify a set of fields using a \code{\link[base]{list}} object.}
+   \item{...envir}{An \code{\link[base]{environment}}.}
  }
 
  \value{
