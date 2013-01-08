@@ -38,13 +38,16 @@
 setMethodS3("getName", "environment", function(env, ...) {
   # base::environmentName() was added to R v2.5.0
   if (exists("environmentName", mode="function")) {
-    return(environmentName(env));
+    name <- environmentName(env);
+  } else {
+    name <- "";
   }
 
-  # Otherwise...
-  name <- capture.output(print.default(env));
-  name <- name[1]; # Just in case
-  name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
+  if (name == "") {
+    name <- capture.output(print.default(env));
+    name <- name[1]; # Just in case
+    name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
+  }
 
   name;
 })
