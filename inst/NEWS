@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.11.6 [2013-01-08]
+o Added argument 'format' to getInternalAddress() for Object.
+o BUG FIX: The hexadecimal string returned by as.character() for 
+  Object would contain the decimal value and not the hexadecimal one.
+
+
 Version: 1.11.5 [2012-12-28]
 o GENERALIZATION: Further preparation for supporting R.oo and its 
   derived packages to be imported without attaching ("loading") them.

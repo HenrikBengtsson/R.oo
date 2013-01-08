@@ -85,7 +85,7 @@ setConstructorS3("Object", Object);
 #
 # \examples{
 #   obj <- Object()
-#   as.character(obj)    # "Object: 0x016A80FC"
+#   as.character(obj)    # "Object: 0x000000000ab6a7a8"
 # }
 #
 # @author
@@ -100,46 +100,8 @@ setConstructorS3("Object", Object);
 setMethodS3("as.character", "Object", function(x, ...) {
   # To please R CMD check
   this <- x;
-
-  intToHex <- function(x, width=NULL) {
-    y <- as.integer(x)
-    class(y) <- "hexmode"
-    y <- as.character(y)
-    if (!is.null(width)) {
-      missing <- width - nchar(y);
-      for (k in which(missing > 0)) {
-        zeros <- paste(rep("0", missing[k]), collapse="");
-        y[k] <- paste(zeros, y[k], sep="");
-      }
-    }
-    dim(y) <- dim(x)
-    y
-  }
-
-  as.character.hexmode <- function(x) {
-    hexDigit <- c(0:9, "A", "B", "C", "D", "E", "F");
-    isna <- is.na(x);
-    y <- x[!isna];
-    ans0 <- character(length(y));
-    z <- NULL;
-    while (any(y > 0) | is.null(z)) {
-      z <- y%%16;
-      y <- floor(y/16);
-      ans0 <- paste(hexDigit[z + 1], ans0, sep = "");
-    }
-    ans <- rep(NA, length(x));
-    ans[!isna] <- ans0;
-    ans
-  }
-
-  addr <- getInternalAddress(this);
-  hex <- c(addr %/% 2^32, addr %% 2^32);
-  hex[2] <- intToHex(hex[2], width=8);
-  hex[1] <- intToHex(hex[1]);
-  if (nchar(hex[1]) %% 2 == 1)
-    hex[1] <- paste("0", hex[1], sep="");
-  hex <- paste(hex, collapse="");
-  paste(class(this)[1], ": 0x", addr, sep="");
+  addr <- getInternalAddress(this, format="hexstring");
+  paste(class(this)[1], ": ", addr, sep="");
 }) # as.character()
 
 
@@ -455,7 +417,7 @@ setMethodS3("finalize", "Object", function(this, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("hashCode", "Object", function(this, ...) {
-  getInternalAddress(this);
+  getInternalAddress(this, format="numeric");
 }) # hashCode()
 
 
@@ -476,17 +438,20 @@ setMethodS3("hashCode", "Object", function(this, ...) {
 # @synopsis
 #
 # \arguments{
+#   \item{format}{A @character string specifying what format to return.}
 #   \item{...}{Not used.}
 # }
 #
 # \value{
-#   Returns a @double (can hold 64-bit addresses, whereas an @integer can
-#   only hold 32-bit addresses).
+#   The address is returned as a @numeric integer if 
+#   \code{format == "numeric"}, and as a @character string if
+#   \code{format == "hexstring"}.
 # }
 #
 # \examples{
 #   obj <- Object()
-#   getInternalAddress(obj)    # 26979608
+#   getInternalAddress(obj, format="numeric")    # 179742632
+#   getInternalAddress(obj, format="hexstring")  # "0x000000000ab6a7a8"
 # }
 #
 # @author
@@ -499,7 +464,10 @@ setMethodS3("hashCode", "Object", function(this, ...) {
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
-setMethodS3("getInternalAddress", "Object", function(this, ...) {
+setMethodS3("getInternalAddress", "Object", function(this, format=c("numeric", "hexstring"), ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   hexStringToDouble <- function(hex) {
     hexDigits <- unlist(strsplit("0123456789ABCDEF", ""));
     digits16 <- unlist(strsplit(toupper(hex), ""));
@@ -512,9 +480,14 @@ setMethodS3("getInternalAddress", "Object", function(this, ...) {
     as.integer(hexStringToDouble(hex));
   }
 
+  # Argument 'format':
+  format <- match.arg(format);
+
   pointer <- getName(attr(this, ".env"));
-  pointer <- gsub("0x", "", pointer);
-  pointer <- hexStringToDouble(pointer);
+  if (format == "numeric") {
+    pointer <- gsub("0x", "", pointer);
+    pointer <- hexStringToDouble(pointer);
+  }
 
   pointer;
 }, private=TRUE) # getInternalAddress()
@@ -770,7 +743,7 @@ setMethodS3("detach", "Object", function(this, ...) {
 #*/###########################################################################
 setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE) {
   if (is.null(file)) {
-    file <- sprintf("%s.%d.RData", class(this)[1], getInternalAddress(this));
+    file <- sprintf("%s.%d.RData", class(this)[1], getInternalAddress(this, format="numeric"));
   } 
 
   # Saving to a file?
@@ -1370,53 +1343,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   # Note, we have to re-register the finalizer here and not in Object(), 
   # because here the reference variable 'this' will have the correct
   # class attribute, which it does not in Object().
-  # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
-  finalizer <- function(env) {
-    # Note, R.oo might be detached when this is called!  If so, reload
-    # it, this will be our best chance to run the correct finalizer(),
-    # which might be in a subclass of a different package that is still
-    # loaded.
-    isRooLoaded <- any(is.element(c("package:R.oo", "dummy:R.oo"), search()));
-    if (isRooLoaded) {
-      finalize(this);
-    } else {
-      suppressMessages({
-        isRooLoaded <- require("R.oo", quietly=TRUE);
-      })
-
-      # For unknown reasons R.oo might not have been loaded.
-      if (isRooLoaded) {
-        finalize(this);
-      } else {
-        warning("Failed to temporarily reload 'R.oo' and finalize().");
-      }
-
-      # NOTE! Before detach R.oo again, we have to make sure the Object:s
-      # allocated by R.oo itself (e.g. an Package object), will not reload
-      # R.oo again when being garbage collected, resulting in an endless
-      # loop.  We do this by creating a dummy finalize() function, detach
-      # R.oo, call garbage collect to clean out all R.oo's objects, and
-      # then remove the dummy finalize() function.
-      # (1) Put a dummy finalize() function on the search path.
-      # To please R CMD check
-      attachX <- base::attach;
-      attachX(list(finalize = function(...) { }), name="dummy:R.oo",
-                                                    warn.conflicts=FALSE);
-      # (2) Detach R.oo
-      if (is.element("package:R.oo", search())) {
-        detach("package:R.oo");
-      }
-
-      # (3) Force all R.oo's Object:s to be finalize():ed.
-      gc();
-
-      # (4) Remove the dummy finalize():er again.
-      if (is.element("dummy:R.oo", search())) {
-        detach("dummy:R.oo");
-      }
-    }
-  } # finalizer()
-
+  finalizer <- .makeObjectFinalizer(this, reloadRoo=TRUE);
   onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
   reg.finalizer(this.env, finalizer, onexit=onexit);
 
@@ -2327,6 +2254,10 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-01-08
+# o BUG FIX: The hexadecimal string returned by as.character() for Object
+#   would contain the decimal value and not the hexadecimal one.
+# o Added argument 'format' to getInternalAddress() for Object.
 # 2012-12-18
 # o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-11-28

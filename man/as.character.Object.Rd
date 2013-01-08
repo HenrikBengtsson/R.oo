@@ -34,7 +34,7 @@
 
 \examples{
   obj <- Object()
-  as.character(obj)    # "Object: 0x016A80FC"
+  as.character(obj)    # "Object: 0x000000000ab6a7a8"
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

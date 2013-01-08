@@ -19,20 +19,23 @@
  Gets the memory location where the Object resides.
 }
 
-\usage{\method{getInternalAddress}{Object}(this, ...)}
+\usage{\method{getInternalAddress}{Object}(this, format=c("numeric", "hexstring"), ...)}
 
 \arguments{
+  \item{format}{A \code{\link[base]{character}} string specifying what format to return.}
   \item{...}{Not used.}
 }
 
 \value{
-  Returns a \code{\link[base]{double}} (can hold 64-bit addresses, whereas an \code{\link[base]{integer}} can
-  only hold 32-bit addresses).
+  The address is returned as a \code{\link[base]{numeric}} integer if
+  \code{format == "numeric"}, and as a \code{\link[base]{character}} string if
+  \code{format == "hexstring"}.
 }
 
 \examples{
   obj <- Object()
-  getInternalAddress(obj)    # 26979608
+  getInternalAddress(obj, format="numeric")    # 179742632
+  getInternalAddress(obj, format="hexstring")  # "0x000000000ab6a7a8"
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
