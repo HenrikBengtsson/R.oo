@@ -21,12 +21,15 @@ print(y)
 ## [1] 1 2 3
 stopifnot(identical(y, 1:3))
 
-# Create an object with a finalizer and remove it again
+# Create an object with a finalizer
 x <- MyClass()
-rm(x)
 
 # Detach R.oo so that the finalizer will try to reload it
 detach("package:R.oo")
+
+# Remove 'x' so that it will be finalized below
+rm(x)
+
 
 # This may trigger garbage collection via parse()
 # If so, it is important that parse() is not called
