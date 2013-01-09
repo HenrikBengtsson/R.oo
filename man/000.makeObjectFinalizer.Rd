@@ -29,15 +29,16 @@
  }
 
  \details{
-   Note, the returned finalizer is not 100\% reentrant prior to R v3.0.0
-   iff \code{reloadRoo=TRUE} and the \pkg{R.oo} package is not loaded.
-   The reason for this is that when it tries to reload \pkg{R.oo}, the
-   library loading code of R also calls the \code{\link[base]{parse}}() function
-   which is not reentrant prior to R v3.0.0.  What may happen is that
-   \code{\link[base]{parse}}() may triggers another round of garbage collection
-   which in turn may cause R to crash (due to an infinite loop?).
-   Thanks to Duncan Murdoch for reporting on this and making
-   \code{\link[base]{parse}}() and hence the package loading mechanism in R reentrant.
+   The created finalizer is reentrant.
+   This is always the case when the \pkg{R.oo} package is already
+   loaded when the finalizer is called.
+   It is also always the case on R v2.15.2 Patched r61487 and beyond.
+   In other cases, the finalizer inspects the call stack
+   (via \code{\link{sys.calls}}()) to check whether \code{\link[base]{parse}}()
+   has been called or not.  If it is on the call stack, it indicates
+   that \code{\link[base]{parse}}() triggered the garbage collection, and
+   the \pkg{R.oo} package will \emph{not} be reloaded in order to
+   avoid risking \code{\link[base]{parse}}() being called again.
  }
 
 

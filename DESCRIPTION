@@ -1,5 +1,5 @@
 Package: R.oo
-Version: 1.11.6
+Version: 1.11.7
 Depends: R (>= 2.4.0), R.methodsS3 (>= 1.4.2)
 Imports: methods, utils, R.methodsS3 (>= 1.4.2)
 Suggests: tools

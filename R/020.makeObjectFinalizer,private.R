@@ -20,15 +20,16 @@
 # }
 #
 # \details{
-#   Note, the returned finalizer is not 100\% reentrant prior to R v3.0.0
-#   iff \code{reloadRoo=TRUE} and the \pkg{R.oo} package is not loaded.
-#   The reason for this is that when it tries to reload \pkg{R.oo}, the
-#   library loading code of R also calls the @see "base::parse" function
-#   which is not reentrant prior to R v3.0.0.  What may happen is that
-#   @see "base::parse" may triggers another round of garbage collection
-#   which in turn may cause R to crash (due to an infinite loop?).
-#   Thanks to Duncan Murdoch for reporting on this and making 
-#   @see "base::parse" and hence the package loading mechanism in R reentrant.
+#   The created finalizer is reentrant.
+#   This is always the case when the \pkg{R.oo} package is already
+#   loaded when the finalizer is called.
+#   It is also always the case on R v2.15.2 Patched r61487 and beyond.
+#   In other cases, the finalizer inspects the call stack
+#   (via @see "sys.calls") to check whether @see "base::parse"
+#   has been called or not.  If it is on the call stack, it indicates
+#   that @see "base::parse" triggered the garbage collection, and
+#   the \pkg{R.oo} package will \emph{not} be reloaded in order to
+#   avoid risking @see "base::parse" being called again.
 # }
 #
 # @keyword internal
@@ -55,25 +56,44 @@
   } # getEnvName()
 
   getRversion2 <- function() {
-    rVer <- getRversion();
-    status <- R.version[["status"]];
-    # Append x.y.z-1 if 'Patched'
-    if (identical(status, "Patched")) {
-      rVer <- package_version(sprintf("%s-1", rVer));
-    }
-
-    # Append x.y.z-1-<svn rev>, iff it existsk
-    rVerSvn <- R.version[["svn rev"]];
-    if (!is.null(rVerSvn)) {
-      rVerSvn <- as.numeric(rVerSvn);
-      if (is.finite(rVerSvn)) {
-        rVer <- sprintf("%s-%s", rVer, R.version[["svn rev"]]);
-        rVer <- package_version(rVer);
-      }
-    }
+    rVer <- R.version[c("major", "minor", "status", "svn rev")];
+    names(rVer)[3:4] <- c("patched", "rev");
+    rVer$patched <- ifelse(identical(rVer$patched, "Patched"), 1L, 0L);
+    rVer$rev <- ifelse(is.null(rVer$rev), 0L, rVer$rev);
+    rVer <- lapply(rVer, FUN=as.numeric);
     rVer;
   } # getRversion2()
 
+  isLibraryReentrant <- function() {
+    rVer <- getRversion2();
+    if (rVer$major >= 3) return(TRUE);
+    if (rVer$major < 2) return(FALSE);
+    if (rVer$minor >= 15.3) return(TRUE);
+    if (rVer$minor < 15.2) return(FALSE);
+    if (rVer$patched < 1) return(FALSE);
+    if (rVer$rev < 61487) return(FALSE);
+    TRUE;
+  } # isLibraryReentrant()
+
+  isParseCalled <- function() {
+    calls <- sys.calls();
+    if (length(calls) == 0L) return(FALSE);
+    for (kk in seq(along=calls)) {
+      call <- calls[[kk]];
+      name <- call[[1L]];
+      if (!is.symbol(name)) next;
+      if (name == "do.call") {
+        name <- call[[2L]];
+        if (!is.symbol(name)) next;
+        name <- as.character(name);      
+      }
+      if (name == "parse") {
+        return(TRUE);
+      }
+    } # for (kk ...)
+    FALSE;
+  } # isParseCalled()
+ 
 
   # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
   finalizer <- function(env) {
@@ -87,11 +107,20 @@
       return();
     }
 
-    # TODO: Making this finalizer reentrant.
-##    isRentrant <- (getRversion2() >= "2.15.3");
-##    if (!isRentrant) {
-##      # TODO: ...
-##    }
+    # Assure that this finalizer is truly reentrant.
+    if (reloadRoo) {
+      # Check if base::library() is reentrant...
+      if (!isLibraryReentrant()) {
+        # If not, check if base::parse() triggered the garbage collection
+        # and/or has been called, because then we must not call library(),
+        # because it will in turn call parse() potentially causing R to 
+        # crash.
+        if (isParseCalled()) {
+          reloadRoo <- FALSE;
+          warning("Object was not finalize():d because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getEnvName(this));
+        }
+      }
+    }
 
     if (reloadRoo) {
       suppressMessages({
@@ -141,5 +170,9 @@
 ############################################################################
 # HISTORY:
 # 2013-01-08
+# o ROBUSTNESS: Now .makeObjectFinalizer() returns a finalizer that is
+#   reentrant, i.e. it will only try to reload R.oo on R versions where
+#   library() is reentrant or when the garbage collector was not triggered
+#   by base::parse(), otherwise it will not finalize the Object.
 # o CLEANUP: Added internal .makeObjectFinalizer().
 ############################################################################
