@@ -112,6 +112,8 @@
       return();
     }
 
+    alreadyWarned <- FALSE;
+
     # Assure that this finalizer is truly reentrant.
     if (reloadRoo) {
       # Check if base::library() is reentrant...
@@ -123,6 +125,7 @@
         if (isParseCalled()) {
           reloadRoo <- FALSE;
           warning("Object may not be finalize():d properly because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getObjectInfo(this));
+          alreadyWarned <- TRUE;
         }
       }
     }
@@ -138,7 +141,7 @@
       finalize(this);
     } else if (reloadRoo) {
       warning("Object may not be finalize():d properly because the R.oo package failed to reload: ", getObjectInfo(this));
-    } else {
+    } else if (!alreadyWarned) {
       warning("Object may not be finalize():d properly because the R.oo package is not loaded: ", getObjectInfo(this));
     }
 
