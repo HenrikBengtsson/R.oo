@@ -6,9 +6,9 @@ o ROBUSTNESS/BUG FIX: Made the Object finalizers reentrant.  This was
   previously not the case on R prior to R v2.15.2 Patched r61487 iff
   the garbage collection is triggered from within base::parse() and
   the R.oo package is not already loaded when the finalizer is called.
-  In such cases, R could crash.  Thanks to Duncan Murdoch (R core)
-  for reporting on this and R.core for making base::library() reentrant
-  in R (>= 2.15.2 Patch r61487).
+  In such cases, R could crash.  Added a package system test for this.
+  Thanks to Duncan Murdoch (R core) for reporting on this and R core
+  for making base::library() reentrant in R (>= 2.15.2 Patch r61487).
 
 
 Version: 1.11.6 [2013-01-08]
