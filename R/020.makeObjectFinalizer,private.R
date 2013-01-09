@@ -38,7 +38,10 @@
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  getEnvName <- function(env) {
+  getObjectInfo <- function(this) {
+    env <- attr(this, ".env");
+    if (is.null(env)) return(NA);
+
     # base::environmentName() was added to R v2.5.0
     if (exists("environmentName", mode="function")) {
       name <- environmentName(env);
@@ -52,8 +55,10 @@
       name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
     }
 
+    name <- paste(class(this)[1L], ": ", name, sep="");
+
     name;
-  } # getEnvName()
+  } # getObjectInfo()
 
   getRversion2 <- function() {
     rVer <- R.version[c("major", "minor", "status", "svn rev")];
@@ -117,7 +122,7 @@
         # crash.
         if (isParseCalled()) {
           reloadRoo <- FALSE;
-          warning("Object was not finalize():d because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getEnvName(this));
+          warning("Object may not be finalize():d properly because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getObjectInfo(this));
         }
       }
     }
@@ -132,9 +137,9 @@
     if (isRooLoaded) {
       finalize(this);
     } else if (reloadRoo) {
-      warning("Object was not finalize():d because the R.oo package failed to reload: ", getEnvName(this));
+      warning("Object may not be finalize():d properly because the R.oo package failed to reload: ", getObjectInfo(this));
     } else {
-      warning("Object was not finalize():d because the R.oo package is not loaded: ", getEnvName(this));
+      warning("Object may not be finalize():d properly because the R.oo package is not loaded: ", getObjectInfo(this));
     }
 
     # NOTE! Before detach R.oo again, we have to make sure the Object:s
