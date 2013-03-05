@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{createManPath.Rdoc}
+\name{Rdoc$createManPath}
+\alias{Rdoc$createManPath}
 \alias{createManPath.Rdoc}
 \alias{Rdoc.createManPath}
-\alias{createManPath.Rdoc}
 \alias{createManPath,Rdoc-method}
-
 
 \title{Creates the directory where the Rd files should be saved}
 

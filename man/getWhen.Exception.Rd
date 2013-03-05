@@ -9,9 +9,7 @@
 \name{getWhen.Exception}
 \alias{getWhen.Exception}
 \alias{Exception.getWhen}
-\alias{getWhen.Exception}
 \alias{getWhen,Exception-method}
-
 
 \title{Gets the time when the Exception was created}
 

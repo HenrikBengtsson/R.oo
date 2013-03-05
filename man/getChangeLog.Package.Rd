@@ -9,9 +9,7 @@
 \name{getChangeLog.Package}
 \alias{getChangeLog.Package}
 \alias{Package.getChangeLog}
-\alias{getChangeLog.Package}
 \alias{getChangeLog,Package-method}
-
 \alias{Package.getNews}
 \alias{getNews.Package}
 \alias{getNews,Package-method}

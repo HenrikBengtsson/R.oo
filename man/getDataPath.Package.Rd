@@ -9,9 +9,7 @@
 \name{getDataPath.Package}
 \alias{getDataPath.Package}
 \alias{Package.getDataPath}
-\alias{getDataPath.Package}
 \alias{getDataPath,Package-method}
-
 
 \title{Gets the path to the data (data/) directory of this package}
 

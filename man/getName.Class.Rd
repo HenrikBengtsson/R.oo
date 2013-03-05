@@ -9,9 +9,7 @@
 \name{getName.Class}
 \alias{getName.Class}
 \alias{Class.getName}
-\alias{getName.Class}
 \alias{getName,Class-method}
-
 
 \title{Gets the name of the class}
 

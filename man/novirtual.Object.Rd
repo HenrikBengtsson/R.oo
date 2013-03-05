@@ -9,9 +9,7 @@
 \name{novirtual.Object}
 \alias{novirtual.Object}
 \alias{Object.novirtual}
-\alias{novirtual.Object}
 \alias{novirtual,Object-method}
-
 
 \title{Returns a reference to the same Object with virtual fields turned off}
 

@@ -9,9 +9,7 @@
 \name{showContents.Package}
 \alias{showContents.Package}
 \alias{Package.showContents}
-\alias{showContents.Package}
 \alias{showContents,Package-method}
-
 
 \title{Show the CONTENTS file of this package}
 

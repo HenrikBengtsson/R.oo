@@ -9,9 +9,7 @@
 \name{as.character.RdocException}
 \alias{as.character.RdocException}
 \alias{RdocException.as.character}
-\alias{as.character.RdocException}
 \alias{as.character,RdocException-method}
-
 
 \title{Gets a character string representing of the RdocException}
 

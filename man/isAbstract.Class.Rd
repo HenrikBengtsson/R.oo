@@ -9,9 +9,7 @@
 \name{isAbstract.Class}
 \alias{isAbstract.Class}
 \alias{Class.isAbstract}
-\alias{isAbstract.Class}
 \alias{isAbstract,Class-method}
-
 
 \title{Checks if a class is abstract or not}
 

@@ -9,9 +9,7 @@
 \name{getFields.BasicObject}
 \alias{getFields.BasicObject}
 \alias{BasicObject.getFields}
-\alias{getFields.BasicObject}
 \alias{getFields,BasicObject-method}
-
 
 \title{Returns the field names of an BasicObject}
 

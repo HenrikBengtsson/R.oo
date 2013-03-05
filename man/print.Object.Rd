@@ -9,9 +9,7 @@
 \name{print.Object}
 \alias{print.Object}
 \alias{Object.print}
-\alias{print.Object}
 \alias{print,Object-method}
-
 
 \title{Prints an Object}
 

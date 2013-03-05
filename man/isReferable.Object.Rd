@@ -9,9 +9,7 @@
 \name{isReferable.Object}
 \alias{isReferable.Object}
 \alias{Object.isReferable}
-\alias{isReferable.Object}
 \alias{isReferable,Object-method}
-
 
 \title{Checks if the object is referable or not}
 

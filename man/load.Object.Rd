@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{load.Object}
+\name{Object$load}
+\alias{Object$load}
 \alias{load.Object}
 \alias{Object.load}
-\alias{load.Object}
 \alias{load,Object-method}
-
 
 \title{Static method to load an Object from a file or a connection}
 

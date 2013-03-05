@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{isKeyword.Rdoc}
+\name{Rdoc$isKeyword}
+\alias{Rdoc$isKeyword}
 \alias{isKeyword.Rdoc}
 \alias{Rdoc.isKeyword}
-\alias{isKeyword.Rdoc}
 \alias{isKeyword,Rdoc-method}
-
 
 \title{Checks if a word is a Rd keyword}
 

@@ -9,9 +9,7 @@
 \name{getDocPath.Package}
 \alias{getDocPath.Package}
 \alias{Package.getDocPath}
-\alias{getDocPath.Package}
 \alias{getDocPath,Package-method}
-
 
 \title{Gets the path to the accompanying documentation (doc/) directory of this package}
 

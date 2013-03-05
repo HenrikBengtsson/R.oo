@@ -9,9 +9,7 @@
 \name{load.Package}
 \alias{load.Package}
 \alias{Package.load}
-\alias{load.Package}
 \alias{load,Package-method}
-
 
 \title{Loads a package}
 

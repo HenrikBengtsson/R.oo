@@ -9,9 +9,7 @@
 \name{ll.Object}
 \alias{ll.Object}
 \alias{Object.ll}
-\alias{ll.Object}
 \alias{ll,Object-method}
-
 
 \title{Generates a list of informative properties of all members of an Object}
 

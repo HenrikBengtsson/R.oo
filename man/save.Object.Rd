@@ -9,9 +9,7 @@
 \name{save.Object}
 \alias{save.Object}
 \alias{Object.save}
-\alias{save.Object}
 \alias{save,Object-method}
-
 
 \title{Saves an Object to a file or a connection}
 

@@ -9,9 +9,7 @@
  \name{attachLocally.Object}
 \alias{attachLocally.Object}
 \alias{Object.attachLocally}
-\alias{attachLocally.Object}
 \alias{attachLocally,Object-method}
-
 
  \title{Attaches an Object locally to an environment}
 

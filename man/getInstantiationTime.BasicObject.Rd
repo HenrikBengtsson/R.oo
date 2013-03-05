@@ -9,9 +9,7 @@
 \name{getInstantiationTime.BasicObject}
 \alias{getInstantiationTime.BasicObject}
 \alias{BasicObject.getInstantiationTime}
-\alias{getInstantiationTime.BasicObject}
 \alias{getInstantiationTime,BasicObject-method}
-
 
 \title{Gets the time when the object was instantiated}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getClassS4Usage.Rdoc}
+\name{Rdoc$getClassS4Usage}
+\alias{Rdoc$getClassS4Usage}
 \alias{getClassS4Usage.Rdoc}
 \alias{Rdoc.getClassS4Usage}
-\alias{getClassS4Usage.Rdoc}
 \alias{getClassS4Usage,Rdoc-method}
-
 
 \title{Gets the usage of a S4 class}
 

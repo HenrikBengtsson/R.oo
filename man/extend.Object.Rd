@@ -9,9 +9,7 @@
  \name{extend.Object}
 \alias{extend.Object}
 \alias{Object.extend}
-\alias{extend.Object}
 \alias{extend,Object-method}
-
 
  \title{Extends another class}
 

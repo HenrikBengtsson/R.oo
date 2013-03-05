@@ -9,9 +9,7 @@
 \name{clone.Object}
 \alias{clone.Object}
 \alias{Object.clone}
-\alias{clone.Object}
 \alias{clone,Object-method}
-
 
 \title{Clones an Object}
 

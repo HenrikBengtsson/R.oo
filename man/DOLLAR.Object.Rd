@@ -9,9 +9,7 @@
 \name{DOLLAR.Object}
 \alias{$.Object}
 \alias{Object.$}
-\alias{$.Object}
 \alias{$,Object-method}
-
 \alias{Object.[[}
 \alias{[[.Object}
 \alias{[[,Object-method}

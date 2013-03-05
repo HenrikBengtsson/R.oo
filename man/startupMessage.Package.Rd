@@ -9,9 +9,7 @@
 \name{startupMessage.Package}
 \alias{startupMessage.Package}
 \alias{Package.startupMessage}
-\alias{startupMessage.Package}
 \alias{startupMessage,Package-method}
-
 
 \title{Generates a 'package successfully loaded' package startup message}
 

@@ -9,9 +9,7 @@
 \name{isPrivate.Class}
 \alias{isPrivate.Class}
 \alias{Class.isPrivate}
-\alias{isPrivate.Class}
 \alias{isPrivate,Class-method}
-
 
 \title{Checks if a class is defined private or not}
 

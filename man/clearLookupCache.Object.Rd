@@ -9,9 +9,7 @@
 \name{clearLookupCache.Object}
 \alias{clearLookupCache.Object}
 \alias{Object.clearLookupCache}
-\alias{clearLookupCache.Object}
 \alias{clearLookupCache,Object-method}
-
 
 \title{Clear internal fields used for faster lookup}
 

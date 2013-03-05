@@ -9,9 +9,7 @@
 \name{printStackTrace.Exception}
 \alias{printStackTrace.Exception}
 \alias{Exception.printStackTrace}
-\alias{printStackTrace.Exception}
 \alias{printStackTrace,Exception-method}
-
 
 \title{Prints the stack trace saved when the exception was created}
 

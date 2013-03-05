@@ -9,9 +9,7 @@
 \name{getUrl.Package}
 \alias{getUrl.Package}
 \alias{Package.getUrl}
-\alias{getUrl.Package}
 \alias{getUrl,Package-method}
-
 
 \title{Gets the URL of this package}
 

@@ -9,9 +9,7 @@
 \name{getEnvironment.Object}
 \alias{getEnvironment.Object}
 \alias{Object.getEnvironment}
-\alias{getEnvironment.Object}
 \alias{getEnvironment,Object-method}
-
 
 \title{Gets the environment of this object}
 

@@ -9,9 +9,7 @@
 \name{detach.Object}
 \alias{detach.Object}
 \alias{Object.detach}
-\alias{detach.Object}
 \alias{detach,Object-method}
-
 
 \title{Detach an Object from the R search path}
 

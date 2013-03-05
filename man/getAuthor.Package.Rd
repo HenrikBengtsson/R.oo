@@ -9,9 +9,7 @@
 \name{getAuthor.Package}
 \alias{getAuthor.Package}
 \alias{Package.getAuthor}
-\alias{getAuthor.Package}
 \alias{getAuthor,Package-method}
-
 
 \title{Gets the Author of this package}
 

@@ -9,9 +9,7 @@
 \name{getSource.RdocException}
 \alias{getSource.RdocException}
 \alias{RdocException.getSource}
-\alias{getSource.RdocException}
 \alias{getSource,RdocException-method}
-
 
 \title{Gets the source of the exception}
 

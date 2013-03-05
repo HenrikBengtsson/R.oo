@@ -9,9 +9,7 @@
 \name{clearCache.Object}
 \alias{clearCache.Object}
 \alias{Object.clearCache}
-\alias{clearCache.Object}
 \alias{clearCache,Object-method}
-
 
 \title{Clear fields that are defined to have cached values}
 

@@ -9,9 +9,7 @@
 \name{finalize.Object}
 \alias{finalize.Object}
 \alias{Object.finalize}
-\alias{finalize.Object}
 \alias{finalize,Object-method}
-
 
 \title{Finalizer methods called when object is clean out}
 

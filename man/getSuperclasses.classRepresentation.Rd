@@ -8,8 +8,6 @@
 
 \name{getSuperclasses.classRepresentation}
 \alias{getSuperclasses.classRepresentation}
-\alias{getSuperclasses.classRepresentation}
-
 
 
 \title{Gets the superclasses}

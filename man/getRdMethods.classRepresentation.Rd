@@ -8,8 +8,6 @@
 
 \name{getRdMethods.classRepresentation}
 \alias{getRdMethods.classRepresentation}
-\alias{getRdMethods.classRepresentation}
-
 
 
 \title{Gets the methods in Rd format}

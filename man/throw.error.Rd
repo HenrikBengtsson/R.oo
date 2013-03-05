@@ -9,8 +9,6 @@
 
 \name{throw.error}
 \alias{throw.error}
-\alias{throw.error}
-
 
 \title{Throws (rethrows) an object of class 'error'}
 

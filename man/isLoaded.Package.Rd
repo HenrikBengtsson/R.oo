@@ -9,9 +9,7 @@
 \name{isLoaded.Package}
 \alias{isLoaded.Package}
 \alias{Package.isLoaded}
-\alias{isLoaded.Package}
 \alias{isLoaded,Package-method}
-
 
 \title{Checks if the package is installed on the search path or not}
 

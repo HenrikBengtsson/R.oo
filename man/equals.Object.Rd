@@ -9,9 +9,7 @@
 \name{equals.Object}
 \alias{equals.Object}
 \alias{Object.equals}
-\alias{equals.Object}
 \alias{equals,Object-method}
-
 
 \title{Compares an object with another}
 

@@ -9,9 +9,7 @@
 \name{getDetails.Class}
 \alias{getDetails.Class}
 \alias{Class.getDetails}
-\alias{getDetails.Class}
 \alias{getDetails,Class-method}
-
 
 \title{Lists the fields and methods of a class}
 

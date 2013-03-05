@@ -9,9 +9,7 @@
 \name{print.Class}
 \alias{print.Class}
 \alias{Class.print}
-\alias{print.Class}
 \alias{print,Class-method}
-
 
 \title{Prints detailed information about the class and its fields and methods}
 

@@ -9,9 +9,7 @@
 \name{staticCode.Object}
 \alias{staticCode.Object}
 \alias{Object.staticCode}
-\alias{staticCode.Object}
 \alias{staticCode,Object-method}
-
 
 \title{Method that will be call each time a new instance of a class is created}
 

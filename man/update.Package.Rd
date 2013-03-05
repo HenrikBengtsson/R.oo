@@ -9,9 +9,7 @@
 \name{update.Package}
 \alias{update.Package}
 \alias{Package.update}
-\alias{update.Package}
 \alias{update,Package-method}
-
 
 \title{Updates the package is a newer version is available}
 

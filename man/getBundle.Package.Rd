@@ -9,9 +9,7 @@
 \name{getBundle.Package}
 \alias{getBundle.Package}
 \alias{Package.getBundle}
-\alias{getBundle.Package}
 \alias{getBundle,Package-method}
-
 
 \title{Gets the Bundle that this package might belong to}
 

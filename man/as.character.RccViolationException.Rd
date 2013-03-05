@@ -9,9 +9,7 @@
 \name{as.character.RccViolationException}
 \alias{as.character.RccViolationException}
 \alias{RccViolationException.as.character}
-\alias{as.character.RccViolationException}
 \alias{as.character,RccViolationException-method}
-
 
 \title{Gets a string representing of the RCC violation}
 

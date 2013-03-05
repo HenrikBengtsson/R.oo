@@ -9,9 +9,7 @@
 \name{getLicense.Package}
 \alias{getLicense.Package}
 \alias{Package.getLicense}
-\alias{getLicense.Package}
 \alias{getLicense,Package-method}
-
 
 \title{Gets the License of this package}
 

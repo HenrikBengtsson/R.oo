@@ -9,9 +9,7 @@
 \name{registerFinalizer.Object}
 \alias{registerFinalizer.Object}
 \alias{Object.registerFinalizer}
-\alias{registerFinalizer.Object}
 \alias{registerFinalizer,Object-method}
-
 
 \title{Registers a finalizer hook for the object}
 

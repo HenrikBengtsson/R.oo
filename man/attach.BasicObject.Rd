@@ -9,9 +9,7 @@
 \name{attach.BasicObject}
 \alias{attach.BasicObject}
 \alias{BasicObject.attach}
-\alias{attach.BasicObject}
 \alias{attach,BasicObject-method}
-
 
 \title{Attach an BasicObject to the R search path}
 

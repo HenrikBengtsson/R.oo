@@ -495,7 +495,7 @@ setMethodS3("escapeRdFilename", "Rdoc", function(static, filename, ...) {
 #   \item{addTimestamp}{If @TRUE, a date and time stamp is added to the 
 #     Rd header comments.  This timestamp might be confusing for version 
 #     control systems, which is why it can be turned off with @FALSE.}
-#   \item{source}{If @TRUE, the Rdoc files will be \code{source()}'ed first.
+#   \item{source}{If @TRUE, the Rdoc files will be \code{source()}:ed first.
 #     This work of course only for Rdoc files that are R source files.}
 #   \item{verbose}{If @TRUE, detailed compilation information is printed.}
 #   \item{debug}{If @TRUE, extra debug information is printed.}
@@ -888,30 +888,61 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     tagRdocMethod <- function(bfr) {
       bfr <- getTagValue(bfr);
       method <- attr(bfr, "value");
-      objectName <<- paste(method, ".", class, sep="");
+      objectName <<- paste(method, class, sep=".");
       isDeprecated <<- isObjectDeprecated(objectName);
-      name <- createName.Rdoc(NULL, class, method, escape=FALSE);
-      alias <- name;
-      name <<- name <- escapeName(name);
-      line <- paste("\\name{", name, "}\n", sep="");
-      alias <- escapeAlias(alias);
-      line <- paste(line, "\\alias{", alias, "}\n", sep="");
+
+      # Find method
+      fcn <- NULL;
+      tryCatch({
+        fcn <- Rdoc$getObject(objectName, mode="function");
+      }, error = function(ex) {
+        cat("Failed...\n");
+        print(ex);
+        cat("Failed...done\n");
+      })
+ 
+      if (!is.function(fcn)) {
+        throw(RdocException("Could not get method. Function was not found: ", objectName, "()", source=Rdoc$source));
+      }
+ 
+      methodName <- createName.Rdoc(NULL, class, method, escape=FALSE);
+
+      isStatic <- is.element("static", attr(fcn, "modifiers"));
+      if (isStatic) {
+        staticName <- paste(class, method, sep="$");
+        name <- staticName;
+        alias <- c(staticName, escapeAlias(methodName));
+      } else {
+        name <- escapeName(methodName);
+        alias <- escapeAlias(methodName);
+      }
+
+      # Treat internal and non-internal methods differently
+      if (isCapitalized(class)) {
+        alias <- c(alias, paste(class, method, sep="."));
+        alias <- c(alias, paste(method, ",", class, "-method", sep=""));
+      }
+      alias <- c(alias, paste(method, class, sep="."));
+
+      # Multiple aliases(?)
+      alias <- unique(alias);
+      alias <- paste("\\alias{", alias, "}", sep="");
+
+      line <- paste("\\name{", name, "}", sep="");
+      line <- c(line, alias);
+      line <- paste(line, collapse="\n");
 
       # Treat internal and non-internal methods differently
       if (isCapitalized(class)) {
         addKeyword("internal");
-        if (!identical(alias, paste(class, ".", method, sep="")))
-          line <- paste(line, "\\alias{", class, ".", method, "}\n", sep="");
-        line <- paste(line, "\\alias{", method, ".", class, "}\n", sep="");
-        line <- paste(line, "\\alias{", method, ",", class, "-method}\n", sep="");
-      } else {
-        line <- paste(line, "\\alias{", method, ".", class, "}\n", sep="");
       }
 
       addKeyword("methods");
 
+      name <<- methodName; # Filename
       usage <<- Rdoc$getUsage(method=method, class=class);
       rd <<- paste(rd, line, sep="");
+
       bfr;
     }
   
@@ -1641,8 +1672,8 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
         if (is.null(name)) {
           # @RdocClass, @RdocDefault and/or @RdocMethod was not given. Search for classical \name{...}
           search <- regexpr("\\name\\{[^\\}]*\\}", rd);
-          if (search == -1) {
-            throw(RdocException("The resulting Rd text does not have a \\name{} tag.", source=sourcefile));
+          if (search == -1L) {
+            throw(RdocException("The resulting Rd text does not have a \\name{} tag: ", substring(rd, first=1L, last=40L), source=sourcefile));
           }
           name <- substring(rd, search+5, search+attr(search, "match.length")-2);
           search <- regexpr("\\name\\{[^\\}]*\\}", substring(rd, search+1));

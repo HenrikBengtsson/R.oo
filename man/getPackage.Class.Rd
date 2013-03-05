@@ -9,9 +9,7 @@
 \name{getPackage.Class}
 \alias{getPackage.Class}
 \alias{Class.getPackage}
-\alias{getPackage.Class}
 \alias{getPackage,Class-method}
-
 
 \title{Gets the package to which the class belongs}
 

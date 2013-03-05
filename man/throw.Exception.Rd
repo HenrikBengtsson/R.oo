@@ -9,9 +9,7 @@
 \name{throw.Exception}
 \alias{throw.Exception}
 \alias{Exception.throw}
-\alias{throw.Exception}
 \alias{throw,Exception-method}
-
 
 \title{Throws an Exception that can be caught}
 

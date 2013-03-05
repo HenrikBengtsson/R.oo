@@ -9,9 +9,7 @@
 \name{showDescriptionFile.Package}
 \alias{showDescriptionFile.Package}
 \alias{Package.showDescriptionFile}
-\alias{showDescriptionFile.Package}
 \alias{showDescriptionFile,Package-method}
-
 
 \title{Show the DESCRIPTION file of this package}
 

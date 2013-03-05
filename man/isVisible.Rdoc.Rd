@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{isVisible.Rdoc}
+\name{Rdoc$isVisible}
+\alias{Rdoc$isVisible}
 \alias{isVisible.Rdoc}
 \alias{Rdoc.isVisible}
-\alias{isVisible.Rdoc}
 \alias{isVisible,Rdoc-method}
-
 
 \title{Checks if a member is visible given its modifiers}
 

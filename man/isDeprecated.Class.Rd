@@ -9,9 +9,7 @@
 \name{isDeprecated.Class}
 \alias{isDeprecated.Class}
 \alias{Class.isDeprecated}
-\alias{isDeprecated.Class}
 \alias{isDeprecated,Class-method}
-
 
 \title{Checks if a class is deprecated or not}
 

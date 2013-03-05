@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{setManPath.Rdoc}
+\name{Rdoc$setManPath}
+\alias{Rdoc$setManPath}
 \alias{setManPath.Rdoc}
 \alias{Rdoc.setManPath}
-\alias{setManPath.Rdoc}
 \alias{setManPath,Rdoc-method}
-
 
 \title{Sets the path to the directory where the Rd files should be saved}
 

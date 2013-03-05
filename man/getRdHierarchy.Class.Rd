@@ -9,9 +9,7 @@
 \name{getRdHierarchy.Class}
 \alias{getRdHierarchy.Class}
 \alias{Class.getRdHierarchy}
-\alias{getRdHierarchy.Class}
 \alias{getRdHierarchy,Class-method}
-
 
 \title{Gets the class hierarchy in Rd format}
 

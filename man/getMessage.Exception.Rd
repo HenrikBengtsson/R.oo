@@ -9,9 +9,7 @@
 \name{getMessage.Exception}
 \alias{getMessage.Exception}
 \alias{Exception.getMessage}
-\alias{getMessage.Exception}
 \alias{getMessage,Exception-method}
-
 
 \title{Gets the message of the Exception}
 

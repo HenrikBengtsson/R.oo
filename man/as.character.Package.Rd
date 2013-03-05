@@ -9,9 +9,7 @@
 \name{as.character.Package}
 \alias{as.character.Package}
 \alias{Package.as.character}
-\alias{as.character.Package}
 \alias{as.character,Package-method}
-
 
 \title{Gets a string representation of this package}
 

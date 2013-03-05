@@ -9,9 +9,7 @@
 \name{getMessage.InternalErrorException}
 \alias{getMessage.InternalErrorException}
 \alias{InternalErrorException.getMessage}
-\alias{getMessage.InternalErrorException}
 \alias{getMessage,InternalErrorException-method}
-
 
 \title{Gets the message of the exception}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getKeywords.Rdoc}
+\name{Rdoc$getKeywords}
+\alias{Rdoc$getKeywords}
 \alias{getKeywords.Rdoc}
 \alias{Rdoc.getKeywords}
-\alias{getKeywords.Rdoc}
 \alias{getKeywords,Rdoc-method}
-
 
 \title{Gets the keywords defined in R with descriptions}
 

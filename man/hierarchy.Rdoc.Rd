@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{hierarchy.Rdoc}
+\name{Rdoc$hierarchy}
+\alias{Rdoc$hierarchy}
 \alias{hierarchy.Rdoc}
 \alias{Rdoc.hierarchy}
-\alias{hierarchy.Rdoc}
 \alias{hierarchy,Rdoc-method}
-
 
 \title{Gets the class hierarchy}
 

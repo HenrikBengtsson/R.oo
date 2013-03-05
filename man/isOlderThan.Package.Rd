@@ -9,9 +9,7 @@
 \name{isOlderThan.Package}
 \alias{isOlderThan.Package}
 \alias{Package.isOlderThan}
-\alias{isOlderThan.Package}
 \alias{isOlderThan,Package-method}
-
 
 \title{Checks if the package is older than a given version}
 

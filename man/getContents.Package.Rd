@@ -9,9 +9,7 @@
 \name{getContents.Package}
 \alias{getContents.Package}
 \alias{Package.getContents}
-\alias{getContents.Package}
 \alias{getContents,Package-method}
-
 
 \title{Gets the contents of this package}
 

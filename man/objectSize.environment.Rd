@@ -9,8 +9,6 @@
 
 \name{objectSize.environment}
 \alias{objectSize.environment}
-\alias{objectSize.environment}
-
 
 \title{Gets the size of an environment in bytes}
 

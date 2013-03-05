@@ -9,9 +9,7 @@
 \name{getFields.Interface}
 \alias{getFields.Interface}
 \alias{Interface.getFields}
-\alias{getFields.Interface}
 \alias{getFields,Interface-method}
-
 
 \title{Returns NULL}
 

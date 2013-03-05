@@ -9,9 +9,7 @@
 \name{isBeingCreated.Class}
 \alias{isBeingCreated.Class}
 \alias{Class.isBeingCreated}
-\alias{isBeingCreated.Class}
 \alias{isBeingCreated,Class-method}
-
 
 \title{Checks if a class is currently being initiated initiated}
 

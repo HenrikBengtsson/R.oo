@@ -9,9 +9,7 @@
  \name{hasField.Object}
 \alias{hasField.Object}
 \alias{Object.hasField}
-\alias{hasField.Object}
 \alias{hasField,Object-method}
-
 
  \title{Checks if a field exists or not}
 

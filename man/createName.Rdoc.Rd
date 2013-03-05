@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{createName.Rdoc}
+\name{Rdoc$createName}
+\alias{Rdoc$createName}
 \alias{createName.Rdoc}
 \alias{Rdoc.createName}
-\alias{createName.Rdoc}
 \alias{createName,Rdoc-method}
-
 
 \title{Creates a class-method name}
 

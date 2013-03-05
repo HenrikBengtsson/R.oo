@@ -9,9 +9,7 @@
 \name{extend.Interface}
 \alias{extend.Interface}
 \alias{Interface.extend}
-\alias{extend.Interface}
 \alias{extend,Interface-method}
-
 
 \title{Extends another Interface class}
 

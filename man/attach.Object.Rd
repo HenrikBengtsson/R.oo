@@ -9,9 +9,7 @@
 \name{attach.Object}
 \alias{attach.Object}
 \alias{Object.attach}
-\alias{attach.Object}
 \alias{attach,Object-method}
-
 
 \title{Attaches an Object to the R search path}
 

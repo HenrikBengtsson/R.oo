@@ -9,9 +9,7 @@
 \name{as.character.Class}
 \alias{as.character.Class}
 \alias{Class.as.character}
-\alias{as.character.Class}
 \alias{as.character,Class-method}
-
 
 \title{Returns a short string describing the class}
 

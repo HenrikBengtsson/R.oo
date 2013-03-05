@@ -9,9 +9,7 @@
 \name{newInstance.Class}
 \alias{newInstance.Class}
 \alias{Class.newInstance}
-\alias{newInstance.Class}
 \alias{newInstance,Class-method}
-
 
 \title{Creates a new instance of this class}
 

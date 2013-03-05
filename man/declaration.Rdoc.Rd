@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{declaration.Rdoc}
+\name{Rdoc$declaration}
+\alias{Rdoc$declaration}
 \alias{declaration.Rdoc}
 \alias{Rdoc.declaration}
-\alias{declaration.Rdoc}
 \alias{declaration,Rdoc-method}
-
 
 \title{Gets the class declaration}
 

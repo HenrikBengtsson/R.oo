@@ -9,9 +9,7 @@
 \name{getName.Package}
 \alias{getName.Package}
 \alias{Package.getName}
-\alias{getName.Package}
 \alias{getName,Package-method}
-
 
 \title{Gets the name of this package}
 

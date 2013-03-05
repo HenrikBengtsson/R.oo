@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{methodsInheritedFrom.Rdoc}
+\name{Rdoc$methodsInheritedFrom}
+\alias{Rdoc$methodsInheritedFrom}
 \alias{methodsInheritedFrom.Rdoc}
 \alias{Rdoc.methodsInheritedFrom}
-\alias{methodsInheritedFrom.Rdoc}
 \alias{methodsInheritedFrom,Rdoc-method}
-
 
 \title{Gets all methods inherited from a class in Rd format}
 

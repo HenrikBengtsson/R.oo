@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getPackageNameOf.Rdoc}
+\name{Rdoc$getPackageNameOf}
+\alias{Rdoc$getPackageNameOf}
 \alias{getPackageNameOf.Rdoc}
 \alias{Rdoc.getPackageNameOf}
-\alias{getPackageNameOf.Rdoc}
 \alias{getPackageNameOf,Rdoc-method}
-
 
 \title{Gets the package of a method or an object}
 

@@ -9,9 +9,7 @@
 \name{showChangeLog.Package}
 \alias{showChangeLog.Package}
 \alias{Package.showChangeLog}
-\alias{showChangeLog.Package}
 \alias{showChangeLog,Package-method}
-
 \alias{Package.showHistory}
 \alias{showHistory.Package}
 \alias{showHistory,Package-method}

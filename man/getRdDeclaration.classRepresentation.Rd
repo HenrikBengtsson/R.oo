@@ -8,8 +8,6 @@
 
 \name{getRdDeclaration.classRepresentation}
 \alias{getRdDeclaration.classRepresentation}
-\alias{getRdDeclaration.classRepresentation}
-
 
 
 \title{Gets the class declaration in Rd format}

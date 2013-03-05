@@ -9,8 +9,6 @@
 
 \name{getName.environment}
 \alias{getName.environment}
-\alias{getName.environment}
-
 
 \title{Gets the name of an environment}
 

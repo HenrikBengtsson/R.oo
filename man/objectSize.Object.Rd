@@ -9,9 +9,7 @@
 \name{objectSize.Object}
 \alias{objectSize.Object}
 \alias{Object.objectSize}
-\alias{objectSize.Object}
 \alias{objectSize,Object-method}
-
 
 \title{Gets the size of the Object in bytes}
 

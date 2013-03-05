@@ -9,9 +9,7 @@
 \name{getStackTraceString.Exception}
 \alias{getStackTraceString.Exception}
 \alias{Exception.getStackTraceString}
-\alias{getStackTraceString.Exception}
 \alias{getStackTraceString,Exception-method}
-
 
 \title{Gets the stack trace as a string}
 

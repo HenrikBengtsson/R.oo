@@ -9,9 +9,7 @@
 \name{as.character.Interface}
 \alias{as.character.Interface}
 \alias{Interface.as.character}
-\alias{as.character.Interface}
 \alias{as.character,Interface-method}
-
 
 \title{Gets a character string representing the Interface}
 

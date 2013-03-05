@@ -9,9 +9,7 @@
 \name{hashCode.BasicObject}
 \alias{hashCode.BasicObject}
 \alias{BasicObject.hashCode}
-\alias{hashCode.BasicObject}
 \alias{hashCode,BasicObject-method}
-
 
 \title{Gets a hash code for the object}
 

@@ -9,9 +9,7 @@
 \name{check.Rdoc}
 \alias{check.Rdoc}
 \alias{Rdoc.check}
-\alias{check.Rdoc}
 \alias{check,Rdoc-method}
-
 
 \title{Checks the compiled Rd files}
 

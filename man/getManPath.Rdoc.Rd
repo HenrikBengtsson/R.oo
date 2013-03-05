@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getManPath.Rdoc}
+\name{Rdoc$getManPath}
+\alias{Rdoc$getManPath}
 \alias{getManPath.Rdoc}
 \alias{Rdoc.getManPath}
-\alias{getManPath.Rdoc}
 \alias{getManPath,Rdoc-method}
-
 
 \title{Gets the path to the directory where the Rd files will be saved}
 

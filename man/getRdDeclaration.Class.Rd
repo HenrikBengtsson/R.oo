@@ -11,9 +11,7 @@
 \name{getRdDeclaration.Class}
 \alias{getRdDeclaration.Class}
 \alias{Class.getRdDeclaration}
-\alias{getRdDeclaration.Class}
 \alias{getRdDeclaration,Class-method}
-
 
 \title{Gets the class declaraction in Rd format}
 

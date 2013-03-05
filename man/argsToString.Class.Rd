@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{argsToString.Class}
+\name{Class$argsToString}
+\alias{Class$argsToString}
 \alias{argsToString.Class}
 \alias{Class.argsToString}
-\alias{argsToString.Class}
 \alias{argsToString,Class-method}
-
 
 \title{Gets the arguments of a function as a character string}
 

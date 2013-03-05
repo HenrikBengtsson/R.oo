@@ -10,8 +10,6 @@
 
 \name{getKnownSubclasses.classRepresentation}
 \alias{getKnownSubclasses.classRepresentation}
-\alias{getKnownSubclasses.classRepresentation}
-
 
 
 \title{Gets the known subclasses}

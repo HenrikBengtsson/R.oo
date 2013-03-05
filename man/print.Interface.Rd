@@ -9,9 +9,7 @@
 \name{print.Interface}
 \alias{print.Interface}
 \alias{Interface.print}
-\alias{print.Interface}
 \alias{print,Interface-method}
-
 
 \title{Prints an Interface}
 

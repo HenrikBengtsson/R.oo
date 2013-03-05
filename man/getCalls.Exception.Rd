@@ -9,9 +9,7 @@
 \name{getCalls.Exception}
 \alias{getCalls.Exception}
 \alias{Exception.getCalls}
-\alias{getCalls.Exception}
 \alias{getCalls,Exception-method}
-
 \alias{Exception.getCall}
 \alias{getCall.Exception}
 \alias{getCall,Exception-method}

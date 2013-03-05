@@ -9,9 +9,7 @@
 \name{getPackage.InternalErrorException}
 \alias{getPackage.InternalErrorException}
 \alias{InternalErrorException.getPackage}
-\alias{getPackage.InternalErrorException}
 \alias{getPackage,InternalErrorException-method}
-
 
 \title{Gets the suspicious package likely to contain an error}
 

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{escapeRdFilename.Rdoc}
+\name{Rdoc$escapeRdFilename}
+\alias{Rdoc$escapeRdFilename}
 \alias{escapeRdFilename.Rdoc}
 \alias{Rdoc.escapeRdFilename}
-\alias{escapeRdFilename.Rdoc}
 \alias{escapeRdFilename,Rdoc-method}
-
 
 \title{Escape non-valid characters in a filename}
 

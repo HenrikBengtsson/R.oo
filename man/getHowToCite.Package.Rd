@@ -9,9 +9,7 @@
 \name{getHowToCite.Package}
 \alias{getHowToCite.Package}
 \alias{Package.getHowToCite}
-\alias{getHowToCite.Package}
 \alias{getHowToCite,Package-method}
-
 
 \title{Gets the howToCite of this package}
 

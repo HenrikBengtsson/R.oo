@@ -9,9 +9,7 @@
 \name{getInternalAddress.Object}
 \alias{getInternalAddress.Object}
 \alias{Object.getInternalAddress}
-\alias{getInternalAddress.Object}
 \alias{getInternalAddress,Object-method}
-
 
 \title{Gets the memory location where the Object resides}
 

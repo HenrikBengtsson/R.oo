@@ -9,9 +9,7 @@
 \name{getEnvironment.Package}
 \alias{getEnvironment.Package}
 \alias{Package.getEnvironment}
-\alias{getEnvironment.Package}
 \alias{getEnvironment,Package-method}
-
 
 \title{Gets the environment of a loaded package}
 

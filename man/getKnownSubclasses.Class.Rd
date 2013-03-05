@@ -9,9 +9,7 @@
 \name{getKnownSubclasses.Class}
 \alias{getKnownSubclasses.Class}
 \alias{Class.getKnownSubclasses}
-\alias{getKnownSubclasses.Class}
 \alias{getKnownSubclasses,Class-method}
-
 
 \title{Gets all subclasses that are currently loaded}
 

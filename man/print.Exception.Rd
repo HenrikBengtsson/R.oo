@@ -9,9 +9,7 @@
 \name{print.Exception}
 \alias{print.Exception}
 \alias{Exception.print}
-\alias{print.Exception}
 \alias{print,Exception-method}
-
 
 \title{Prints the Exception}
 

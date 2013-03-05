@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{compile.Rdoc}
+\name{Rdoc$compile}
+\alias{Rdoc$compile}
 \alias{compile.Rdoc}
 \alias{Rdoc.compile}
-\alias{compile.Rdoc}
 \alias{compile,Rdoc-method}
-
 
 \title{Compile source code files containing Rdoc comments into Rd files}
 

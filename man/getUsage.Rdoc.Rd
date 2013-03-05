@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getUsage.Rdoc}
+\name{Rdoc$getUsage}
+\alias{Rdoc$getUsage}
 \alias{getUsage.Rdoc}
 \alias{Rdoc.getUsage}
-\alias{getUsage.Rdoc}
 \alias{getUsage,Rdoc-method}
-
 
 \title{Gets the usage of a method}
 

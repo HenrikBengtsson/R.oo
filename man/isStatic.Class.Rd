@@ -9,9 +9,7 @@
 \name{isStatic.Class}
 \alias{isStatic.Class}
 \alias{Class.isStatic}
-\alias{isStatic.Class}
 \alias{isStatic,Class-method}
-
 
 \title{Checks if a class is static or not}
 

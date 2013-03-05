@@ -9,9 +9,7 @@
 \name{getDescriptionFile.Package}
 \alias{getDescriptionFile.Package}
 \alias{Package.getDescriptionFile}
-\alias{getDescriptionFile.Package}
 \alias{getDescriptionFile,Package-method}
-
 
 \title{Gets the description file of this package}
 

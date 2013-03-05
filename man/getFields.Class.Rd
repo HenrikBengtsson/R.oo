@@ -9,9 +9,7 @@
 \name{getFields.Class}
 \alias{getFields.Class}
 \alias{Class.getFields}
-\alias{getFields.Class}
 \alias{getFields,Class-method}
-
 
 \title{Returns the field names of a class}
 

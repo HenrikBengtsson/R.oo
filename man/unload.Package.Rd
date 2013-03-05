@@ -9,9 +9,7 @@
 \name{unload.Package}
 \alias{unload.Package}
 \alias{Package.unload}
-\alias{unload.Package}
 \alias{unload,Package-method}
-
 
 \title{Unloads a package}
 

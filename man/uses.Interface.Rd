@@ -9,9 +9,7 @@
 \name{uses.Interface}
 \alias{uses.Interface}
 \alias{Interface.uses}
-\alias{uses.Interface}
 \alias{uses,Interface-method}
-
 \alias{uses}
 \alias{uses.character}
 

@@ -9,9 +9,7 @@
 \name{ll.Package}
 \alias{ll.Package}
 \alias{Package.ll}
-\alias{ll.Package}
 \alias{ll,Package-method}
-
 
 \title{Generates a list of informative properties of all members of the package}
 

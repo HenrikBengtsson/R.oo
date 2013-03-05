@@ -2,10 +2,13 @@ Package: R.oo
 =============
 
 Version: 1.12.0 [2013-03-04]
+o DOCUMENTATION: It is now easier to find help for static method,
+  e.g. help("Object$load") and ?"Object$load".
 o DOCUMENTATION: For "static" methods (e.g. Object$load()), the 
   Rdoc compiler now generates a \usage{} section without the
   deprecated Rd markup \synopsis{}, which has been replaced by
-  the static call placed in a comment.
+  the static call placed in a comment.  It also uses the static
+  method as the name and alias (e.g. \name{Object$load}).
 
 
 Version: 1.11.7 [2013-01-08]

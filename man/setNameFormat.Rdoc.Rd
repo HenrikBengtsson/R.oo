@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{setNameFormat.Rdoc}
+\name{Rdoc$setNameFormat}
+\alias{Rdoc$setNameFormat}
 \alias{setNameFormat.Rdoc}
 \alias{Rdoc.setNameFormat}
-\alias{setNameFormat.Rdoc}
 \alias{setNameFormat,Rdoc-method}
-
 
 \title{Sets the current name format}
 

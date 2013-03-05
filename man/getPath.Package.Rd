@@ -9,9 +9,7 @@
 \name{getPath.Package}
 \alias{getPath.Package}
 \alias{Package.getPath}
-\alias{getPath.Package}
 \alias{getPath,Package-method}
-
 
 \title{Gets the library (system) path to this package}
 

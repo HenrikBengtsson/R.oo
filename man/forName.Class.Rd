@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{forName.Class}
+\name{Class$forName}
+\alias{Class$forName}
 \alias{forName.Class}
 \alias{Class.forName}
-\alias{forName.Class}
 \alias{forName,Class-method}
-
 
 \title{Gets a Class object by a name of a class}
 

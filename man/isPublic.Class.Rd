@@ -9,9 +9,7 @@
 \name{isPublic.Class}
 \alias{isPublic.Class}
 \alias{Class.isPublic}
-\alias{isPublic.Class}
 \alias{isPublic,Class-method}
-
 
 \title{Checks if a class is defined public or not}
 

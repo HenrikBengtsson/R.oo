@@ -9,9 +9,7 @@
 \name{as.character.BasicObject}
 \alias{as.character.BasicObject}
 \alias{BasicObject.as.character}
-\alias{as.character.BasicObject}
 \alias{as.character,BasicObject-method}
-
 
 \title{Gets a character string representing the object}
 

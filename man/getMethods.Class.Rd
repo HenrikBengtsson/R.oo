@@ -9,9 +9,7 @@
 \name{getMethods.Class}
 \alias{getMethods.Class}
 \alias{Class.getMethods}
-\alias{getMethods.Class}
 \alias{getMethods,Class-method}
-
 
 \title{Returns the method names of class and its super classes}
 

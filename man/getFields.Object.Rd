@@ -9,9 +9,7 @@
  \name{getFields.Object}
 \alias{getFields.Object}
 \alias{Object.getFields}
-\alias{getFields.Object}
 \alias{getFields,Object-method}
-
  \alias{Object.names}
 \alias{names.Object}
 \alias{names,Object-method}

@@ -9,9 +9,7 @@
 \name{getClasses.Package}
 \alias{getClasses.Package}
 \alias{Package.getClasses}
-\alias{getClasses.Package}
 \alias{getClasses,Package-method}
-
 
 \title{Gets all classes of a package}
 

@@ -9,9 +9,7 @@
 \name{getDate.Package}
 \alias{getDate.Package}
 \alias{Package.getDate}
-\alias{getDate.Package}
 \alias{getDate,Package-method}
-
 
 \title{Gets the date when package was build}
 

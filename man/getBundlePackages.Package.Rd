@@ -9,9 +9,7 @@
 \name{getBundlePackages.Package}
 \alias{getBundlePackages.Package}
 \alias{Package.getBundlePackages}
-\alias{getBundlePackages.Package}
 \alias{getBundlePackages,Package-method}
-
 
 \title{Gets the names of the other packages that is in the same bundle as this package}
 

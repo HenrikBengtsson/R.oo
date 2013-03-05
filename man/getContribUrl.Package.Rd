@@ -9,9 +9,7 @@
 \name{getContribUrl.Package}
 \alias{getContribUrl.Package}
 \alias{Package.getContribUrl}
-\alias{getContribUrl.Package}
 \alias{getContribUrl,Package-method}
-
 
 \title{Gets the URL(s) from where this package can be installed}
 

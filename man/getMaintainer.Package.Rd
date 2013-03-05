@@ -9,9 +9,7 @@
 \name{getMaintainer.Package}
 \alias{getMaintainer.Package}
 \alias{Package.getMaintainer}
-\alias{getMaintainer.Package}
 \alias{getMaintainer,Package-method}
-
 
 \title{Gets the Maintainer of this package}
 

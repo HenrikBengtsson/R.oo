@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getRdTitle.Rdoc}
+\name{Rdoc$getRdTitle}
+\alias{Rdoc$getRdTitle}
 \alias{getRdTitle.Rdoc}
 \alias{Rdoc.getRdTitle}
-\alias{getRdTitle.Rdoc}
 \alias{getRdTitle,Rdoc-method}
-
 
 \title{Extracts the title string of a Rd file}
 

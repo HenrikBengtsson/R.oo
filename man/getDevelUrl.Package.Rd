@@ -9,9 +9,7 @@
 \name{getDevelUrl.Package}
 \alias{getDevelUrl.Package}
 \alias{Package.getDevelUrl}
-\alias{getDevelUrl.Package}
 \alias{getDevelUrl,Package-method}
-
 
 \title{Gets the URL(s) from where the developers version of this package can be installed}
 

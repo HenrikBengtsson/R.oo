@@ -9,9 +9,7 @@
 \name{getExamplePath.Package}
 \alias{getExamplePath.Package}
 \alias{Package.getExamplePath}
-\alias{getExamplePath.Package}
 \alias{getExamplePath,Package-method}
-
 
 \title{Gets the path to the example (R-ex/) directory of this package}
 

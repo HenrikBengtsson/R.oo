@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getLastException.Exception}
+\name{Exception$getLastException}
+\alias{Exception$getLastException}
 \alias{getLastException.Exception}
 \alias{Exception.getLastException}
-\alias{getLastException.Exception}
 \alias{getLastException,Exception-method}
-
 
 \title{Static method to get the last Exception thrown}
 

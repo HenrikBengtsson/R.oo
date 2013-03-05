@@ -9,9 +9,7 @@
 \name{getRdMethods.Class}
 \alias{getRdMethods.Class}
 \alias{Class.getRdMethods}
-\alias{getRdMethods.Class}
 \alias{getRdMethods,Class-method}
-
 
 \title{Gets the methods of a class in Rd format}
 

@@ -9,9 +9,7 @@
 \name{getFieldModifiers.Object}
 \alias{getFieldModifiers.Object}
 \alias{Object.getFieldModifiers}
-\alias{getFieldModifiers.Object}
 \alias{getFieldModifiers,Object-method}
-
 \alias{Object.getFieldModifier}
 \alias{getFieldModifier.Object}
 \alias{getFieldModifier,Object-method}

@@ -9,9 +9,7 @@
 \name{isProtected.Class}
 \alias{isProtected.Class}
 \alias{Class.isProtected}
-\alias{isProtected.Class}
 \alias{isProtected,Class-method}
-
 
 \title{Checks if a class is defined protected or not}
 

@@ -9,9 +9,7 @@
 \name{as.character.Exception}
 \alias{as.character.Exception}
 \alias{Exception.as.character}
-\alias{as.character.Exception}
 \alias{as.character,Exception-method}
-
 
 \title{Gets a character string representing of the Exception}
 

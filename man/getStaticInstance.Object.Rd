@@ -9,9 +9,7 @@
 \name{getStaticInstance.Object}
 \alias{getStaticInstance.Object}
 \alias{Object.getStaticInstance}
-\alias{getStaticInstance.Object}
 \alias{getStaticInstance,Object-method}
-
 
 \title{Gets the static instance of this objects class}
 

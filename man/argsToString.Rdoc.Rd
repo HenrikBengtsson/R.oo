@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{argsToString.Rdoc}
+\name{Rdoc$argsToString}
+\alias{Rdoc$argsToString}
 \alias{argsToString.Rdoc}
 \alias{Rdoc.argsToString}
-\alias{argsToString.Rdoc}
 \alias{argsToString,Rdoc-method}
-
 
 \title{Gets the arguments signature of a function}
 

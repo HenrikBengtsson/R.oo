@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getRccUrl.RccViolationException}
+\name{RccViolationException$getRccUrl}
+\alias{RccViolationException$getRccUrl}
 \alias{getRccUrl.RccViolationException}
 \alias{RccViolationException.getRccUrl}
-\alias{getRccUrl.RccViolationException}
 \alias{getRccUrl,RccViolationException-method}
-
 
 \title{Static method to get a URL where the RCC can be found}
 

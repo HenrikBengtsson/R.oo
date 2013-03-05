@@ -9,9 +9,7 @@
 \name{gc.Object}
 \alias{gc.Object}
 \alias{Object.gc}
-\alias{gc.Object}
 \alias{gc,Object-method}
-
 
 \title{Clear cached fields and calls the garbage collector}
 

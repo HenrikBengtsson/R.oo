@@ -9,9 +9,7 @@
 \name{DOLLAR< -.BasicObject}
 \alias{$<-.BasicObject}
 \alias{BasicObject.$<-}
-\alias{$<-.BasicObject}
 \alias{$<-,BasicObject-method}
-
 \alias{BasicObject.[[<-}
 \alias{[[<-.BasicObject}
 \alias{[[<-,BasicObject-method}

@@ -8,8 +8,6 @@
 
 \name{getRdHierarchy.classRepresentation}
 \alias{getRdHierarchy.classRepresentation}
-\alias{getRdHierarchy.classRepresentation}
-
 
 
 \title{Gets the class hierarchy in Rd format}

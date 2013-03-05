@@ -9,9 +9,7 @@
 \name{getSuperclasses.Class}
 \alias{getSuperclasses.Class}
 \alias{Class.getSuperclasses}
-\alias{getSuperclasses.Class}
 \alias{getSuperclasses,Class-method}
-
 
 \title{Gets the super classes of this class}
 

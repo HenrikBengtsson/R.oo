@@ -9,9 +9,7 @@
 \name{getPosition.Package}
 \alias{getPosition.Package}
 \alias{Package.getPosition}
-\alias{getPosition.Package}
 \alias{getPosition,Package-method}
-
 
 \title{Gets the search path position of the package}
 

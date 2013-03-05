@@ -9,9 +9,7 @@
 \name{getVersion.Package}
 \alias{getVersion.Package}
 \alias{Package.getVersion}
-\alias{getVersion.Package}
 \alias{getVersion,Package-method}
-
 
 \title{Gets the version of this package}
 
