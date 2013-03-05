@@ -28,7 +28,9 @@
   If the change log file does not exist, an exception is thrown.
 }
 
-\usage{\method{showChangeLog}{Package}(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), ...)}
+\usage{
+\method{showChangeLog}{Package}(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), ...)
+}
 
 \arguments{
   \item{filenames}{A \code{\link[base]{character}} \code{\link[base]{vector}} of (non-case sensitive) filenames

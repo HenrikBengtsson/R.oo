@@ -16,7 +16,9 @@
  Gets the type of a class (S3 or S4).
 }
 
-\usage{\method{typeOfClass}{default}(object, ...)}
+\usage{
+\method{typeOfClass}{default}(object, ...)
+}
 
 \arguments{
  \item{object}{The object to be checks.}

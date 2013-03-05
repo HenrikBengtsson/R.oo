@@ -20,7 +20,9 @@
   If the \code{DESCRIPTION} file does not exist, an exception is thrown.
 }
 
-\usage{\method{showDescriptionFile}{Package}(this, ...)}
+\usage{
+\method{showDescriptionFile}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

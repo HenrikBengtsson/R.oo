@@ -34,7 +34,9 @@ extends \link[R.oo]{Object}\cr
   neither the end user nor the programmer need to no about the class Class.
  }
 
- \usage{Class(name=NULL, constructor=NULL)}
+ \usage{
+Class(name=NULL, constructor=NULL)
+}
 
  \arguments{
    \item{name}{Name of the class.}

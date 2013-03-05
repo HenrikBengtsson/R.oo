@@ -20,8 +20,13 @@
   Throws a \code{\link{RccViolationException}} if an unknown format is requested.
 }
 
-\synopsis{setNameFormat.Rdoc(static, nameFormat, ...)}
-\usage{Rdoc$setNameFormat(nameFormat, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$setNameFormat(nameFormat, ...)
+
+## Don't use the below:
+\method{setNameFormat}{Rdoc}(static, nameFormat, ...)
+}
 
 \arguments{
   \item{nameFormat}{

@@ -19,7 +19,9 @@
   Gets the Bundle that this package might belong to as specified by the \code{DESCRIPTION} file.
 }
 
-\usage{\method{getBundle}{Package}(this, ...)}
+\usage{
+\method{getBundle}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

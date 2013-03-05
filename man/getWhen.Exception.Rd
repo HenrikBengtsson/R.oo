@@ -19,7 +19,9 @@
  Gets the time, as a POSIX object, when the Exception was created.
 }
 
-\usage{\method{getWhen}{Exception}(this, ...)}
+\usage{
+\method{getWhen}{Exception}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

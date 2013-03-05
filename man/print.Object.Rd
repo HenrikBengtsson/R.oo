@@ -21,7 +21,9 @@
  not called if the argument is not an object of class \code{\link[R.oo]{Object}}.
 }
 
-\usage{\method{print}{Object}(x, ...)}
+\usage{
+\method{print}{Object}(x, ...)
+}
 
 \examples{\dontrun{For a complete example see help(Object).}}
 

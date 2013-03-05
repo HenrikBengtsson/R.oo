@@ -21,8 +21,13 @@
  Currently the URL is \url{http://aroma-project.org/developers/RCC/}.
 }
 
-\synopsis{getRccUrl.RccViolationException(this, ...)}
-\usage{RccViolationException$getRccUrl(...)}
+\usage{
+## Static method (use this):
+## RccViolationException$getRccUrl(...)
+
+## Don't use the below:
+\method{getRccUrl}{RccViolationException}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -19,7 +19,9 @@
  Gets the super classes of this class.
 }
 
-\usage{\method{getSuperclasses}{Class}(this, ...)}
+\usage{
+\method{getSuperclasses}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

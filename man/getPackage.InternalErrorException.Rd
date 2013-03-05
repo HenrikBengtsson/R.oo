@@ -19,7 +19,9 @@
  Gets the suspicious package likely to contain an error.
 }
 
-\usage{\method{getPackage}{InternalErrorException}(this, ...)}
+\usage{
+\method{getPackage}{InternalErrorException}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

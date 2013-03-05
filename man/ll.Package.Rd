@@ -22,7 +22,9 @@
   retrieved and then the package will be unloaded again.
 }
 
-\usage{\method{ll}{Package}(this, envir=pos.to.env(getPosition(this)), ...)}
+\usage{
+\method{ll}{Package}(this, envir=pos.to.env(getPosition(this)), ...)
+}
 
 \arguments{
   \item{...}{Not used.}

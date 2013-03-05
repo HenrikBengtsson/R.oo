@@ -19,7 +19,9 @@
  Checks if the object is referable or not.
 }
 
-\usage{\method{isReferable}{BasicObject}(this, ...)}
+\usage{
+\method{isReferable}{BasicObject}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

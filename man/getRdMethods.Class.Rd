@@ -19,7 +19,9 @@
   Gets the methods of a class in Rd format.
 }
 
-\usage{\method{getRdMethods}{Class}(class, visibilities=c("private", "protected", "public"), ...)}
+\usage{
+\method{getRdMethods}{Class}(class, visibilities=c("private", "protected", "public"), ...)
+}
 
 \arguments{
  \item{visibilities}{A \code{\link[base]{character}} string specifying what types of methods

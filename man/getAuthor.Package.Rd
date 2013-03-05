@@ -19,7 +19,9 @@
   Gets the Author of this package as specified by the \code{DESCRIPTION} file.
 }
 
-\usage{\method{getAuthor}{Package}(this, ...)}
+\usage{
+\method{getAuthor}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

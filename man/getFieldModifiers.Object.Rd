@@ -23,7 +23,9 @@
  Gets all types of field modifiers, if any.
 }
 
-\usage{\method{getFieldModifiers}{Object}(this, ...)}
+\usage{
+\method{getFieldModifiers}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

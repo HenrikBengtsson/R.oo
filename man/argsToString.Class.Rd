@@ -21,8 +21,13 @@
   Used by: classinfo().
 }
 
-\synopsis{argsToString.Class(this, fcn, ...)}
-\usage{Class$argsToString(fcn, ...)}
+\usage{
+## Static method (use this):
+## Class$argsToString(fcn, ...)
+
+## Don't use the below:
+\method{argsToString}{Class}(this, fcn, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

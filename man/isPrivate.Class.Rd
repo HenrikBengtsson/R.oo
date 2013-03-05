@@ -19,7 +19,9 @@
  Checks if a class is defined private or not.
 }
 
-\usage{\method{isPrivate}{Class}(this, ...)}
+\usage{
+\method{isPrivate}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

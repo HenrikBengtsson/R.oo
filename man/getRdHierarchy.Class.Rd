@@ -19,7 +19,9 @@
   Gets the class hierarchy in Rd format.
 }
 
-\usage{\method{getRdHierarchy}{Class}(this, ...)}
+\usage{
+\method{getRdHierarchy}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

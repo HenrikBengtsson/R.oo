@@ -19,7 +19,9 @@
  Gets the message of the Exception.
 }
 
-\usage{\method{getMessage}{Exception}(this, ...)}
+\usage{
+\method{getMessage}{Exception}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -17,7 +17,9 @@
   This method is just a wrapper for \code{\link[utils]{object.size}}.
 }
 
-\usage{\method{objectSize}{default}(...)}
+\usage{
+\method{objectSize}{default}(...)
+}
 
 \arguments{
   \item{...}{Arguments passed to \code{\link[utils]{object.size}}.}

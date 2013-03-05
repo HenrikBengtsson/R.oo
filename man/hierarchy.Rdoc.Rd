@@ -19,8 +19,13 @@
   Gets the class hierarchy.
 }
 
-\synopsis{hierarchy.Rdoc(this, class, ...)}
-\usage{Rdoc$hierarchy(class, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$hierarchy(class, ...)
+
+## Don't use the below:
+\method{hierarchy}{Rdoc}(this, class, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

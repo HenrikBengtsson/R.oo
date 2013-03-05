@@ -18,7 +18,9 @@
   Gets the methods in Rd format.
 }
 
-\usage{\method{getRdMethods}{classRepresentation}(class, visibility=c("public", "protected", "private"), trial=FALSE, ...)}
+\usage{
+\method{getRdMethods}{classRepresentation}(class, visibility=c("public", "protected", "private"), trial=FALSE, ...)
+}
 
 \arguments{
   \item{visibility}{-}

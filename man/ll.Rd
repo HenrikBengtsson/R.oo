@@ -16,7 +16,9 @@
   Generates a list of informative properties of all members of an environment.
 }
 
-\usage{\method{ll}{default}(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties"), sortBy=NULL, envir=parent.frame())}
+\usage{
+\method{ll}{default}(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties"), sortBy=NULL, envir=parent.frame())
+}
 
 \arguments{
   \item{pattern}{Regular expression pattern specifying which members to

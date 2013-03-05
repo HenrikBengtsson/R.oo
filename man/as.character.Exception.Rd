@@ -20,7 +20,9 @@
  By default the format is: "[\{POSIX date string\}] \{class name\}: \{msg\}".
 }
 
-\usage{\method{as.character}{Exception}(x, ...)}
+\usage{
+\method{as.character}{Exception}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

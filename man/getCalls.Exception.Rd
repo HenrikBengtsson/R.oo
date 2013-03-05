@@ -23,7 +23,9 @@
  .
 }
 
-\usage{\method{getCalls}{Exception}(this, ...)}
+\usage{
+\method{getCalls}{Exception}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -21,7 +21,9 @@
  of the object.
 }
 
-\usage{\method{as.character}{Object}(x, ...)}
+\usage{
+\method{as.character}{Object}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

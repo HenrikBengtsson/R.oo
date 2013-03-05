@@ -19,7 +19,9 @@
   Generates a list of informative properties of all members of an Object.
 }
 
-\usage{\method{ll}{Object}(this, ...)}
+\usage{
+\method{ll}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Any arguments accepted by the underlying function \code{ll()}.}

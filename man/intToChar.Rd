@@ -18,7 +18,9 @@
   the range [0,255], the input vector is taken modulo 256.
 }
 
-\usage{\method{intToChar}{default}(i, ...)}
+\usage{
+\method{intToChar}{default}(i, ...)
+}
 
 \arguments{
   \item{i}{An \code{\link[base]{integer}} \code{\link[base]{vector}}.}

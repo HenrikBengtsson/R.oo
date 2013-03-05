@@ -19,7 +19,9 @@
  Extends another Interface class.
 }
 
-\usage{\method{extend}{Interface}(this, ...className, ...)}
+\usage{
+\method{extend}{Interface}(this, ...className, ...)
+}
 
 \arguments{
   \item{...className}{The name of new interface.}

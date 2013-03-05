@@ -19,7 +19,9 @@
   Gets the search path position of the package.
 }
 
-\usage{\method{getPosition}{Package}(this, ...)}
+\usage{
+\method{getPosition}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

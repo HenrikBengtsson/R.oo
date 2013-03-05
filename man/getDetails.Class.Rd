@@ -19,7 +19,9 @@
   Lists the fields and methods of a class (or an object).
 }
 
-\usage{\method{getDetails}{Class}(this, private=FALSE, ...)}
+\usage{
+\method{getDetails}{Class}(this, private=FALSE, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

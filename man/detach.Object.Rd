@@ -21,7 +21,9 @@
  and nothing will be done.
 }
 
-\usage{\method{detach}{Object}(this, ...)}
+\usage{
+\method{detach}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

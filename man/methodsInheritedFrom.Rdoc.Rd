@@ -19,8 +19,13 @@
   Gets all methods inherited from a class in Rd format.
 }
 
-\synopsis{methodsInheritedFrom.Rdoc(this, class, visibility=c("public", "protected", "private"), showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)}
-\usage{Rdoc$methodsInheritedFrom(class, visibility=c("public", "protected", "private"), showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$methodsInheritedFrom(class, visibility=c("public", "protected", "private"), showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)
+
+## Don't use the below:
+\method{methodsInheritedFrom}{Rdoc}(this, class, visibility=c("public", "protected", "private"), showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

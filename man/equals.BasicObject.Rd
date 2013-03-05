@@ -38,7 +38,9 @@
  \code{( !is.null(obj) && (hashCode(this) == hashCode(obj)) )}.
 }
 
-\usage{\method{equals}{BasicObject}(this, other, ...)}
+\usage{
+\method{equals}{BasicObject}(this, other, ...)
+}
 
 \arguments{
   \item{other}{The other object this object should be compared to.}

@@ -1,9 +1,9 @@
 Package: R.oo
-Version: 1.11.7
+Version: 1.12.0
 Depends: R (>= 2.4.0), R.methodsS3 (>= 1.4.2)
 Imports: methods, utils, R.methodsS3 (>= 1.4.2)
 Suggests: tools
-Date: 2013-01-08
+Date: 2013-03-04
 Title: R object-oriented programming with or without references
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>

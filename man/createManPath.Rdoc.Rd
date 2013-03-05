@@ -19,8 +19,13 @@
   Creates the directory where the Rd files should be saved.
 }
 
-\synopsis{createManPath.Rdoc(this, ...)}
-\usage{Rdoc$createManPath(...)}
+\usage{
+## Static method (use this):
+## Rdoc$createManPath(...)
+
+## Don't use the below:
+\method{createManPath}{Rdoc}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

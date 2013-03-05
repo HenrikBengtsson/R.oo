@@ -30,7 +30,9 @@ public class \bold{Interface}\cr
   provide methods (but not fields) shared by multiple different classes.
  }
 
- \usage{Interface(core=NA, ...)}
+ \usage{
+Interface(core=NA, ...)
+}
 
  \arguments{
    \item{core}{The core value.}

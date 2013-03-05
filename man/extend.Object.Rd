@@ -26,7 +26,9 @@
    The method should be used by the constructor of a class and nowhere else.
  }
 
- \usage{\method{extend}{Object}(this, ...className, ..., ...fields=NULL, ...envir=parent.frame())}
+ \usage{
+\method{extend}{Object}(this, ...className, ..., ...fields=NULL, ...envir=parent.frame())
+}
 
  \arguments{
    \item{...className}{The name of new class.}

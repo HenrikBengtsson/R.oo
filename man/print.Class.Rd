@@ -19,7 +19,9 @@
  Prints detailed information about the class and its fields and methods.
 }
 
-\usage{\method{print}{Class}(x, ...)}
+\usage{
+\method{print}{Class}(x, ...)
+}
 
 \arguments{
   \item{...}{Arguments passed to \code{\link[R.oo:getDetails.Class]{*getDetails}()}.}

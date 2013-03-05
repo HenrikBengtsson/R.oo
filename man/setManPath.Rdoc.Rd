@@ -21,8 +21,13 @@
   are placed.
 }
 
-\synopsis{setManPath.Rdoc(this, path="../man/", ...)}
-\usage{Rdoc$setManPath(path="../man/", ...)}
+\usage{
+## Static method (use this):
+## Rdoc$setManPath(path="../man/", ...)
+
+## Don't use the below:
+\method{setManPath}{Rdoc}(this, path="../man/", ...)
+}
 
 \arguments{
   \item{...}{Not used.}

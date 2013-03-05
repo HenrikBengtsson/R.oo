@@ -42,7 +42,9 @@ extends \link[R.oo]{Exception}\cr
   RdocException are thrown by the Rdoc compiler when it fails to generate a Rd file from an Rdoc comment.
  }
 
- \usage{RdocException(..., source=NULL)}
+ \usage{
+RdocException(..., source=NULL)
+}
 
  \arguments{
    \item{...}{Any arguments accepted by \code{\link[R.oo]{Exception}}}.

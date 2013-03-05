@@ -21,7 +21,9 @@
  not called if the argument is not an object of class \code{\link{BasicObject}}.
 }
 
-\usage{\method{print}{BasicObject}(x, ...)}
+\usage{
+\method{print}{BasicObject}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

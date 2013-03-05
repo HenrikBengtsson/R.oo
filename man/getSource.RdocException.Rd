@@ -19,7 +19,9 @@
  .
 }
 
-\usage{\method{getSource}{RdocException}(this, ...)}
+\usage{
+\method{getSource}{RdocException}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

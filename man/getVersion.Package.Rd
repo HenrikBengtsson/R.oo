@@ -19,7 +19,9 @@
   Gets the version of this package.
 }
 
-\usage{\method{getVersion}{Package}(this, ...)}
+\usage{
+\method{getVersion}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

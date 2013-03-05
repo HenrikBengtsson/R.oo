@@ -19,8 +19,13 @@
   Gets the class declaration.
 }
 
-\synopsis{declaration.Rdoc(this, class, ...)}
-\usage{Rdoc$declaration(class, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$declaration(class, ...)
+
+## Don't use the below:
+\method{declaration}{Rdoc}(this, class, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

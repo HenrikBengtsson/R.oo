@@ -1,6 +1,13 @@
 Package: R.oo
 =============
 
+Version: 1.12.0 [2013-03-04]
+o DOCUMENTATION: For "static" methods (e.g. Object$load()), the 
+  Rdoc compiler now generates a \usage{} section without the
+  deprecated Rd markup \synopsis{}, which has been replaced by
+  the static call placed in a comment.
+
+
 Version: 1.11.7 [2013-01-08]
 o ROBUSTNESS/BUG FIX: Made the Object finalizers reentrant.  This was
   previously not the case on R prior to R v2.15.2 Patched r61487 iff

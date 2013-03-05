@@ -19,7 +19,9 @@
   Gets the names of the other packages that is in the same bundle as this package as specified by the \code{DESCRIPTION} file.
 }
 
-\usage{\method{getBundlePackages}{Package}(this, ...)}
+\usage{
+\method{getBundlePackages}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

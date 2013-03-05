@@ -19,8 +19,13 @@
   Gets the current name format.
 }
 
-\synopsis{getNameFormat.Rdoc(static, ...)}
-\usage{Rdoc$getNameFormat(...)}
+\usage{
+## Static method (use this):
+## Rdoc$getNameFormat(...)
+
+## Don't use the below:
+\method{getNameFormat}{Rdoc}(static, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

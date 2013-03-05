@@ -19,7 +19,9 @@
  Returns a short string describing the class.
 }
 
-\usage{\method{as.character}{Class}(x, ...)}
+\usage{
+\method{as.character}{Class}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

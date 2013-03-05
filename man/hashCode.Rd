@@ -16,7 +16,9 @@
  Gets an integer hashcoded for R objects.
 }
 
-\usage{\method{hashCode}{default}(object, ...)}
+\usage{
+\method{hashCode}{default}(object, ...)
+}
 
 \arguments{
   \item{object}{A \code{\link[base]{vector}} or \code{\link[base]{list}} of \R objects.}

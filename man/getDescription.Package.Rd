@@ -19,7 +19,9 @@
   Gets the description of the package. Not to be mixed up with \code{\link[R.oo:getDescriptionFile.Package]{*getDescriptionFile}()}.
 }
 
-\usage{\method{getDescription}{Package}(this, replaceNewlines=" ", ...)}
+\usage{
+\method{getDescription}{Package}(this, replaceNewlines=" ", ...)
+}
 
 \arguments{
   \item{replaceNewlines}{If a \code{\link[base]{character}} string, all newline characters

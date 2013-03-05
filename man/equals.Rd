@@ -33,7 +33,9 @@
  By default \code{\link[base]{identical}}() is used.
 }
 
-\usage{\method{equals}{default}(object, other, ...)}
+\usage{
+\method{equals}{default}(object, other, ...)
+}
 
 \arguments{
   \item{object, other}{Objects to be compared.}

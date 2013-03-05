@@ -20,7 +20,9 @@
  new object.
 }
 
-\usage{\method{clone}{Object}(this, ...)}
+\usage{
+\method{clone}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

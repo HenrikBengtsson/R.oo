@@ -19,7 +19,9 @@
  Gets a string representing of the RCC violation of format "[\{POSIX date string\}] \{class name\}: \{msg\}, cf. http://aroma-project.org/developers/RCC/".
 }
 
-\usage{\method{as.character}{RccViolationException}(x, ...)}
+\usage{
+\method{as.character}{RccViolationException}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

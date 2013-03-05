@@ -21,8 +21,10 @@
   \code{\link[R.oo:getPath.Package]{*getPath}()}.
 }
 
-\usage{\method{getHowToCite}{Package}(this, newline="
-", ...)}
+\usage{
+\method{getHowToCite}{Package}(this, newline="
+", ...)
+}
 
 \arguments{
   \item{newline}{The \code{\link[base]{character}} string to collapse lines in the file.}

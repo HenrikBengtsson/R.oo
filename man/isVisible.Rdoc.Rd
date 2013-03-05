@@ -19,8 +19,13 @@
   Checks if a member is visible given its modifiers.
 }
 
-\synopsis{isVisible.Rdoc(static, modifiers, visibilities, ...)}
-\usage{Rdoc$isVisible(modifiers, visibilities, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$isVisible(modifiers, visibilities, ...)
+
+## Don't use the below:
+\method{isVisible}{Rdoc}(static, modifiers, visibilities, ...)
+}
 
 \arguments{
  \item{modifiers}{A \code{\link[base]{character}} string of modifiers.}

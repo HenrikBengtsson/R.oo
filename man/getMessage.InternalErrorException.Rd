@@ -25,7 +25,9 @@
  easily cut'n'paste that information into a bug report.
 }
 
-\usage{\method{getMessage}{InternalErrorException}(this, ...)}
+\usage{
+\method{getMessage}{InternalErrorException}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

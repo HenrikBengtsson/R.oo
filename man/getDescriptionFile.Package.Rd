@@ -19,7 +19,9 @@
   Gets the description file of this package, i.e. the parsed \code{DESCRIPTION} file.
 }
 
-\usage{\method{getDescriptionFile}{Package}(this, fields=NULL, ...)}
+\usage{
+\method{getDescriptionFile}{Package}(this, fields=NULL, ...)
+}
 
 \arguments{
   \item{fields}{A \code{\link[base]{vector}} of \code{\link[base]{character}} strings of fields to be returned.

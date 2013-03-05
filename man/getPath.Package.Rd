@@ -19,7 +19,9 @@
   Gets the library (system) path to this package.
 }
 
-\usage{\method{getPath}{Package}(this, ...)}
+\usage{
+\method{getPath}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

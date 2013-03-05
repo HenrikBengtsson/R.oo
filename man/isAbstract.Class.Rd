@@ -19,7 +19,9 @@
  Checks if a class is abstract or not. A class is abstract if it has abstract methods.
 }
 
-\usage{\method{isAbstract}{Class}(this, ...)}
+\usage{
+\method{isAbstract}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

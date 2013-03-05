@@ -19,7 +19,9 @@
   Gets a string representation of this package.
 }
 
-\usage{\method{as.character}{Package}(x, ...)}
+\usage{
+\method{as.character}{Package}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

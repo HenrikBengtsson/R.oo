@@ -27,7 +27,9 @@
  \bold{A finalizer method should never be called explicitly!}
 }
 
-\usage{\method{finalize}{Object}(this, ...)}
+\usage{
+\method{finalize}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

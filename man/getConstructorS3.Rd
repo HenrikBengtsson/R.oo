@@ -16,7 +16,9 @@
  Get a constructor method.
 }
 
-\usage{\method{getConstructorS3}{default}(name, ...)}
+\usage{
+\method{getConstructorS3}{default}(name, ...)
+}
 
 \arguments{
   \item{name}{The name of the constructor function.}

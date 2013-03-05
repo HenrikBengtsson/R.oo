@@ -19,7 +19,9 @@
   Gets the name of this package.
 }
 
-\usage{\method{getName}{Package}(this, ...)}
+\usage{
+\method{getName}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

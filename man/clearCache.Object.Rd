@@ -19,7 +19,9 @@
  Clear fields that are defined to have cached values by assigning \code{\link[base]{NULL}} to these fields.
 }
 
-\usage{\method{clearCache}{Object}(this, recursive=TRUE, ...)}
+\usage{
+\method{clearCache}{Object}(this, recursive=TRUE, ...)
+}
 
 \arguments{
   \item{recursive}{If \code{\link[base:logical]{TRUE}}, the same method is called also on all

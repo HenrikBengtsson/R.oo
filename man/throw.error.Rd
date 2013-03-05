@@ -19,7 +19,9 @@
  with the new error handling mechanisms.
 }
 
-\usage{\method{throw}{error}(error, ...)}
+\usage{
+\method{throw}{error}(error, ...)
+}
 
 \arguments{
   \item{error}{An object or class 'error'.}

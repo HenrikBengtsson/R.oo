@@ -32,7 +32,9 @@ extends \link[R.oo]{Object}\cr
   Class for converting Rdoc comments to Rd files.
  }
 
- \usage{Rdoc()}
+ \usage{
+Rdoc()
+}
 
  \section{Fields and Methods}{
   \bold{Methods:}\cr

@@ -18,7 +18,9 @@
   Gets the class declaration in Rd format.
 }
 
-\usage{\method{getRdDeclaration}{classRepresentation}(this, ...)}
+\usage{
+\method{getRdDeclaration}{classRepresentation}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

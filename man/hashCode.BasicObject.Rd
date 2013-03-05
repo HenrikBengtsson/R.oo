@@ -19,7 +19,9 @@
  Gets a hash code for the object.
 }
 
-\usage{\method{hashCode}{BasicObject}(this, ...)}
+\usage{
+\method{hashCode}{BasicObject}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

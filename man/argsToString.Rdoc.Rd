@@ -19,8 +19,13 @@
   Gets the arguments signature of a function.
 }
 
-\synopsis{argsToString.Rdoc(static, fcn, ...)}
-\usage{Rdoc$argsToString(fcn, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$argsToString(fcn, ...)
+
+## Don't use the below:
+\method{argsToString}{Rdoc}(static, fcn, ...)
+}
 
 \arguments{
  \item{fcn}{A \code{\link[base]{function}}.}

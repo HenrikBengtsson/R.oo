@@ -19,7 +19,9 @@
  Gets the name of the class.
 }
 
-\usage{\method{getName}{Class}(this, ...)}
+\usage{
+\method{getName}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

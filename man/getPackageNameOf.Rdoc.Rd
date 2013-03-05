@@ -19,8 +19,13 @@
   Gets the package of a method or an object.
 }
 
-\synopsis{getPackageNameOf.Rdoc(static, objectName, mode="any", unique=TRUE, ...)}
-\usage{Rdoc$getPackageNameOf(objectName, mode="any", unique=TRUE, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$getPackageNameOf(objectName, mode="any", unique=TRUE, ...)
+
+## Don't use the below:
+\method{getPackageNameOf}{Rdoc}(static, objectName, mode="any", unique=TRUE, ...)
+}
 
 \arguments{
  \item{objectName}{An method or object name (\code{\link[base]{character}} string).}

@@ -21,7 +21,9 @@
  Specifies that an object uses this Interface.
 }
 
-\usage{\method{uses}{Interface}(this, ...)}
+\usage{
+\method{uses}{Interface}(this, ...)
+}
 
 \value{
  Returns a \code{\link[base]{character}} \code{\link[base]{vector}} of class names of Interface:s.

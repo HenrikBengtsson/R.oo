@@ -45,7 +45,9 @@ extends \link[R.oo]{Exception}\cr
   this error type.
  }
 
- \usage{InternalErrorException(..., package=NULL)}
+ \usage{
+InternalErrorException(..., package=NULL)
+}
 
  \arguments{
    \item{...}{Any arguments accepted by \code{\link{Exception}}}.

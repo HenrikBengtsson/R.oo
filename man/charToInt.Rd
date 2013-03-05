@@ -17,7 +17,9 @@
   \code{\link[base]{integer}}s.
 }
 
-\usage{\method{charToInt}{default}(ch, ...)}
+\usage{
+\method{charToInt}{default}(ch, ...)
+}
 
 \arguments{
   \item{ch}{A \code{\link[base]{character}} \code{\link[base]{vector}}.}

@@ -19,8 +19,13 @@
   Gets the usage of a method.
 }
 
-\synopsis{getUsage.Rdoc(static, method, class=NULL, ...)}
-\usage{Rdoc$getUsage(method, class=NULL, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$getUsage(method, class=NULL, ...)
+
+## Don't use the below:
+\method{getUsage}{Rdoc}(static, method, class=NULL, ...)
+}
 
 \arguments{
   \item{method}{A method name (\code{\link[base]{character}} string).}

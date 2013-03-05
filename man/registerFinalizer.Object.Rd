@@ -23,7 +23,9 @@
  at all.
 }
 
-\usage{\method{registerFinalizer}{Object}(this, ...)}
+\usage{
+\method{registerFinalizer}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

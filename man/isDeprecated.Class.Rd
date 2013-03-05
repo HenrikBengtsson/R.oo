@@ -19,7 +19,9 @@
  Checks if a class is deprecated or not.
 }
 
-\usage{\method{isDeprecated}{Class}(this, ...)}
+\usage{
+\method{isDeprecated}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

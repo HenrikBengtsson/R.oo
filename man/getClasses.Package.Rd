@@ -19,7 +19,9 @@
   Gets all classes of a package.
 }
 
-\usage{\method{getClasses}{Package}(this, ...)}
+\usage{
+\method{getClasses}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

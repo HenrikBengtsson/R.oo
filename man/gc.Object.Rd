@@ -19,7 +19,9 @@
  Clear cached fields and calls the garbage collector.  Cached fields are set to \code{\link[base]{NULL}} when cleared.
 }
 
-\usage{\method{gc}{Object}(this, ...)}
+\usage{
+\method{gc}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Passed to \code{\link[base]{gc}}() returns.}

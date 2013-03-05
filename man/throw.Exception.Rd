@@ -19,7 +19,9 @@
  Throws an Exception that can be caught by \code{tryCatch()}.
 }
 
-\usage{\method{throw}{Exception}(this, ...)}
+\usage{
+\method{throw}{Exception}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

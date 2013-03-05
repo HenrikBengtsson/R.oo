@@ -19,7 +19,9 @@
  .
 }
 
-\usage{\method{printStackTrace}{Exception}(this, ...)}
+\usage{
+\method{printStackTrace}{Exception}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -20,7 +20,9 @@
   load a package.
 }
 
-\usage{\method{load}{Package}(this, ...)}
+\usage{
+\method{load}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

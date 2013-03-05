@@ -19,7 +19,9 @@
   Checks if the package is older than a given version.
 }
 
-\usage{\method{isOlderThan}{Package}(this, version, ...)}
+\usage{
+\method{isOlderThan}{Package}(this, version, ...)
+}
 
 \arguments{
   \item{version}{A \code{\link[base]{character}} string specifying a version to compare with.}

@@ -18,7 +18,9 @@
   Gets the superclasses.
 }
 
-\usage{\method{getSuperclasses}{classRepresentation}(this, ...)}
+\usage{
+\method{getSuperclasses}{classRepresentation}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

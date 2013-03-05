@@ -20,7 +20,9 @@
  value of \code{as.character()} of the object.
 }
 
-\usage{\method{print}{Interface}(x, ...)}
+\usage{
+\method{print}{Interface}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

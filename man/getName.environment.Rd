@@ -18,7 +18,9 @@
  Gets the name of an environment, e.g. \code{"R_GlobalEnv"} or \code{"0x01ddd060"}.
 }
 
-\usage{\method{getName}{environment}(env, ...)}
+\usage{
+\method{getName}{environment}(env, ...)
+}
 
 \arguments{
   \item{env}{An \code{\link[base]{environment}}.}

@@ -21,7 +21,9 @@
  object.
 }
 
-\usage{\method{clearLookupCache}{Object}(this, ...)}
+\usage{
+\method{clearLookupCache}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -22,7 +22,9 @@
   especially for non-CRAN packages.
 }
 
-\usage{\method{update}{Package}(object, contribUrl=c(getContribUrl(this), getDevelUrl(this)), force=FALSE, reload=TRUE, verbose=TRUE, ...)}
+\usage{
+\method{update}{Package}(object, contribUrl=c(getContribUrl(this), getDevelUrl(this)), force=FALSE, reload=TRUE, verbose=TRUE, ...)
+}
 
 \arguments{
   \item{contribUrl}{The URL from where the package can be installed and

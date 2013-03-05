@@ -24,7 +24,9 @@
   that they all will inherit the methods in this class.
  }
 
- \usage{Object(core=NA)}
+ \usage{
+Object(core=NA)
+}
 
  \arguments{
    \item{core}{The core value of each \emph{reference} referering to the

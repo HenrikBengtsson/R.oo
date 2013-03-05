@@ -19,7 +19,9 @@
  Gets the package to which the class belongs.
 }
 
-\usage{\method{getPackage}{Class}(this, ...)}
+\usage{
+\method{getPackage}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

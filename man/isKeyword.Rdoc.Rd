@@ -19,8 +19,13 @@
   Checks if a word is a Rd keyword.
 }
 
-\synopsis{isKeyword.Rdoc(this, word, ...)}
-\usage{Rdoc$isKeyword(word, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$isKeyword(word, ...)
+
+## Don't use the below:
+\method{isKeyword}{Rdoc}(this, word, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

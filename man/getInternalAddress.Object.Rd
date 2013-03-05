@@ -19,7 +19,9 @@
  Gets the memory location where the Object resides.
 }
 
-\usage{\method{getInternalAddress}{Object}(this, format=c("numeric", "hexstring"), ...)}
+\usage{
+\method{getInternalAddress}{Object}(this, format=c("numeric", "hexstring"), ...)
+}
 
 \arguments{
   \item{format}{A \code{\link[base]{character}} string specifying what format to return.}

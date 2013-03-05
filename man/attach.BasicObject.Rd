@@ -22,7 +22,9 @@
  inbetween, a \code{\link[base]{warning}} will be generated and nothing will be done.
 }
 
-\usage{\method{attach}{BasicObject}(this, private=FALSE, pos=2, ...)}
+\usage{
+\method{attach}{BasicObject}(this, private=FALSE, pos=2, ...)
+}
 
 \arguments{
   \item{private}{If \code{\link[base:logical]{TRUE}}, private fields will also be attached,

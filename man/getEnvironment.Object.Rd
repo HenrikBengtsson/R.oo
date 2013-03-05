@@ -20,7 +20,9 @@
  This is the environment where the members of the Object are stored.
 }
 
-\usage{\method{getEnvironment}{Object}(fun, ...)}
+\usage{
+\method{getEnvironment}{Object}(fun, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -15,7 +15,9 @@
 
  \title{Attaches an Object locally to an environment}
 
- \usage{\method{attachLocally}{Object}(this, private=FALSE, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...)}
+ \usage{
+\method{attachLocally}{Object}(this, private=FALSE, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...)
+}
 
  \description{
   Attaches an Object locally to an environment.  By default, the fields of the Object are attached to

@@ -19,8 +19,13 @@
   Gets the path to the directory where the Rd files will be saved.
 }
 
-\synopsis{getManPath.Rdoc(this, ...)}
-\usage{Rdoc$getManPath(...)}
+\usage{
+## Static method (use this):
+## Rdoc$getManPath(...)
+
+## Don't use the below:
+\method{getManPath}{Rdoc}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

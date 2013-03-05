@@ -19,7 +19,9 @@
  Checks if a class is static or not. A class is static if it has static methods.
 }
 
-\usage{\method{isStatic}{Class}(this, ...)}
+\usage{
+\method{isStatic}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

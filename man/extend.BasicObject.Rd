@@ -26,7 +26,9 @@
   The method should be used by the constructor of a class and nowhere else.
 }
 
-\usage{\method{extend}{BasicObject}(this, ...className, ...)}
+\usage{
+\method{extend}{BasicObject}(this, ...className, ...)
+}
 
 \arguments{
   \item{...className}{The name of new class.}

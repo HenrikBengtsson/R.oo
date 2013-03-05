@@ -22,7 +22,9 @@
  This method is simply calling the constructor method of the class.
 }
 
-\usage{\method{newInstance}{Class}(this, ...)}
+\usage{
+\method{newInstance}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

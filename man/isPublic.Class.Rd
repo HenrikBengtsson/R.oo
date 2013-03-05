@@ -19,7 +19,9 @@
  Checks if a class is defined public or not. A class is public if it is neither private nor protected.
 }
 
-\usage{\method{isPublic}{Class}(this, ...)}
+\usage{
+\method{isPublic}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

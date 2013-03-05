@@ -19,7 +19,9 @@
   Gets the path to the data (data/) directory of this package.
 }
 
-\usage{\method{getDataPath}{Package}(this, ...)}
+\usage{
+\method{getDataPath}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

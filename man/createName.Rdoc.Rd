@@ -19,8 +19,13 @@
   Creates a class-method name.
 }
 
-\synopsis{createName.Rdoc(static, class, method, escape=TRUE, ...)}
-\usage{Rdoc$createName(class, method, escape=TRUE, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$createName(class, method, escape=TRUE, ...)
+
+## Don't use the below:
+\method{createName}{Rdoc}(static, class, method, escape=TRUE, ...)
+}
 
 \arguments{
   \item{class}{A class name (\code{\link[base]{character}} string).}

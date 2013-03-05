@@ -21,7 +21,9 @@
   If the package is not loaded, it will quietly return.
 }
 
-\usage{\method{unload}{Package}(this, ...)}
+\usage{
+\method{unload}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

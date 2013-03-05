@@ -19,7 +19,9 @@
   Gets the URL of this package as specified by the \code{DESCRIPTION} file.
 }
 
-\usage{\method{getUrl}{Package}(this, ...)}
+\usage{
+\method{getUrl}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

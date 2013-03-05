@@ -19,7 +19,9 @@
   Gets the Maintainer of this package as specified by the \code{DESCRIPTION} file.
 }
 
-\usage{\method{getMaintainer}{Package}(this, ...)}
+\usage{
+\method{getMaintainer}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

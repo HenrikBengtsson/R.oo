@@ -19,7 +19,9 @@
  .
 }
 
-\usage{\method{as.character}{RdocException}(x, ...)}
+\usage{
+\method{as.character}{RdocException}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

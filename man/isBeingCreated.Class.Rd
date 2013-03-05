@@ -24,7 +24,9 @@
   constructor.
 }
 
-\usage{\method{isBeingCreated}{Class}(this, ...)}
+\usage{
+\method{isBeingCreated}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

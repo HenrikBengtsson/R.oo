@@ -19,7 +19,9 @@
  Gets a character string representing the Interface.
 }
 
-\usage{\method{as.character}{Interface}(x, ...)}
+\usage{
+\method{as.character}{Interface}(x, ...)
+}
 
 \value{
  Returns a \code{\link[base]{character}} string.

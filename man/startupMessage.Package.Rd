@@ -19,7 +19,9 @@
   Generates a 'package successfully loaded' package startup message.
 }
 
-\usage{\method{startupMessage}{Package}(this, ...)}
+\usage{
+\method{startupMessage}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Additional arguments passed to

@@ -19,8 +19,13 @@
   Gets the usage of a S4 class.
 }
 
-\synopsis{getClassS4Usage.Rdoc(static, class, ...)}
-\usage{Rdoc$getClassS4Usage(class, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$getClassS4Usage(class, ...)
+
+## Don't use the below:
+\method{getClassS4Usage}{Rdoc}(static, class, ...)
+}
 
 \arguments{
   \item{class}{A class name (\code{\link[base]{character}} string).}

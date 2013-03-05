@@ -19,7 +19,9 @@
   Returns a reference to the same Object with virtual fields turned off.
 }
 
-\usage{\method{novirtual}{Object}(this, ...)}
+\usage{
+\method{novirtual}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

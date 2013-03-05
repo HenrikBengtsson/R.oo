@@ -19,7 +19,9 @@
   Gets the License of this package as specified by the \code{DESCRIPTION} file.
 }
 
-\usage{\method{getLicense}{Package}(this, ...)}
+\usage{
+\method{getLicense}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

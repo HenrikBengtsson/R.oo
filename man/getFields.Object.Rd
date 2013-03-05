@@ -23,7 +23,9 @@
    Returns the field names of an Object.
  }
 
- \usage{\method{getFields}{Object}(this, private=FALSE, ...)}
+ \usage{
+\method{getFields}{Object}(this, private=FALSE, ...)
+}
 
  \arguments{
    \item{private}{If \code{\link[base:logical]{TRUE}}, private fields will also be returned,

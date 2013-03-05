@@ -20,7 +20,9 @@
   the size of memory the BasicObject actually allocates might vary slighty.
 }
 
-\usage{\method{objectSize}{BasicObject}(this, ...)}
+\usage{
+\method{objectSize}{BasicObject}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

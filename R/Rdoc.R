@@ -1121,18 +1121,9 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     tagSynopsis <- function(bfr) {
-      if (is.element("synopsis", names(attributes(usage)))) {
-        synopsis <- attr(usage, "synopsis");
-        line <- paste("\\synopsis{", synopsis, "}\n", sep="");
-      } else {
-        line <- NULL;
-      }
-      # \synopsis{} is made deprecated by R v2.4.0 and will be defunct 
-      # around R v3.0.0 (see HISTORY below). HOWEVER, static methods 
-      # such as Object$load() still need \synopsis{} to please the
-      # R CMD check.  /HB 2006-09-12
-      # line <- NULL;  # TO DO
-      line <- paste(line, "\\usage{", usage, "}", sep="");
+      usage <- c("", usage, "");
+      usage <- paste(usage, collapse="\n");
+      line <- paste("\\usage{", usage, "}", sep="");
       rd <<- paste(rd, line, sep="");
       bfr;
     }
@@ -2077,16 +2068,24 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, ...) {
     args <- paste(args, collapse=", ");
     usage <- paste(method, "(", args, ")", sep="");
   } else if (isStatic) {
-    # Creates the \synopsis == the true synopsis, e.g. forName.Class(...)
-    argsStr <- paste(args, collapse=", ");
-    synopsis <- paste(method, ".", class, "(", argsStr, ")", sep="");
-    # Creates the usage, e.g. Class$forName(...)
-    args <- args[-1];
-    args <- paste(args, collapse=", ");
-    usage <- paste(class, "$", method, "(", args, ")", sep="");
+    # (a) The "static" method call, e.g. Class$forName(...)
+    argsS <- args[-1];
+    argsS <- paste(argsS, collapse=", ");
+    usageS <- paste(class, "$", method, "(", argsS, ")", sep="");
     if (isReplacement)
-      usage <- paste(usage, " <- ", valueArg, sep="");
-    attr(usage, "synopsis") <- synopsis;
+      usageS <- paste(usageS, " <- ", valueArg, sep="");
+    usageS <- paste("## ", usageS, sep="");
+    usageS <- c("## Static method (use this):", usageS, "");
+
+    # (b) The S3 method call
+    args <- paste(args, collapse=", ");
+    usageM <- paste("\\method{", method, "}{", class, "}(", args, ")", sep="");
+    if (isReplacement)
+      usageM <- paste(usageM, " <- ", valueArg, sep="");
+    usageM <- c("## Don't use the below:", usageM);
+
+    # (c) Combine
+    usage <- c(usageS, usageM);
   } else if (!is.null(class)) {
     args <- paste(args, collapse=", ");
     usage <- paste("\\method{", method, "}{", class, "}(", args, ")", sep="");

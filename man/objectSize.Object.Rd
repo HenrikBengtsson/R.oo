@@ -21,7 +21,9 @@
   allocates might vary slighty.
 }
 
-\usage{\method{objectSize}{Object}(this, ...)}
+\usage{
+\method{objectSize}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

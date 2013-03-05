@@ -19,8 +19,13 @@
   Extracts the title string of a Rd file corresponding the the specified method of the specified class.
 }
 
-\synopsis{getRdTitle.Rdoc(this, class, method, ...)}
-\usage{Rdoc$getRdTitle(class, method, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$getRdTitle(class, method, ...)
+
+## Don't use the below:
+\method{getRdTitle}{Rdoc}(this, class, method, ...)
+}
 
 \arguments{
   \item{method}{The method to be search for.}

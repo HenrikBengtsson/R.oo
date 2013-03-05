@@ -19,7 +19,9 @@
   Gets the path to the example (R-ex/) directory of this package.
 }
 
-\usage{\method{getExamplePath}{Package}(this, ...)}
+\usage{
+\method{getExamplePath}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

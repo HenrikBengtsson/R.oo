@@ -19,8 +19,13 @@
  Static method to get the last Exception instanciated.
 }
 
-\synopsis{getLastException.Exception(this, ...)}
-\usage{Exception$getLastException(...)}
+\usage{
+## Static method (use this):
+## Exception$getLastException(...)
+
+## Don't use the below:
+\method{getLastException}{Exception}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -20,7 +20,9 @@
   If the \code{HOWTOCITE} file does not exist, an exception is thrown.
 }
 
-\usage{\method{showHowToCite}{Package}(this, ...)}
+\usage{
+\method{showHowToCite}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

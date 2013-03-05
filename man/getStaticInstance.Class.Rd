@@ -19,7 +19,9 @@
   Gets the static instance of this class.
 }
 
-\usage{\method{getStaticInstance}{Class}(this, ...)}
+\usage{
+\method{getStaticInstance}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

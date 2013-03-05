@@ -19,7 +19,9 @@
   Returns the field names of an BasicObject.
 }
 
-\usage{\method{getFields}{BasicObject}(this, private=FALSE, ...)}
+\usage{
+\method{getFields}{BasicObject}(this, private=FALSE, ...)
+}
 
 \arguments{
   \item{private}{If \code{\link[base:logical]{TRUE}}, private fields will also be returned,

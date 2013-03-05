@@ -19,7 +19,9 @@
  .
 }
 
-\usage{\method{getStackTrace}{Exception}(this, cleanup=getOption("R.oo::Exception/getStackTrace/args/cleanup", TRUE), ...)}
+\usage{
+\method{getStackTrace}{Exception}(this, cleanup=getOption("R.oo::Exception/getStackTrace/args/cleanup", TRUE), ...)
+}
 
 \arguments{
   \item{...}{Not used.}

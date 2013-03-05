@@ -21,7 +21,9 @@
   of the package. If no such line exists, \code{getUrl()} is used.
 }
 
-\usage{\method{getContribUrl}{Package}(this, ...)}
+\usage{
+\method{getContribUrl}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

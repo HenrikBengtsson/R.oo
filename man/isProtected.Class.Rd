@@ -19,7 +19,9 @@
  Checks if a class is defined protected or not.
 }
 
-\usage{\method{isProtected}{Class}(this, ...)}
+\usage{
+\method{isProtected}{Class}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

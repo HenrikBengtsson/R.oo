@@ -19,8 +19,13 @@
   Escape non-valid characters in a filename.
 }
 
-\synopsis{escapeRdFilename.Rdoc(static, filename, ...)}
-\usage{Rdoc$escapeRdFilename(filename, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$escapeRdFilename(filename, ...)
+
+## Don't use the below:
+\method{escapeRdFilename}{Rdoc}(static, filename, ...)
+}
 
 \arguments{
   \item{filename}{A filename (\code{\link[base]{character}} string) to be escaped.}

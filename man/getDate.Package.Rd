@@ -19,7 +19,9 @@
   Checks if the package is loaded onto the search path or not.
 }
 
-\usage{\method{getDate}{Package}(this, ...)}
+\usage{
+\method{getDate}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

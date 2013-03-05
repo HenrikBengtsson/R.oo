@@ -22,7 +22,9 @@
   each time a new instance of a class is created.
 }
 
-\usage{\method{staticCode}{Object}(static, ...)}
+\usage{
+\method{staticCode}{Object}(static, ...)
+}
 
 \arguments{
   \item{static}{The static instance of this class.}

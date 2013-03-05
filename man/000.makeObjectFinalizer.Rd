@@ -16,7 +16,9 @@
    Creates a standalone finalizer function for Object, which assumes only that the \pkg{base} package is available.
  }
 
- \usage{.makeObjectFinalizer(this, reloadRoo=TRUE)}
+ \usage{
+.makeObjectFinalizer(this, reloadRoo=TRUE)
+}
 
  \arguments{
    \item{this}{The \code{\link[R.oo]{Object}} to be finalized.}

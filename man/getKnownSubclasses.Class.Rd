@@ -19,7 +19,9 @@
  Gets all subclasses that are currently loaded.
 }
 
-\usage{\method{getKnownSubclasses}{Class}(this, sort=TRUE, ...)}
+\usage{
+\method{getKnownSubclasses}{Class}(this, sort=TRUE, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

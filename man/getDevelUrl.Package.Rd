@@ -21,7 +21,9 @@
   of the package.
 }
 
-\usage{\method{getDevelUrl}{Package}(this, ...)}
+\usage{
+\method{getDevelUrl}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

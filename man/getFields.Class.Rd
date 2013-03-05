@@ -25,7 +25,9 @@
   \item{...}{Not used.}
 }
 
-\usage{\method{getFields}{Class}(this, private=FALSE, ...)}
+\usage{
+\method{getFields}{Class}(this, private=FALSE, ...)
+}
 
 \value{
  Returns a \code{\link[base]{character}} \code{\link[base]{vector}} of field names.

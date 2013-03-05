@@ -19,8 +19,13 @@
   Gets the keywords defined in R with descriptions.
 }
 
-\synopsis{getKeywords.Rdoc(this, fullInfo=FALSE, ...)}
-\usage{Rdoc$getKeywords(fullInfo=FALSE, ...)}
+\usage{
+## Static method (use this):
+## Rdoc$getKeywords(fullInfo=FALSE, ...)
+
+## Don't use the below:
+\method{getKeywords}{Rdoc}(this, fullInfo=FALSE, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

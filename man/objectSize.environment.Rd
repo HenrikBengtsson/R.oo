@@ -18,7 +18,9 @@
   Gets the size of an environment in bytes.
 }
 
-\usage{\method{objectSize}{environment}(envir, ...)}
+\usage{
+\method{objectSize}{environment}(envir, ...)
+}
 
 \arguments{
   \item{envir}{An \code{\link[base]{environment}}().}

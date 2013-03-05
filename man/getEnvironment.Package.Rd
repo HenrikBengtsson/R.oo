@@ -19,7 +19,9 @@
   Gets the environment of a loaded package.
 }
 
-\usage{\method{getEnvironment}{Package}(this, ...)}
+\usage{
+\method{getEnvironment}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

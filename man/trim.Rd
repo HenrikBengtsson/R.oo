@@ -16,7 +16,9 @@
  Converts to a string and removes leading and trailing whitespace.
 }
 
-\usage{\method{trim}{default}(object, ...)}
+\usage{
+\method{trim}{default}(object, ...)
+}
 
 \arguments{
  \item{object}{A \code{\link[base]{vector}} of \R objects to be trimmed.}

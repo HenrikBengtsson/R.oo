@@ -38,7 +38,9 @@
  \code{( !is.null(obj) && (hashCode(this) == hashCode(obj)) )}.
 }
 
-\usage{\method{equals}{Object}(this, other, ...)}
+\usage{
+\method{equals}{Object}(this, other, ...)
+}
 
 \arguments{
   \item{other}{The other object this \code{\link[R.oo]{Object}} should be compared to.}

@@ -19,7 +19,9 @@
   Gets the path to the accompanying documentation (doc/) directory of this package.
 }
 
-\usage{\method{getDocPath}{Package}(this, ...)}
+\usage{
+\method{getDocPath}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

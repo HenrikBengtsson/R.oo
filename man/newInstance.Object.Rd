@@ -19,7 +19,9 @@
  Creates a new instance of the same class as this object.
 }
 
-\usage{\method{newInstance}{Object}(this, ...)}
+\usage{
+\method{newInstance}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Arguments passed to the constructor of the corresponding

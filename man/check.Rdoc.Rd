@@ -19,7 +19,9 @@
   Checks the compiled Rd files.
 }
 
-\usage{\method{check}{Rdoc}(this, manPath=getManPath(this), verbose=FALSE, ...)}
+\usage{
+\method{check}{Rdoc}(this, manPath=getManPath(this), verbose=FALSE, ...)
+}
 
 \arguments{
  \item{manPath}{The path to the Rd files (\code{\link[base]{character}} string).}

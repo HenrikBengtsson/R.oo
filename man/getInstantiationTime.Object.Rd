@@ -19,7 +19,9 @@
  Gets the time when the object was instantiated (created) as a POSIXt object.
 }
 
-\usage{\method{getInstantiationTime}{Object}(this, ...)}
+\usage{
+\method{getInstantiationTime}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

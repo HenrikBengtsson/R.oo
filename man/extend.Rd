@@ -22,7 +22,9 @@
   The method should be used by the constructor of a class and nowhere else.
 }
 
-\usage{\method{extend}{default}(this, ...className, ...)}
+\usage{
+\method{extend}{default}(this, ...className, ...)
+}
 
 \arguments{
   \item{this}{Object to be extended.}

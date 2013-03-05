@@ -34,7 +34,9 @@
  Object is located.
 }
 
-\usage{\method{hashCode}{Object}(this, ...)}
+\usage{
+\method{hashCode}{Object}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

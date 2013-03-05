@@ -19,7 +19,9 @@
    Checks if a field exists or not.
  }
 
- \usage{\method{hasField}{Object}(this, field, ...)}
+ \usage{
+\method{hasField}{Object}(this, field, ...)
+}
 
  \arguments{
    \item{field}{\code{\link[base]{vector}} of fields to be checked if they exists or not.}

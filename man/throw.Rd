@@ -29,7 +29,9 @@
  using \code{\link[base:conditions]{tryCatch}()}.
 }
 
-\usage{\method{throw}{default}(...)}
+\usage{
+\method{throw}{default}(...)
+}
 
 \arguments{
   \item{...}{One or several strings that are concatenated and collapsed

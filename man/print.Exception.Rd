@@ -20,7 +20,9 @@
  the stack trace is printed.
 }
 
-\usage{\method{print}{Exception}(x, ...)}
+\usage{
+\method{print}{Exception}(x, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

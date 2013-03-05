@@ -18,7 +18,9 @@
  \emph{without signalling a condition}.
 }
 
-\usage{\method{abort}{default}(..., call.=TRUE, domain=NULL)}
+\usage{
+\method{abort}{default}(..., call.=TRUE, domain=NULL)
+}
 
 \arguments{
   \item{...}{(optional) Objects coerced to \code{\link[base]{character}} and pasted together without a separator, or a @condition object. If no object are given, no message is printed.}

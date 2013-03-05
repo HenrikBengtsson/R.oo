@@ -41,7 +41,9 @@ extends simpleError\cr
  class is the root class of all other \code{Exception} classes.
 }
 
-\usage{Exception(..., sep="", collapse=", ")}
+\usage{
+Exception(..., sep="", collapse=", ")
+}
 
 \arguments{
   \item{...}{One or several strings, which will be concatenated and contain

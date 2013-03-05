@@ -21,7 +21,9 @@
  generated and nothing will be done.
 }
 
-\usage{\method{detach}{BasicObject}(this, ...)}
+\usage{
+\method{detach}{BasicObject}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

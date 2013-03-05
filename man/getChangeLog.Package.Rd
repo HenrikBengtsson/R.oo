@@ -30,8 +30,10 @@
   i.e. \code{\link[R.oo:getPath.Package]{*getPath}()}.
 }
 
-\usage{\method{getChangeLog}{Package}(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), newline="
-", ...)}
+\usage{
+\method{getChangeLog}{Package}(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), newline="
+", ...)
+}
 
 \arguments{
   \item{filenames}{A \code{\link[base]{character}} \code{\link[base]{vector}} of (non-case sensitive) filenames

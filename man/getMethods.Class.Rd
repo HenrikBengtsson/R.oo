@@ -19,7 +19,9 @@
   Returns the method names of class and its super classes as a list.
 }
 
-\usage{\method{getMethods}{Class}(this, private=FALSE, deprecated=TRUE, unique=TRUE, ...)}
+\usage{
+\method{getMethods}{Class}(this, private=FALSE, deprecated=TRUE, unique=TRUE, ...)
+}
 
 \arguments{
   \item{private}{If \code{\link[base:logical]{TRUE}}, private methods are also returned,

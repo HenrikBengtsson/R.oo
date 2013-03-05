@@ -20,7 +20,9 @@
   Gets the known subclasses.
 }
 
-\usage{\method{getKnownSubclasses}{classRepresentation}(this, ...)}
+\usage{
+\method{getKnownSubclasses}{classRepresentation}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

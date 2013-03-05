@@ -19,7 +19,9 @@
   Saves an Object to a file or a connection.
 }
 
-\usage{\method{save}{Object}(this, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)}
+\usage{
+\method{save}{Object}(this, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)
+}
 
 \arguments{
  \item{file}{Filename or \code{\link[base:connections]{connection}} to which the Object should be saved.

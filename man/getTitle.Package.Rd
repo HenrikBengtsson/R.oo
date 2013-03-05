@@ -19,7 +19,9 @@
   Gets the Title of this package as specified by the \code{DESCRIPTION} file.
 }
 
-\usage{\method{getTitle}{Package}(this, ...)}
+\usage{
+\method{getTitle}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

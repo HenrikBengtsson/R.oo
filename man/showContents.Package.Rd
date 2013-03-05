@@ -20,7 +20,9 @@
   If the \code{CONTENTS} file does not exist, an exception is thrown.
 }
 
-\usage{\method{showContents}{Package}(this, ...)}
+\usage{
+\method{showContents}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -19,7 +19,9 @@
   Gets the contents of this package, i.e. the parsed \code{CONTENTS} file.
 }
 
-\usage{\method{getContents}{Package}(this, fields=NULL, ...)}
+\usage{
+\method{getContents}{Package}(this, fields=NULL, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

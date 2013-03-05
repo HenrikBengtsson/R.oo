@@ -19,7 +19,9 @@
   Returns NULL.
 }
 
-\usage{\method{getFields}{Interface}(...)}
+\usage{
+\method{getFields}{Interface}(...)
+}
 
 \arguments{
   \item{...}{Ignored.}

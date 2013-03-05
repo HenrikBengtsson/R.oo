@@ -20,8 +20,13 @@
   class Object.
 }
 
-\synopsis{load.Object(static, file, path=NULL, ...)}
-\usage{Object$load(file, path=NULL, ...)}
+\usage{
+## Static method (use this):
+## Object$load(file, path=NULL, ...)
+
+## Don't use the below:
+\method{load}{Object}(static, file, path=NULL, ...)
+}
 
 \arguments{
  \item{file}{Filename or \code{\link[base:connections]{connection}} from where to read the Object.}

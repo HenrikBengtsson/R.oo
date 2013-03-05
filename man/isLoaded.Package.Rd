@@ -19,7 +19,9 @@
   Checks if the package is installed on the search path or not.
 }
 
-\usage{\method{isLoaded}{Package}(this, ...)}
+\usage{
+\method{isLoaded}{Package}(this, ...)
+}
 
 \arguments{
   \item{...}{Not used.}

@@ -33,7 +33,9 @@ extends \link[R.oo]{Object}\cr
   class is the root class of all other \code{Package} classes.
  }
 
- \usage{Package(name=NULL)}
+ \usage{
+Package(name=NULL)
+}
 
  \arguments{
    \item{name}{Name of the package.}

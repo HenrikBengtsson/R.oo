@@ -46,7 +46,9 @@ extends \link[R.oo]{Exception}\cr
   references below.
  }
 
- \usage{RccViolationException(...)}
+ \usage{
+RccViolationException(...)
+}
 
  \arguments{
    \item{...}{Any arguments accepted by the constructor of Exception, i.e.
