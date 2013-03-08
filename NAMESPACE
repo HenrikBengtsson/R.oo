@@ -11,6 +11,8 @@ importFrom("utils", packageDescription)
 importFrom("utils", update.packages)
 #importFrom("stats", getCall) # Only in R (>= 2.14.0)
 
+importFrom("methods", isClass)
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # EXPORTS
