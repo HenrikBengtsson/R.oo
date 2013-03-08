@@ -4,6 +4,7 @@ Package: R.oo
 Version: 1.12.1 [2013-03-08]
 o Added compileRdoc() to make it easier to compile Rdoc comments
   into Rd help files, e.g. Rscript -e "R.oo::compileRdoc()".
+o Added an Authors@R field to the DESCRIPTION.
 
 
 Version: 1.12.0 [2013-03-04]
