@@ -26,7 +26,7 @@
 #   under the current working directory (e.g. \code{PkgA/R/*.R}) from
 #   the system command line, do:
 #   \preformatted{
-#     Rscript -e "R.oo::compileRdoc()"
+#     Rscript -e R.oo::compileRdoc()
 #   }
 # }
 #

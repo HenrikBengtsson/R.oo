@@ -1306,15 +1306,16 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
             # Create all initials of the 'authors'
             pkgAuthors <<- authors <- getPackageAuthors();
-            known <- format(authors, include=c("given", "family"));
-            known <- abbreviate(known, minlength=2L);
+            fullnames <- format(authors, include=c("given", "family"));
+            known <- abbreviate(fullnames, minlength=2L);
             known <- toupper(known);
 
             # Check if the initials match
             idxs <- match(initials, known);
             unknown <- initials[is.na(idxs)];
             if (length(unknown) > 0L) {
-              throw(RdocException("Rdoc 'author' tag specifies initials (", paste(sQuote(unknown), collapse=", "), ") that are not part of the known ones (", paste(sQuote(known), collapse=", "), ")", source=sourcefile));
+              known <- paste(sQuote(known), sQuote(fullnames), sep="=");
+              throw(RdocException("Rdoc 'author' tag specifies initials (", paste(sQuote(unknown), collapse=", "), ") that are not part of the known ones (", paste(known, collapse=", "), ")", source=sourcefile));
             }
             authors <- authors[idxs];
           } else {
