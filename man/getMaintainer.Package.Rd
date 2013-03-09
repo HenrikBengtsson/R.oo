@@ -18,15 +18,18 @@
 }
 
 \usage{
-\method{getMaintainer}{Package}(this, ...)
+\method{getMaintainer}{Package}(this, as=c("character", "person"), include=c("given", "family"), ...)
 }
 
 \arguments{
-  \item{...}{Not used.}
+  \item{as}{A \code{\link[base]{character}} string specifying the return format.}
+  \item{include}{A \code{\link[base]{character}} \code{\link[base]{vector}}  specifying which person fields
+    to include if returning a \code{\link[base]{character}} string.}
+  \item{...}{Optional arguments passed to \code{\link[utils]{format.person}}.}
 }
 
 \value{
-  Returns a \code{\link[base]{character}} string.
+  Returns a \code{\link[base]{character}} string or a \code{\link[utils]{person}} object.
 }
 
 \examples{

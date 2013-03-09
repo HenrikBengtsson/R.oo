@@ -1022,11 +1022,14 @@ setMethodS3("getDevelUrl", "Package", function(this, ...) {
 # @synopsis
 #
 # \arguments{
-#   \item{...}{Not used.}
+#   \item{as}{A @character string specifying the return format.}
+#   \item{include}{A @character @vector  specifying which person fields
+#     to include if returning a @character string.}
+#   \item{...}{Optional arguments passed to @see "utils::format.person".}
 # }
 #
 # \value{
-#   Returns a @character string.
+#   Returns a @character string or a @see "utils::person" object.
 # }
 #
 # \examples{
@@ -1040,8 +1043,41 @@ setMethodS3("getDevelUrl", "Package", function(this, ...) {
 #   @seeclass
 # }
 #*/#########################################################################
-setMethodS3("getMaintainer", "Package", function(this, ...) {
-  getDescriptionFile(this, fields="Maintainer");
+setMethodS3("getMaintainer", "Package", function(this, as=c("character", "person"), include=c("given", "family"), ...) {
+  # Argument 'as':
+  as <- match.arg(as);
+
+  persons <- getDescriptionFile(this, fields=c("Authors@R", "Maintainer"));
+  persons <- persons[!is.na(persons)];
+  if (length(persons) == 0L) {
+    return(NA);
+  }
+
+  persons <- persons[1L];
+  key <- names(persons)[1L];
+
+  # Parse?
+  if (key == "Authors@R") {
+    personsP <- eval(parse(text=persons));
+    # Find creators
+    isCreator <- sapply(personsP, FUN=function(p) is.element("cre", p$role));
+    if (any(isCreator)) {
+       personsP <- personsP[isCreator];
+    }
+    persons <- format(personsP, include=include, ...);
+  } else {
+    personsP <- NULL;
+  }
+
+  if (as == "character") {
+    return(persons);
+  }
+
+  if (is.null(personsP)) {
+    personsP <- as.person(persons);
+  }
+
+  personsP;
 })
 
 
@@ -1059,7 +1095,7 @@ setMethodS3("getMaintainer", "Package", function(this, ...) {
 #
 # \arguments{
 #   \item{as}{A @character string specifying the return format.}
-#   \item{include}{A @character @vector  specifying which author fields
+#   \item{include}{A @character @vector  specifying which person fields
 #     to include if returning a @character string.}
 #   \item{...}{Optional arguments passed to @see "utils::format.person".}
 # }
@@ -1083,31 +1119,31 @@ setMethodS3("getAuthor", "Package", function(this, as=c("character", "person"), 
   # Argument 'as':
   as <- match.arg(as);
 
-  authors <- getDescriptionFile(this, fields=c("Authors@R", "Author"));
-  authors <- authors[!is.na(authors)];
-  if (length(authors) == 0L) {
+  persons <- getDescriptionFile(this, fields=c("Authors@R", "Author"));
+  persons <- persons[!is.na(persons)];
+  if (length(persons) == 0L) {
     return(NA);
   }
-  authors <- authors[1L];
-  key <- names(authors)[1L];
+  persons <- persons[1L];
+  key <- names(persons)[1L];
 
   # Parse?
   if (key == "Authors@R") {
-    authorsP <- eval(parse(text=authors));
-    authors <- format(authorsP, include=include, ...);
+    personsP <- eval(parse(text=persons));
+    persons <- format(personsP, include=include, ...);
   } else {
-    authorsP <- NULL;
+    personsP <- NULL;
   }
 
   if (as == "character") {
-    return(authors);
+    return(persons);
   }
 
-  if (is.null(authorsP)) {
-    authorsP <- as.person(authors);
+  if (is.null(personsP)) {
+    personsP <- as.person(persons);
   }
 
-  authorsP;
+  personsP;
 })
 
 

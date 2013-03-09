@@ -23,7 +23,7 @@
 
 \arguments{
   \item{as}{A \code{\link[base]{character}} string specifying the return format.}
-  \item{include}{A \code{\link[base]{character}} \code{\link[base]{vector}}  specifying which author fields
+  \item{include}{A \code{\link[base]{character}} \code{\link[base]{vector}}  specifying which person fields
     to include if returning a \code{\link[base]{character}} string.}
   \item{...}{Optional arguments passed to \code{\link[utils]{format.person}}.}
 }

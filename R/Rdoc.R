@@ -515,6 +515,16 @@ setMethodS3("escapeRdFilename", "Rdoc", function(static, filename, ...) {
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Global variables
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  authorWarn <- FALSE;
+  pkgAuthors <- NULL;
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   isCapitalized <- function(str) {
     first <- substring(str,1,1);
     (first == toupper(first))
@@ -837,13 +847,24 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
 
     # Read and parse authors from DESCRIPTION's 'Authors@R' or 'Author'.
-    getPackageAuthors <- function(pkgname) {
+    getPackageAuthors <- function() {
       if (!is.null(pkgAuthors)) {
          return(pkgAuthors);
       }
       pkg <- Package(Rdoc$package);
       authors <- getAuthor(pkg, as="person");
-      pkgAuthors <<- authors;
+      authorsN <- format(authors, include=c("given", "family"));
+
+      maintainers <- getMaintainer(pkg, as="person");
+      maintainersN <- format(maintainers, include=c("given", "family"));
+
+      # Append maintainers, if not already listed as authors
+      keep <- !is.element(maintainersN, authorsN);
+      maintainers <- maintainers[keep];
+      if (length(maintainers) > 0L) {
+##        authors <- c(authors, maintainers);
+      }
+
       authors;
     } # getPackageAuthors()
   
@@ -1264,12 +1285,14 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
       # Does the @author tag has a value?      
       if (hasValue) {
+        # Non-empty @author tag with value, e.g. '@author "HB"'
+
         value <- gsub("^[ \t]*['\"]?", "", value);
         value <- gsub("['\"]?[ \t]*$", "", value);
 
         # (i) All authors?
         if (value == "*") {
-          authors <- getPackageAuthors();
+          pkgAuthors <<- authors <- getPackageAuthors();
         } else {
           # (ii) All initials?  An initial = 2-5 upper case letters
           tmp <- unlist(strsplit(value, split=",", fixed=TRUE))
@@ -1282,7 +1305,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
             initials <- tmp;
 
             # Create all initials of the 'authors'
-            authors <- getPackageAuthors();
+            pkgAuthors <<- authors <- getPackageAuthors();
             known <- format(authors, include=c("given", "family"));
             known <- abbreviate(known, minlength=2L);
             known <- toupper(known);
@@ -1291,7 +1314,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
             idxs <- match(initials, known);
             unknown <- initials[is.na(idxs)];
             if (length(unknown) > 0L) {
-              throw(RdocException("Rdoc 'author' tag specifies initials (", paste(sQuote(unknown), collapse=", "), ") that are not part of the known ones (", paste(sQuote(known), collapse=", "), ")", , source=sourcefile));
+              throw(RdocException("Rdoc 'author' tag specifies initials (", paste(sQuote(unknown), collapse=", "), ") that are not part of the known ones (", paste(sQuote(known), collapse=", "), ")", source=sourcefile));
             }
             authors <- authors[idxs];
           } else {
@@ -1299,17 +1322,23 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
           }
         }
         bfr <- bfrT;
-      } else if (exists("author", mode="character", envir=globalenv())) {
-          # Default value for backward compatibility
-          author <- get("author", mode="character", envir=globalenv());
-          authors <- as.person(author);
       } else {
-        authors <- getPackageAuthors();
+        # Empty @author tag, i.e. '@author'
+
+        pkgAuthors <<- authors <- getPackageAuthors();
         # If there are creators of the package (which there should be),
         # use those as the default for an empty '@author' tag.
         isCreator <- sapply(authors, FUN=function(a) is.element("cre", a$role));
         if (any(isCreator)) {
           authors <- authors[isCreator];
+        }
+
+        if (exists("author", mode="character", envir=globalenv())) {
+          if (!authorWarn) {
+            author <- get("author", mode="character", envir=globalenv());
+            warning("Detected an 'author' character variable in the global environment. Note that, since R.oo 1.13.0, the author for an (empty) Rdoc @author tag is inferred from the 'Authors@R' or 'Author' DESCRIPTION field and no longer for a global 'author' variable: ", sQuote(author));
+            authorWarn <<- TRUE;
+          }
         }
       }
 
@@ -1615,7 +1644,6 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       # Remember the name of the source file in case of an error...
       Rdoc$source <- sourcefile <<- attr(rdoc, "sourcefile");
 
-      pkgAuthors <- NULL;  
       title <- NULL;
       objectName <- NULL;
       isDeprecated <- FALSE;
