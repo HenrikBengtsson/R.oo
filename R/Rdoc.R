@@ -1337,7 +1337,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
         if (exists("author", mode="character", envir=globalenv())) {
           if (!authorWarn) {
             author <- get("author", mode="character", envir=globalenv());
-            warning("Detected an 'author' character variable in the global environment. Note that, since R.oo 1.13.0, the author for an (empty) Rdoc @author tag is inferred from the 'Authors@R' or 'Author' DESCRIPTION field and no longer for a global 'author' variable: ", sQuote(author));
+            warning("Detected an 'author' character variable in the global environment. Note that, since R.oo 1.13.0, the author for an (empty) Rdoc @author tag is inferred from the 'Authors@R' or 'Author' DESCRIPTION field and no longer take from the global 'author' variable: ", sQuote(author));
             authorWarn <<- TRUE;
           }
         }
