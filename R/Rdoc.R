@@ -1305,6 +1305,12 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
           authors <- as.person(author);
       } else {
         authors <- getPackageAuthors();
+        # If there are creators of the package (which there should be),
+        # use those as the default for an empty '@author' tag.
+        isCreator <- sapply(authors, FUN=function(a) is.element("cre", a$role));
+        if (any(isCreator)) {
+          authors <- authors[isCreator];
+        }
       }
 
       authorsTag <- format(authors, include=c("given", "family"));
