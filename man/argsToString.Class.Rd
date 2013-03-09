@@ -44,7 +44,7 @@
   For more information see \code{\link{Class}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

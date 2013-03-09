@@ -56,7 +56,7 @@
   )
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See the \code{\link{Exception}} class for more detailed information.

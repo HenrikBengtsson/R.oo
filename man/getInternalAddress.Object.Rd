@@ -38,7 +38,7 @@
   getInternalAddress(obj, format="hexstring")  # "0x000000000ab6a7a8"
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[=getName.environment]{getName()}}.

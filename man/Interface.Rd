@@ -51,7 +51,7 @@ Interface(core=NA, ...)
 
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
 \keyword{classes}
 \keyword{internal}

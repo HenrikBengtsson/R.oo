@@ -37,7 +37,7 @@
   as.character(obj)    # "Object: 0x000000000ab6a7a8"
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Object}}.

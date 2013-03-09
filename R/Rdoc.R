@@ -835,6 +835,17 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       is.element("deprecated", mods);
     } # isObjectDeprecated()
 
+
+    # Read and parse authors from DESCRIPTION's 'Authors@R' or 'Author'.
+    getPackageAuthors <- function(pkgname) {
+      if (!is.null(pkgAuthors)) {
+         return(pkgAuthors);
+      }
+      pkg <- Package(Rdoc$package);
+      authors <- getAuthor(pkg, as="person");
+      pkgAuthors <<- authors;
+      authors;
+    } # getPackageAuthors()
   
     
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1245,10 +1256,63 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     tagAuthor <- function(bfr) {
-      if (!exists("author"))
-        throw(RdocException("R variable does not exist: author", source=sourcefile));
-      line <- paste("\\author{", as.character(get("author")), "}", sep="");
+      bfrT <- getTagValue(bfr);
+      value <- attr(bfrT, "value");
+      value <- as.character(value);
+      hasValue <- (nchar(value) > 0L);
+      hasValue <- hasValue && (regexpr("^[ \t]*[\n\r]", value) == -1L);
+
+      # Does the @author tag has a value?      
+      if (hasValue) {
+        value <- gsub("^[ \t]*['\"]?", "", value);
+        value <- gsub("['\"]?[ \t]*$", "", value);
+
+        # (i) All authors?
+        if (value == "*") {
+          authors <- getPackageAuthors();
+        } else {
+          # (ii) All initials?  An initial = 2-5 upper case letters
+          tmp <- unlist(strsplit(value, split=",", fixed=TRUE))
+          tmp <- gsub("^[ \t]*", "", tmp);
+          tmp <- gsub("[ \t]*$", "", tmp);
+          tmpU <- toupper(tmp);
+          pattern <- sprintf("^[%s]{2,5}$", paste(base::LETTERS, collapse=""));
+          allInitials <- all( (tmpU == tmp) & (regexpr(pattern, tmp) != -1L) );
+          if (allInitials) {
+            initials <- tmp;
+
+            # Create all initials of the 'authors'
+            authors <- getPackageAuthors();
+            known <- format(authors, include=c("given", "family"));
+            known <- abbreviate(known, minlength=2L);
+            known <- toupper(known);
+
+            # Check if the initials match
+            idxs <- match(initials, known);
+            unknown <- initials[is.na(idxs)];
+            if (length(unknown) > 0L) {
+              throw(RdocException("Rdoc 'author' tag specifies initials (", paste(sQuote(unknown), collapse=", "), ") that are not part of the known ones (", paste(sQuote(known), collapse=", "), ")", , source=sourcefile));
+            }
+            authors <- authors[idxs];
+          } else {
+            authors <- as.person(value);
+          }
+        }
+        bfr <- bfrT;
+      } else if (exists("author", mode="character", envir=globalenv())) {
+          # Default value for backward compatibility
+          author <- get("author", mode="character", envir=globalenv());
+          authors <- as.person(author);
+      } else {
+        authors <- getPackageAuthors();
+      }
+
+      authorsTag <- format(authors, include=c("given", "family"));
+      authorsTag <- paste(authorsTag, collapse=", ");
+
+      line <- paste("\\author{", authorsTag, "}", sep="");
       rd <<- paste(rd, line, sep="");
+
       bfr;
     }
   
@@ -1523,6 +1587,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     names <- names(tags);
     attr(tags, "beginsWith") <- paste("^@", names, sep="");
   
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Make a best guess what the package is that is created by looking
@@ -1543,7 +1608,8 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     for (rdoc in rdocs) {
       # Remember the name of the source file in case of an error...
       Rdoc$source <- sourcefile <<- attr(rdoc, "sourcefile");
-  
+
+      pkgAuthors <- NULL;  
       title <- NULL;
       objectName <- NULL;
       isDeprecated <- FALSE;
@@ -2548,6 +2614,9 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-03-08
+# o Added support for @author "John Doe" as well as @author "JD" where
+#   the initials are then inferred from the package's DESCRIPTION file.
 # 2012-12-28
 # o Replaced all data.class(obj) with class(obj)[1].
 # 2012-06-11

@@ -27,7 +27,7 @@
  Returns a \code{\link[base]{character}} \code{\link[base]{vector}} of class names of Interface:s.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Interface}}.

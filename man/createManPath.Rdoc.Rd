@@ -35,7 +35,7 @@
  and throws an \code{\link[R.oo]{Exception}} if failed.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:getManPath.Rdoc]{*getManPath}()}

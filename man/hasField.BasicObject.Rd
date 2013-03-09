@@ -30,7 +30,7 @@
  Returns a \code{\link[base]{logical}} \code{\link[base]{vector}} indicating for each field if it exists or not.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   To get the fields of an Object, see \code{\link[R.oo:getFields.BasicObject]{*getFields}()}.

@@ -30,7 +30,7 @@
  Returns an \code{\link[base]{integer}} specifying the size of the object in number of bytes.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[utils]{object.size}}.

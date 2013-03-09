@@ -29,7 +29,7 @@
   Returns a \code{\link[base]{environment}}, or \code{\link[base]{NULL}} if the package was not loaded.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:getPosition.Package]{*getPosition}()}.

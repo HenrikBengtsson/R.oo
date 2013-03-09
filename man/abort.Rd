@@ -70,7 +70,7 @@ cat("This line will never be outputted.\n")
 
 }}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{throw}}().

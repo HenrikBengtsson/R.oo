@@ -31,7 +31,7 @@
   Returns a ASCII \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
   i <- charToInt(unlist(strsplit("Hello world!", split=NULL)))

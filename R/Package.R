@@ -1058,11 +1058,14 @@ setMethodS3("getMaintainer", "Package", function(this, ...) {
 # @synopsis
 #
 # \arguments{
-#   \item{...}{Not used.}
+#   \item{as}{A @character string specifying the return format.}
+#   \item{include}{A @character @vector  specifying which author fields
+#     to include if returning a @character string.}
+#   \item{...}{Optional arguments passed to @see "utils::format.person".}
 # }
 #
 # \value{
-#   Returns a @character string.
+#   Returns a @character string or a @see "utils::person" object.
 # }
 #
 # \examples{
@@ -1076,8 +1079,35 @@ setMethodS3("getMaintainer", "Package", function(this, ...) {
 #   @seeclass
 # }
 #*/#########################################################################
-setMethodS3("getAuthor", "Package", function(this, ...) {
-  getDescriptionFile(this, fields="Author");
+setMethodS3("getAuthor", "Package", function(this, as=c("character", "person"), include=c("given", "family"), ...) {
+  # Argument 'as':
+  as <- match.arg(as);
+
+  authors <- getDescriptionFile(this, fields=c("Authors@R", "Author"));
+  authors <- authors[!is.na(authors)];
+  if (length(authors) == 0L) {
+    return(NA);
+  }
+  authors <- authors[1L];
+  key <- names(authors)[1L];
+
+  # Parse?
+  if (key == "Authors@R") {
+    authorsP <- eval(parse(text=authors));
+    authors <- format(authorsP, include=include, ...);
+  } else {
+    authorsP <- NULL;
+  }
+
+  if (as == "character") {
+    return(authors);
+  }
+
+  if (is.null(authorsP)) {
+    authorsP <- as.person(authors);
+  }
+
+  authorsP;
 })
 
 
@@ -1649,6 +1679,10 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2013-03-08
+# o Now getAuthor() for Package uses the 'Authors@R' field of DESCRIPTION
+#   and if not found then the 'Author' field.  In addition, using argument
+#   'as="person"' with parse and return the authors list as 'person' object.
 # 2012-12-28
 # o Replaced all data.class(obj) with class(obj)[1].
 # 2012-12-19

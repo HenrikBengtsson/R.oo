@@ -39,7 +39,7 @@
   For more information see \code{\link{BasicObject}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \keyword{programming}
 \keyword{methods}

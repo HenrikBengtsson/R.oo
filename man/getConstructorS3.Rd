@@ -31,7 +31,7 @@
   \code{\link[R.methodsS3]{isGenericS3}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

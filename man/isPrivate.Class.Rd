@@ -34,7 +34,7 @@
     throw("The class RccViolationException should NOT be private.")
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{class}}().

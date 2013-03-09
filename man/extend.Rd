@@ -36,7 +36,7 @@
  Returns an object of class \code{...className}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
 setConstructorS3("MyDouble", function(value=0, ...) {

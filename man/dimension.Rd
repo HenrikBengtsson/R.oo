@@ -38,7 +38,7 @@
   dimension(print)                      # NULL
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{ll.default}}().

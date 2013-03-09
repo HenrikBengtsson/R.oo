@@ -46,7 +46,7 @@
   Returns \code{\link[base:logical]{TRUE}} if the objects are equal, otherwise \code{\link[base:logical]{FALSE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{identical}}().

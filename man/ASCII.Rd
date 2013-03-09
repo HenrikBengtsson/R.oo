@@ -31,7 +31,7 @@
   ch <- ASCII[65+1];  # ch == "A"
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{charToInt}}()

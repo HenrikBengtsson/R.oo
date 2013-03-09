@@ -93,7 +93,7 @@ print(ll(objC))
 
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   To clear the cached fields and run the garbage collector

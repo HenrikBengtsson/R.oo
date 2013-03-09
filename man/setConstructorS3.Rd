@@ -88,7 +88,7 @@
   For a thorough example of how to use this method see \code{\link{Object}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \keyword{programming}
 \keyword{methods}

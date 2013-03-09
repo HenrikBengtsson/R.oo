@@ -43,7 +43,7 @@
    }
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    To get the fields of an Object, see \code{\link[R.oo:getFields.Object]{*getFields}()}.

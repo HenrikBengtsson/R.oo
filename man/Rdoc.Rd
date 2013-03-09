@@ -68,7 +68,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
 
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \examples{\dontrun{# Set default author
 author <- "Henrik Bengtsson, \\url{http://www.braju.com/R/}"

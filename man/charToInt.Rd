@@ -30,7 +30,7 @@
   Returns an ASCII \code{\link[base]{character}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
   i <- charToInt(unlist(strsplit("Hello world!", split=NULL)))

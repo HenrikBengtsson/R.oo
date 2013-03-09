@@ -62,7 +62,7 @@ rm(o)
 ## Vcells  53725  0.5     786432  6.0
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Object}}.

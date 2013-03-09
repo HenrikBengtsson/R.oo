@@ -48,7 +48,7 @@
    }
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    To check if a field exists or not, see \code{\link[R.oo:hasField.Object]{*hasField}()}.

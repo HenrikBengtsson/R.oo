@@ -37,7 +37,7 @@
   For more information see \code{\link{Exception}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \keyword{programming}
 \keyword{methods}

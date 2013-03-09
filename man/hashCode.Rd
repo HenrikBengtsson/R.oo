@@ -40,7 +40,7 @@
   For all other objects, by default \code{as.integer()} is called.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \keyword{programming}
 \keyword{methods}

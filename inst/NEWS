@@ -1,9 +1,15 @@
 Package: R.oo
 =============
 
-Version: 1.12.1 [2013-03-08]
+Version: 1.13.0 [2013-03-08]
+o Added support for Rdoc tag @author to have an optional value, e.g.
+  @author "John Doe" as well as @author "JD, FB" where the initials
+  are inferred from the package's DESCRIPTION file.
 o Added compileRdoc() to make it easier to compile Rdoc comments
   into Rd help files, e.g. Rscript -e "R.oo::compileRdoc()".
+o Now getAuthor() for Package uses the 'Authors@R' field of DESCRIPTION
+  and if not found then the 'Author' field.  In addition, using argument
+  'as="person"' with parse and return the authors list as 'person' object.
 o Added an Authors@R field to the DESCRIPTION.
 
 

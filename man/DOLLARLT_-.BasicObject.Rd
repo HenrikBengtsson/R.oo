@@ -36,7 +36,7 @@
  Returns itself, i.e. \code{this}, as all \code{$<-} methods must do.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{BasicObject}}.

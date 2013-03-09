@@ -34,7 +34,7 @@
  Returns a \code{\link[base]{logical}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:getKeywords.Rdoc]{*getKeywords}()}

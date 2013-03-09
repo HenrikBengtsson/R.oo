@@ -29,7 +29,7 @@
  Returns a \code{\link[base]{logical}} value, which by default is \code{\link[base:logical]{TRUE}} for all \code{\link[R.oo]{Object}}'s.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Object}}.

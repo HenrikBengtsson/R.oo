@@ -61,7 +61,7 @@ print(Car("Tyrrell P34", 6))
 print(Car("T-Rex", 3))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Class}}.

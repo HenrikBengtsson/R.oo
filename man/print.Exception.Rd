@@ -30,7 +30,7 @@
 
 \examples{\dontrun{For a complete example see help(Exception).}}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:as.character.Exception]{*as.character}()}.

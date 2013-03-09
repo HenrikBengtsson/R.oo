@@ -61,7 +61,7 @@
   For more information see \code{\link{Object}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \keyword{programming}
 \keyword{methods}

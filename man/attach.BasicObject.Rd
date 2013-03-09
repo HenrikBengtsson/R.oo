@@ -36,7 +36,7 @@
  Returns \code{\link[base:logical]{TRUE}} if the \code{\link{BasicObject}} was attached, otherwise \code{\link[base:logical]{FALSE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:detach.BasicObject]{*detach}()} and \code{\link[base]{attach}}(), \code{\link[base]{detach}}().

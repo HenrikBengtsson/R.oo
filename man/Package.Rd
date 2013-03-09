@@ -125,7 +125,7 @@ print(R.oo::R.oo)
 #      c:/PROGRA~1/R/rw1062/library/R.oo/."
 }}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \keyword{programming}
  \keyword{methods}

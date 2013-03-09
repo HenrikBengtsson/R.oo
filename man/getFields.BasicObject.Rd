@@ -31,7 +31,7 @@
  Returns a \code{\link[base]{character}} \code{\link[base]{vector}} of field names.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   To check if a field exists or not, see \code{\link[R.oo:hasField.BasicObject]{*hasField}()}.

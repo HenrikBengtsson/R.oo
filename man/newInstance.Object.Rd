@@ -30,7 +30,7 @@
   Returns a reference to an instance of \code{\link{Object}} or a subclass thereof.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{newInstance.Class}}().

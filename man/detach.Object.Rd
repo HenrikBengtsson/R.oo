@@ -33,7 +33,7 @@
 
 \examples{\dontrun{For a complete example see help(Object).}}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:attach.Object]{*attach}()} and \code{\link[base]{attach}}(), \code{\link[base]{detach}}().

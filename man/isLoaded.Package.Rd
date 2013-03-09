@@ -34,7 +34,7 @@
   print(isLoaded(pkg))       # TRUE
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:load.Package]{*load}()}.

@@ -39,7 +39,7 @@
 
 \examples{\dontrun{For a complete example see help(Object).}}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.oo:load.Object]{*load}()} and \code{\link[base]{save}}(), \code{\link[base]{load}}().

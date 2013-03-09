@@ -52,7 +52,7 @@ print(obj) # [1] "CachedObject: 0x02466E28. RAM: 391.05kb."
 
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   To clear the fields without calling the garbage collector,

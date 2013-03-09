@@ -38,7 +38,7 @@
   objectSize(obj)   # 856
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   To clear fields that are declared \code{cached},

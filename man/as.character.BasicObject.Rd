@@ -25,7 +25,7 @@
  Returns a \code{\link[base]{character}} string representation of the object.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{BasicObject}}.

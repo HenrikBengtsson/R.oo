@@ -29,7 +29,7 @@
  Returns an \code{\link[R.oo]{Object}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Object}}.

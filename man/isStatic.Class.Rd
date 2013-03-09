@@ -34,7 +34,7 @@
     throw("RccViolationException should be static because Exception is.")
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{setConstructorS3}}().

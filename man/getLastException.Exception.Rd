@@ -41,7 +41,7 @@
   See also \code{\link[base:conditions]{tryCatch}()}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \keyword{programming}
 \keyword{methods}

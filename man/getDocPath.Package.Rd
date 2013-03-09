@@ -34,7 +34,7 @@
   print(list.files(R.oo$docPath))       # as a virtual field
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Package}}.
