@@ -9,7 +9,7 @@ o Added compileRdoc() to make it easier to compile Rdoc comments
   into Rd help files, e.g. Rscript -e "R.oo::compileRdoc()".
 o Now getAuthor() and getMaintainer() for Package use the 'Authors@R'
   field of DESCRIPTION and if not found then the 'Author'/'Maintainer'
-  field.  In addition, using argument 'as="person"' with parse and
+  field.  In addition, using argument 'as="person"' will parse and
   return the results as a 'person' list.
 o Added an Authors@R field to the DESCRIPTION.
 
