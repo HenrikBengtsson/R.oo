@@ -808,7 +808,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     getTagValue <- function(bfr) {
       # 1. Remove all leading whitespace
-      bfr <- gsub("^[ \t\n\r]", "", bfr);
+      bfr <- gsub("^[ \t]", "", bfr);
 
       # 2a. Is there a '{' + '}' pair?  (nesting brackets are not allowed)
       if ((beginPos <- regexpr("^\\{", bfr)) != -1L) {
@@ -828,7 +828,9 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
         bfr <- substring(bfr, first=endPos+2L);
       }
       # 2c. ...otherwise the value is the first word found
+      #     (on the same line!)
       else {
+        beginPos <- 1L;
         endPos <- regexpr("([ \t\n\r]|$)", bfr);
         value <- substring(bfr, first=1L, last=endPos-1L);
         # Ad hoc. /HB 2013-03-25
@@ -1754,8 +1756,9 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
             # Evaluate the tag function in the current environment
             # so all variables can be shared between tags.
             # All tag functions must return the resulting buffer!
-            eval(substitute(assign("rdoc", tagFunction(rdoc)),
-               list(tagFunction=tagFunction, rdoc=rdoc)));
+            expr <- substitute(tagFunction(rdoc),
+                      list(tagFunction=tagFunction, rdoc=rdoc));
+            rdoc <- eval(expr);
           }
         } else {
           pos <- regexpr(pattern2, substring(rdoc, first=2L));
@@ -1829,7 +1832,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
             }, warning = function(w) {
               filename <- sprintf("%s.Rd.ERROR", attr(rd, "name"));
               cat(rd, sep="\n", file=filename);
-              throw(RdocException(sprintf("Syntax error in generated Rd code (see '%s') for Rdoc comment '%s' (in '%s') was detected by tools:parse_Rd(): %s", getAbsolutePath(filename), attr(rd, "name"), attr(rd, "sourcefile"), as.character(w))));
+              throw(RdocException(sprintf("Syntax error in generated Rd code (see '%s') for Rdoc comment '%s' (in '%s') was detected by tools:parse_Rd(): %s", filename, attr(rd, "name"), attr(rd, "sourcefile"), as.character(w))));
             }, finally = {
               close(con);
               con <- NULL;

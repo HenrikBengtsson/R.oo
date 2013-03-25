@@ -2,7 +2,10 @@ Package: R.oo
 =============
 
 Version: 1.13.1 [2013-03-25]
+o Now Rdoc$compile(..., check=TRUE) saves the erroneous Rd to file
+  before throwing the exception.  This helps troubleshooting.
 o BUG FIX: Rdoc$compile() could sometimes drop '}' following Rdoc tags.
+
 
 
 Version: 1.13.0 [2013-03-08]
