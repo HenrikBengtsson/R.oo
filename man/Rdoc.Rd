@@ -6,15 +6,15 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{Rdoc}
+\name{Rdoc}
 \docType{class}
 \alias{Rdoc}
 
 
- \title{Class for converting Rdoc comments to Rd files}
+\title{Class for converting Rdoc comments to Rd files}
 
- \description{
-  Package:  R.oo \cr
+\description{
+ Package:  R.oo \cr
 \bold{Class Rdoc}\cr
 
 \code{\link[R.oo]{Object}}\cr
@@ -29,15 +29,15 @@ extends \link[R.oo]{Object}\cr
 
 
 
-  Class for converting Rdoc comments to Rd files.
- }
+ Class for converting Rdoc comments to Rd files.
+}
 
- \usage{
+\usage{
 Rdoc()
 }
 
- \section{Fields and Methods}{
-  \bold{Methods:}\cr
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{\link[R.oo:argsToString.Rdoc]{argsToString}} \tab Gets the arguments signature of a function.\cr
  \tab \code{\link[R.oo:check.Rdoc]{check}} \tab Checks the compiled Rd files.\cr
@@ -66,11 +66,12 @@ Rdoc()
  \bold{Methods inherited from Object}:\cr
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, registerFinalizer, save
 
- }
 
- \author{Henrik Bengtsson}
+}
 
- \examples{\dontrun{# Set default author
+\author{Henrik Bengtsson}
+
+\examples{\dontrun{# Set default author
 author <- "Henrik Bengtsson, \\url{http://www.braju.com/R/}"
 
 # Show the file containing the Rdoc comments
@@ -92,12 +93,12 @@ file.show(rdFiles[1])
 file.remove(rdFiles)
 }}
 
- \references{
-   R developers,
-   \emph{Guidelines for Rd files},
-   \url{http://developer.r-project.org/Rds.html},
-   2003
- }
+\references{
+  R developers,
+  \emph{Guidelines for Rd files},
+  \url{http://developer.r-project.org/Rds.html},
+  2003
+}
 
 
 \keyword{classes}

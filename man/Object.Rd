@@ -78,6 +78,7 @@ Object(core=NA)
 }
 
 
+
  }
 
  \section{Defining static fields}{

@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.13.1 [2013-03-25]
+o BUG FIX: Rdoc$compile() could sometimes drop '}' following Rdoc tags.
+
+
 Version: 1.13.0 [2013-03-08]
 o Added support for Rdoc tag @author to have an optional value, e.g.
   @author "John Doe" as well as @author "JD, FB" where the initials
@@ -17,7 +21,7 @@ o Added an Authors@R field to the DESCRIPTION.
 Version: 1.12.0 [2013-03-04]
 o DOCUMENTATION: It is now easier to find help for static method,
   e.g. help("Object$load") and ?"Object$load".
-o DOCUMENTATION: For "static" methods (e.g. Object$load()), the 
+o DOCUMENTATION: For "static" methods (e.g. Object$load()), the
   Rdoc compiler now generates a \usage{} section without the
   deprecated Rd markup \synopsis{}, which has been replaced by
   the static call placed in a comment.  It also uses the static
@@ -36,12 +40,12 @@ o ROBUSTNESS/BUG FIX: Made the Object finalizers reentrant.  This was
 
 Version: 1.11.6 [2013-01-08]
 o Added argument 'format' to getInternalAddress() for Object.
-o BUG FIX: The hexadecimal string returned by as.character() for 
+o BUG FIX: The hexadecimal string returned by as.character() for
   Object would contain the decimal value and not the hexadecimal one.
 
 
 Version: 1.11.5 [2012-12-28]
-o GENERALIZATION: Further preparation for supporting R.oo and its 
+o GENERALIZATION: Further preparation for supporting R.oo and its
   derived packages to be imported without attaching ("loading") them.
 o Replaced all data.class(obj) with class(obj)[1L].
 o ROBUSTNESS/BUG FIX: getMethods() for Class would give an error if
@@ -66,7 +70,7 @@ o Made getKnownSubclasses() for Class a bit faster.
 Version: 1.11.1 [2012-11-28]
 o LIMITATION: Registered finalizer for pure Object:s (i.e. excluding
   those which are of a subclass of Object) will no longer be called
-  if the R.oo package has been detached.  This should be a very 
+  if the R.oo package has been detached.  This should be a very
   unlikely scenario.
 o BUG FIX: extend() for Object dropped existing field modifiers.
 
@@ -74,13 +78,13 @@ o BUG FIX: extend() for Object dropped existing field modifiers.
 Version: 1.11.0 [2012-11-23]
 o GENERALIZATION: Preparing for better support for Object/Class
   in import-only namespaces, i.e. without packages being loaded.
-o Now getStaticInstance() for Class sets the environment for the 
+o Now getStaticInstance() for Class sets the environment for the
   returned Object to that of the Class.
 
 
 Version: 1.10.3 [2012-11-18]
-o ROBUSTNESS: Now nearly all S3 methods are declared properly in 
-  the namespace.  
+o ROBUSTNESS: Now nearly all S3 methods are declared properly in
+  the namespace.
 o Updated the URL returned by RccViolationException$getRccUrl().
 
 
@@ -94,7 +98,7 @@ o BUG FIX: obj$<method>(...) would throw an error iff the Object 'obj'
 
 Version: 1.10.1 [2012-10-16]
 o ROBUSTNESS/BUG FIX: No longer passing '...' to NextMethod(), cf.
-  R-devel thread 'Do *not* pass '...' to NextMethod() - it'll do it 
+  R-devel thread 'Do *not* pass '...' to NextMethod() - it'll do it
   for you; missing documentation, a bug or just me?' on Oct 16, 2012.
 
 
@@ -113,7 +117,7 @@ o BUG FIX: The stacktrace details collected by Exception dropped
 
 Version: 1.9.10 [2012-09-14]
 o ROBUSTNESS/BUG FIX: The Exception constructor could generate warning
-  'In if (regexpr("^function\\(", code) != -1) return("") : the 
+  'In if (regexpr("^function\\(", code) != -1) return("") : the
   condition has length > 1 and only the first element will be used'
   occuring in its local fcnName() function.  Now code no longer assumes
   that 'code' is of length 1.
@@ -124,7 +128,7 @@ o Now throw() for Exception aborts (after signalling and outputting
   the message) by calling stop().  Ideally it should utilize abort(),
   but the new version of abort() may be "caught" is certain cases.
 o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
-  invokeRestart("abort").  This avoids having to call 
+  invokeRestart("abort").  This avoids having to call
   .Internal(.signalCondition(...)).  It also means that the message
   outputted by abort() no longer starts with a "Error in ...:" line.
   abort() immitates how stop() works but without the signalling.
@@ -156,7 +160,7 @@ o BUG FIX/GENERALIZATION: Rdoc$getKeywords() now uses system
 
 Version: 1.9.5 [2012-04-20]
 o Added argument 'export' to setConstructorS3().
-o Now Rdoc$getUsage() searches also the package namespace for 
+o Now Rdoc$getUsage() searches also the package namespace for
   the function/method definition.  This is done, before looking
   in the global search path.
 o CLEANUP: setConstructorS3() no longer sets attribute "formals".  It
@@ -165,7 +169,7 @@ o CLEANUP: setConstructorS3() no longer sets attribute "formals".  It
 
 Version: 1.9.4 [2012-04-05]
 o Now package imports and exports getCall() from the 'stats' package
-  so that generic function getCall() is available for Exception:s 
+  so that generic function getCall() is available for Exception:s
   also when 'stats' is not loaded, e.g. during executing .Rprofile.
 
 
@@ -184,7 +188,7 @@ o Now package no longer warns about renaming existing functions
 
 
 Version: 1.9.1 [2012-03-05]
-o CLEANUP: throw() for 'error' is now just a wrapper for stop(). 
+o CLEANUP: throw() for 'error' is now just a wrapper for stop().
   Previously it had to do what stop() now does for 'condition' objects.
 o CRAN POLICY: Replaced all appendVarArgs() for 'base' functions that
   do .Internal() calls, because they would then appear as local functions
@@ -222,11 +226,11 @@ o Changed first argument of getCall() to 'x', because that is what
 
 
 Version: 1.8.0 [2011-04-03]
-o ROBUSTNESS: Now finalizers for Object:s are registered to be called 
+o ROBUSTNESS: Now finalizers for Object:s are registered to be called
   also when the R session is quit, if the "R.oo::Object/finalizeOnExit"
   option is TRUE.  If FALSE (default), as before, the finalizers were
   only executed when Object:s were cleaned up by the garbage collector.
-o Turned of the default instantiation timestamp for Object and 
+o Turned of the default instantiation timestamp for Object and
   BasicObject.  The main reason is that it makes it very complicated
   to calculate reproducible checksums.  However, for backward
   compatibility, it is possible to turn on the timestamp by setting
@@ -236,7 +240,7 @@ o Added protected getFieldModifiers() and getFieldModifier().
 o Added argument 'recursive' to clearCache() for recursively traversing
   all elements are clearing the cache of all detected Object:s.
 o Now clearCache() also calls clearLookupCache().
-o Added protected clearLookupCache() for clearing internal objects 
+o Added protected clearLookupCache() for clearing internal objects
   stored in the Object and that are used for faster field lookups.
 o CLEANUP: Dropped deprecated getInstanciationTime().
 
@@ -300,11 +304,11 @@ o BUG FIX: Rdoc$compile() did not work with R v2.10.0 and newer.
 
 
 Version: 1.6.2 [2009-10-16]
-o Some cleanup of Rd files to meet the stricter requirements. 
+o Some cleanup of Rd files to meet the stricter requirements.
 
 
 Version: 1.6.1 [2009-10-09]
-BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) : 
+BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) :
 subscript out of bounds" starting with R v2.10.0.
 
 
@@ -332,8 +336,8 @@ o FIXUP: There were some Rd warnings with the new R v2.9.0.
 Version: 1.4.6 [2008-08-11]
 o Replaced all 'a %in% b' with is.element(a,b) due to an old and
   weird bug that I cannot reproduce, cf. my R-devel post in thread
-  'Argument "nomatch" matched by multiple actual arguments ... 
-  %in% -> match?!?' on March 6, 2008.  Thanks Ran Pang for 
+  'Argument "nomatch" matched by multiple actual arguments ...
+  %in% -> match?!?' on March 6, 2008.  Thanks Ran Pang for
   reminding me and for additional troubleshooting.
 o Added support for more "short tags" in the Rdoc compiler.
 
@@ -346,7 +350,7 @@ o SPELL CORRECTION: Added getInstantiationTime(), but keeping
 
 
 Version: 1.4.4 [2008-05-08]
-o Added getNews() and showNews() to the Package class. NEWS files 
+o Added getNews() and showNews() to the Package class. NEWS files
   are now detected (first).
 o Added getConstructorS3().
 o The NEWS file does now replace the former HISTORY file of R.oo.
@@ -363,10 +367,10 @@ o Added getName() for environment:s.
 
 Version: 1.4.2 [2008-03-06]
 o Added paper to citation("R.oo").
-o BUG FIX: Regular expression pattern 'a-Z' is illegal on (at least) 
-  some locale, e.g. 'C' (where 'A-z' works). The only way to specify 
+o BUG FIX: Regular expression pattern 'a-Z' is illegal on (at least)
+  some locale, e.g. 'C' (where 'A-z' works). The only way to specify
   the ASCII alphabet is to list all characters explicitly, which we now
-  do in all methods of the package.  See the r-devel thread 
+  do in all methods of the package.  See the r-devel thread
   "invalid regular expression '[a-Z]'" on 2008-03-05 for details.
 
 
@@ -376,7 +380,7 @@ o Made the registered finalizer calling finalize() more error prone.
 
 Version: 1.4.0 [2007-09-17]
 o Extracted setMethodS3() and related methods from R.oo and put them
-  in a standalone R.methodsS3 package.  While doing this, the 
+  in a standalone R.methodsS3 package.  While doing this, the
   'enforceRCC' argument used by setMethodS3() was renamed to 'validators'
   which now takes an optional list of functions.  Any code using
   argument 'enforceRCC=FALSE' must now use 'validators=NULL'.
@@ -401,7 +405,7 @@ o BUG FIX: If Object:s are garbage collected after R.oo has been detached,
 
 Version: 1.2.8 [2007-06-09]
 o Removed (incorrect) argument name 'list' from all substitute() calls.
-o Removed already deprecated getData() because there might be a name 
+o Removed already deprecated getData() because there might be a name
   clash with the 'nlme' package.
 o BUG FIX: Queried non-existing object 'error' instead of 'ex' in
   the exception handling of update() of the Package class.
@@ -424,8 +428,8 @@ o Made trycatch() defunct, i.e. it gives an error suggesting to use
 
 
 Version: 1.2.5 [2007-01-05]
-o BUG FIX: getMethods(..., private=FALSE) for class Class would return 
-  private methods, and private=TRUE would remove them.  It should be 
+o BUG FIX: getMethods(..., private=FALSE) for class Class would return
+  private methods, and private=TRUE would remove them.  It should be
   the otherway around.
 o BUG FIX: getMethods() for Class would sometimes give error message:
   "Error in result[[k]] : subscript out of bounds".  This in turn would
@@ -434,13 +438,13 @@ o BUG FIX: getMethods() for Class would sometimes give error message:
 
 Version: 1.2.4 [2006-10-03]
 o BUG FIX: Since getInternalAddress() coerced the address to an integer,
-  addresses about 2^32 bytes = 4GB got address NA. Now 
+  addresses about 2^32 bytes = 4GB got address NA. Now
   getInternalAddress() and the default hashCode() return a double.
 
 
 Version: 1.2.3 [2006-09-07]
 o Added package 'utils' as a package this one depends on.  This
-  is required for package without a namespace in the upcoming 
+  is required for package without a namespace in the upcoming
   R v2.4.0 release.
 o Removed deprecated method getClass() for class Object but also
   BasicObject.  These were deprecated on 2002-12-15.
@@ -449,21 +453,21 @@ o Removed deprecated method getClass() for class Object but also
 Version: 1.2.2 [2006-08-11]
 o Added support for give modifiers to fields in classes extending
   the Object class. Currently it is only the "cached" modifier that
-  is recognized. To specify that a field, say, "foo" is "cached", 
+  is recognized. To specify that a field, say, "foo" is "cached",
   list it as "cached:foo".  Fields that are "cached" will be assigned
   to NULL when clearCache() of the object is called.  For conviency
   there is also a gc() method for all Object:s.  See ?gc.Object for
   an example.
 o Made the package smaller by removing the DSC-2003 logo from
   the R.oo paper, which shrunk from 324kb to 220kb.  The rest
-  of the files in the source distribution is about 80kb when 
+  of the files in the source distribution is about 80kb when
   gzipped, i.e. still the paper is three times larger than the
   rest of the package.
 
 
 Version: 1.2.0 [2006-07-14]
-o BUG FIX: update(R.oo) would throw an error and the package was 
-  detached.  
+o BUG FIX: update(R.oo) would throw an error and the package was
+  detached.
 
 
 Version: 1.1.9 [2006-06-14]
@@ -485,7 +489,7 @@ Version: 1.1.7 [2006-05-22]
 o Added argument 'addTimestamp=TRUE' to Rdoc$compile().  This makes it
   possible to turn of the timestamp, because timestamps makes diff,
   say the one in Subversion, think there is a real different.
-o BUG FIX: Rdoc$compile() did not write the name of the source file 
+o BUG FIX: Rdoc$compile() did not write the name of the source file
   in the header (anymore).
 o BUG FIX: The code for automatic formatting of replacement methods
   generated an error.
@@ -493,13 +497,13 @@ o BUG FIX: The code for automatic formatting of replacement methods
 
 Version: 1.1.6 [2006-04-03]
 o This version was commited to CRAN.
-o Now the Rdoc compiler recognizes replacement functions and 
+o Now the Rdoc compiler recognizes replacement functions and
   creates the correct Rd \usage{} format for these.
 
 
 Version: 1.1.5 [2006-03-28]
-o Now argument 'properties' of ll() is given by the option 
-  "R.oo::ll/properties".  If not set when the package is loaded, 
+o Now argument 'properties' of ll() is given by the option
+  "R.oo::ll/properties".  If not set when the package is loaded,
   it is set to a default value.  See help(ll) for more details. This
   was suggested by Tim Beissbarth, German Cancer Research Center.
 o BUG FIX: showHistory() for the Package class was calling itself.
@@ -515,12 +519,12 @@ o Now the Rdoc compiler also escapes Rd filenames for @see and
 Version: 1.1.3 [2006-02-09]
 o Removed all usage of NULL environments since they are now
   deprecated in R v2.3.0.
-o Added getChangeLog() and showChangeLog() to the Package class.  
+o Added getChangeLog() and showChangeLog() to the Package class.
   The get- and showHistory(), which are to be made deprecated in
   the future, are now wrappers for these two methods.
 o Added Rdoc tag @RdocPackage to generate <pkg>-package.Rd files.
-o Now the Rdoc compiler makes sure that the generated Rd files 
-  all starts with a letter or a digit.  If not, it adds a 
+o Now the Rdoc compiler makes sure that the generated Rd files
+  all starts with a letter or a digit.  If not, it adds a
   default prefix (currently "000").  If not, the new R v2.3.0
   R CMD check may complaint about missing objects.
 o Now '...' is added explicitly to setMethodS3() in all Rd examples.
@@ -538,26 +542,26 @@ o BUG FIX: The "$<-" function goes through alternatives where to save
   When a "match" found and the value was assigned, it did not return
   (except for the set<Name>() match), but instead contiued search for
   the rest.  One effect of this was that the new value was always assign
-  to the static field too.  The fix make the code run faster too. 
-  Thanks Edouard Duchesnay at Service Hospitalier Frédéric Joliot, 
-  Commissariat à l'Energie Atomique, France for spotting this.  
+  to the static field too.  The fix make the code run faster too.
+  Thanks Edouard Duchesnay at Service Hospitalier Frédéric Joliot,
+  Commissariat à l'Energie Atomique, France for spotting this.
 
 
 Version: 1.1.0 [2005-07-18]
 o BUG FIX: Rdoc$compile() sometimes generated the error "invalid regular
   expression '\name{[^\}]*}'" (forgot to escape '{' and '}'). Fixed.
-  Thanks Lorenz Wernisch, School of Crystallography, University of London 
+  Thanks Lorenz Wernisch, School of Crystallography, University of London
   of reporting this.
-o BUG FIX: getDetails() in Class would list private and protected methods 
+o BUG FIX: getDetails() in Class would list private and protected methods
   as public.
-o BUG FIX: Argument 'enforceRCC' of setMethodS3() was not passed to 
+o BUG FIX: Argument 'enforceRCC' of setMethodS3() was not passed to
   setGenericS3().
 o Added a section on "Defining static fields" to the help page of Object.
 o Added argument 'replaceNewline' to getDescription() of Package.
 o Now as.character() of Package reports the title, the license, and the
   description, but no longer if the package is part of a bundle. The
   latter was too slow since it had to scan all installed packages.
-o Now print() of Class passes '...' to getDetails(), that is, now 
+o Now print() of Class passes '...' to getDetails(), that is, now
   print(Class, private=TRUE) will work too.
 o Added attachLocally() to the Object class.
 o Added extend.default(), which can be used to extend any type of object.
@@ -571,7 +575,7 @@ o Now the static load() method in Object asserts that the loaded Object
   inherits from the class that the static object, which is used to call
   load(), is of.  Thus, Object$load(...) will load all Object:s, whereas
   MyClass$load(...) will only load objects inheriting from MyClass.
-o Rdoc compiler: 
+o Rdoc compiler:
   - Now an RdocMethod tag will not add keyword 'internal' if the class
     starts with a lower case, e.g. 'matrix'.
   - A '@keyword foo' can now be removed with '@keyword -foo'. Order
@@ -589,7 +593,7 @@ o Argument 'appendVarArgs' of setMethodS3() is now ignored if
 
 Version: 1.0.2 [2005-02-25]
 o setMethodS3(..., abstract=TRUE) generated warnings of type
-  "using .GlobalEnv instead of package:<pkg>". Found a way 
+  "using .GlobalEnv instead of package:<pkg>". Found a way
   (ad hoc?) to get rid of them. See source code for details.
   This should remove similar warnings from packages loading R.oo.
 
@@ -597,7 +601,7 @@ o setMethodS3(..., abstract=TRUE) generated warnings of type
 Version: 1.0.1 [2005-02-20]
 o Package now outputs "See ?R.oo for help" when loaded.
 o Now using three-digit version numbers, e.g. a.b.c where
-  a,b,c in 0,1,...,9. 'a' is updated for major updates, 
+  a,b,c in 0,1,...,9. 'a' is updated for major updates,
   'b' for minor updates and 'c' is for minor revisions.
 o Removed require(methods) for R v2.0.0 and above.
 o setMethodS3(..., abstract=TRUE) now defines abstract methods
@@ -623,7 +627,7 @@ o Package now passes R CMD check on R v2.1.0 devel also.
   expression patterns.
 o Renamed get- & showDescription() to get- & showDescriptionFile() and
   added getDescription() to get the 'Description' field of DESCRIPTION.
-o Moving away from trycatch() in favor of tryCatch(). 
+o Moving away from trycatch() in favor of tryCatch().
   trycatch() remains for a while, but will be made deprecated
   in future version and later probably defunct.
 o Added an example to setMethodS3() that is not using Object().
@@ -631,14 +635,14 @@ o Added an example to setMethodS3() that is not using Object().
 
 Version: 0.68 [2005-02-09]
 o By default, now Rdoc$compile() runs Rdoc$check() at the end.
-o Rdoc: Added a first simple test for undefined top-level tags in 
-  the generated Rd code. Utilizes tools::Rd_parse(), which might 
+o Rdoc: Added a first simple test for undefined top-level tags in
+  the generated Rd code. Utilizes tools::Rd_parse(), which might
   be renamed etc. according to its help page.
 o Tag-variables such as @author now search for value in options() too.
 
 
 Version: 0.67 [2004-10-23]
-o BUG FIX: getRdMethods() in Class returned empty \tabular{rll}{} 
+o BUG FIX: getRdMethods() in Class returned empty \tabular{rll}{}
   if no methods exist, but this gives an error in R CMD Rdconv.
 
 
@@ -649,7 +653,7 @@ o When using setMethodS3(..., abstract=TRUE) in a package that
   be generated the first time the abstract method is accessed.
   This is because eval() is used to create the abstract method;
   we are looking for a way that will not generate these warnings,
-  although they are not serious. 
+  although they are not serious.
   Example: library(R.colors); print(getColorSpace.Color)
 o Made the package compatible with R v2.0.0 too. Had to move example
   file 'Exception.R' from data/ to inst/misc/ and update the help
@@ -657,7 +661,7 @@ o Made the package compatible with R v2.0.0 too. Had to move example
   class to load the 'boot' package instead of obsolete 'ts'.
 o Added help to more methods.
 o Added getEnvironment() to the Package class.
-o BUG FIX: Rdoc tags was not be parsed by the Rdoc compiler for 
+o BUG FIX: Rdoc tags was not be parsed by the Rdoc compiler for
   deprecated methods.
 
 
@@ -668,21 +672,21 @@ o Substantially improved the loading of all my packages. The Package()
 o BUG FIX: getInternalAddress() for class Object was "too" hard coded
   making it not work correctly on for instance Suse Linux. Assumed fixed
   positions of the hexadecimal address of the environment. Now a gsub()
-  with a backreference is used. Should be more safe. 
+  with a backreference is used. Should be more safe.
 o Added known generic function 'as.vector()'.
 o Added documentation to many methods.
 
 
 Version: 0.64 [2004-04-21]
-o Fixed deprecated warning about package.description() that 
-  occured R v1.9.0 such that the code still works for older 
+o Fixed deprecated warning about package.description() that
+  occured R v1.9.0 such that the code still works for older
   versions of R. This was needed for the Package class.
 
 
 Version: 0.63 [2004-03-03]
 o To anyone using setClassS3(), please use setConstructorS3() instead;
   setClassS3() is deprecated and will be phased out soon!
-o Updated trycatch() (and the Exception class) to work with R v1.8.1. 
+o Updated trycatch() (and the Exception class) to work with R v1.8.1.
   If running R v1.8.1, then tryCatch() is used internally. For R v1.7.1
   and before the old trycatch() is used, which will be made deprecated
   later on. Added a throw() for the error class too for rethrowing errors.
@@ -713,10 +717,10 @@ o Rdoc: Added the tag @RdocDocumentation for general documentation.
 Version: 0.60 [2003-10-28]
 o BUG FIX: "$<-.Class" was incorrectly returning the static object
   instead of itself.
-o BUG FIX: The way "$.Object", "$<-.Object", "$.Class" and "$<-.Class" 
+o BUG FIX: The way "$.Object", "$<-.Object", "$.Class" and "$<-.Class"
   were checking if an attribute exists was not done correctly. Now they
   get the list of names of the attributes and compares to that.
-o Added argument 'compress=TRUE' to Object's save() to make it more 
+o Added argument 'compress=TRUE' to Object's save() to make it more
   explicit that compression is supported too. Compression is supported
   by all R systems since R v1.5.0. See ?capabilities.
 o BUG FIX: If Object's save() was called with a connection it would
@@ -749,12 +753,12 @@ o Rdoc$compile() generated an InternalException when a class
 
 
 Version: 0.56 [2003-07-07]
-o BUG FIX: Forgot to escape '%' in \usage{} in Rdoc, which lead to 
+o BUG FIX: Forgot to escape '%' in \usage{} in Rdoc, which lead to
   unbalanced curly brackets when R CMD check * ran.
 
 
 Version: 0.55 [2003-05-14]
-o Slight improvement in the internal generation of get<Name> and set<Name>, 
+o Slight improvement in the internal generation of get<Name> and set<Name>,
   which is done by using substr()<-.
 
 
@@ -763,7 +767,7 @@ o Now the Rdoc compiler generates the correct \synopsis and \usage pairs.
   Before they were added either or, but that was a mistake by me. \synopsis
   should be *added* whenever the the \usage statement is not complete.
 o BUG FIX: update() of Package did not work. Did by mistake add a package
-  argument to update.packages() too. That argument is only used in 
+  argument to update.packages() too. That argument is only used in
   install.packages though.
 
 
@@ -777,7 +781,7 @@ o R.oo: The Rdoc compiler was further improved and made more flexible.
   tags.
 o All Rd files are now making use of \link[pkg:name]{label} for refering
   to methods not named according to the label. This is for instance the
-  case with all class specific methods. More over, all Rd files for 
+  case with all class specific methods. More over, all Rd files for
   classes has \keyword{classes} and the \usage{} is used where it works
   and otherwise \synopsis{} is used (as recommended on the R help pages).
   All this is automatically taken care of by the Rdoc compiler.
@@ -786,26 +790,26 @@ o All Rd files are now making use of \link[pkg:name]{label} for refering
 Version: 0.52 [2003-04-23]
 o Added almost all missing help pages, i.e. I wrote up *a lot* of Rd
   files. More help is still though for the Rdoc class, which compiles
-  Rdoc comments in the source files into Rd files. However, if you want 
+  Rdoc comments in the source files into Rd files. However, if you want
   to use Rdoc$compile() already now, see the source files for plenty
   of examples and just run Rdoc$compile() in the same directory.
 o Added getDocPath(), update() and unload() to the Package class. With
-  update() it is now possible to update a package or its bundle by just 
+  update() it is now possible to update a package or its bundle by just
   typing update(R.oo).
-o Added showAndAsk() to the Exception. It will, if tcltk is installed, 
-  display a dialog box with the error message. If tcltk is not installed, 
-  The message will be printed on the command line and a prompt requesting 
-  the user to press enter will be shown. showAndAsk() will give an error 
+o Added showAndAsk() to the Exception. It will, if tcltk is installed,
+  display a dialog box with the error message. If tcltk is not installed,
+  The message will be printed on the command line and a prompt requesting
+  the user to press enter will be shown. showAndAsk() will give an error
   if run in a non-interactive mode.
 o Spell correction: "c.f." -> "cf."
-o BUG FIX: getStaticInstance() of class Class did not recover correctly 
+o BUG FIX: getStaticInstance() of class Class did not recover correctly
   if static instance was missing.
 
 
 Version: 0.51 [2003-01-17]
 o Added getUrl(), getMaintainer(), getAuthor(), getTitle(), getLicense()
   and getBundle(). Made the output from as.character() more informative.
-o Added a caching feature of "$"() to speed up access to members. The 
+o Added a caching feature of "$"() to speed up access to members. The
   first time a member (field, virtual field, static field, method etc) is
   accessed it is done by looking it up one at the time and taking the
   first existing one (in a predefined order). The second time the same
@@ -814,10 +818,10 @@ o Added a caching feature of "$"() to speed up access to members. The
 
 
 Version: 0.50 [2002-12-20]
-o Updated try(), which a slight modification to the base::try() for 
-  improved exception handling, to have its own internal restart() 
+o Updated try(), which a slight modification to the base::try() for
+  improved exception handling, to have its own internal restart()
   function (just like base::try()), because restart() has been made
-  deprecated from R v1.6.0. This is how the try() in the base package 
+  deprecated from R v1.6.0. This is how the try() in the base package
   does it.
 
 
@@ -831,12 +835,12 @@ o Added argument 'overwrite=TRUE' and 'conflict=c("error", "warning",
 o COMPATIBILITY FIX: Removed default getClass(), because it was not would
   not work with the methods package.
 o Now extend() in class Object removes duplicated class attributes.
-o Now it is possible to create methods (also generic) with one (or several) 
+o Now it is possible to create methods (also generic) with one (or several)
   . (period) as a prefix of the name. Such a method should be considered
   private in the same manner as fields with a period are private.
-o Added argument 'path=NULL' to save() and load() in class Object. It 
+o Added argument 'path=NULL' to save() and load() in class Object. It
   will remove the need using paste() etc.
-o For ll(), replaced "getClass" with "data.class" in the 'properties' 
+o For ll(), replaced "getClass" with "data.class" in the 'properties'
   argument. Since 'data.class' is almost the same as 'mode', mode was
   also removed.
 o SPELL CHECK: "...name name..." in one of setGenericS3()'s error messages.
@@ -866,7 +870,7 @@ o Package named Rx.oo as long as it is a beta package.
 o Decided to declare all Rd files for class methods as \keyword{internal}
   which means that they will not show up in the HTML table of contents.
   Only classes and stand-alone functions should be there.
-o The package now contains the public classes Object, Exception, 
+o The package now contains the public classes Object, Exception,
   RccViolationException. It also contains the internal classes Class,
   Package and Rdoc. The class Class is essential, but Package and Rdoc
   are just utility classes containing useful static methods for development
@@ -875,7 +879,7 @@ o The idea behind the Rx.oo package are the same as behind "old" R.oo,
   but internally environments are used for emulating references, whereas in
   R.oo a global so called object space was used. However, API-wise not much
   have been changed.
-o FYI: R.oo was first published in March 2001 and has undergone several 
+o FYI: R.oo was first published in March 2001 and has undergone several
   updates, tests and bug fixes. Experience from that project has been
   brought into this package.
 
@@ -890,19 +894,19 @@ o Added argument 'showDeprecated=FALSE' to classinfo() in class Class. This
   has the effected that when typing a name of a class and pressing enter
   at the prompt to display class information, deprecated method are *not*
   shown by default.
-o Added the class Class for dealing with static methods, static fields, 
+o Added the class Class for dealing with static methods, static fields,
   accessing methods and fields of classes, generating class information etc.
   Since the handling of static methods and fields are now dealt by a specific
   class it means that the access of non-static methods and fields, which
-  is done by the Object class, should now be a bit faster due to less 
+  is done by the Object class, should now be a bit faster due to less
   overhead.
 
 
 Version: 0.45 [2002-09-23]
 o BUG FIX: setGenericS3() would sometimes believe that a non-function object
   actually was a function and tried to set it as a generic function, which
-  resulted in an error exception. 
-o Internal updates: Made .ObjectSpace.count an internal variable of 
+  resulted in an error exception.
+o Internal updates: Made .ObjectSpace.count an internal variable of
   the .ObjectSpace environment, meaning that it is harder to delete
   it by mistake.
 o relibrary(R.oo) was reloading the .RObjectSpace file too, which is not
@@ -919,12 +923,12 @@ o Added the functions Q() and Quit() for quiting with the option to save
 o Added isGenericS3() and isGenericS4().
 o If trying to use delete() to remove a non-existing variable or Object now
   only a warning() is given, before an exception was thrown which was quite
-  annoying. delete() works as rm() plus it also deletes objects in 
+  annoying. delete() works as rm() plus it also deletes objects in
   ObjectSpace, which means that all calls to rm() can be replaced by calls
   to delete().
 o Added the static methods ObjectSpace$save() and ObjectSpace$load() to
   save and load an image of the ObjectSpace.
-o BUG FIX: "[[" in class Reference did not work for numeric indices, e.g. 
+o BUG FIX: "[[" in class Reference did not work for numeric indices, e.g.
   ref[[5]]. Strange that I haven't noticed this before.
 o Package passes the R CMD check with 5 warnings.
 
@@ -962,7 +966,7 @@ o BUG FIX: trycatch() didn't with methods created by setMethodS3(). This
      object <- try(eval(substitute(object), envir=envir))
   Hmm, a tricky typo to find since it worked elsewhere.
 o The classes Throwable and Exception have been transfer to here from
-  the R.lang package. With the trycatch() they are really useful. 
+  the R.lang package. With the trycatch() they are really useful.
 o throw() and trycatch() are now available in both R.base and R.oo.
 o Added createClassS3() and internal variable .NewClassesNotCreated.
 o "$.Object"() and "$.Reference"() now returns NULL if a field/method etc
@@ -980,7 +984,7 @@ o Added trial version of a new feature for Object/Reference fields. Now,
   get<Field name>(<object>) is returned. This way one can have fields that
   are generated "on the fly" to save memory etc. This new feature required
   that "[[".Object was modified (actually created).
-  Example: For an object 'obj' one can get its class by either the 
+  Example: For an object 'obj' one can get its class by either the
   classical getClass(obj) or by the new feature obj$Class.
   If this new feature are successful, I will also look at implementing a
   corresponding set<field name>() support.
@@ -990,9 +994,9 @@ o BUG FIX: setGenericS3() gave an error if one tried to set a generic
 
 
 Version: 0.38 [2002-04-02]
-o BUG FIX: clone() in class Reference did not work properly; it gave the 
+o BUG FIX: clone() in class Reference did not work properly; it gave the
   wrong internal reference names, which in turn would generate errors such
-  as 'Error in get(x, envir, mode, inherits) : variable "Reference.METHODS" 
+  as 'Error in get(x, envir, mode, inherits) : variable "Reference.METHODS"
   was not found' when one tried object$foo() instead of foo(object). Now
   it works again.
 
@@ -1032,8 +1036,8 @@ o Static method buildClass() in class Rdoc now also creates a list of
   will be more up to date.
 o Declared more internal methods as "private".
 o BUG FIX: Internal scanForMethods() did not make a difference of functions
-  and non-functions, since it basically only looked at the name. For 
-  instance would CONST.Foo <- 256 be considered a method in previous 
+  and non-functions, since it basically only looked at the name. For
+  instance would CONST.Foo <- 256 be considered a method in previous
   versions. This was not a big deal, but it is correct now.
 
 
@@ -1068,7 +1072,7 @@ o Made R.oo compatible with new [R] v1.4.0 and the new package "methods".
 
 
 Version: 0.27 [2002-01-02]
-o Internally renamed the methods, e.g. new(), getClass() and extends(), 
+o Internally renamed the methods, e.g. new(), getClass() and extends(),
   that conflicted with methods defined in the new [R] package "methods".
   Hopefully these changes makes "methods" run when R.classes is loaded.
 o Starting to seperate Object methods and .Reference methods. Eventually
@@ -1084,7 +1088,7 @@ o This version was never released to the public.
 
 
 Version: 0.25 [2001-08-09]
-o Added super(), which provides a simple way to access methods in the 
+o Added super(), which provides a simple way to access methods in the
   super class.
 
 
@@ -1133,8 +1137,8 @@ o Bug fixes in garbage collection algorithm.
 
 Version: 0.13 [2001-04-15]
 o Now it is possible to add new fields to an object. Even though this
-  is not true oo-style, it certainly is helpful. Also, fields (not 
-  methods) can be assign new values using regular style 
+  is not true oo-style, it certainly is helpful. Also, fields (not
+  methods) can be assign new values using regular style
   'foo$value <- bar', where 'foo' is either the object itself or more
   common the reference to the object.
 
@@ -1144,7 +1148,7 @@ o Now objects "physically" contains only the fields. The methods are
   looked up in an internal static class. Also, by writing the name of
   a class, information about the class is listed.
 
- 
+
 Version: 0.11 [2001-04-11]
 
 
@@ -1156,15 +1160,15 @@ o Support for static classes. Static methods in static classes can be
 
 
 Version: 0.9 [2001-04-02]
-o Support for static methods. A static method is declared as 
-  'myStatic = METHOD+STATIC' and implemented as 
+o Support for static methods. A static method is declared as
+  'myStatic = METHOD+STATIC' and implemented as
   'myStatic.myClass <- function(arg1, arg2, ...)'. Note that there
   is no 'this' argument to static classes.
 
 
 Version: 0.8 [2001-04-01]
-o Totally changed the declaration of methods in a class. Previously, 
-  one wrote 'myFcn = function() NULL' and now one writes 
+o Totally changed the declaration of methods in a class. Previously,
+  one wrote 'myFcn = function() NULL' and now one writes
   'myFcn = METHOD' where 'METHOD' is predefined constant. This
   allows fields in a class to also contain functions, i.e.
   'myField = sqrt(x)', which was not possible in previous versions.
