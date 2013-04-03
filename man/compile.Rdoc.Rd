@@ -24,10 +24,10 @@
 
 \usage{
 ## Static method (use this):
-## Rdoc$compile(filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)
+## Rdoc$compile(filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, locale="C", verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)
 
 ## Don't use the below:
-\method{compile}{Rdoc}(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)
+\method{compile}{Rdoc}(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, locale="C", verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...)
 }
 
 \arguments{
@@ -39,6 +39,8 @@
   \item{addTimestamp}{If \code{\link[base:logical]{TRUE}}, a date and time stamp is added to the
     Rd header comments.  This timestamp might be confusing for version
     control systems, which is why it can be turned off with \code{\link[base:logical]{FALSE}}.}
+  \item{locale}{The locale to be set/used when compiling Rdoc comments.
+    This help assuring strings are sorted the same way across systems.}
   \item{source}{If \code{\link[base:logical]{TRUE}}, the Rdoc files will be \code{source()}:ed first.
     This work of course only for Rdoc files that are R source files.}
   \item{verbose}{If \code{\link[base:logical]{TRUE}}, detailed compilation information is printed.}

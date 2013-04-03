@@ -495,6 +495,8 @@ setMethodS3("escapeRdFilename", "Rdoc", function(static, filename, ...) {
 #   \item{addTimestamp}{If @TRUE, a date and time stamp is added to the
 #     Rd header comments.  This timestamp might be confusing for version
 #     control systems, which is why it can be turned off with @FALSE.}
+#   \item{locale}{The locale to be set/used when compiling Rdoc comments.
+#     This help assuring strings are sorted the same way across systems.}
 #   \item{source}{If @TRUE, the Rdoc files will be \code{source()}:ed first.
 #     This work of course only for Rdoc files that are R source files.}
 #   \item{verbose}{If @TRUE, detailed compilation information is printed.}
@@ -514,7 +516,7 @@ setMethodS3("escapeRdFilename", "Rdoc", function(static, filename, ...) {
 #
 # @keyword documentation
 #*/###########################################################################
-setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...) {
+setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE, addTimestamp=FALSE, locale="C", verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Global variables
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -711,17 +713,19 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       }
       sourcefile <<- sourcefile <- attr(rd, "sourcefile");
 
-      cat("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n", file=filename, append=FALSE);
-      cat("% Do not modify this file since it was automatically generated from:\n", file=filename, sep="", append=TRUE);
-      cat("% \n", sep="", file=filename, append=TRUE);
-      cat("%  ", sourcefile, "\n", sep="", file=filename, append=TRUE);
-      cat("% \n", sep="", file=filename, append=TRUE);
+      hdr <- c("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      hdr <- c(hdr, "% Do not modify this file since it was automatically generated from:");
+      hdr <- c(hdr, "% ");
+      hdr <- c(hdr, paste("%  ", sourcefile, sep=""));
+      hdr <- c(hdr, "% ");
       if (addTimestamp) {
-        cat("% on ", date(), ".\n% \n", sep="", file=filename, append=TRUE);
+        hdr <- c(hdr, paste("% on ", date(), ".", sep=""));
+        hdr <- c(hdr, "% ");
       }
-      cat("% by the Rdoc compiler part of the R.oo package.\n", file=filename, append=TRUE);
-      cat("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n", file=filename, append=TRUE);
-      cat(rd, file=filename, sep="\n", append=TRUE);
+      hdr <- c(hdr, "% by the Rdoc compiler part of the R.oo package.");
+      hdr <- c(hdr, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      bfr <- paste(c(hdr, "", rd, ""), collapse="\n");
+      writeChar(bfr, eos=NULL, con=filename);
     }
   } # writeRd()
 
@@ -1631,7 +1635,12 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # SETUP
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Set the locale
+    Sys.setlocale(locale=locale);
+
+
     # Make a best guess what the package is that is created by looking
     # at the name of the parent directory of the getManPath() directory.
     opwd <- getwd();
@@ -1885,17 +1894,24 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
   createManPath(this);
 
   filename <- as.character(filename);
-  if (!file.exists(filename)) {
-    if (regexpr("\\*", filename) != -1 || regexpr("\\?", filename) != -1) {
-      dir <- list.files();
-      idx <- grep(paste(filename, "$", sep=""), dir);
-      filename <- dir[idx];
+  if (length(filename) == 1L && !file.exists(filename)) {
+    if (regexpr("\\*", filename) != -1L || regexpr("\\?", filename) != -1L) {
+      # Filename pattern
+      pattern <- filename;
+      # List all files
+      filename <- list.files();
+      # Match to filename pattern
+      filename <- grep(paste(pattern, "$", sep=""), filename, value=TRUE);
+      # Keep only files
+      filename <- filename[file_test("-f", filename)];
+      # Keep only newer files?
     }
   }
 
   # Load the source code in case it contains new stuff.
-  if (source)
-    source(filename);
+  if (source) {
+    lapply(filename, FUN=source);
+  }
 
   for (file in filename) {
     if (verbose)
@@ -2667,6 +2683,14 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-04-03
+# o Now Rdoc$compile() always outputs Rd files with '\n' line breaks
+#   regardless of system.
+# o Now Rdoc$compile() uses locale "C" (default) to assert that
+#   the same Rd files are generated regardless of system settings.
+# o Now Rdoc$compile() no longer gives a warning if argument 'filename'
+#   is a vector.  It should also handle multiple filenames and
+#   source=TRUE.
 # 2013-03-25
 # o BUG FIX: getTagValue() could read/consume a following '}', which
 #   should not be considered a tag value.

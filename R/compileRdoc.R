@@ -10,7 +10,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{pkgname}{A @character string specifying the package name. 
+#   \item{pkgname}{A @character string specifying the package name.
 #     If @NULL, the package name is inferred from the DESCRIPTION file
 #     that is automatically search for in the subdirectories.}
 #   \item{...}{Additional arguments passed to \code{Rdoc\$compile()}.}
@@ -22,7 +22,7 @@
 # }
 #
 # \details{
-#   To compile all Rdoc comments in a package 'PkgA' that is located 
+#   To compile all Rdoc comments in a package 'PkgA' that is located
 #   under the current working directory (e.g. \code{PkgA/R/*.R}) from
 #   the system command line, do:
 #   \preformatted{
@@ -39,7 +39,7 @@
 # @keyword documentation
 # @keyword IO
 # @keyword internal
-#*/########################################################################### 
+#*/###########################################################################
 compileRdoc <- function(pkgname=NULL, ..., verbose=TRUE) {
   require("R.oo") || stop("Package not loaded: R.oo");
 
@@ -81,15 +81,14 @@ compileRdoc <- function(pkgname=NULL, ..., verbose=TRUE) {
   opwd <- setwd(path);
   on.exit(setwd(opwd));
 
-  print(search());
-  print(sessionInfo());
-
   Rdoc$compile(..., verbose=verbose);
 } # compileRdoc()
 
 
 ############################################################################
 # HISTORY:
+# 2013-04-03
+# o CLEANUP: compileRdoc() was outputting search() and sessionInfo().
 # 2013-03-08
 # o Created.
 ############################################################################

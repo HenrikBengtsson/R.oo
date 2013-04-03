@@ -1,6 +1,14 @@
 Package: R.oo
 =============
 
+Version: 1.13.2 [2013-04-03]
+o Now Rdoc$compile() outputs the same Rd files regardless of
+  system settings.  More precisely, it always uses '\n' for
+  line breaks and locale "C" (default) for sorting strings.
+o Now Rdoc$compile(..., filename) handles when argument 'filename'
+  is a vector of filename.
+
+
 Version: 1.13.1 [2013-03-25]
 o Now Rdoc$compile(..., check=TRUE) saves the erroneous Rd to file
   before throwing the exception.  This helps troubleshooting.
