@@ -30,7 +30,7 @@
 \code{~~~~~~~~~~~~~~~~~~~~~~+--}\code{Exception}\cr
 
 \bold{Directly known subclasses:}\cr
-\link[R.oo]{InternalErrorException}, \link[R.oo]{RccViolationException}, \link[R.oo]{RdocException}, \link[R.utils]{TimeoutException}\cr
+\link[R.oo]{InternalErrorException}, \link[R.oo]{RccViolationException}, \link[R.oo]{RdocException}\cr
 
 public static class \bold{Exception}\cr
 extends simpleError\cr

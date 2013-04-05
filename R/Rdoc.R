@@ -1516,6 +1516,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     tagAllMethods <- function(bfr) {
+      bfr <- getTagValue(bfr);
       visibilities <- attr(bfr, "value");
       # Ad hoc patch for parser /060530.
       addEnd <- (identical(visibilities, "}"))
@@ -2683,6 +2684,9 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-04-04
+# o BUG FIX: In R.oo v1.13.1 a bug was introduced causing @allmethods
+#   to ignore the optional following tag value.
 # 2013-04-03
 # o Now Rdoc$compile() always outputs Rd files with '\n' line breaks
 #   regardless of system.

@@ -52,7 +52,7 @@ BasicObject(core=NULL)
 
 
  \bold{Methods inherited from logical}:\cr
-as.data.frame, as.raster, whichVector
+as.data.frame, as.raster
 
 
  }

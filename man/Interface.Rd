@@ -42,15 +42,13 @@ Interface(core=NA, ...)
  \section{Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.oo:as.character.Interface]{as.character}} \tab Gets a character string representing the Interface.\cr
  \tab \code{\link[R.oo:extend.Interface]{extend}} \tab Extends another Interface class.\cr
- \tab \code{\link[R.oo:getFields.Interface]{getFields}} \tab Returns NULL.\cr
  \tab \code{\link[R.oo:print.Interface]{print}} \tab Prints an Interface.\cr
  \tab \code{\link[R.oo:uses.Interface]{uses}} \tab Specifies that an object uses this Interface.\cr
 }
 
 
- "public"
+
  }
 
  \author{Henrik Bengtsson}
