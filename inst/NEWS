@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.13.4 [2013-04-08]
+o Now the @RdocData Rdoc tag also adds an \docType{data} Rd tag.
+
+
 Version: 1.13.3 [2013-04-04]
 o BUG FIX: In R.oo v1.13.1 a bug was introduced causing the value of
   Rdoc tag @allmethods not to be parsed and instead treated as text.

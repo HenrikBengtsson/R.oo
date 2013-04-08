@@ -1064,6 +1064,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       name <<- name <- escapeName(name);
       line <- paste("\\name{", name, "}\n", sep="");
       line <- paste(line, "\\alias{", name, "}\n", sep="");
+      line <- paste(line, "\\docType{data}\n", sep="");
       addKeyword("datasets");
       objectName <<- value;
       usage <<- NULL;
@@ -2684,6 +2685,8 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-04-08
+# o Now the @RdocData Rdoc tag also adds an \docType{data} Rd tag.
 # 2013-04-04
 # o BUG FIX: In R.oo v1.13.1 a bug was introduced causing @allmethods
 #   to ignore the optional following tag value.
