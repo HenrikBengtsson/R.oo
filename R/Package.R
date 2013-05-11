@@ -5,8 +5,8 @@
 #
 # \description{
 #  @classhierarchy
-#  
-#  Creates a Package that can be thrown and caught. The \code{Package} 
+#
+#  Creates a Package that can be thrown and caught. The \code{Package}
 #  class is the root class of all other \code{Package} classes.
 # }
 #
@@ -124,7 +124,7 @@ setMethodS3("as.character", "Package", function(x, ...) {
 
   s <- paste(s, "  Description: ", getDescription(this), sep="");
 
-  s <- paste(s, "  Type showNews(", getName(this), 
+  s <- paste(s, "  Type showNews(", getName(this),
        ") for package history, and ?", getName(this), " for help.", sep="");
 
   s;
@@ -746,7 +746,7 @@ setMethodS3("load", "Package", function(this, ...) {
 #
 # \description{
 #   @get "title". This is an alternative way to use \code{detach()} to
-#   unload a package. 
+#   unload a package.
 #   If the package is not loaded, it will quietly return.
 # }
 #
@@ -805,7 +805,7 @@ setMethodS3("unload", "Package", function(this, ...) {
 # }
 #
 # \details{
-#   Note the difference from the default definition of \code{ll()} as 
+#   Note the difference from the default definition of \code{ll()} as
 #   inherited from the @Object class. Here \code{ll()} has been
 #   redefined to list the members of the package, i.e. the members in
 #   the environment on search path that belongs to the package, whereas
@@ -924,7 +924,7 @@ setMethodS3("getUrl", "Package", function(this, ...) {
 #
 # \description{
 #   @get "title" by first looking for comma or semicolon separated URLs
-#   at the optional \code{ContribURL} line in the \code{DESCRIPTION} file 
+#   at the optional \code{ContribURL} line in the \code{DESCRIPTION} file
 #   of the package. If no such line exists, \code{getUrl()} is used.
 # }
 #
@@ -1241,7 +1241,7 @@ setMethodS3("getLicense", "Package", function(this, ...) {
 # }
 #
 # \details{
-#  The first call to this method is normally slow because all installed 
+#  The first call to this method is normally slow because all installed
 #  packages are scanned. The result of this first call is cached and
 #  used as the return value for all subsequent calls, which are then much
 #  faster.
@@ -1298,7 +1298,7 @@ setMethodS3("getBundle", "Package", function(this, ...) {
 # }
 #
 # \details{
-#  The first call to this method is normally slow because all installed 
+#  The first call to this method is normally slow because all installed
 #  packages are scanned. The result of this first call is cached and
 #  used as the return value for all subsequent calls, which are then much
 #  faster.
@@ -1343,7 +1343,7 @@ setMethodS3("getBundlePackages", "Package", function(this, ...) {
 # \description{
 #   @get "title", that is, (by default) the \code{NEWS} (then the
 #   \code{HISTORY} and \code{ChangeLog}) file, which should is expected to
-#   be located in the root directory of the package, 
+#   be located in the root directory of the package,
 #   i.e. @seemethod "getPath".
 # }
 #
@@ -1570,7 +1570,7 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 # @synopsis
 #
 # \arguments{
-#   \item{...}{Additional arguments passed to 
+#   \item{...}{Additional arguments passed to
 #              @see "base::packageStartupMessage".}
 # }
 #
@@ -1601,7 +1601,7 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
 #
 # \description{
 #   @get "title". If the package is part of a bundle, the whole bundle
-#   will be updated. 
+#   will be updated.
 #   This method is a convientent alternative to \code{update.packages()},
 #   especially for non-CRAN packages.
 # }
@@ -1613,8 +1613,8 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
 #    updated. By default the URL according to the DESCRIPTION is assumed.
 #    If the URL is missing, CRAN is assumed.}
 #   \item{force}{If @TRUE, the package will reinstalled even if it is
-#    up to date according to the version number.} 
-#   \item{verbose}{If @TRUE, more detailed information is returned.} 
+#    up to date according to the version number.}
+#   \item{verbose}{If @TRUE, more detailed information is returned.}
 #   \item{...}{Not used.}
 # }
 #
@@ -1646,13 +1646,13 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
   # Store a few object in case they are unloaded below.
   pkgName <- getName(this);
   contribUrl <- as.character(contribUrl);
-  
+
   # Have to detach a package for update.packages() to reinstall it.
   unload(this);
   on.exit({
     library(pkgName, character.only=TRUE);
   });
-  
+
   updated <- FALSE;
   found <- FALSE;
   if (is.null(contribUrl)) {
@@ -1701,7 +1701,7 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
         print(ex);
       })
     } # for (url ...)
-    
+
     if (!found) {
       require("R.oo");  # In case it was unloaded!
       throw(InternalErrorException("Could not update package ", getName(this), " v", getVersion(this), " since none of the URLs available (", paste(contribUrl, collapse=", "), ") seems to contain no R packages or bundles, i.e. no PACKAGE file was found. The URLs were extracted from the DESCRIPTION file of the package.", package=this));
@@ -1743,11 +1743,11 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 # 2009-11-19
 # o Added isOlderThan() for Package.
 # 2008-10-09
-# BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) : 
+# BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) :
 # subscript out of bounds" starting with R v2.10.0.
 # 2008-08-11
 # o Replace all 'a %in% b' with is.element(a,b) due to weird bug, cf.
-#   my R-devel post 'Argument "nomatch" matched by multiple actual 
+#   my R-devel post 'Argument "nomatch" matched by multiple actual
 #   arguments ... %in% -> match?!?' on March 6, 2008.
 # 2008-05-08
 # o Added getNews() and showNews(). NEWS files are now detected (first).
@@ -1756,7 +1756,7 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 #   the exception handling of update() of the Package class.
 # o Removed (incorrect) argument name 'list' from all substitute() calls.
 # 2007-06-01
-# o Removed already deprecated getData() because there might be a name 
+# o Removed already deprecated getData() because there might be a name
 #   clash with the 'nlme' package.
 # 2006-07-13
 # o Now update() returns invisibly.
@@ -1770,7 +1770,7 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 # o showHistory() was calling itself.
 # 2006-02-08
 # o Added getChangeLog() and showChangeLog(), which search for the ChangeLog
-#   file and then the HISTORY file.  get- and showHistory() are now just 
+#   file and then the HISTORY file.  get- and showHistory() are now just
 #   wrappers for these new methods.
 # 2005-06-14
 # o Added argument 'replaceNewline' to getDescription().
@@ -1783,14 +1783,14 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 # o Added arguments '...' in order to match any generic functions.
 # 2005-02-10
 # o Added getDescription() to get the 'Descreption' field of DESCRIPTION.
-# o Renamed get- & showDescription() to get- & showDescriptionFile(). 
+# o Renamed get- & showDescription() to get- & showDescriptionFile().
 # o Making use of tryCatch() only.
 # 2004-10-21
 # o Added getEnvironment().
 # 2004-10-18
 # o Added an Rdoc alias for getData().
 # 2004-10-13
-# o Change the example of Package's unload() to use package 'boot' 
+# o Change the example of Package's unload() to use package 'boot'
 #   instead of obsolete 'ts'.
 # 2004-06-27
 # o Substantially decresed the time required for creating a Package object;
@@ -1799,7 +1799,7 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 #   the constructor.
 # o Now getBundle() and getBundlePackages() cache the result so that only
 #   the first call is slow.
-# o Now file.path() is used where ever applicable. Note: for directories 
+# o Now file.path() is used where ever applicable. Note: for directories
 #   add "" to assure that an "/" is appended at the end.
 # 2004-04-21
 # o Fix deprecated warning for package.description() by minor internal
@@ -1821,7 +1821,7 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 # o update() does now also reload the updated package by default.
 # 2003-05-04
 # o BUG FIX: update() of Package did not work. Did by mistake add a package
-#   argument to update.packages() too. That argument is only used in 
+#   argument to update.packages() too. That argument is only used in
 #   install.packages though.
 # 2003-04-29
 # o Added argument force=FALSE to update().
@@ -1836,7 +1836,7 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 # o Wrote Rdoc comments for all methods.
 # 2003-01-18
 # o Replaced all occurences of getClass() with data.class(). Will change
-#   the use of getClass() in the future to return a Class object. 
+#   the use of getClass() in the future to return a Class object.
 # 2003-01-17
 # o Added getUrl(), getMaintainer(), getAuthor(), getTitle(), getLicense()
 #   and getBundle(). Made the output from as.character() more informative.
