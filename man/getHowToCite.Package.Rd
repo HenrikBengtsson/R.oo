@@ -20,8 +20,7 @@
 }
 
 \usage{
-\method{getHowToCite}{Package}(this, newline="
-", ...)
+\method{getHowToCite}{Package}(this, newline="\n", ...)
 }
 
 \arguments{

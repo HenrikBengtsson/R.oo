@@ -1,4 +1,4 @@
-###########################################################################/**
+##########################################################################/**
 # @RdocClass Rdoc
 #
 # @title "Class for converting Rdoc comments to Rd files"
@@ -2200,33 +2200,81 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  buildUsage <- function(method, class=NULL, args, valueArg=NULL, wrap=90L, head=sprintf("\\\\method{%s}{%s}", method, class), ...) {
+  buildUsage <- function(method, class=NULL, args, valueArg=NULL, wrap=90L, head=NULL, ...) {
+    # Argument 'args':
+    stopifnot(is.list(args));
+
     indentStr <- paste(rep(" ", times=indent), collapse="");
 
+    correction <- 0L;
+    if (length(head) == 0L) {
+      if (is.null(class)) {
+        head <- method;
+      } else {
+        # The effective length of this in the help manual is nchar(method).
+        head <- sprintf("\\method{%s}{%s}", method, class);
+        correction <- nchar(head) - nchar(method);
+      }
+    }
+    correction0 <- correction;
+
     lines <- NULL;
-    line <- paste(method, "(", sep="");
+    line <- paste(head, "(", sep="");
     if (length(args) == 0L) {
       line <- paste(line, ") ", sep="");
     }
 
     while (length(args) > 0L) {
-      arg <- args[[1L]];
-      args <- args[-1L];
-      suffix <- if (length(args) == 0) ") " else ", ";
-      # Does argument fit on the same line?
-      if (nchar(line) + nchar(arg) + nchar(suffix) - 1L <= wrap) {
-        line <- paste(line, arg, suffix, sep="");
-      } else {
-        lines <- c(lines, line);
-        line <- paste(indentStr, arg, suffix, sep="");
+      subargs <- args[[1L]];
+      nsubargs <-length(subargs);
+
+      # Try to keep <key>=<value> together
+      if (nsubargs >= 3L) {
+        # If <key>=<value> fit on a line, then keep the together...
+        if (sum(nchar(subargs[1:3L])) <= wrap) {
+          subargs[3L] <- paste(subargs[1:3], collapse="");
+          subargs <- subargs[-(1:2)];
+        } else if (sum(nchar(subargs[1:2L])) <= wrap) {
+        # ...otherwise, at least keep <key>= together, iff possible.
+          subargs[2L] <- paste(subargs[1:2], collapse="");
+          subargs <- subargs[-1L];
+        }
+        nsubargs <-length(subargs);
       }
-    }
+
+      # Remaining arguments
+      args <- args[-1L];
+      nargs <- length(args);
+      suffix <- if (nargs > 0L) ", " else ") ";
+
+      # For each subargument
+      for (kk in seq(length=nsubargs)) {
+        subarg <- subargs[kk];
+##        str(list(kk=kk, subarg=subarg));
+
+        if (kk == nsubargs) {
+          subarg <- paste(subarg, suffix, sep="");
+        } else {
+          subarg <- paste(subarg, " ", sep="");
+        }
+        len <- nchar(subarg);
+
+        # Does argument fit on the same line?
+        if (nchar(line) - correction + len <= wrap) {
+          line <- paste(line, subarg, sep="");
+        } else {
+          lines <- c(lines, line);
+          line <- paste(indentStr, subarg, sep="");
+          correction <- 0L;
+        }
+      } # for (kk ...)
+    } # while (length(args) > 0L)
 
     # Append a value assignment, i.e. "... <- value"?
     if (!is.null(valueArg)) {
       arg <- paste("<- ", valueArg, sep="");
       # Does it fit on the same line?
-      if (nchar(line) + nchar(arg) <= wrap) {
+      if (nchar(line) - correction + nchar(arg) <= wrap) {
         line <- paste(line, arg, sep="");
       } else {
         lines <- c(lines, line);
@@ -2235,15 +2283,13 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
     }
     lines <- c(lines, line);
     lines <- gsub("[ ]$", "", lines); # Trim trailing space
-    # Sanity check
-    stopifnot(all(nchar(lines) <= wrap));
 
-    if (!is.null(class)) {
-      pattern <- paste("^", method, "[(]", sep="");
-      line <- lines[1L];
-      line <- gsub(pattern, sprintf("%s(", head), line);
-      lines[1L] <- line;
-    }
+    # Sanity check
+    lens <- nchar(lines);
+    lens[1L] <- lens[1L] - correction0;
+    stopifnot(all(lens <= wrap));
+
+    ##    print(lines);
 
     lines;
   } # buildUsage()
@@ -2269,14 +2315,10 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
 
   isStatic <- is.element("static", attr(fcn, "modifiers"));
   isConstructor <- inherits(fcn, "Class");
-  args <- Rdoc$argsToString(fcn);
-  # Escape '%', which is a comment in Rd format.
-  args <- lapply(args, FUN=function(x) {
-    gsub("\\%", "\\\\%", x);
-  })
+  args <- Rdoc$argsToString(fcn, escapeRd=TRUE, collapse=FALSE);
 
   # Replacement methods are special
-  isReplacement <- (regexpr("<-$", method) != -1);
+  isReplacement <- (regexpr("<-$", method) != -1L);
   if (isReplacement) {
     method <- gsub("<-$", "", method);
     nargs <- length(args);
@@ -2289,15 +2331,13 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
   if (isConstructor) {
     usage <- buildUsage(method, args=args, valueArg=valueArg, wrap=wrap);
   } else if (isStatic) {
-    # Adjust line width to fit prefix '## ' as well.
-    wrap <- wrap - 3L;
-
     # (a) The S3 method call
     lines <- buildUsage(method, class=class, args=args, valueArg=valueArg, wrap=wrap);
     usageM <- paste(lines, collapse="\n");
 
     # (b) The "static" method call, e.g. Class$forName(...)
-    lines <- buildUsage(method, class=class, args=args[-1L], valueArg=valueArg, head=paste(class, method, sep="$"), wrap=wrap);
+    # Adjust line width ('wrap') to fit prefix '## ' as well.
+    lines <- buildUsage(method, class=class, args=args[-1L], valueArg=valueArg, head=paste(class, method, sep="$"), wrap=wrap - 3L);
     lines <- paste("## ", lines, sep="");
     usageS <- paste(lines, collapse="\n");
 
@@ -2358,7 +2398,7 @@ setMethodS3("getClassS4Usage", "Rdoc", function(static, class, ...) {
   hasConstructor <- exists(name, mode="function");
   if (hasConstructor) {
     constructor <- get(name, mode="function");
-    args <- Rdoc$argsToString(constructor);
+    args <- Rdoc$argsToString(constructor, collapse=TRUE);
     args <- paste(args, collapse=", ");
     constructorUsage <- paste(name, "(", args, ")", sep="");
     usage <- paste(usage, "\n", constructorUsage, sep="");
@@ -2383,11 +2423,14 @@ setMethodS3("getClassS4Usage", "Rdoc", function(static, class, ...) {
 #
 # \arguments{
 #  \item{fcn}{A @function.}
+#  \item{escapeRd}{If @TRUE, certain Rd markup symbols are escaped.}
+#  \item{collapse}{If @TRUE, each argument is returned as a single string,
+#   otherwise split up into a vector of strings as far as possible.}
 #  \item{...}{Not used.}
 # }
 #
 # \value{
-#  Returns a @list of @character string.
+#  Returns a @list of @character strings.
 # }
 #
 # @author
@@ -2398,34 +2441,44 @@ setMethodS3("getClassS4Usage", "Rdoc", function(static, class, ...) {
 #
 # @keyword documentation
 #*/###########################################################################
-setMethodS3("argsToString", "Rdoc", function(static, fcn, ...) {
+setMethodS3("argsToString", "Rdoc", function(static, fcn, escapeRd=FALSE, collapse=TRUE, ...) {
   a <- args(fcn);
-  if (is.null(a))
-    return("[primitive function]");
 
-  if (typeof(a) != "closure")
-    throw("Expected closure but found something else.");
+  # Nothing to do?
+  if (is.null(a)) {
+    return("[primitive function]");
+  }
+
+  # Sanity check
+  if (typeof(a) != "closure") {
+    throw("Expected closure but found something else: ", typeof(a));
+  }
+
   args <- formals(a);
   argsNames <- names(args);
 
   res <- list();
-  for (k in seq(along=args)) {
-    arg     <- args[k];
-    argName <- argsNames[k];
+  for (kk in seq(along=args)) {
+    arg     <- args[kk];
+    argName <- argsNames[kk];
 
     s <- argName;
 
-    argDefault <- arg[[1]];
+    argDefault <- arg[[1L]];
     if (!missing(argDefault)) {
-      if (is.character(argDefault)) {
-        s <- paste(s, "=", "\"", argDefault, "\"", sep="", collapse="");
-      } else if (is.null(argDefault)) {
-        s <- paste(s, "=NULL", sep="", collapse="");
-      } else if (is.language(argDefault)) {
-        argDefault <- as.character(arg[1]);
+      argDefault <- deparse(argDefault, width.cutoff=20L);
+      argDefault <- trim(argDefault);
+
+      # Escape '%' (which is a comment in Rd format)?
+      if (escapeRd) {
+        argDefault <- gsub("\\%", "\\\\%", argDefault);
+      }
+
+      if (collapse) {
+        argDefault <- paste(argDefault, collapse=" ");
         s <- paste(s, "=", argDefault, sep="", collapse="");
       } else {
-        s <- paste(s, "=", argDefault, sep="", collapse="");
+        s <- c(s, "=", argDefault);
       }
     }
 

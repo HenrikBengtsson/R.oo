@@ -29,8 +29,7 @@
 }
 
 \usage{
-\method{getChangeLog}{Package}(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), newline="
-", ...)
+\method{getChangeLog}{Package}(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), newline="\n", ...)
 }
 
 \arguments{

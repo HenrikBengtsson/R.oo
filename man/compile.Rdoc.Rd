@@ -25,8 +25,8 @@
 \usage{
 ## Static method (use this):
 ## Rdoc$compile(filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE,
-##   addTimestamp=FALSE, locale="C", verbose=FALSE, source=FALSE, check=TRUE, debug=FALSE,
-##   ...)
+##   addTimestamp=FALSE, locale="C", verbose=FALSE, source=FALSE, check=TRUE,
+##   debug=FALSE, ...)
 
 ## Don't use the below:
 \method{compile}{Rdoc}(this, filename=".*[.]R$", destPath=getManPath(this), showDeprecated=FALSE,

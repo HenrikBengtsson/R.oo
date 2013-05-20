@@ -20,10 +20,10 @@
 
 \usage{
 ## Static method (use this):
-## Rdoc$getUsage(method, class=NULL, wrap=90, indent=2, ...)
+## Rdoc$getUsage(method, class=NULL, wrap=90L, indent=2L, ...)
 
 ## Don't use the below:
-\method{getUsage}{Rdoc}(static, method, class=NULL, wrap=90, indent=2, ...)
+\method{getUsage}{Rdoc}(static, method, class=NULL, wrap=90L, indent=2L, ...)
 }
 
 \arguments{

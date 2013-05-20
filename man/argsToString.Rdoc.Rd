@@ -20,19 +20,22 @@
 
 \usage{
 ## Static method (use this):
-## Rdoc$argsToString(fcn, ...)
+## Rdoc$argsToString(fcn, escapeRd=FALSE, collapse=TRUE, ...)
 
 ## Don't use the below:
-\method{argsToString}{Rdoc}(static, fcn, ...)
+\method{argsToString}{Rdoc}(static, fcn, escapeRd=FALSE, collapse=TRUE, ...)
 }
 
 \arguments{
  \item{fcn}{A \code{\link[base]{function}}.}
+ \item{escapeRd}{If \code{\link[base:logical]{TRUE}}, certain Rd markup symbols are escaped.}
+ \item{collapse}{If \code{\link[base:logical]{TRUE}}, each argument is returned as a single string,
+  otherwise split up into a vector of strings as far as possible.}
  \item{...}{Not used.}
 }
 
 \value{
- Returns a \code{\link[base]{list}} of \code{\link[base]{character}} string.
+ Returns a \code{\link[base]{list}} of \code{\link[base]{character}} strings.
 }
 
 \author{Henrik Bengtsson}
