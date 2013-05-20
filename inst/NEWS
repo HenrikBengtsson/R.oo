@@ -4,7 +4,7 @@ Package: R.oo
 Version: 1.13.5 [2013-05-20]
 o Now Rdoc$getUsage() inserts line breaks so that any usage line
   is at most 90 characters long.
-o Now all Rd \usage{} lines are at most 90 characters long.
+o CRAN POLICY: Now all Rd \usage{} lines are at most 90 characters long.
 
 
 Version: 1.13.4 [2013-04-08]
