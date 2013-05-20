@@ -2289,7 +2289,7 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
     lens[1L] <- lens[1L] - correction0;
     stopifnot(all(lens <= wrap));
 
-    ##    print(lines);
+##    print(lines);
 
     lines;
   } # buildUsage()
