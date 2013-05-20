@@ -2180,7 +2180,7 @@ setMethodS3("getObject", "Rdoc", function(static, name, mode="any", package=stat
 # \arguments{
 #   \item{method}{A method name (@character string).}
 #   \item{class}{An optional class name (@character string).}
-#   \item{package}{An optional package name (@character string).}
+#   \item{wrap}{An @integer specifying the maximum number of characters per line.  Longer lines will be wrapped with newlines.}
 #   \item{...}{Not used.}
 # }
 #
@@ -2196,7 +2196,59 @@ setMethodS3("getObject", "Rdoc", function(static, name, mode="any", package=stat
 #
 # @keyword documentation
 #*/###########################################################################
-setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, ...) {
+setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, indent=2L, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  buildUsage <- function(method, class=NULL, args, valueArg=NULL, wrap=90L, head=sprintf("\\\\method{%s}{%s}", method, class), ...) {
+    indentStr <- paste(rep(" ", times=indent), collapse="");
+
+    lines <- NULL;
+    line <- paste(method, "(", sep="");
+    if (length(args) == 0L) {
+      line <- paste(line, ") ", sep="");
+    }
+
+    while (length(args) > 0L) {
+      arg <- args[[1L]];
+      args <- args[-1L];
+      suffix <- if (length(args) == 0) ") " else ", ";
+      # Does argument fit on the same line?
+      if (nchar(line) + nchar(arg) + nchar(suffix) - 1L <= wrap) {
+        line <- paste(line, arg, suffix, sep="");
+      } else {
+        lines <- c(lines, line);
+        line <- paste(indentStr, arg, suffix, sep="");
+      }
+    }
+
+    # Append a value assignment, i.e. "... <- value"?
+    if (!is.null(valueArg)) {
+      arg <- paste("<- ", valueArg, sep="");
+      # Does it fit on the same line?
+      if (nchar(line) + nchar(arg) <= wrap) {
+        line <- paste(line, arg, sep="");
+      } else {
+        lines <- c(lines, line);
+        line <- paste(indentStr, arg, sep="");
+      }
+    }
+    lines <- c(lines, line);
+    lines <- gsub("[ ]$", "", lines); # Trim trailing space
+    # Sanity check
+    stopifnot(all(nchar(lines) <= wrap));
+
+    if (!is.null(class)) {
+      pattern <- paste("^", method, "[(]", sep="");
+      line <- lines[1L];
+      line <- gsub(pattern, sprintf("%s(", head), line);
+      lines[1L] <- line;
+    }
+
+    lines;
+  } # buildUsage()
+
+
   if (!is.null(class)) {
     fcnName <- paste(method, class, sep=".");
   } else {
@@ -2218,7 +2270,7 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, ...) {
   isStatic <- is.element("static", attr(fcn, "modifiers"));
   isConstructor <- inherits(fcn, "Class");
   args <- Rdoc$argsToString(fcn);
-  # '%' is a comment in Rd format.
+  # Escape '%', which is a comment in Rd format.
   args <- lapply(args, FUN=function(x) {
     gsub("\\%", "\\\\%", x);
   })
@@ -2230,44 +2282,39 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, ...) {
     nargs <- length(args);
     valueArg <- args[nargs];
     args <- args[-nargs];
+  } else {
+    valueArg <- NULL;
   }
 
   if (isConstructor) {
-    args <- paste(args, collapse=", ");
-    usage <- paste(method, "(", args, ")", sep="");
+    usage <- buildUsage(method, args=args, valueArg=valueArg, wrap=wrap);
   } else if (isStatic) {
-    # (a) The "static" method call, e.g. Class$forName(...)
-    argsS <- args[-1];
-    argsS <- paste(argsS, collapse=", ");
-    usageS <- paste(class, "$", method, "(", argsS, ")", sep="");
-    if (isReplacement)
-      usageS <- paste(usageS, " <- ", valueArg, sep="");
-    usageS <- paste("## ", usageS, sep="");
-    usageS <- c("## Static method (use this):", usageS, "");
+    # Adjust line width to fit prefix '## ' as well.
+    wrap <- wrap - 3L;
 
-    # (b) The S3 method call
-    args <- paste(args, collapse=", ");
-    usageM <- paste("\\method{", method, "}{", class, "}(", args, ")", sep="");
-    if (isReplacement)
-      usageM <- paste(usageM, " <- ", valueArg, sep="");
-    usageM <- c("## Don't use the below:", usageM);
+    # (a) The S3 method call
+    lines <- buildUsage(method, class=class, args=args, valueArg=valueArg, wrap=wrap);
+    usageM <- paste(lines, collapse="\n");
+
+    # (b) The "static" method call, e.g. Class$forName(...)
+    lines <- buildUsage(method, class=class, args=args[-1L], valueArg=valueArg, head=paste(class, method, sep="$"), wrap=wrap);
+    lines <- paste("## ", lines, sep="");
+    usageS <- paste(lines, collapse="\n");
 
     # (c) Combine
-    usage <- c(usageS, usageM);
+    usage <- c("## Static method (use this):",
+               usageS,
+               "",
+               "## Don't use the below:",
+               usageM);
   } else if (!is.null(class)) {
-    args <- paste(args, collapse=", ");
-    usage <- paste("\\method{", method, "}{", class, "}(", args, ")", sep="");
-    if (isReplacement)
-      usage <- paste(usage, " <- ", valueArg, sep="");
+    usage <- buildUsage(method, class=class, args=args, valueArg=valueArg, wrap=wrap);
   } else {
-    args <- paste(args, collapse=", ");
-    usage <- paste(method, "(", args, ")", sep="");
-    if (isReplacement)
-      usage <- paste(usage, " <- ", valueArg, sep="");
+    usage <- buildUsage(method, args=args, valueArg=valueArg, wrap=wrap);
   }
 
   usage;
-}, private=TRUE, static=TRUE);
+}, private=TRUE, static=TRUE) # getUsage()
 
 
 
@@ -2685,6 +2732,9 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-05-19
+# o Now Rdoc$getUsage() inserts line breaks so that any usage line
+#   is at most 90 characters long.
 # 2013-04-08
 # o Now the @RdocData Rdoc tag also adds an \docType{data} Rd tag.
 # 2013-04-04

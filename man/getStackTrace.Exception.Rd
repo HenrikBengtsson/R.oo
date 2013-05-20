@@ -18,7 +18,8 @@
 }
 
 \usage{
-\method{getStackTrace}{Exception}(this, cleanup=getOption("R.oo::Exception/getStackTrace/args/cleanup", TRUE), ...)
+\method{getStackTrace}{Exception}(this, cleanup=getOption("R.oo::Exception/getStackTrace/args/cleanup", TRUE),
+  ...)
 }
 
 \arguments{

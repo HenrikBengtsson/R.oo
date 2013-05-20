@@ -20,16 +20,16 @@
 
 \usage{
 ## Static method (use this):
-## Rdoc$getUsage(method, class=NULL, ...)
+## Rdoc$getUsage(method, class=NULL, wrap=90, indent=2, ...)
 
 ## Don't use the below:
-\method{getUsage}{Rdoc}(static, method, class=NULL, ...)
+\method{getUsage}{Rdoc}(static, method, class=NULL, wrap=90, indent=2, ...)
 }
 
 \arguments{
   \item{method}{A method name (\code{\link[base]{character}} string).}
   \item{class}{An optional class name (\code{\link[base]{character}} string).}
-  \item{package}{An optional package name (\code{\link[base]{character}} string).}
+  \item{wrap}{An \code{\link[base]{integer}} specifying the maximum number of characters per line.  Longer lines will be wrapped with newlines.}
   \item{...}{Not used.}
 }
 

@@ -6,15 +6,15 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{Package}
+\name{Package}
 \docType{class}
 \alias{Package}
 
 
- \title{The Package class provides methods for accessing package information}
+\title{The Package class provides methods for accessing package information}
 
- \description{
-  Package:  R.oo \cr
+\description{
+ Package:  R.oo \cr
 \bold{Class Package}\cr
 
 \code{\link[R.oo]{Object}}\cr
@@ -29,20 +29,20 @@ extends \link[R.oo]{Object}\cr
 
 
 
-  Creates a Package that can be thrown and caught. The \code{Package}
-  class is the root class of all other \code{Package} classes.
- }
+ Creates a Package that can be thrown and caught. The \code{Package}
+ class is the root class of all other \code{Package} classes.
+}
 
- \usage{
+\usage{
 Package(name=NULL)
 }
 
- \arguments{
-   \item{name}{Name of the package.}
- }
+\arguments{
+  \item{name}{Name of the package.}
+}
 
- \section{Fields and Methods}{
-  \bold{Methods:}\cr
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{\link[R.oo:as.character.Package]{as.character}} \tab Gets a string representation of this package.\cr
  \tab \code{\link[R.oo:getAuthor.Package]{getAuthor}} \tab Gets the Author of this package.\cr
@@ -91,9 +91,9 @@ Package(name=NULL)
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, registerFinalizer, save
 
 
- }
+}
 
- \examples{\dontrun{# By defining .onAttach() as follows in zzz.R for a package, an
+\examples{\dontrun{# By defining .onAttach() as follows in zzz.R for a package, an
 # instance of class Package with the same name as the package will
 # be made available on the search path. More over, the code below
 # will also inform the user that the package has been loaded:
@@ -126,8 +126,8 @@ print(R.oo::R.oo)
 #      c:/PROGRA~1/R/rw1062/library/R.oo/."
 }}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \keyword{programming}
- \keyword{methods}
+\keyword{programming}
+\keyword{methods}
 \keyword{classes}

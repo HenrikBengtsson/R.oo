@@ -20,10 +20,12 @@
 
 \usage{
 ## Static method (use this):
-## Rdoc$methodsInheritedFrom(class, visibility=c("public", "protected", "private"), showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)
+## Rdoc$methodsInheritedFrom(class, visibility=c("public", "protected", "private"),
+##   showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)
 
 ## Don't use the below:
-\method{methodsInheritedFrom}{Rdoc}(this, class, visibility=c("public", "protected", "private"), showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)
+\method{methodsInheritedFrom}{Rdoc}(this, class, visibility=c("public", "protected", "private"),
+  showDeprecated=FALSE, inheritedFrom=NULL, sort=TRUE, trial=FALSE, ...)
 }
 
 \arguments{

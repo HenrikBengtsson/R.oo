@@ -21,7 +21,8 @@
 }
 
 \usage{
-\method{update}{Package}(object, contribUrl=c(getContribUrl(this), getDevelUrl(this)), force=FALSE, reload=TRUE, verbose=TRUE, ...)
+\method{update}{Package}(object, contribUrl=c(getContribUrl(this), getDevelUrl(this)), force=FALSE,
+  reload=TRUE, verbose=TRUE, ...)
 }
 
 \arguments{

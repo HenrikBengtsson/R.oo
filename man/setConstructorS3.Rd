@@ -19,7 +19,9 @@
 }
 
 \usage{
-\method{setConstructorS3}{default}(name, definition, private=FALSE, protected=FALSE, export=TRUE, static=FALSE, abstract=FALSE, trial=FALSE, deprecated=FALSE, envir=parent.frame(), enforceRCC=TRUE, ...)
+\method{setConstructorS3}{default}(name, definition, private=FALSE, protected=FALSE, export=TRUE,
+  static=FALSE, abstract=FALSE, trial=FALSE, deprecated=FALSE, envir=parent.frame(),
+  enforceRCC=TRUE, ...)
 }
 
 \arguments{
