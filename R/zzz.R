@@ -26,10 +26,10 @@ if (is.element("R.oo", search())) detach("R.oo");
   if (length(pos) == 1L) {
     env <- as.environment(pos);
 
-    # Remove temporary extend.default() created by the extend() 
+    # Remove temporary extend.default() created by the extend()
     # defined in 030.ObjectClassFunctions.R.
     if (exists("extend.default", envir=env)) {
-      rm("extend.default", envir=env);
+      rm(list="extend.default", envir=env);
     }
 
     # Create a getCall() generic function, iff missing (R < 2.14.0)

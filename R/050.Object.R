@@ -6,10 +6,10 @@
 # \description{
 #  R.oo\cr
 #  \bold{Class Object}\cr
-#  
+#
 #  public class \bold{Object}\cr
 #
-#  \code{Object} is the root class of all other classes. All classes 
+#  \code{Object} is the root class of all other classes. All classes
 #  \emph{must} extends this class, directly or indirectly, which means
 #  that they all will inherit the methods in this class.
 # }
@@ -30,13 +30,13 @@
 # }
 #
 # \section{Defining static fields}{
-#  To define a static field of an Object class, use a private field 
-#  \code{<.field>} and then create a virtual field \code{<field>} by 
-#  defining methods \code{get<Field>()} and \code{set<Field>()}.  
-#  These methods should retrieve and assign the value of the field 
-#  \code{<.field>} of the \emph{static} instance of the class.  The 
-#  second example below shows how to do this.  The example modifies 
-#  also the static field already in the constructor, which is something 
+#  To define a static field of an Object class, use a private field
+#  \code{<.field>} and then create a virtual field \code{<field>} by
+#  defining methods \code{get<Field>()} and \code{set<Field>()}.
+#  These methods should retrieve and assign the value of the field
+#  \code{<.field>} of the \emph{static} instance of the class.  The
+#  second example below shows how to do this.  The example modifies
+#  also the static field already in the constructor, which is something
 #  that otherwise may be tricky.
 # }
 #
@@ -67,7 +67,7 @@ setConstructorS3("Object", Object);
 # @title "Gets a character string representing the object"
 #
 # \description{
-#  @get "title". In the class Object, 
+#  @get "title". In the class Object,
 #  this method simply returns the class name and the hashCode() value
 #  of the object.
 # }
@@ -219,7 +219,7 @@ setMethodS3("clone", "Object", function(this, ...) {
     # is that it fools the lazy evaluation (?) to create a true copy of
     # the object. If this is not done, it won't be a true clone even if
     # the value is assigned to another environment. Example:
-    #  b <- clone(a) 
+    #  b <- clone(a)
     #  b$matrix[1,1] <- 2
     # will otherwise also change a$matrix[1,1]. /HB 021023
     attr(value, "R.oo::.clone.Object") <- NULL;
@@ -237,16 +237,16 @@ setMethodS3("clone", "Object", function(this, ...) {
 #
 # \description{
 #  @get "title" and returns @TRUE if they are equal.
-#  The equal property must be 
+#  The equal property must be
 #
 #  1) \emph{reflexive}, i.e. \code{equals(o1,o1)} should be @TRUE.
 #
 #  2) \emph{symmetric}, i.e. \code{equals(o1,o2)} is @TRUE if and only
-#  if \code{equals(o2,o1)} is @TRUE. 
+#  if \code{equals(o2,o1)} is @TRUE.
 #
-#  3) \emph{transitive}, i.e. \code{equals(o1,o2)} is @TRUE and 
+#  3) \emph{transitive}, i.e. \code{equals(o1,o2)} is @TRUE and
 #  \code{equals(o2,o3)} is @TRUE, then \code{equals(o1,o3)} should
-#  be @TRUE. 
+#  be @TRUE.
 #
 #  5) \emph{consistent}, i.e. \code{equals(o1,o2)} should return the same
 #  result on multiple invocations as long as nothing has changed.
@@ -254,7 +254,7 @@ setMethodS3("clone", "Object", function(this, ...) {
 #  6) \code{equals(o1,}@NULL\code{)} should return @FALSE.
 #
 #  By default, the method returns @TRUE if and only if the two
-#  references compared refer to the same @Object, i.e. 
+#  references compared refer to the same @Object, i.e.
 #  \code{( !is.null(obj) && (hashCode(this) == hashCode(obj)) )}.
 # }
 #
@@ -301,7 +301,7 @@ setMethodS3("equals", "Object", function(this, other, ...) {
 # @title "Finalizer methods called when object is clean out"
 #
 # \description{
-#  Finalizer methods are called just the moment before the object is 
+#  Finalizer methods are called just the moment before the object is
 #  about to be deleted by the garbage collector.
 #
 #  \bold{If creating a custom \code{finalize()} method for a subclass
@@ -412,7 +412,7 @@ setMethodS3("hashCode", "Object", function(this, ...) {
 # }
 #
 # \value{
-#   The address is returned as a @numeric integer if 
+#   The address is returned as a @numeric integer if
 #   \code{format == "numeric"}, and as a @character string if
 #   \code{format == "hexstring"}.
 # }
@@ -472,7 +472,7 @@ setMethodS3("getInternalAddress", "Object", function(this, format=c("numeric", "
 #
 # \description{
 #  For all objects of class @see "Object", this method will print the
-#  value of \code{as.character()} of the object. Note that this function is 
+#  value of \code{as.character()} of the object. Note that this function is
 #  not called if the argument is not an object of class @Object.
 # }
 #
@@ -526,17 +526,17 @@ setMethodS3("print", "Object", function(x, ...) {
 # \value{
 #   Returns (invisibly) a @character @vector of the fields copied.
 # }
-# 
+#
 # @examples "../incl/attachLocally.Object.Rex"
 #
 # @author
-# 
+#
 # \seealso{
 #  @seemethod attach
 #  @seeclass
 # }
 #
-# @keyword "utilities" 
+# @keyword "utilities"
 # @keyword "programming"
 #*/#########################################################################
 setMethodS3("attachLocally", "Object", function(this, private=FALSE, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...) {
@@ -573,7 +573,7 @@ setMethodS3("attachLocally", "Object", function(this, private=FALSE, fields=NULL
 # @synopsis
 #
 # \arguments{
-#   \item{private}{If @TRUE, private fields will also be attached, 
+#   \item{private}{If @TRUE, private fields will also be attached,
 #     otherwise not.}
 #   \item{pos}{The position at in search path where the Object should be
 #              inserted.}
@@ -683,7 +683,7 @@ setMethodS3("detach", "Object", function(this, ...) {
 #
 # \arguments{
 #  \item{file}{Filename or @connection to which the Object should be saved.
-#    If @NULL, the Object will be save to a file named 
+#    If @NULL, the Object will be save to a file named
 #    "\{class name\}.\{memory location\}.RData", e.g. "Object.26979608.RData".}
 #  \item{path}{The path where the file should be saved.}
 #  \item{compress}{If @TRUE, the file is compressed to, otherwise not.}
@@ -713,7 +713,7 @@ setMethodS3("detach", "Object", function(this, ...) {
 setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE) {
   if (is.null(file)) {
     file <- sprintf("%s.%d.RData", class(this)[1], getInternalAddress(this, format="numeric"));
-  } 
+  }
 
   # Saving to a file?
   saveToFile <- (!inherits(file, "connection"));
@@ -777,7 +777,7 @@ setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE
 # @title "Static method to load an Object from a file or a connection"
 #
 # \description{
-#   @get "title", which previously have been saved using \code{save()} of 
+#   @get "title", which previously have been saved using \code{save()} of
 #   class Object.
 # }
 #
@@ -802,7 +802,7 @@ setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE
 #   Typically this static method is called as \code{<Object>$load(...)}
 #   where \code{<Object>} is any Object class.  When an Object has been
 #   loaded, it is verified that it inherits from \code{<Object>}. If it
-#   does not, an exception is thrown.  Thus, \code{Object$load(...)} will 
+#   does not, an exception is thrown.  Thus, \code{Object$load(...)} will
 #   load any Object, but \code{MyClass$load(...)} will only load an Object
 #   that inherits from MyClass.  If loaded object is not of correct class,
 #   an exception is thrown.
@@ -841,7 +841,7 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
       file <- paste(path, file, sep="");
     }
   }
- 
+
   # load.default() recognized gzip'ed files too.
   saveLoadReference <- NULL; # To please R CMD check R v2.6.0
   vars <- load.default(file=file);
@@ -854,8 +854,8 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
   # Assert that the loaded object inherits from the same class as the
   # static object used to call this method.
   if (!inherits(object, class(static)[1])) {
-    throw("Loaded an Object from file, but it does not inherit from ", 
-                                   class(static)[1], " as expected: ", 
+    throw("Loaded an Object from file, but it does not inherit from ",
+                                   class(static)[1], " as expected: ",
                                  paste(class(object), collapse=", "));
   }
 
@@ -872,8 +872,8 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
 # @title "Gets the size of the Object in bytes"
 #
 # \description{
-#   @get "title" by summing the sizes of all its 
-#   members. For this reason, the size of memory the Object actually 
+#   @get "title" by summing the sizes of all its
+#   members. For this reason, the size of memory the Object actually
 #   allocates might vary slighty.
 # }
 #
@@ -897,7 +897,7 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
 # @author
 #
 # \seealso{
-#   To clear fields that are declared \code{cached}, 
+#   To clear fields that are declared \code{cached},
 #   see @seemethod "clearCache".
 #   @see "utils::object.size".
 #   @seeclass
@@ -911,7 +911,7 @@ setMethodS3("objectSize", "Object", function(this, ...) {
   members <- ls(envir=envir, all.names=TRUE);
   totalSize <- 0;
   for (member in members) {
-    size <- eval(substitute(object.size(member), 
+    size <- eval(substitute(object.size(member),
                  list(member=as.name(member))), envir=envir);
     totalSize <- totalSize + size;
   }
@@ -996,7 +996,7 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
 #
 #   \dontrun{
 #   gives:
-#   
+#
 #   [1] "x" "y"
 #   }
 # }
@@ -1055,7 +1055,7 @@ setMethodS3("names", "Object", function(x, ...) {
 #
 #   \dontrun{
 #   gives:
-#   
+#
 #   [1] TRUE FALSE FALSE TRUE
 #   }
 # }
@@ -1178,8 +1178,8 @@ setMethodS3("ll", "Object", function(this, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("staticCode", "Object", function(static, ...) {
-  # Note that this code will never be called when a "pure" 
-  # Object is created, but for instances of all other 
+  # Note that this code will never be called when a "pure"
+  # Object is created, but for instances of all other
   # class staticCode() will be called.
 }, private=TRUE)
 
@@ -1197,7 +1197,7 @@ setMethodS3("staticCode", "Object", function(static, ...) {
 #   Simply speaking this method "extends another class". What is actually
 #   happening is that it creates an instance of class name \code{...className},
 #   by taking another Object instance and add \code{...className} to the class
-#   list and also add all the named values in @... as fields to the 
+#   list and also add all the named values in @... as fields to the
 #   new instance.
 #
 #   The method should be used by the constructor of a class and nowhere else.
@@ -1228,11 +1228,11 @@ setMethodS3("staticCode", "Object", function(static, ...) {
 # \section{Field modifiers}{
 #   It is possible to specify modifiers to some of the fields.  Currently it
 #   is only the \code{cached} modifier that is recognized.  A field that is
-#   cached will be assigned @NULL when @seemethod "clearCache" 
+#   cached will be assigned @NULL when @seemethod "clearCache"
 #   (or @seemethod "gc") is called.  To specify a modifier, append a comma
 #   separated list of modifiers followed by a colon, e.g. "cached:foo".
 # }
-# 
+#
 # \examples{\dontrun{For a complete example see help(Object).}}
 #
 # @author
@@ -1245,7 +1245,7 @@ setMethodS3("staticCode", "Object", function(static, ...) {
 # \keyword{methods}
 #*/###########################################################################
 if (is.element("R.oo", search())) {
-  rm("extend", pos="R.oo"); # To avoid warning about renaming existing extend()
+  rm(list="extend", pos="R.oo"); # To avoid warning about renaming existing extend()
 }
 setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL, ...envir=parent.frame()) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1253,18 +1253,18 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   parseModifiers <- function(args, ...) {
     names <- names(args);
-  
+
     pattern <- "([abcdefghijklmnopqrstuvwxyz ]*):(.*)$";
     modifiers <- rep("", length(names));
     idx <- grep(pattern, names);
     modifiers[idx] <- gsub(pattern, "\\1", names[idx]);
     modifiers <- strsplit(modifiers, split=" ");
     modifiers <- lapply(modifiers, gsub, pattern=" *", replacement="");
-  
+
     # Get the real names
     names[idx] <- gsub("[abcdefghijklmnopqrstuvwxyz ]*:", "", names[idx]);
     names(args) <- names;
-  
+
     # Set modifier attributes
     mods <- list();
     for (type in c("cached")) {
@@ -1296,7 +1296,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
       for (jj in seq(along=matchNames)) {
         if (regexpr(matchNames[jj], "...className") != -1) {
           className <- sys.call()[[3]];
-          throw("Could not set field of class (probably called ", className, 
+          throw("Could not set field of class (probably called ", className,
                 ") because the field name is a prefix to the argument name ",
                 "\"...className\": ", callNames[jj]);
         }
@@ -1309,7 +1309,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   # Set class
   class(this) <- unique(c(...className, class(this)));
 
-  # Note, we have to re-register the finalizer here and not in Object(), 
+  # Note, we have to re-register the finalizer here and not in Object(),
   # because here the reference variable 'this' will have the correct
   # class attribute, which it does not in Object().
   finalizer <- .makeObjectFinalizer(this, reloadRoo=TRUE);
@@ -1358,26 +1358,26 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 # @title "Makes the fields and methods of an Object accessable via the \$ and the [[ operator"
 #
 # \description{
-#   Makes the fields and methods of an Object accessable via the \code{$} 
+#   Makes the fields and methods of an Object accessable via the \code{$}
 #   operator. This method is never called explicitly, but through an indirect
 #   usage of the \code{$} operator, e.g. \code{obj$name} or
 #   \code{obj$getValue()}.
 #
 #   1) This method will first search for a \code{get<Name>()} method, e.g. if
-#   name has the value \code{"age"}, a \code{getAge()} will be looked for. 
-#   If such a method exists it will be called with the Object as the first 
-#   and only argument, e.g. \code{getAge(this)}. 
+#   name has the value \code{"age"}, a \code{getAge()} will be looked for.
+#   If such a method exists it will be called with the Object as the first
+#   and only argument, e.g. \code{getAge(this)}.
 #
 #   A \code{get<Name>()} is only looked for if \code{<name>} is not a private
-#   field. A private field is a name \emph{beginning} with a \code{.} 
+#   field. A private field is a name \emph{beginning} with a \code{.}
 #   (period). The rational for this naming convention is to be consistent
-#   with how @see "base::ls" works, which will not list such members 
+#   with how @see "base::ls" works, which will not list such members
 #   by default.
 #
 #   2) If no such method exists, first then, this method will look a field in
 #   the Object can has the name \code{name}.
 #
-#   3) If such neither exists, a method with name \code{name} will be 
+#   3) If such neither exists, a method with name \code{name} will be
 #   searched for and returned.
 #
 #   4) Otherwise, a static field will be looked for.
@@ -1509,7 +1509,7 @@ setMethodS3("$", "Object", function(this, name) {
         } # if ("is private field")
       } # if (is.null(attr(this, "disableGetMethods")))
     } else if (memberAccessor == 2) {
-  
+
       # 2. Is it a field?
       # For static method calls, e.g. Object$load, 'this' has no
       # environment assigned and therefore, for now, no static
@@ -1522,7 +1522,7 @@ setMethodS3("$", "Object", function(this, name) {
         return(get(name, envir=envirStatic));
       }
     } else if (memberAccessor == 3) {
-  
+
       # 3. Is it an attribute field (slot)?
       if (is.element(name, names(attributes(this)))) {
         lookup <- memberAccessor;
@@ -1553,7 +1553,7 @@ setMethodS3("$", "Object", function(this, name) {
         }
       }
     } else if (memberAccessor == 5) {
-    
+
       # 5. Finally, if nothing is found, it might be that it is a static field
       static <- getStatic(static=static);
       static.envir <- attr(static, ".env");
@@ -1597,14 +1597,14 @@ setMethodS3("$", "Object", function(this, name) {
 #   usage of the \code{$<-} operator, e.g. \code{obj$name <- "foo"}.
 #
 #   1) This method will first search for a \code{set<Name>()} method, e.g. if
-#   name has the value \code{"age"}, a \code{setAge()} will be looked for. 
-#   If such a method exists it will be called with the Object as the first 
+#   name has the value \code{"age"}, a \code{setAge()} will be looked for.
+#   If such a method exists it will be called with the Object as the first
 #   argument and \code{value} as the second, e.g. \code{setAge(this, value)}.
 #
 #   A \code{set<Name>()} is only looked for if \code{<name>} is a non-private
-#   field. A private field is a name \emph{beginning} with a \code{.} (period). 
+#   field. A private field is a name \emph{beginning} with a \code{.} (period).
 #   The rational for this naming convention is to be consistent
-#   with how @see "base::ls" works, which will not list such members 
+#   with how @see "base::ls" works, which will not list such members
 #   by default.
 #   Moreover, excluding private fields for the search of a \code{set<Name>()}
 #   will decrease the overhead for such field.
@@ -1669,9 +1669,9 @@ setMethodS3("$<-", "Object", function(this, name, value) {
   static <- NULL;
   for (memberAccessor in memberAccessorOrder) {
     if (memberAccessor == 1) {
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Search for a set<Name>() method
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       if (is.null(attr(this, "disableSetMethods"))) {
         firstChar <- substr(name, 1,1);
         # Do not try to access private fields using a set<Name>() method,
@@ -1703,9 +1703,9 @@ setMethodS3("$<-", "Object", function(this, name, value) {
         } # if ("is private field")
       } # if (is.null(attr(this, "disableSetMethods")))
     } else if (memberAccessor == 2) {
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Search for a <name> field
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 2. If there exists a field, assign the value to that field.
       envir <- attr(this, ".env");
       if (exists(name, envir=envir)) {
@@ -1713,18 +1713,18 @@ setMethodS3("$<-", "Object", function(this, name, value) {
         return(invisible(this));
       }
     } else if (memberAccessor == 3) {
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Search for a <name> attribute.   /Should this be removed?
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 3. If there exists an attribute field, assign the value to that field.
       if (is.element(name, names(attributes(this)))) {
         attr(this, name) <- value;
         return(invisible(this));
       }
     } else if (memberAccessor == 4) {
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Search for a static <name> field
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 4. If not, it might be that it is a static field
       static <- getStatic(static=static);
       static.envir <- attr(static, ".env");
@@ -1736,9 +1736,9 @@ setMethodS3("$<-", "Object", function(this, name, value) {
         return(invisible(this));
       }
     } else if (memberAccessor == 5) {
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Create a new field <name>
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 5. Otherwise, assign the value to a new field.
       assign(name, value, envir=envir);
       return(invisible(this));
@@ -1795,7 +1795,7 @@ setMethodS3("[[<-", "Object", function(this, name, value) {
 #*/###########################################################################
 setMethodS3("isReferable", "Object", function(this, ...) {
   TRUE;
-}, private=TRUE) # isReferable() 
+}, private=TRUE) # isReferable()
 
 
 
@@ -1870,7 +1870,7 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
 # @title "Creates a new instance of the same class as this object"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -1910,7 +1910,7 @@ setMethodS3("newInstance", "Object", function(this, ...) {
 # @title "Gets the environment of this object"
 #
 # \description{
-#  @get "title".  
+#  @get "title".
 #  This is the environment where the members of the Object are stored.
 # }
 #
@@ -2011,7 +2011,7 @@ setMethodS3("clearLookupCache", "Object", function(this, ...) {
 # @author
 #
 # \seealso{
-#   To clear the cached fields and run the garbage collector 
+#   To clear the cached fields and run the garbage collector
 #   see @seemethod "gc".
 #   @seeclass
 # }
@@ -2031,11 +2031,11 @@ setMethodS3("clearCache", "Object", function(this, recursive=TRUE, ...) {
   this <- clearLookupCache(this);
 
   if (recursive) {
-    # Make sure that this object has not already been called 
-    # earlier in the same clear-cache request.  
+    # Make sure that this object has not already been called
+    # earlier in the same clear-cache request.
     if (!exists("...clearCache", envir=env)) {
       assign("...clearCache", TRUE, envir=env);
-      on.exit(rm("...clearCache", envir=env));
+      on.exit(rm(list="...clearCache", envir=env));
       fields <- getFields(this, private=TRUE);
       for (field in fields) {
         object <- get(field, envir=env);
@@ -2118,7 +2118,7 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 # @author
 #
 # \seealso{
-#   To clear the fields without calling the garbage collector, 
+#   To clear the fields without calling the garbage collector,
 #   see @seemethod "clearCache".
 #   @seeclass
 # }
@@ -2138,7 +2138,7 @@ setMethodS3("gc", "Object", function(this, ...) {
 # @title "Registers a finalizer hook for the object"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 #  The finalizer hook calls @seemethod "finalize" on the @see Object when
 #  it is garbage collected.
 #  This method is only intended to be called inside the constructor, if
@@ -2164,11 +2164,11 @@ setMethodS3("gc", "Object", function(this, ...) {
 #
 # @keyword programming
 # @keyword methods
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("registerFinalizer", "Object", function(this, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   localFinalizer <- function(env) {
     # Note, R.oo might be detached when this is called!  If so, reload
     # it, this will be our best chance to run the correct finalizer(),
@@ -2219,7 +2219,7 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
   invisible(this);
 }, protected=TRUE) # registerFinalizer()
-  
+
 
 ############################################################################
 # HISTORY:
@@ -2302,7 +2302,7 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 # o Updated as.character() to display hexadecimal addresses longer than
 #   2^32 bytes.
 # o BUG FIX: Since getInternalAddress() coerced the address to an integer,
-#   addresses about 2^32 bytes = 4GB got address NA. Now 
+#   addresses about 2^32 bytes = 4GB got address NA. Now
 #   getInternalAddress() and the default hashCode() return a double.
 # 2006-08-11
 # o Added support for specifying field modifiers in the name of the fields,
@@ -2327,11 +2327,11 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 #   When a "match" found and the value was assigned, it did not return
 #   (except for the set<Name>() match), but instead contiued search for
 #   the rest.  One effect of this was that the new value was always assign
-#   to the static field too.  Thanks Edouard Duchesnay at Service 
+#   to the static field too.  Thanks Edouard Duchesnay at Service
 #   Hospitalier Frédéric Joliot, Commissariat à l'Energie Atomique, France
 #   for spotting this.
 # o Minor typo corrections in the Rdoc.
-# o Replaced all TABs with spaces in source code. Don't know where they 
+# o Replaced all TABs with spaces in source code. Don't know where they
 #   came from.
 # 2005-07-12
 # o Added an Rdoc section on "Defining static fields" with an example
@@ -2351,12 +2351,12 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 # o BUG FIX: getInternalAddress() for class Object was "too" hard coded
 #   making it not work correctly on for instance Suse Linux. Assumed fixed
 #   positions of the hexadecimal address of the environment. Now a gsub()
-#   with a backreference is used. Should be more safe. 
+#   with a backreference is used. Should be more safe.
 # 2003-11-27
 # o Added a reference to my DSC-2003 paper.
 # 2003-10-28
 # o BUG FIX: The way "$.Object" and "$<-.Object" was check if an attribute
-#   with the same name as argument 'name' exists was not done correctly. 
+#   with the same name as argument 'name' exists was not done correctly.
 #   Now it gets the list of names of the attributes and compares to that.
 # 2003-10-20
 # o Added argument 'compress=TRUE' to save() to make it more explicit that
@@ -2369,18 +2369,18 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 #   compared to a scalar and only the first element was compared. Now
 #   is.element() is used instead.
 # 2003-05-14
-# o Slight improvement in the generation of get<Name> and set<Name>, by 
+# o Slight improvement in the generation of get<Name> and set<Name>, by
 #   using substr()<-.
 # 2003-04-13
 # o Made isReferable() and names() private too hide the from the help
 #   indices.
 # o Updated all Rdoc comments to make use of all new Rdoc features.
 # 2003-03-23
-# o data.class() is also a method of Object, but it is not needed to 
+# o data.class() is also a method of Object, but it is not needed to
 #   explicitly define it since it already works as expected.
 # 2003-01-18
 # o IMPROVEMENT: Slight speed improvement in "$()" and "$()<-" in testing
-#   for virtual fields, i.e. get<name>() and set<name>(). 
+#   for virtual fields, i.e. get<name>() and set<name>().
 # o BUG FIX: The caching of "$()" introduced a bug that made try(throw())
 #   to loop forever. If was a copy'n'paste error and it works now. Found it
 #   because when Rdoc was try to generate Rdoc files for Exception classes
@@ -2389,7 +2389,7 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 # o Replaced all occurences of getClass() with data.class(). Will change
 #   the use of getClass() in the future to return a Class object.
 # 2003-01-17
-# o Added a caching feature of "$"() to speed up access to members. The 
+# o Added a caching feature of "$"() to speed up access to members. The
 #   first time a member (field, virtual field, static field, method etc) is
 #   accessed it is done by looking it up one at the time and taking the
 #   first existing one (in a predefined order). The second time the same
@@ -2399,8 +2399,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 # o Made getInternalAddress() to return an (true) integer.
 # 2002-12-15
 # o Added finalize(). Note that reg.finalizer() has to be done in extend()
-#   and not the constructor of Object. Also, did not know about 
-#   reg.finalizer(), but is has apparantly been around since at least 
+#   and not the constructor of Object. Also, did not know about
+#   reg.finalizer(), but is has apparantly been around since at least
 #   v1.5.1 (maybe longer).
 # 2002-12-01
 # o COMPATIBILITY FIX: Removed creation of getClass() for ANY. It won't work
@@ -2422,18 +2422,18 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 # 2002-10-23
 # o BUG FIX: clone() was not doing clones in all situations. See comments
 #   in the code section for explanations.
-# o Added hasField(). Maybe it should also include virtual and static 
+# o Added hasField(). Maybe it should also include virtual and static
 #   fields?!
 # 2002-10-22
 # o BUG FIX: The exists() call in "$<-"() was by misstake (type) like
 #   exists(name, value, ...) and not exists(name, ...).
-# o Added isField to "$" and "$<-" because if the name contains a 
+# o Added isField to "$" and "$<-" because if the name contains a
 #   white space, we know that it can not be a method, it must be a field.
 # o BUG FIX: Have to use UseMethod() in "[[" and "[[<-". For some reason
 #   does for instace get("$")(this, name) not work.
 # 2002-10-21
 # o BUG FIX: getInternalAddress() did not remove temporary "connection"
-#   variable because they are save in .GlobalEnv and not the local 
+#   variable because they are save in .GlobalEnv and not the local
 #   environment.
 # o Added argument private=FALSE to attach().
 # 2002-10-18

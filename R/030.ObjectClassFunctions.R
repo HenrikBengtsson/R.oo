@@ -74,7 +74,7 @@ attachX(list(
 
     this;
   },
-  
+
   extend = function(this, ...className, ...) {
     fields <- list(...);
     names <- names(fields);
@@ -90,19 +90,19 @@ attachX(list(
     } else if (!is.function(constructor)) {
       throw("Argument 'constructor' must be a function: ", mode(constructor));
     }
-  
+
     # This is an example where one wants to have the core of an Object to not
     # be NA, but something else.
     this <- extend(Object(constructor), "Class",
       .staticInstance = NULL
     );
-  
+
     this;
   }
 ), name="R.oo");
 
 # Cleanup
-rm(attachX);
+rm(list="attachX");
 
 
 ############################################################################
@@ -117,7 +117,7 @@ rm(attachX);
 # o Added option "R.oo::Object/finalizeOnExit".
 # o Added option "R.oo::Object/instantiationTime", which controls
 #   whether the instantiation timestamp should be set when instantiating
-#   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime" 
+#   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime"
 #   controls ditto for a BasicObject.
 # 2011-03-11
 # o Added explicit 'onexit=FALSE' to all reg.finalizer():s so it is clear
@@ -149,11 +149,11 @@ rm(attachX);
 #   work.
 # 2002-10-16
 # o There are times when
-#     generic <- function(...) UseMethod() 
+#     generic <- function(...) UseMethod()
 #   is not working, for example
 #     fcn <- get("generic"); fcn(myObj, ...);
 #   For this reason, always do method dispatching using the name explicitly;
-#     generic <- function(...) UseMethod("generic") 
+#     generic <- function(...) UseMethod("generic")
 # 2002-10-15
 # o Created from R.oo Object.R and ideas as described on
 #    http://www.maths.lth.se/help/R/

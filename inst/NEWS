@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.13.6 [2013-05-25]
+o Minor speedup by replacing all rm(x) with rm(list="x").
+
+
 Version: 1.13.5 [2013-05-20]
 o Now Rdoc$getUsage() inserts line breaks so that any usage line
   is at most 90 characters long.

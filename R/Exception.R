@@ -6,7 +6,7 @@
 # \description{
 #  @classhierarchy
 #
-#  Creates an Exception that can be thrown and caught. The \code{Exception} 
+#  Creates an Exception that can be thrown and caught. The \code{Exception}
 #  class is the root class of all other \code{Exception} classes.
 # }
 #
@@ -20,7 +20,7 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods  
+#  @allmethods
 # }
 #
 # @examples "../incl/Exception.Rex"
@@ -88,18 +88,18 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
     pathname <- fcnPathname(call);
     trace <- list(
       call=call,
-      name=name, 
+      name=name,
       body=body,
       envir=envirName,
       pathname=pathname
     );
     stackTrace[[kk]] <- trace;
   } # for (kk ...)
-  rm(calls, parents, functions);
+  rm(list=c("calls", "parents", "functions"));
 
   # The new class is Exception, but for convenience it should also
   # derive from 'try-error', which is used by try() etc.
-  extend(Object(), c("Exception", "simpleError", "error", "condition", "try-error"), 
+  extend(Object(), c("Exception", "simpleError", "error", "condition", "try-error"),
     .msg        = paste(..., sep=sep, collapse=collapse),
     .when       = Sys.time(),
     .stackTrace = stackTrace
@@ -115,7 +115,7 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
 # \title{Gets a character string representing of the Exception}
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 #  By default the format is: "[\{POSIX date string\}] \{class name\}: \{msg\}".
 # }
 #
@@ -334,7 +334,7 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # Alt 2: An alternative is to call stop() again, which will resignal
   # a condition and then abort.  The resignalled condition should not
   # really be caught by anything, because if so, it would have been
-  # caught by the above signalling.  This is based on the assumption 
+  # caught by the above signalling.  This is based on the assumption
   # that it is not possible to continue after the above signal,
   # iff it is caught. /HB 2012-03-05
   cond <- simpleCondition(getMessage(this));
@@ -487,7 +487,7 @@ setMethodS3("getCalls", "Exception", function(this, ...) {
   stackTrace <- getStackTrace(this, ...);
   calls <- lapply(stackTrace, FUN=function(x) x$call);
   calls;
-}) 
+})
 
 setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
   # To please R CMD check (R >= 2.14.0)
@@ -497,7 +497,7 @@ setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
     return(NULL);
   }
   calls[[which]];
-}) 
+})
 
 
 
@@ -562,7 +562,7 @@ setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE
     locs <- sapply(stackTrace, FUN=function(trace) {
       name <- trace$name;
       envir <- trace$envir;
-      s <- sprintf("%s()", name); 
+      s <- sprintf("%s()", name);
       if (envir == "") {
         s <- sprintf("%s is local of the calling function", s);
       } else {
@@ -591,7 +591,7 @@ setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE
   }
 
   res;
-}, private=TRUE) 
+}, private=TRUE)
 
 
 
@@ -631,7 +631,7 @@ setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE
 #*/###########################################################################
 setMethodS3("printStackTrace", "Exception", function(this, ...) {
   cat(getStackTraceString(this, ...));
-}) 
+})
 
 
 
@@ -644,7 +644,7 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 #   trace is long.
 # 2012-09-14
 # o ROBUSTNESS/BUG FIX: The Exception constructor could generate warning
-#   'In if (regexpr("^function\\(", code) != -1) return("") : the 
+#   'In if (regexpr("^function\\(", code) != -1) return("") : the
 #   condition has length > 1 and only the first element will be used'
 #   occuring in its local fcnName() function.  Now code no longer assumes
 #   that 'code' is of length 1.
@@ -702,7 +702,7 @@ setMethodS3("printStackTrace", "Exception", function(this, ...) {
 #   when the object is created.
 # 2003-01-18
 # o Replaced all occurences of getClass() with data.class(). Will change
-#   the use of getClass() in the future to return a Class object. 
+#   the use of getClass() in the future to return a Class object.
 # 2002-10-17
 # o Made getLastException() a static method of Exception.
 # o Created from previous ideas in R.oo.
