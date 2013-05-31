@@ -6,39 +6,39 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{Object}
+\name{Object}
 \docType{class}
 \alias{Object}
 
 
- \title{The root class that every class must inherit from}
+\title{The root class that every class must inherit from}
 
- \description{
-  R.oo\cr
-  \bold{Class Object}\cr
+\description{
+ R.oo\cr
+ \bold{Class Object}\cr
 
-  public class \bold{Object}\cr
+ public class \bold{Object}\cr
 
-  \code{Object} is the root class of all other classes. All classes
-  \emph{must} extends this class, directly or indirectly, which means
-  that they all will inherit the methods in this class.
- }
+ \code{Object} is the root class of all other classes. All classes
+ \emph{must} extends this class, directly or indirectly, which means
+ that they all will inherit the methods in this class.
+}
 
- \usage{
+\usage{
 Object(core=NA)
 }
 
- \arguments{
-   \item{core}{The core value of each \emph{reference} referering to the
-     Object. By default, this is just the smallest possible \R object, but
-     there are situations where it is useful to have another kind of core,
-     which is the case with the Class class.
-     \emph{Note that this value belongs to the reference variable
-     and not to the Object, which means it can not be referenced.}}
- }
+\arguments{
+  \item{core}{The core value of each \emph{reference} referering to the
+    Object. By default, this is just the smallest possible \R object, but
+    there are situations where it is useful to have another kind of core,
+    which is the case with the Class class.
+    \emph{Note that this value belongs to the reference variable
+    and not to the Object, which means it can not be referenced.}}
+}
 
- \section{Fields and Methods}{
-  \bold{Methods:}\cr
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{$} \tab  -\cr
  \tab \code{$<-} \tab  -\cr
@@ -79,21 +79,21 @@ Object(core=NA)
 
 
 
- }
+}
 
- \section{Defining static fields}{
-  To define a static field of an Object class, use a private field
-  \code{<.field>} and then create a virtual field \code{<field>} by
-  defining methods \code{get<Field>()} and \code{set<Field>()}.
-  These methods should retrieve and assign the value of the field
-  \code{<.field>} of the \emph{static} instance of the class.  The
-  second example below shows how to do this.  The example modifies
-  also the static field already in the constructor, which is something
-  that otherwise may be tricky.
- }
+\section{Defining static fields}{
+ To define a static field of an Object class, use a private field
+ \code{<.field>} and then create a virtual field \code{<field>} by
+ defining methods \code{get<Field>()} and \code{set<Field>()}.
+ These methods should retrieve and assign the value of the field
+ \code{<.field>} of the \emph{static} instance of the class.  The
+ second example below shows how to do this.  The example modifies
+ also the static field already in the constructor, which is something
+ that otherwise may be tricky.
+}
 
- \examples{
-  
+\examples{
+ 
 #########################################################################
 # Defines the class Person with private fields .name and .age, and
 # with methods print(), getName(), setName(), getAge() and setAge().
@@ -234,7 +234,7 @@ print(obj)
 print(ll(obj))
 
 
-  
+ 
 ######################################################################
 # Example illustrating how to "emulate" static fields using virtual
 # fields, i.e. get- and set-methods.  Here we use a private static
@@ -288,15 +288,15 @@ print(obj[[1]]$count)
 stopifnot(obj[[1]]$count == length(obj))
 stopifnot(MyClass$count == length(obj))
 
- }
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \references{
-  [1] H. Bengtsson, \emph{The R.oo package - Object-Oriented Programming with References Using Standard R Code}, In Kurt Hornik, Friedrich Leisch and Achim Zeileis, editors, Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003), March 20-22, Vienna, Austria. \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2003/Proceedings/}
+\references{
+ [1] H. Bengtsson, \emph{The R.oo package - Object-Oriented Programming with References Using Standard R Code}, In Kurt Hornik, Friedrich Leisch and Achim Zeileis, editors, Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003), March 20-22, Vienna, Austria. \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2003/Proceedings/}
  \cr
- }
+}
 
- \keyword{programming}
- \keyword{methods}
+\keyword{programming}
+\keyword{methods}
 \keyword{classes}

@@ -1643,14 +1643,23 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     Sys.setlocale(locale=locale);
 
 
-    # Make a best guess what the package is that is created by looking
-    # at the name of the parent directory of the getManPath() directory.
-    opwd <- getwd();
-    setwd(getManPath(this));
-    setwd("..");
-    path <- strsplit(getwd(), split="[/\\]")[[1]];
-    setwd(opwd);
-    package <- path[length(path)];
+    # Make a best guess what the package is that is created by querying
+    # the DESCRIPTION file, which should be in the parent directory of
+    # the getManPath() directory.
+    pkgPath <- dirname(getManPath(this));
+    pathname <- file.path(pkgPath, "DESCRIPTION");
+    if (!file.exists(pathname)) {
+      stop("Cannot infer package name. File not found: ", pathname);
+    }
+    pi <- read.dcf(file=pathname);
+    package <- pi[,"Package", drop=TRUE];
+    if (length(package) == 0L) {
+      throw("Failed to infer package name.  No 'Package' was listed in ", sQuote(pathname), ".");
+    }
+    if (length(package) > 1L) {
+      throw("Failed to infer package name.  More than one 'Package' were listed in ", sQuote(pathname), ": ", paste(sQuote(package), collapse=", "));
+    }
+
     Rdoc$package <- package;
 
     class <- NULL;
@@ -2785,6 +2794,9 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-05-30
+# o Now Rdoc$compile() infer the package name from the DESCRIPTION
+#   file (instead from the package directory name).
 # 2013-05-19
 # o Now Rdoc$getUsage() inserts line breaks so that any usage line
 #   is at most 90 characters long.

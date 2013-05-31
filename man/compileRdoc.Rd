@@ -17,13 +17,15 @@
 }
 
 \usage{
-compileRdoc(pkgname=NULL, ..., verbose=TRUE)
+compileRdoc(pkgname=NULL, path=pkgname, ..., verbose=TRUE)
 }
 
 \arguments{
   \item{pkgname}{A \code{\link[base]{character}} string specifying the package name.
     If \code{\link[base]{NULL}}, the package name is inferred from the DESCRIPTION file
     that is automatically search for in the subdirectories.}
+  \item{path}{A \code{\link[base]{character}} string specifying the path of the
+    package source directory.}
   \item{...}{Additional arguments passed to \code{Rdoc\$compile()}.}
   \item{verbose}{If \code{\link[base:logical]{TRUE}}, verbose output is printed, otherwise not.}
 }

@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.13.7 [2013-05-30]
+o Now Rdoc$compile() infer the package name from the DESCRIPTION
+  file (instead from the package directory name).
+o Added argument 'path' to compileRdoc().
+
+
 Version: 1.13.6 [2013-05-25]
 o Minor speedup by replacing all rm(x) with rm(list="x").
 

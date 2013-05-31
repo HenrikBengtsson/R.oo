@@ -13,6 +13,8 @@
 #   \item{pkgname}{A @character string specifying the package name.
 #     If @NULL, the package name is inferred from the DESCRIPTION file
 #     that is automatically search for in the subdirectories.}
+#   \item{path}{A @character string specifying the path of the
+#     package source directory.}
 #   \item{...}{Additional arguments passed to \code{Rdoc\$compile()}.}
 #   \item{verbose}{If @TRUE, verbose output is printed, otherwise not.}
 # }
@@ -40,7 +42,7 @@
 # @keyword IO
 # @keyword internal
 #*/###########################################################################
-compileRdoc <- function(pkgname=NULL, ..., verbose=TRUE) {
+compileRdoc <- function(pkgname=NULL, path=pkgname, ..., verbose=TRUE) {
   require("R.oo") || stop("Package not loaded: R.oo");
 
   # Infer package name from DESCRIPTION?
@@ -66,19 +68,22 @@ compileRdoc <- function(pkgname=NULL, ..., verbose=TRUE) {
     }
   }
 
-  dir <- pkgname;
-  if (!file_test("-d", dir)) {
-    throw("No such package directory: ", dir);
+  if (is.null(path)) {
+    path <- pkgname;
   }
 
-  path <- file.path(dir, "R")
   if (!file_test("-d", path)) {
-    throw("No such package R/ directory: ", path);
+    throw("No such package directory: ", path);
   }
+  pathR <- file.path(path, "R")
+  if (!file_test("-d", pathR)) {
+    throw("No such package R/ directory: ", pathR);
+  }
+
 
   require(pkgname, character.only=TRUE) || throw("Package not loaded: ", pkgname);
 
-  opwd <- setwd(path);
+  opwd <- setwd(pathR);
   on.exit(setwd(opwd));
 
   Rdoc$compile(..., verbose=verbose);
@@ -87,6 +92,8 @@ compileRdoc <- function(pkgname=NULL, ..., verbose=TRUE) {
 
 ############################################################################
 # HISTORY:
+# 2013-05-30
+# o Added argument 'path' to compileRdoc().
 # 2013-04-03
 # o CLEANUP: compileRdoc() was outputting search() and sessionInfo().
 # 2013-03-08
