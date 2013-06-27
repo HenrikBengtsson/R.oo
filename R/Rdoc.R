@@ -1212,6 +1212,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
           usage <- Rdoc$getUsage(method=method, class=class);
         }
       }
+      usage <- paste(usage, collapse="\n");
       line <- usage;
       rd <<- paste(rd, line, sep="");
       bfr;
@@ -1637,7 +1638,6 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
   #   "aliasundocumented" = tagAliasUndocumented, # not useful.
       "alias"            = tagAlias,
       "title"            = tagTitle,
-      "usage"            = tagSynopsis,        # deprecated
   #
       "class"            = tagClass,
       "include"          = tagInclude,
