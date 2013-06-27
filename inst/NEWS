@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.13.8 [2013-06-27]
+o Added a trial version of Rdoc tag @usage.
+
+
 Version: 1.13.7 [2013-05-30]
 o Now Rdoc$compile() infer the package name from the DESCRIPTION
   file (instead from the package directory name).

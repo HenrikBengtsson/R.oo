@@ -1195,6 +1195,28 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    tagUsage <- function(bfr) {
+      bfr <- getTagValue(bfr);
+      value <- attr(bfr, "value");
+      if (nchar(value) == 0L) {
+        # Usage is inferred from the @RdocNnn tag.
+      } else if (nchar(value) > 0L) {
+        # Usage is inferred from the @usage <spec> tag.
+        parts <- strsplit(value, split=",", fixed=TRUE)[[1]];
+        nparts <- length(parts);
+        method <- parts[1L];
+        if (nparts == 1L) {
+          usage <- Rdoc$getUsage(method=method);
+        } else if (nparts == 2L) {
+          class <- parts[2L];
+          usage <- Rdoc$getUsage(method=method, class=class);
+        }
+      }
+      line <- usage;
+      rd <<- paste(rd, line, sep="");
+      bfr;
+    }
+
     tagSynopsis <- function(bfr) {
       usage <- c("", usage, "");
       usage <- paste(usage, collapse="\n");
@@ -1202,6 +1224,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       rd <<- paste(rd, line, sep="");
       bfr;
     }
+
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1603,6 +1626,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
   #
       "classhierarchy"   = tagClasshierarchy,  # must be *before* "class".
       "synopsis"         = tagSynopsis,
+      "usage"            = tagUsage,
       "keyword"          = tagKeyword,
   #
       "Class"            = tagRdocClass,
@@ -2794,6 +2818,8 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-06-27
+# o Added trial version of Rdoc tag @usage.
 # 2013-05-30
 # o Now Rdoc$compile() infer the package name from the DESCRIPTION
 #   file (instead from the package directory name).
