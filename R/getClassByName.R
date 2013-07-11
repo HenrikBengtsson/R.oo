@@ -1,4 +1,9 @@
-.getClassByName <- function(name, where=c("ns", "search")[-1L], envir=NULL, ...) {
+.getClassByName <- function(name, where=c("ns", "search"), envir=NULL, ...) {
+  # Backward compatibility
+  # Enable: options("R.oo::Class/searchNamespaces"=TRUE)
+  if (!getOption("R.oo::Class/searchNamespaces", FALSE)) {
+    where <- where[-1L];
+  }
 ##   # 1. Search namespaces
 ##   if (is.element("ns", where)) {
 ##     nss <- loadedNamespaces();
@@ -35,6 +40,9 @@
 
 ############################################################################
 # HISTORY:
+# 2013-07-11
+# o Now .getClassByName() will search the given environment if a
+#   secret option is enabled.
 # 2012-12-27
 # o Added argument 'envir' to .getClassByName().
 # 2012-11-23
