@@ -13,7 +13,7 @@
 #   \item{pattern}{Regular expression pattern specifying which members to
 #    return. If \code{".*"}, all names are matched.}
 #   \item{...}{A named @vector of format \code{functionName=value}, where
-#    \code{functionName()} will be called on each member found. If the 
+#    \code{functionName()} will be called on each member found. If the
 #    result matches the \code{value}, the member is returned, otherwise
 #    not.}
 #   \item{private}{If @TRUE, also private members, i.e. members with
@@ -21,7 +21,7 @@
 #   \item{properties}{Names of properties to be returned. There must exist
 #    a @function with the same name, because it will be called. This way
 #    one can extract any type of property by defining new methods.}
-#   \item{sortBy}{Name or index of column (property) to be sorted by. 
+#   \item{sortBy}{Name or index of column (property) to be sorted by.
 #    If @NULL, the objects are listed in the order they are found.}
 #   \item{envir}{An @environment, a search path index or a name of a package
 #    to be scanned.}
@@ -76,12 +76,20 @@
 # @author
 #
 # \seealso{
-#   @see "ll.Object".
+#   @see "utils::ls.str" and @see "ll.Object".
 # }
 #
 # \keyword{utilities}
 #*/###########################################################################
 setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties"), sortBy=NULL, envir=parent.frame()) {
+  # AD HOC: Workaround to make sure property functions can be found.
+  # This is because they are currently search for via the global
+  # environment. /HB 2013-07-11
+  require("R.oo") || throw("Package not loaded: R.oo");
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'envir':
   if (is.numeric(envir)) {
     envir <- as.environment(envir);
@@ -94,7 +102,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   members <- ls(envir=envir, all.names=private);
 
   # Any members at all?
-  if (length(members) == 0)
+  if (length(members) == 0L)
     return(data.frame());
 
 
@@ -103,8 +111,8 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is.null(pattern)) {
     matches <- regexpr(pattern, members);
-    members <- members[matches != -1];
-    if (length(members) == 0)
+    members <- members[matches != -1L];
+    if (length(members) == 0L)
       return(data.frame());
   }
 
@@ -113,7 +121,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   # Filter out members that to not match the search criteria according to "...".
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   args <- list(...);
-  if (length(args) > 0) {
+  if (length(args) > 0L) {
     # Precreate a function to filter out members to be returned
     names <- names(args);
     expr <- NULL;
@@ -122,7 +130,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
       if (is.null(value)) {
         e <- substitute(is.null(fcn(..object)), list(fcn=as.name(names[kk])));
       } else {
-        e <- substitute(is.element(fcn(..object), value), 
+        e <- substitute(is.element(fcn(..object), value),
                         list(fcn=as.name(names[kk]), value=value));
       }
       if (is.null(expr)) {
@@ -132,15 +140,15 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
       }
     } # for (kk ...)
 
-#    expr <- substitute(filter <- function(name) { 
-#      eval(substitute(expr, list(..object=as.name(name))), envir=envir) 
+#    expr <- substitute(filter <- function(name) {
+#      eval(substitute(expr, list(..object=as.name(name))), envir=envir)
 #    }, list(expr=expr, envir=envir));
     # Now, create the filter() function
 #    eval(expr);
 
     # Replaces the above construct.
     filter <- eval(substitute({
-      function(name) { 
+      function(name) {
         ..object <- get(name, envir=envir);
         eval(expr, envir=envir)
       }
@@ -153,7 +161,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
       if (filter(member))
   	keep <- c(keep, member);
     }
-    if (length(keep) == 0)
+    if (length(keep) == 0L)
       return(data.frame());
     members <- keep;
   }
@@ -161,7 +169,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   if (identical(properties, ""))
     return(data.frame(member=members));
 
-  if (length(properties) == 0) {
+  if (length(properties) == 0L) {
     # Set default 'properties' argument for ll(), if missing
     key <- "R.oo::ll/properties";
     if (!is.element(key, names(options()))) {
@@ -179,32 +187,38 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   expr <- expression();
   for (property in properties) {
     e <- substitute({
-      ..exp <- substitute(propertyFcn(object), 
+      ..exp <- substitute(propertyFcn(object),
               list(propertyFcn=as.name(property), object=..object));
       ..value <- eval(..exp, envir=globalenv());
   	  if (is.null(..value)) {
   	    ..value <- "NULL";
-  	  } else if (is.vector(..value) && length(..value) > 1) {
+  	  } else if (is.vector(..value) && length(..value) > 1L) {
   	    ..value <- sprintf("c(%s)", paste(..value, collapse=","));
   	  } else if (is.list(..value)) {
   	    ..value <- unlist(..value);
       }
-  	  if (length(..value) > 0) {
-  	    ..value <- ..value[1];
+  	  if (length(..value) > 0L) {
+  	    ..value <- ..value[1L];
       }
     }, list(property=property));
-    expr <- substitute({expr; e; ..row <- cbind(..row, ..value);}, 
+    expr <- substitute({expr; e; ..row <- cbind(..row, ..value);},
                                              list(expr=expr,e=e));
   }
 
   df <- NULL;
   for (member in members) {
-    rowExpr <- substitute({
-      ..row <- list(name); 
-      ..object <- get(name, envir=envir); 
-      expr;
-    }, list(name=member, member=as.name(member), expr=expr));
-    dfRow <- eval(rowExpr);
+    if (is.element(member, c("..."))) {
+      dfRow <- c(member, rep(NA, length=length(properties)));
+      dfRow <- as.list(dfRow);
+    } else {
+      rowExpr <- substitute({
+        ..row <- list(name);
+        ..object <- get(name, envir=envir);
+        expr;
+      }, list(name=member, member=as.name(member), expr=expr));
+      dfRow <- eval(rowExpr);
+    }
+
     if (is.null(df)) {
       df <- dfRow;
     } else {
@@ -231,7 +245,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     by <- df[,pos];
 
     # We know that the first column always contains character strings...
-    if (pos > 1) {
+    if (pos > 1L) {
       sortBy <- colnames(df)[pos];
 
       # Figure out the data type of the sort column
@@ -249,12 +263,16 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
 
 ############################################################################
 # HISTORY:
+# 2013-07-11
+# o Now R.oo::ll() works without attaching the package.
+# o BUG FIX: ll(private=TRUE) gave an error if the environment
+#   contained the special '...' argument.
 # 2012-02-29
 # o CLEANUP: Dropped an .Internal() call in the default ll() method.
 # 2008-08-11
 # o Replace all 'a %in% b' with is.element(a,b) due to weird bug, cf.
-#   my R-devel post 'Argument "nomatch" matched by multiple actual 
-#   arguments ... %in% -> match?!?' on March 6, 2008. 
+#   my R-devel post 'Argument "nomatch" matched by multiple actual
+#   arguments ... %in% -> match?!?' on March 6, 2008.
 # 2007-06-09
 # o Removed (incorrect) argument name 'list' from all substitute() calls.
 # 2007-03-24
@@ -265,11 +283,11 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
 # o Now ll() uses objectSize() instead object.size().
 # 2005-06-12
 # o Now ll.default() does not assign variables in the lookup environment.
-# o Now ll.default() uses prefix '..' for all internal variable names, 
+# o Now ll.default() uses prefix '..' for all internal variable names,
 #   because they are added to the environment investigated.  This strategy
 #   should be replaced by a better one, but at least for now it works.
 # 2005-03-28
-# o Now argument 'properties' of ll() is given by the option 
+# o Now argument 'properties' of ll() is given by the option
 #   "R.oo::ll/properties".  If not set when the package is loaded, it is
 #   set to c("data.class", "dimension", "object.size").
 # 2005-02-11

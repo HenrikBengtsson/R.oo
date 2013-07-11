@@ -88,7 +88,7 @@
 \author{Henrik Bengtsson}
 
 \seealso{
-  \code{\link{ll.Object}}().
+  \code{\link[utils]{ls.str}} and \code{\link{ll.Object}}().
 }
 
 \keyword{utilities}

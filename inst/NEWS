@@ -1,6 +1,13 @@
 Package: R.oo
 =============
 
+Version: 1.13.10 [2013-07-11]
+o Now R.oo::ll() works without attaching the package.  This is done
+  by attaching R.oo when called.
+o BUG FIX: ll(private=TRUE) gave an error if the environment
+  contained the special '...' argument.
+
+
 Version: 1.13.9 [2013-07-01]
 o Bumped up package dependencies.
 
