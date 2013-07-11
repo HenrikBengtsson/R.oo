@@ -41,8 +41,8 @@
 ############################################################################
 # HISTORY:
 # 2013-07-11
-# o Now .getClassByName() will search the given environment if a
-#   secret option is enabled.
+# o Now internal .findS3Method() and .getClassByName() search the given
+#   environment (argument 'envir') if a secret option is enabled.
 # 2012-12-27
 # o Added argument 'envir' to .getClassByName().
 # 2012-11-23
