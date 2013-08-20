@@ -1,6 +1,12 @@
 Package: R.oo
 =============
 
+Version: 1.14.0 [2013-08-20]
+o Now it's possible to call static methods without attaching 
+  ("loading") the package, e.g. R.oo::Class$forName("Object").
+  Added unit tests for this.
+
+
 Version: 1.13.10 [2013-07-11]
 o Now R.oo::ll() works without attaching the package.  This is done
   by attaching R.oo when called.

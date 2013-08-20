@@ -1,19 +1,9 @@
 .findS3Method <- function(name, where=c("ns", "search"), envir=NULL, mustExist=TRUE) {
   # Backward compatibility
   # Enable: options("R.oo::Class/searchNamespaces"=TRUE)
-  if (!getOption("R.oo::Class/searchNamespaces", FALSE)) {
+  if (!getOption("R.oo::Class/searchNamespaces", TRUE)) {
     where <- where[-1L];
   }
-
-##  # (a) Search loaded namespaces
-##  if (is.element("ns", where)) {
-##    for (ns in loadedNamespaces()) {
-##      envir <- asNamespace(ns);
-##      if (exists(name, mode="function", envir=envir)) {
-##        return(get(name, mode="function", envir=envir));
-##      }
-##    }
-##  }
 
   # 1. Search a specific environment?
   #    (which should be a namespace of package)
@@ -43,6 +33,8 @@
 
 ############################################################################
 # HISTORY:
+# 2013-08-20
+# o Now option 'R.oo::Class/searchNamespaces' defaults to TRUE.
 # 2013-07-11
 # o Now internal .findS3Method() and .getClassByName() search the given
 #   environment (argument 'envir') if a secret option is enabled.
