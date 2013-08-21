@@ -963,13 +963,13 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
   #     set by the constructor.  Since it was introduced in
   #     R.oo v1.14.0, it is not guaranteed to exist.
   envir <- getEnvironment(this);
-  pkg <- envir$...package;
-  if (!is.null(pkg)) {
+  package <- envir$...package;
+  if (!is.null(package)) {
     # Check if namespace can be retrieved.  This may not possible if
     # for instance an Object is loaded from disk and the package name
     # has changed since it was last saved.
-    if (requireNamespace(pkg, quietly=TRUE)) {
-      ns <- getNamespace(pkg);
+    if (requireNamespace(package, quietly=TRUE)) {
+      ns <- getNamespace(package);
       clazz <- .getClassByName(className, where="ns", envir=ns, mustExist=FALSE);
       if (!is.null(clazz)) {
         static <- getStaticInstance(clazz);
@@ -1368,6 +1368,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
     sort(unique(mods));
   });
 
+  # Record modifiers
   assign("...modifiers", modifiers, envir=this.env);
 
   this;
