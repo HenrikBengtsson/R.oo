@@ -2,17 +2,22 @@ Package: R.oo
 =============
 
 Version: 1.14.0 [2013-08-20]
-o Now it's possible to call static methods without attaching 
+o Now it's possible to call static methods without attaching
   ("loading") the package, e.g. R.oo::Class$forName("Object").
   Added unit tests for this.
+o Now getPackage() for Class first searches the namesspace of the
+  Class object and then the attached ("loaded") packages.
+o Now '$' and '$<-' for Object locates the static instance of the
+  Class using getStaticInstance() for Object.
+o Updated getStaticInstance() for Object to search more locations.
 
 
 Version: 1.13.10 [2013-07-11]
 o Now R.oo::ll() works without attaching the package.  This is done
   by attaching R.oo when called.
-o Now it is possible to use static methods of a Class without 
+o Now it is possible to use static methods of a Class without
   attaching the package where the Class is defined, e.g.
-  R.utils::Arguments$getIndex(2).  To enable this feature, 
+  R.utils::Arguments$getIndex(2).  To enable this feature,
   options("R.oo::Class/searchNamespaces"=TRUE) must be set.
 o BUG FIX: ll(private=TRUE) gave an error if the environment
   contained the special '...' argument.

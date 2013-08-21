@@ -5,9 +5,9 @@
 #
 # \description{
 #  @classhierarchy
-#  
+#
 #  @get "title".
-#  First of all, this class is most commonly used \emph{internally} and 
+#  First of all, this class is most commonly used \emph{internally} and
 #  neither the end user nor the programmer need to no about the class Class.
 # }
 #
@@ -19,14 +19,14 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods 
+#  @allmethods
 # }
 #
 # \details{
-#   The class Class describes the Object class or one of its subclasses. 
+#   The class Class describes the Object class or one of its subclasses.
 #   All classes and constructors created by \code{setConstructorS3()} will
 #   be of class Class. Its methods provide ways of accessing static fields
-#   and static methods. Its \emph{print()} method will print detailed 
+#   and static methods. Its \emph{print()} method will print detailed
 #   information about the class and its fields and methods.
 # }
 #
@@ -89,9 +89,9 @@ setMethodS3("as.character", "Class", function(x, ...) {
   count <- unlist(lapply(methods, FUN=length));
   names(count) <- names(methods);
   nbrOfMethods <- sum(count);
-  count <- count[-1];
-    
-  s <- paste(class(this)[1L], " ", getName(this), " has ", 
+  count <- count[-1L];
+
+  s <- paste(class(this)[1L], " ", getName(this), " has ",
   nbrOfFields,  " field" , if (nbrOfFields  != 1L) "s", " and ",
   nbrOfMethods, " method", if (nbrOfMethods != 1L) "s", sep="");
 
@@ -99,7 +99,7 @@ setMethodS3("as.character", "Class", function(x, ...) {
     isAre <- c("is", "are")[1L + (count != 1L)];
     isAre[1L] <- paste(isAre[1L], "implemented in");
     isAre[-1L] <- "in";
-    s <- paste(sep="", s, " of which ", 
+    s <- paste(sep="", s, " of which ",
                paste(paste(count, isAre, names(count)), collapse=", "), ".");
   } else {
     s <- paste(s, ".", sep="");
@@ -264,7 +264,7 @@ setMethodS3("getSuperclasses", "Class", function(this, ...) {
 #   \dontrun{
 #   # Due to a bug in R CMD check (R v1.7.1) the MicroarrayData$read() call
 #   # below will call getKnownSubclasses(), which will generate
-#   #   "Error in exists(objectName, mode = "function") : 
+#   #   "Error in exists(objectName, mode = "function") :
 #   #	   [2003-07-07 23:32:41] Exception: F used instead of FALSE"
 #   # Note that the example still work, just not in R CMD check
 #
@@ -361,7 +361,7 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
 # @title "Creates a new instance of this class"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 #  Important: It should always be possible to create a new Object by
 #  calling the constructor without arguments.
 #  This method is simply calling the constructor method of the class.
@@ -508,7 +508,7 @@ setMethodS3("isStatic", "Class", function(this, ...) {
 # @title "Checks if a class is defined private or not"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -548,7 +548,7 @@ setMethodS3("isPrivate", "Class", function(this, ...) {
 # @title "Checks if a class is defined protected or not"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -749,25 +749,45 @@ setMethodS3("forName", "Class", function(this, name, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("getPackage", "Class", function(this, ...) {
-  pattern <- paste("^", getName(this), "$", sep="");
+  name <- getName(this);
 
+  pkgName <- NULL;
+
+  # (a) Search name spaces
+  envirLast <- NULL;
+  envir <- environment(this);
+  while (!identical(envir, globalenv()) && !identical(envir, envirLast)) {
+    envirLast <- envir;
+
+    if (exists(name, mode="function", envir=envir, inherits=FALSE)) {
+      res <- get(name, mode="function", envir=envir, inherits=FALSE);
+      if (inherits(res, "Class")) {
+        pkgName <- environmentName(envir);
+        pkgName <- gsub("^package:", "", pkgName);
+        return(pkgName);
+      }
+    }
+
+    # Next
+    envir <- parent.env(envir);
+  } # while (...)
+
+
+  # (b) Search attached ("loaded") packages
   packages <- search();
-  for (k in seq(along=packages)) {
-    found <- (length(ls(pos=k, pattern=pattern)) > 0L);
-    if (found) break;
-  }
+  for (pos in seq(along=packages)) {
+    envir <- pos.to.env(pos);
+    if (exists(name, mode="function", envir=envir, inherits=FALSE)) {
+      res <- get(name, mode="function", envir=envir, inherits=FALSE);
+      if (inherits(res, "Class")) {
+        pkgName <- environmentName(envir);
+        pkgName <- gsub("^package:", "", pkgName);
+        return(pkgName);
+      }
+    }
+  } # for (pos ...)
 
-  if (!found)
-    return(NULL);
-
-  package <- packages[k];
-  if (regexpr("^package:", package) != -1L) {
-    package <- gsub("^package:", "", package);
-  } else {
-    package <- NULL;
-  }
-
-  package;
+  NULL;
 })
 
 
@@ -858,7 +878,7 @@ setMethodS3("getStaticInstance", "Class", function(this, ...) {
 # @title "Checks if a class is currently being initiated initiated"
 #
 # \description{
-#   @get "title".  
+#   @get "title".
 #   When extending a class for the first time, which is
 #   typically done in a constructor, a static instance of the class is
 #   created by calling the constructor without parameters.
@@ -892,7 +912,7 @@ setMethodS3("isBeingCreated", "Class", function(this, ...) {
   if (!is.function(this)) {
     this <- get(class(this)[1L], mode="function")
     if (!inherits(this, "Class"))
-      throw("Not a Class object: ", class(this)[1]);
+      throw("Not a Class object: ", class(this)[1L]);
   }
 
   # If the static instance of this class is missing create one.
@@ -1009,7 +1029,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
     #    be methods of an S3 class.
     names <- grep("\\.", names, value=TRUE);
 
-    # 2. For each class find the methods belong to that class. 
+    # 2. For each class find the methods belong to that class.
     for (className in classNames) {
       pattern <- paste("\\.", className, "$", sep="");
       namesT <- grep(pattern, names, value=TRUE);
@@ -1025,7 +1045,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
       if (length(namesT) == 0L) next;
 
       # Keep only non-private methods?
-      if (!is.null(exclMods)) { 
+      if (!is.null(exclMods)) {
         keep <- sapply(namesT, FUN=function(name) {
     	  fcn <- get(name, mode="function", envir=envir);
           modifiers <- attr(fcn, "modifiers");
@@ -1041,7 +1061,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
       # Drop duplicates
       dups <- duplicated(namesT);
       namesT <- namesT[!dups];
-      
+
       res[[className]] <- namesT;
     } # for (className)
 
@@ -1057,7 +1077,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
     if (!is.null(envir)) {
       res <- findS3MethodsByEnvironment(classNames, envir=envir, exclMods=exclMods, res=res);
     }
-  
+
 ##    # (a) Search loaded namespaces
 ##    if (is.element("ns", where)) {
 ##      for (ns in loadedNamespaces()) {
@@ -1073,7 +1093,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
         res <- findS3MethodsByEnvironment(classNames, envir=envir, exclMods=exclMods, res=res);
       }
     }
-  
+
     res;
   } # findS3Methods()
 
@@ -1138,8 +1158,8 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
 # @title "Gets the arguments of a function as a character string"
 #
 # \description{
-#   Gets the arguments (with default values) of a function as a character 
-#   string, which can be used for debugging purposes etc. 
+#   Gets the arguments (with default values) of a function as a character
+#   string, which can be used for debugging purposes etc.
 #   Used by: classinfo().
 # }
 #
@@ -1170,7 +1190,7 @@ setMethodS3("argsToString", "Class", function(this, fcn, ...) {
   a <- args(fcn);
   if (is.null(a))
     return("[primitive function]");
-  
+
   if (typeof(a) != "closure")
     throw("Expected closure but found something else.");
   args <- formals(a);
@@ -1190,7 +1210,7 @@ setMethodS3("argsToString", "Class", function(this, fcn, ...) {
       } else if (is.null(argDefault)) {
         s <- paste(s, "=NULL", sep="", collapse="");
       } else if (is.language(argDefault)) {
-        argDefault <- as.character(arg[1]);
+        argDefault <- as.character(arg[1L]);
         s <- paste(s, "=", argDefault, sep="", collapse="");
       } else {
         s <- paste(s, "=", argDefault, sep="", collapse="");
@@ -1264,7 +1284,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
   fields  <-  getFields(this, private=private);
   if (length(fields) > 0L) {
     modifiers <- rep("public", length.out=length(fields));
-    isPrivate <- (regexpr("^\\.", fields) != -1);
+    isPrivate <- (regexpr("^\\.", fields) != -1L);
     modifiers[isPrivate] <- "private";
     for (kk in seq(along=fields)) {
       s <- paste(s, indentStr, modifiers[kk], " ", fields[kk], "\n", sep="");
@@ -1328,30 +1348,30 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # }
 #
 # \description{
-#   Makes the fields and methods of an Class accessable via the \code{$} 
+#   Makes the fields and methods of an Class accessable via the \code{$}
 #   operator. This method is never called explicitly, but through an indirect
 #   usage of the \code{$} operator, e.g. \code{obj$name} or
 #   \code{obj$getValue()}.
 #
 #   \enumerate{
-#    \item This method will first search for a \code{get<Name>()} method, 
-#    e.g. if name has the value \code{"age"}, a \code{getAge()} will be 
+#    \item This method will first search for a \code{get<Name>()} method,
+#    e.g. if name has the value \code{"age"}, a \code{getAge()} will be
 #    looked for. If such a method exists it will be called with the Class
-#    as the first and only argument, e.g. \code{getAge(this)}. 
-#    A \code{get<Name>()} is only looked for if \code{<name>} is not a 
-#    private field. A private field is a name \emph{beginning} with a 
+#    as the first and only argument, e.g. \code{getAge(this)}.
+#    A \code{get<Name>()} is only looked for if \code{<name>} is not a
+#    private field. A private field is a name \emph{beginning} with a
 #    \code{.} (period). The rational for this naming convention is to be
 #    consistent with how \code{\link[base]{ls}()} works, which will not list
 #    such members by default.
 #
-#    \item If no such method exists, first then, this method will look a 
+#    \item If no such method exists, first then, this method will look a
 #    field in the Class can has the name \code{name}.
 #
-#    \item If such neither exists, a method with name \code{name} will be 
+#    \item If such neither exists, a method with name \code{name} will be
 #    searched for and returned.
 #
 #    \item If no fields or methods are found at all, @NULL is returned.
-#   } 
+#   }
 # }
 #
 # \arguments{
@@ -1446,8 +1466,8 @@ setMethodS3("$", "Class", function(this, name) {
       return(fcn);
     }
   }
-   
-  NULL;  
+
+  NULL;
 }, createGeneric=FALSE) # $()
 
 
@@ -1474,16 +1494,16 @@ setMethodS3("$", "Class", function(this, name) {
 #     \item This method will first search for a \preformatted{set<Name>()}
 #     method, e.g. if name has the value \code{"age"}, a \code{setAge()} will
 #     be looked for. If such a method exists it will be called with the Class
-#     as the first argument and \code{value} as the second, e.g. 
+#     as the first argument and \code{value} as the second, e.g.
 #     \code{setAge(this, value)}.
-#     A \code{get<Name>()} is only looked for if \code{<name>} is not a 
-#     private field. A private field is a name \emph{beginning} with a 
+#     A \code{get<Name>()} is only looked for if \code{<name>} is not a
+#     private field. A private field is a name \emph{beginning} with a
 #     \code{.} (period). The rational for this naming convention is to be
-#     consistent with how \code{\link[base]{ls}()} works, which will not 
+#     consistent with how \code{\link[base]{ls}()} works, which will not
 #     list such members  by default.
 #
-#     \item If no such method exists it will assign the \code{value} to a 
-#     (existing or a non-existing) field named \code{name}. 
+#     \item If no such method exists it will assign the \code{value} to a
+#     (existing or a non-existing) field named \code{name}.
 #   }
 #
 #   Because any \preformatted{set<Name>()} is called first, it is possible
@@ -1492,7 +1512,7 @@ setMethodS3("$", "Class", function(this, name) {
 # }
 #
 # \arguments{
-#   \item{name}{The name of the \preformatted{set<Name>()} method or the 
+#   \item{name}{The name of the \preformatted{set<Name>()} method or the
 #     name of the field to be assigned the new value.}
 #   \item{value}{The value to be assigned.}
 #   \item{...}{Not used.}
@@ -1571,6 +1591,9 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2013-08-20
+# o Now getPackage() for Object first searches the namesspace of the
+#   Class object and then the attached ("loaded") packages.
 # 2012-12-28
 # o Replaced all data.class(obj) with class(obj)[1].
 # 2012-12-27
@@ -1628,7 +1651,7 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 # 2005-06-14
 # o BUG FIX: getDetails() would list private and protected methods as
 #   public.
-# o Now print() passes '...' to getDetails(), that is, now 
+# o Now print() passes '...' to getDetails(), that is, now
 #   print(Class, private=TRUE) will work too.
 # 2005-02-15
 # o Added arguments '...' in order to match any generic functions.
@@ -1638,17 +1661,17 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 #   retrieved object then is a Class object.
 # 2003-10-29
 # o BUG FIX: Last night I introduced a tiny tiny bug in the code for
-#   retrieving static fields. 
+#   retrieving static fields.
 # 2003-10-28
 # o BUG FIX: "$<-.Class" was broken. It returned its static object instead
-#   of itself (="this"). 
+#   of itself (="this").
 # o BUG FIX: The way "$.Class" and "$<-.Class" was check if an attribute
-#   with the same name as argument 'name' exists was not done correctly. 
+#   with the same name as argument 'name' exists was not done correctly.
 #   Now it gets the list of names of the attributes and compares to that.
 # 2003-09-18
 # o BUG FIX: getMethods() was not sensitive to 'deprecated=TRUE'.
 # 2003-05-14
-# o Slight improvement in the generation of get<Name> and set<Name>, by 
+# o Slight improvement in the generation of get<Name> and set<Name>, by
 #   using substr()<-.
 # 2003-05-03
 # o BUG FIX: Forgot to define forName() static.
@@ -1656,20 +1679,20 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 # o Added isDeprecated().
 # 2003-04-13
 # o Added missing Rdoc comments.
-# o BUG FIX: getStaticInstance() did not recover correctly if static 
+# o BUG FIX: getStaticInstance() did not recover correctly if static
 #   instance was missing.
 # 2003-04-12
 # o Minor detail: Declared the private method argsToString() to be static.
 # 2003-01-18
 # o Replaced all occurences of getClass() with data.class(). Will change
-#   the use of getClass() in the future to return a Class object. 
+#   the use of getClass() in the future to return a Class object.
 # 2002-11-07
 # o Now $() and $<-() also gets and sets attribute values too,
 #   respectively.
 # o BUG FIX: $<-() was returning this instead of static, which meant that
 #   it was not possible to change values of static fields.
 # 2002-11-04
-# o BUG FIX: getDetails() would not add a newline after the class name if 
+# o BUG FIX: getDetails() would not add a newline after the class name if
 #   the class did not have a superclass, i.e. for root class Object.
 # o Updated getFields() to call getFields() instead of getFields.Object().
 # 2002-10-24

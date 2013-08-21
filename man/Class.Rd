@@ -6,15 +6,15 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{Class}
+\name{Class}
 \docType{class}
 \alias{Class}
 
 
- \title{The Class class describes an Object class}
+\title{The Class class describes an Object class}
 
- \description{
-  Package:  R.oo \cr
+\description{
+ Package:  R.oo \cr
 \bold{Class Class}\cr
 
 \code{\link[R.oo]{Object}}\cr
@@ -29,22 +29,22 @@ extends \link[R.oo]{Object}\cr
 
 
 
-  The Class class describes an Object class.
-  First of all, this class is most commonly used \emph{internally} and
-  neither the end user nor the programmer need to no about the class Class.
- }
+ The Class class describes an Object class.
+ First of all, this class is most commonly used \emph{internally} and
+ neither the end user nor the programmer need to no about the class Class.
+}
 
- \usage{
+\usage{
 Class(name=NULL, constructor=NULL)
 }
 
- \arguments{
-   \item{name}{Name of the class.}
-   \item{constructor}{Constructor (\code{\link[base]{function}}) of any Object class.}
- }
+\arguments{
+  \item{name}{Name of the class.}
+  \item{constructor}{Constructor (\code{\link[base]{function}}) of any Object class.}
+}
 
- \section{Fields and Methods}{
-  \bold{Methods:}\cr
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{$} \tab  -\cr
  \tab \code{$<-} \tab  -\cr
@@ -80,17 +80,17 @@ Class(name=NULL, constructor=NULL)
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, registerFinalizer, save
 
 
- }
+}
 
- \details{
-   The class Class describes the Object class or one of its subclasses.
-   All classes and constructors created by \code{setConstructorS3()} will
-   be of class Class. Its methods provide ways of accessing static fields
-   and static methods. Its \emph{print()} method will print detailed
-   information about the class and its fields and methods.
- }
+\details{
+  The class Class describes the Object class or one of its subclasses.
+  All classes and constructors created by \code{setConstructorS3()} will
+  be of class Class. Its methods provide ways of accessing static fields
+  and static methods. Its \emph{print()} method will print detailed
+  information about the class and its fields and methods.
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
 
 
