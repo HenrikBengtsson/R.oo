@@ -13,8 +13,8 @@ citEntry(
   address      = "Vienna, Austria",
   month        = "March",
   issn         = "1609-395X",
-  url          = {http://www.r-project.org/conferences/DSC-2003/Proceedings/Bengtsson.pdf},
-  howpublished = {http://www.r-project.org/conferences/DSC-2003/Proceedings/},
+  url          = "http://www.r-project.org/conferences/DSC-2003/Proceedings/Bengtsson.pdf",
+  howpublished = "http://www.r-project.org/conferences/DSC-2003/Proceedings/",
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Plain-text citation:
