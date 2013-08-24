@@ -9,5 +9,6 @@
  address      = {Vienna, Austria},
  month        = {March},
  issn         = {1609-395X},
- howpublished = {http://www.ci.tuwien.ac.at/Conferences/DSC-2003/},
+ url          = {http://www.r-project.org/conferences/DSC-2003/Proceedings/Bengtsson.pdf},
+ howpublished = {http://www.r-project.org/conferences/DSC-2003/Proceedings/}
 }

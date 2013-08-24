@@ -2727,19 +2727,13 @@ setMethodS3("getPackageNameOf", "Rdoc", function(static, objectName, mode="any",
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FALSE, ...) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  tools_check_Rd_files_in_man_dir <- get("check_Rd_files_in_man_dir", mode="function", envir=asNamespace("tools"), inherits=FALSE);
-
-
   # file paths with trailing '/' are not recognized! /HB 2004-10-13
   manPath <- gsub("/$", "", manPath);
   if (verbose)
     cat("Checking Rd files in '", manPath, "'...\n", sep="");
 
   if (compareVersion(as.character(getRversion()), "2.10.0") >= 0) {
-    # R v2.10.0 and newer
+    # For R (>= 2.10.0)
     pathnames <- list.files(pattern="[.]Rd$", path=manPath, full.names=TRUE);
     res <- NULL;
     for (kk in seq(along=pathnames)) {
@@ -2747,6 +2741,8 @@ setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FA
       res <- tools::checkRd(pathname);
     }
   } else {
+    # For R (< 2.10.0)
+    tools_check_Rd_files_in_man_dir <- get("check_Rd_files_in_man_dir", mode="function", envir=asNamespace("tools"), inherits=FALSE);
     res <- tools_check_Rd_files_in_man_dir(manPath);
     if (length(res$files_with_surely_bad_Rd) > 0) {
       throw("Syntax error in Rd file(s): ",

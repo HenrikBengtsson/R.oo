@@ -1,9 +1,9 @@
 citHeader("Please cite R.oo/R.methodsS3 as");
 
 citEntry(
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # BibTeX entry:
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   entry="InProceedings",
   author       = "Henrik Bengtsson",
   title        = "The {R.oo} package - Object-Oriented Programming with References Using Standard {R} Code",
@@ -13,11 +13,12 @@ citEntry(
   address      = "Vienna, Austria",
   month        = "March",
   issn         = "1609-395X",
-  howpublished = "http://www.ci.tuwien.ac.at/Conferences/DSC-2003/",
+  url          = {http://www.r-project.org/conferences/DSC-2003/Proceedings/Bengtsson.pdf},
+  howpublished = {http://www.r-project.org/conferences/DSC-2003/Proceedings/},
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Plain-text citation:
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   textVersion = paste(sep="",
     "Bengtsson, H. ",
     "The R.oo package - Object-Oriented Programming with References Using Standard R Code, ",
