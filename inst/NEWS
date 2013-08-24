@@ -1,7 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.14.1 [2013-08-23]
+Version: 1.15.0 [2013-08-23]
 o CLEANUP: Dropped deprecated inst/HOWTOSITE replaced by inst/CITATION.
 o CLEANUP: Package not longer utilizes ':::' for 'tools' methods.
 o CLEANUP: Made get- and showHowToCite() protected methods.
