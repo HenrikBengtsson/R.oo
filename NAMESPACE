@@ -1,22 +1,22 @@
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # IMPORTS
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 importFrom("R.methodsS3", "setMethodS3")
 importFrom("R.methodsS3", "setGenericS3")
 importFrom("R.methodsS3", "throw")
 
-importFrom("utils", install.packages)
-importFrom("utils", object.size)
-importFrom("utils", packageDescription)
-importFrom("utils", update.packages)
-#importFrom("stats", getCall) # Only in R (>= 2.14.0)
+importFrom("utils", "install.packages")
+importFrom("utils", "object.size")
+importFrom("utils", "packageDescription")
+importFrom("utils", "update.packages")
+#importFrom("stats", "getCall") # Only in R (>= 2.14.0)
 
-importFrom("methods", isClass)
+importFrom("methods", "isClass")
 
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Object that must exported explicitly
 export(.conflicts.OK)
 
@@ -25,9 +25,9 @@ export(.conflicts.OK)
 exportPattern("^[^\\.]")
 
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # DECLARATIONS
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 S3method("callSuperMethodS3", "default")
 S3method("getConstructorS3", "default")
 S3method("setConstructorS3", "default")

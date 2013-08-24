@@ -734,11 +734,6 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   compileRdoc <- function(rdocs, showDeprecated=FALSE, verbose=FALSE, debug=FALSE) {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # Pre-processing
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    require("tools") || throw("Package 'tools' not found");
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Validate arguments
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (!is.list(rdocs))
@@ -2555,6 +2550,12 @@ setMethodS3("argsToString", "Rdoc", function(static, fcn, escapeRd=FALSE, collap
 #*/###########################################################################
 setMethodS3("getRdTitle", "Rdoc", function(this, class, method, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  tools_fetchRdDB <- get("fetchRdDB", mode="function", envir=asNamespace("tools"), inherits=FALSE);
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # e s c a p e N a m e ( )
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   escapeName <- function(name) {
@@ -2605,7 +2606,7 @@ setMethodS3("getRdTitle", "Rdoc", function(this, class, method, ...) {
         path <- system.file("help", package=packageName);
         filebase <- file.path(path, packageName);
         tryCatch({
-          entry <- tools:::fetchRdDB(filebase, key=methodName);
+          entry <- tools_fetchRdDB(filebase, key=methodName);
           tags <- lapply(entry, FUN=attr, "Rd_tag");
           idx <- which(tags == "\\title");
           if (length(idx) > 1) {
@@ -2726,7 +2727,11 @@ setMethodS3("getPackageNameOf", "Rdoc", function(static, objectName, mode="any",
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FALSE, ...) {
-  require("tools") || throw("Could not load package: tools");
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  tools_check_Rd_files_in_man_dir <- get("check_Rd_files_in_man_dir", mode="function", envir=asNamespace("tools"), inherits=FALSE);
+
 
   # file paths with trailing '/' are not recognized! /HB 2004-10-13
   manPath <- gsub("/$", "", manPath);
@@ -2742,7 +2747,7 @@ setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FA
       res <- tools::checkRd(pathname);
     }
   } else {
-    res <- tools:::check_Rd_files_in_man_dir(manPath);
+    res <- tools_check_Rd_files_in_man_dir(manPath);
     if (length(res$files_with_surely_bad_Rd) > 0) {
       throw("Syntax error in Rd file(s): ",
                           paste(res$files_with_surely_bad_Rd, collapse=", "));
