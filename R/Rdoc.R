@@ -1393,7 +1393,9 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       if (is.null(howToCite)) {
         line <- "\\emph{No citation information available.}\n";
       } else {
-        line <- paste("\\preformatted{", howToCite, "}\n", sep="");
+        line <- strwrap(howToCite, width=85L);
+        line <- paste(line, collapse="\n");
+        line <- paste("\\preformatted{", line, "}\n", sep="");
         # Add the following line to fix a "R CMD check-bug" in LaTeX.
         # /HB 2004-03-10
         line <- paste(line, "\\emph{}\n", sep="");

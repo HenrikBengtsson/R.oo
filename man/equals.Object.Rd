@@ -29,7 +29,8 @@
  5) \emph{consistent}, i.e. \code{equals(o1,o2)} should return the same
  result on multiple invocations as long as nothing has changed.
 
- 6) \code{equals(o1,}\code{\link[base]{NULL}}\code{)} should return \code{\link[base:logical]{FALSE}}.
+ 6) \code{equals(o1,}\code{\link[base]{NULL}}\code{)} should return \code{\link[base:logical]{FALSE}}, unless
+ \code{o1} is also \code{\link[base]{NULL}}.
 
  By default, the method returns \code{\link[base:logical]{TRUE}} if and only if the two
  references compared refer to the same \code{\link[R.oo]{Object}}, i.e.

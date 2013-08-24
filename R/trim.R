@@ -20,7 +20,8 @@
 #
 # @author
 #
-# \keyword{character}
+# @keyword character
+# @keyword internal
 #*/###########################################################################
 setMethodS3("trim", "default", function(object, ...) {
   s <- sub("^[\t\n\f\r ]*", "", as.character(object));

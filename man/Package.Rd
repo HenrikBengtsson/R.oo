@@ -61,7 +61,7 @@ Package(name=NULL)
  \tab \code{\link[R.oo:getEnvironment.Package]{getEnvironment}} \tab Gets the environment of a loaded package.\cr
  \tab \code{\link[R.oo:getExamplePath.Package]{getExamplePath}} \tab Gets the path to the example (R-ex/) directory of this package.\cr
  \tab \code{getHistory} \tab  -\cr
- \tab \code{\link[R.oo:getHowToCite.Package]{getHowToCite}} \tab Gets the howToCite of this package.\cr
+ \tab \code{\link[R.oo:getHowToCite.Package]{getHowToCite}} \tab Gets the citation of this package.\cr
  \tab \code{\link[R.oo:getLicense.Package]{getLicense}} \tab Gets the License of this package.\cr
  \tab \code{\link[R.oo:getMaintainer.Package]{getMaintainer}} \tab Gets the Maintainer of this package.\cr
  \tab \code{\link[R.oo:getName.Package]{getName}} \tab Gets the name of this package.\cr

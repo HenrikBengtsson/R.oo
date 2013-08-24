@@ -11,12 +11,13 @@
 \alias{Package.getHowToCite}
 \alias{getHowToCite,Package-method}
 
-\title{Gets the howToCite of this package}
+\title{Gets the citation of this package}
 
 \description{
-  Gets the howToCite of this package, i.e. the \code{HOWTOCITE} file, which should is expected
-  to be located in the root directory of the package, i.e.
-  \code{\link[R.oo:getPath.Package]{*getPath}()}.
+  Gets the citation of this package.
+  If text file \code{HOWTOCITE} exists in package root directory,
+  then its contents is retrieved, otherwise \code{\link[utils]{citation}}
+  for the package is retrieved.
 }
 
 \usage{
@@ -29,8 +30,7 @@
 }
 
 \value{
-  Returns the complete contents of the \code{HOWTOCITE} file as a
-  \code{\link[base]{character}} string. If not found, \code{\link[base]{NULL}} is returned.
+  Returns a \code{\link[base]{character}} string.
 }
 
 \author{Henrik Bengtsson}

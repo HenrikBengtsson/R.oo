@@ -68,8 +68,8 @@ ASCII <- c(
   "\370","\371","\372","\373","\374","\375","\376","\377"  # 370-377
 );
 
-# We removed ASCII 0x00, because it represents an empty string in 
-# R v2.7.0 (and maybe some earlier version) and in R v2.8.0 we will get 
+# We removed ASCII 0x00, because it represents an empty string in
+# R v2.7.0 (and maybe some earlier version) and in R v2.8.0 we will get
 # a warning.  However, for backward compatibility we will still use it
 # for version prior to R v2.7.0.  See also email from Brian Ripley
 # on 2008-04-23 on this problem.
@@ -133,6 +133,7 @@ ASCII.ESC <- "\033";
 # }
 #
 # @keyword character
+# @keyword internal
 #*/#########################################################################
 setMethodS3("charToInt", "default", function(ch, ...) {
   match(ch, ASCII) - 1;
@@ -179,6 +180,7 @@ setMethodS3("charToInt", "default", function(ch, ...) {
 # }
 #
 # @keyword character
+# @keyword internal
 #*/#########################################################################
 setMethodS3("intToChar", "default", function(i, ...) {
   ASCII[i %% 256 + 1];
@@ -189,6 +191,8 @@ setMethodS3("intToChar", "default", function(i, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-08-23
+# o CLEANUP: Hiding charToInt() and intToChar() from help indices.
 # 2009-05-18
 # o DOC FIX: The titles for intToChar() and charToInt() where mixed up.
 #   Thanks to Jens Philip Hoehmann for reporting this.

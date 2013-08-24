@@ -45,6 +45,9 @@
   \code{\link[base]{dim}}() and \code{\link[base]{length}}().
 }
 
+
+
+
 \keyword{attribute}
 \keyword{utilities}
-
+\keyword{internal}

@@ -34,8 +34,9 @@
 #   @see "base::dim" and @see "base::length".
 # }
 #
-# \keyword{attribute}
-# \keyword{utilities}
+# @keyword attribute
+# @keyword utilities
+# @keyword internal
 #*/###########################################################################
 setMethodS3("dimension", "default", function(object, ...) {
   if (is.function(object))

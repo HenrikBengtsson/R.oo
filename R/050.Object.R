@@ -251,7 +251,8 @@ setMethodS3("clone", "Object", function(this, ...) {
 #  5) \emph{consistent}, i.e. \code{equals(o1,o2)} should return the same
 #  result on multiple invocations as long as nothing has changed.
 #
-#  6) \code{equals(o1,}@NULL\code{)} should return @FALSE.
+#  6) \code{equals(o1,}@NULL\code{)} should return @FALSE, unless
+#  \code{o1} is also @NULL.
 #
 #  By default, the method returns @TRUE if and only if the two
 #  references compared refer to the same @Object, i.e.

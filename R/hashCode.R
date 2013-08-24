@@ -19,11 +19,11 @@
 # }
 #
 # \details{
-#   A @character string is converted into a hashcode following Java 
+#   A @character string is converted into a hashcode following Java
 #   conventions by
 #    \code{s[1]*31^(n-1) + s[2]*31^(n-2) + ... + s[n]}
-#   using integer arithmetic, where \code{s[i]} is the \code{i}:th character 
-#   of the string, \code{n} is the length of the string. The hash value of 
+#   using integer arithmetic, where \code{s[i]} is the \code{i}:th character
+#   of the string, \code{n} is the length of the string. The hash value of
 #   the empty string is zero.
 #
 #   For all other objects, by default \code{as.integer()} is called.
@@ -31,8 +31,9 @@
 #
 # @author
 #
-# \keyword{programming}
-# \keyword{methods}
+# @keyword programming
+# @keyword methods
+# @keyword internal
 #*/###########################################################################
 setMethodS3("hashCode", "default", function(object, ...) {
   asInt.Java <- function(x) {
@@ -41,11 +42,11 @@ setMethodS3("hashCode", "default", function(object, ...) {
     Integer.RANGE <- Integer.MAX.VALUE-Integer.MIN.VALUE + 1;
     x <- (x-Integer.MIN.VALUE) %% Integer.RANGE + Integer.MIN.VALUE;
     as.integer(x);
-  } 
+  }
   hashCode <- c();
   for (obj in object) {
     if (is.character(obj)) {
-      #  The hashcode for a character string is computed as 
+      #  The hashcode for a character string is computed as
       #
       #    s[1]*31^(n-1) + s[2]*31^(n-2) + ... + s[n]
       #
@@ -58,12 +59,12 @@ setMethodS3("hashCode", "default", function(object, ...) {
         hashCode <- c(hashCode, as.integer(0));
       } else {
         s <- unlist(strsplit(as.character(s), NULL));
-        s <- charToInt(s); 
+        s <- charToInt(s);
         hashC <- 0;
         for (k in 1:n)
   	  hashC <- hashC + s[k]*31^(n-k);
         # Convert into range of Java int.
-        
+
         hashCode <- c(hashCode, asInt.Java(hashC));
       }
     } else {
@@ -76,6 +77,8 @@ setMethodS3("hashCode", "default", function(object, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-08-23
+# o CLEANUP: Hiding hashCode() from help indices.
 # 2005-02-15
 # o Added arguments '...' in order to match any generic functions.
 # 2003-10-18
@@ -83,5 +86,5 @@ setMethodS3("hashCode", "default", function(object, ...) {
 # 2002-10-15
 # o Currently character string are treated specially and all other objects
 #   are just returned using as.integer().
-# o Extracted the code from old String.R in R.oo. 
+# o Extracted the code from old String.R in R.oo.
 ############################################################################

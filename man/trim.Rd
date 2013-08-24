@@ -31,5 +31,7 @@
 
 \author{Henrik Bengtsson}
 
-\keyword{character}
 
+
+\keyword{character}
+\keyword{internal}

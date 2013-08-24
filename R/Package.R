@@ -235,7 +235,7 @@ setMethodS3("showContents", "Package", function(this, ...) {
 
   pathname <- file.path(path, file);
   file.show(pathname);
-})
+}, protected=TRUE)
 
 
 
@@ -876,7 +876,7 @@ setMethodS3("getClasses", "Package", function(this, ...) {
     }
   }
   classes;
-}, dontWarn="base")
+}, protected=TRUE, dontWarn="base")
 
 
 
@@ -1275,7 +1275,7 @@ setMethodS3("getBundle", "Package", function(this, ...) {
   } else {
     this$.inBundle;
   }
-})
+}, protected=TRUE)
 
 
 #########################################################################/**
@@ -1328,7 +1328,7 @@ setMethodS3("getBundlePackages", "Package", function(this, ...) {
   }
 
   this$.bundlePackages;
-})
+}, protected=TRUE)
 
 
 
@@ -1478,12 +1478,13 @@ setMethodS3("showNews", "Package", function(this, ...) {
 #########################################################################/**
 # @RdocMethod getHowToCite
 #
-# @title "Gets the howToCite of this package"
+# @title "Gets the citation of this package"
 #
 # \description{
-#   @get "title", i.e. the \code{HOWTOCITE} file, which should is expected
-#   to be located in the root directory of the package, i.e.
-#   @seemethod "getPath".
+#   @get "title".
+#   If text file \code{HOWTOCITE} exists in package root directory,
+#   then its contents is retrieved, otherwise @see "utils::citation"
+#   for the package is retrieved.
 # }
 #
 # @synopsis
@@ -1494,8 +1495,7 @@ setMethodS3("showNews", "Package", function(this, ...) {
 # }
 #
 # \value{
-#   Returns the complete contents of the \code{HOWTOCITE} file as a
-#   @character string. If not found, @NULL is returned.
+#   Returns a @character string.
 # }
 #
 # @author
@@ -1505,17 +1505,15 @@ setMethodS3("showNews", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getHowToCite", "Package", function(this, newline="\n", ...) {
-  path <- getPath(this);
-  files <- list.files(path=path);
-  file <- files[tolower(files) == "howtocite"];
-  if (length(file) == 0)
-    return(NULL);
-  pathname <- file.path(path, file);
-  lines <- readLines(pathname);
+  if (file.exists(pathname <- file.path(getPath(this), "HOWTOCITE"))) {
+    lines <- readLines(pathname);
+  } else {
+    db <- citation(package=getName(this));
+    lines <- format(db, style="textVersion");
+  }
   lines <- paste(lines, collapse=newline);
   lines;
-})
-
+}, protected=TRUE)
 
 
 
@@ -1554,7 +1552,7 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 
   pathname <- file.path(path, file);
   file.show(pathname);
-})
+}, protected=TRUE)
 
 
 
@@ -1710,11 +1708,17 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
   attr(updated, "contriburl") <- contribUrl;
 
   invisible(updated);
-})
+}, protected=TRUE)
 
 
 ############################################################################
 # HISTORY:
+# 2013-08-23
+# o CLEANUP: Made several Package methods protected, i.e. they will
+#   not show up in listings/help by default.
+# o Now getHowToCite() for Package utilizes utils::citation(), if
+#   package don't contain a HOWTOCITE file.  It is recommended to
+#   write packages with CITATION instead of HOWTOCITE.
 # 2013-03-08
 # o Now getAuthor() for Package uses the 'Authors@R' field of DESCRIPTION
 #   and if not found then the 'Author' field.  In addition, using argument

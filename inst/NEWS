@@ -2,7 +2,14 @@ Package: R.oo
 =============
 
 Version: 1.14.1 [2013-08-23]
+o CLEANUP: Dropped deprecated inst/HOWTOSITE replaced by inst/CITATION.
 o CLEANUP: Package not longer utilizes ':::' for 'tools' methods.
+o CLEANUP: Made get- and showHowToCite() protected methods.
+o CLEANUP: Now getHowToCite() for Package utilizes utils::citation(),
+  if package don't contain a HOWTOCITE file.  It is recommended to
+  write packages with CITATION instead of HOWTOCITE.
+o CLEANUP: Hiding non-essential methods from the Rd help index, e.g.
+  charToInt(), intToChar(), hashCode(), equals(), dimension() and trim().
 
 
 Version: 1.14.0 [2013-08-20]
