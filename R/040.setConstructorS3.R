@@ -46,13 +46,13 @@
 #   arguments (e.g. \code{MyConstructor()}) is because that call is used
 #   to create the static instance of a class.  The reason for this is that
 #   a static instance of the class is created automatically when the
-#   constructor is called \emph{the first time} (only), that is, 
+#   constructor is called \emph{the first time} (only), that is,
 #   when the first of object of that class is created.
 #   All classes have to have a static instance.
 #
 #   To make a constructor callable without arguments, one can either make
 #   sure all arguments have default values or one can test for missing
-#   arguments using \code{missing()}. 
+#   arguments using \code{missing()}.
 #   For instance the following defintion is \emph{not} correct:
 #   \code{setConstructorS3("Foo", function(x) extend(Object(), "Foo", x=x))}
 #   whereas this one is
@@ -60,7 +60,7 @@
 # }
 #
 # \section{Code validation}{
-#  If argument \code{enforceRCC} is @TRUE, 
+#  If argument \code{enforceRCC} is @TRUE,
 #  the class name is validated so it starts with a letter and it
 #  also gives a @warning if its first letter is \emph{not} captial. The
 #  reason for this is to enforce a naming convention that names classes
@@ -91,7 +91,7 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
     firstLetter <- substring(name, 1,1);
     if (!is.element(tolower(firstLetter), letters))
       throw(RccViolationException("Class names must begin with a letter: ", name));
-  
+
     # Check first letter
     if (firstLetter == tolower(firstLetter))
       throw(RccViolationException("Class names should be nouns starting with a capital letter: ", name));
@@ -104,7 +104,7 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   # Check for forbidden names.
   if (is.element(name, R.methodsS3:::R.KEYWORDS))
     throw(RccViolationException("Class names must not be same as a reserved keyword in R: ", name));
-  
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Set up the modifiers
@@ -130,26 +130,38 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create
   expr <- substitute({
-      fcn <- Class(name, definition);
+      ns <- asNamespace("R.oo");
+      if (exists("Class", mode="function", envir=ns, inherits=FALSE)) {
+        R.oo_Class <- get("Class", mode="function", envir=ns, inherits=FALSE);
+        fcn <- R.oo_Class(name, definition);
+        rm(list="R.oo_Class");
+      } else {
+        # Only used for R.oo itself.
+        fcn <- Class(name, definition);
+      }
+      rm(list="ns");
       attr(fcn, "export") <- export;
       attr(fcn, "modifiers") <- modifiers;
-    }, list(fcn=as.name(name), name=name, definition=definition, 
+    }, list(fcn=as.name(name), name=name, definition=definition,
             export=export, modifiers=modifiers)
   );
 
   # Assign
-  retValue <- eval(expr, envir=envir); 
+  retValue <- eval(expr, envir=envir);
 
   invisible();
-})
+}) # setConstructorS3()
 
 
 
 
 ############################################################################
 # HISTORY:
+# 2012-08-29
+# o Now setConstructorS3() no longer requires that R.oo is attached
+#   ("loaded") - it's enough that it's namespace is loaded.
 # 2012-04-17
-# o Added argument 'export' to setConstructorS3(). 
+# o Added argument 'export' to setConstructorS3().
 # o CLEANUP: setConstructorS3() no longer sets attribute "formals".  It
 #   has been deprecated since April 2003.
 # 2007-06-09
@@ -176,11 +188,11 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
 #   work.
 # 2002-10-16
 # o There are times when
-#     generic <- function(...) UseMethod() 
+#     generic <- function(...) UseMethod()
 #   is not working, for example
 #     fcn <- get("generic"); fcn(myObj, ...);
 #   For this reason, always do method dispatching using the name explicitly;
-#     generic <- function(...) UseMethod("generic") 
+#     generic <- function(...) UseMethod("generic")
 # 2002-10-15
 # o Created from R.oo Object.R and ideas as described on
 #    http://www.maths.lth.se/help/R/

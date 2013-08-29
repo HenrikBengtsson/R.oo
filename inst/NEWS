@@ -1,9 +1,13 @@
 Package: R.oo
 =============
 
+Version: 1.15.1 [2013-08-29]
+o setConstructorS3() no longer requires that R.oo is attached ("loaded").
+
+
 Version: 1.15.0 [2013-08-23]
 o CLEANUP: Dropped deprecated inst/HOWTOSITE replaced by inst/CITATION.
-o CLEANUP: Package not longer utilizes ':::' for 'tools' methods.
+o CLEANUP: Package not longer utilizes ':::'.
 o CLEANUP: Made get- and showHowToCite() protected methods.
 o CLEANUP: Now getHowToCite() for Package utilizes utils::citation(),
   if package don't contain a HOWTOCITE file.  It is recommended to
