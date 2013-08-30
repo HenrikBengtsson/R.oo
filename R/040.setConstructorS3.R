@@ -102,7 +102,9 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   }
 
   # Check for forbidden names.
-  if (is.element(name, R.methodsS3:::R.KEYWORDS))
+  ns <- getNamespace("R.methodsS3");
+  R.methodsS3_R.KEYWORDS <- get("R.KEYWORDS", envir=ns);
+  if (is.element(name, R.methodsS3_R.KEYWORDS))
     throw(RccViolationException("Class names must not be same as a reserved keyword in R: ", name));
 
 
