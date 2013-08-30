@@ -1569,7 +1569,7 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 #
 # \arguments{
 #   \item{...}{Additional arguments passed to
-#              @see "R.methodsS3::startupMessage".}
+#              @see "R.methodsS3::pkgStartupMessage".}
 # }
 #
 # \value{
@@ -1585,7 +1585,7 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 setMethodS3("startupMessage", "Package", function(this, ...) {
   msg <- sprintf("%s v%s (%s) successfully loaded. See ?%s for help.",
             getName(this), getVersion(this), getDate(this), getName(this));
-  startupMessage(msg, ...);
+  pkgStartupMessage(msg, ...);
 }, protected=TRUE)
 
 
@@ -1712,8 +1712,8 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 ############################################################################
 # HISTORY:
 # 2013-08-29
-# o Now startupMessage() for Package uses new R.methodsS3::startupMessage()
-#   which acknowledge argument 'quietly' in library()/require() calls.
+# o Now startupMessage() for Package utiliizes new pkgStartupMessage()
+#   of R.methodsS3,  which acknowledge library(..., quietly=TRUE).
 # 2013-08-23
 # o CLEANUP: Made several Package methods protected, i.e. they will
 #   not show up in listings/help by default.

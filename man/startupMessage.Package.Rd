@@ -23,7 +23,7 @@
 
 \arguments{
   \item{...}{Additional arguments passed to
-             \code{\link[base]{packageStartupMessage}}().}
+             \code{\link[R.methodsS3]{pkgStartupMessage}}.}
 }
 
 \value{
@@ -33,8 +33,6 @@
 \author{Henrik Bengtsson}
 
 \seealso{
-  \code{\link[base]{packageStartupMessage}}().
-
   For more information see \code{\link{Package}}.
 }
 \keyword{internal}

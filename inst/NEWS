@@ -2,10 +2,9 @@ Package: R.oo
 =============
 
 Version: 1.15.1 [2013-08-29]
-o Package now loads completely silent with
-  library(R.oo, warn.conflicts=FALSE, quietly=TRUE).
-o Now startupMessage() for Package uses new R.methodsS3::startupMessage()
-  which acknowledges argument 'quietly' of library()/require().
+o library("R.oo", warn.conflicts=FALSE, quietly=TRUE) will load the
+  package completely silently.
+o Now startupMessage() for Package acknowledges library(..., quietly=TRUE).
 o setConstructorS3() no longer requires that R.oo is attached ("loaded").
 
 

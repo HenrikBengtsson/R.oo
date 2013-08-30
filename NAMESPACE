@@ -4,7 +4,7 @@
 importFrom("R.methodsS3", "setMethodS3")
 importFrom("R.methodsS3", "setGenericS3")
 importFrom("R.methodsS3", "throw")
-importFrom("R.methodsS3", "startupMessage")
+importFrom("R.methodsS3", "pkgStartupMessage")
 
 importFrom("utils", "install.packages")
 importFrom("utils", "object.size")
@@ -24,9 +24,6 @@ export(.conflicts.OK)
 # Export all public methods, that is, those without a preceeding dot
 # in their names.
 exportPattern("^[^\\.]")
-
-# Re-export startupMessage() of R.methodsS3
-export("startupMessage")
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -1,7 +1,7 @@
 Package: R.oo
 Version: 1.15.1
 Depends: R (>= 2.4.0), R.methodsS3 (>= 1.5.0)
-Imports: methods, utils, R.methodsS3 (>= 1.5.0)
+Imports: methods, utils
 Suggests: tools
 Date: 2013-08-29
 Title: R object-oriented programming with or without references
