@@ -1569,7 +1569,7 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 #
 # \arguments{
 #   \item{...}{Additional arguments passed to
-#              @see "base::packageStartupMessage".}
+#              @see "R.methodsS3::startupMessage".}
 # }
 #
 # \value{
@@ -1579,15 +1579,13 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 # @author
 #
 # \seealso{
-#   @see "base::packageStartupMessage".
-#
 #   @seeclass
 # }
 #*/#########################################################################
 setMethodS3("startupMessage", "Package", function(this, ...) {
   msg <- sprintf("%s v%s (%s) successfully loaded. See ?%s for help.",
-       getName(this), getVersion(this), getDate(this), getName(this));
-  packageStartupMessage(msg, ...);
+            getName(this), getVersion(this), getDate(this), getName(this));
+  startupMessage(msg, ...);
 }, protected=TRUE)
 
 
@@ -1713,6 +1711,9 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
 
 ############################################################################
 # HISTORY:
+# 2013-08-29
+# o Now startupMessage() for Package uses new R.methodsS3::startupMessage()
+#   which acknowledge argument 'quietly' in library()/require() calls.
 # 2013-08-23
 # o CLEANUP: Made several Package methods protected, i.e. they will
 #   not show up in listings/help by default.

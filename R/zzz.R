@@ -39,5 +39,5 @@ if (is.element("R.oo", search())) detach("R.oo");
 
     pkg <- Package(pkgname);
     startupMessage(pkg);
-  }
+  } # if (length(pos) == 1L)
 } # .onAttach()
