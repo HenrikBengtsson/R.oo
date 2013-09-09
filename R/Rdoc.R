@@ -1881,7 +1881,9 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
           } else {
             # R v2.9.2 and before
             tryCatch({
-              rdParse <- tools::Rd_parse(text=rd);
+              ns <- getNamespace("tools");
+              tools_Rd_parse <- get("Rd_parse", mode="function", envir=ns);
+              rdParse <- tools_Rd_parse(text=rd);
               if (length(rdParse$rest) > 0) {
                 throw(RdocException("Unknown top-level text in generated Rd code for Rdoc comment '", attr(rd, "name"), "' (in '", attr(rd, "sourcefile"), "') (typically due to too many or a missing bracket): ", paste(rdParse$rest, collapse=", ", sep="")));
               }
