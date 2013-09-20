@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.15.2 [2013-09-20]
+o ROBUSTNESS: Forgot to import R.methodsS3::appendVarArgs().
+
+
 Version: 1.15.1 [2013-08-29]
 o library("R.oo", warn.conflicts=FALSE, quietly=TRUE) will load the
   package completely silently.
