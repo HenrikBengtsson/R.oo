@@ -1,4 +1,4 @@
-###########################################################################/** 
+###########################################################################/**
 # @RdocFunction .makeObjectFinalizer
 #
 # @title "Creates a standalone finalizer function for Object"
@@ -48,9 +48,10 @@
     } else {
       name <- "";
     }
-  
+
     if (name == "") {
-      name <- capture.output(print.default(env));
+      # Cannot assume 'utils' is attached
+      name <- utils::capture.output(print.default(env));
       name <- name[1]; # Just in case
       name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
     }
@@ -90,7 +91,7 @@
       if (name == "do.call") {
         name <- call[[2L]];
         if (!is.symbol(name)) next;
-        name <- as.character(name);      
+        name <- as.character(name);
       }
       if (name == "parse") {
         return(TRUE);
@@ -98,7 +99,7 @@
     } # for (kk ...)
     FALSE;
   } # isParseCalled()
- 
+
 
   # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
   finalizer <- function(env) {
@@ -120,7 +121,7 @@
       if (!isLibraryReentrant()) {
         # If not, check if base::parse() triggered the garbage collection
         # and/or has been called, because then we must not call library(),
-        # because it will in turn call parse() potentially causing R to 
+        # because it will in turn call parse() potentially causing R to
         # crash.
         if (isParseCalled()) {
           reloadRoo <- FALSE;
@@ -177,6 +178,11 @@
 
 ############################################################################
 # HISTORY:
+# 2013-09-20
+# o BUG FIX: The finalizer returned by .makeObjectFinalizer() assumed
+#   that the 'utils' is attached while calling capture.output(), which
+#   under certain conditions could generate 'Error in getObjectInfo(this) :
+#   could not find function "capture.output"'.
 # 2013-01-08
 # o ROBUSTNESS: Now .makeObjectFinalizer() returns a finalizer that is
 #   reentrant, i.e. it will only try to reload R.oo on R versions where

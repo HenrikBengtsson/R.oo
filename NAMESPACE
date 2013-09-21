@@ -7,13 +7,15 @@ importFrom("R.methodsS3", "throw")
 importFrom("R.methodsS3", "pkgStartupMessage")
 importFrom("R.methodsS3", "appendVarArgs")
 
+importFrom("methods", "isClass")
+
 importFrom("utils", "install.packages")
 importFrom("utils", "object.size")
 importFrom("utils", "packageDescription")
 importFrom("utils", "update.packages")
-#importFrom("stats", "getCall") # Only in R (>= 2.14.0)
+importFrom("utils", "capture.output")
 
-importFrom("methods", "isClass")
+#importFrom("stats", "getCall") # Only in R (>= 2.14.0)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
