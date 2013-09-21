@@ -6,7 +6,9 @@ o ROBUSTNESS: Forgot to import R.methodsS3::appendVarArgs().
 o BUG FIX: The finalizer function registered by extend() for Object:s
   assumed that the 'utils' is attached while calling capture.output(),
   which under certain conditions could generate 'Error in
-  getObjectInfo(this) : could not find function "capture.output"'.
+  getObjectInfo(this) : could not find function "capture.output"'
+  while the garbage collector was running.  In extreme cases it could
+  also crash R.
 
 
 Version: 1.15.1 [2013-08-29]
