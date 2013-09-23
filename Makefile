@@ -48,6 +48,7 @@ R_OUTDIR := _R-$(R_VERSION_FULL)
 ## R_BUILD_OPTS := 
 ## R_BUILD_OPTS := $(R_BUILD_OPTS) --no-build-vignettes
 R_CHECK_OUTDIR := $(R_OUTDIR)/$(PKG_NAME).Rcheck
+R_CHECK_CRAN_INCOMING = $(shell $(R_SCRIPT) -e "cat(Sys.getenv('R_CHECK_CRAN_INCOMING', 'TRUE'))")
 R_CHECK_OPTS = --as-cran --timings
 R_CRAN_OUTDIR := $(R_OUTDIR)/$(PKG_NAME)_$(PKG_VERSION).CRAN
 
@@ -77,6 +78,7 @@ debug:
 	@echo R_LIBS_USER_X=\'$(R_LIBS_USER_X)\'
 	@echo R_OUTDIR=\'$(R_OUTDIR)\'
 	@echo R_CHECK_OUTDIR=\'$(R_CHECK_OUTDIR)\'
+	@echo R_CHECK_CRAN_INCOMING=\'$(R_CHECK_CRAN_INCOMING)\'
 	@echo R_CHECK_OPTS=\'$(R_CHECK_OPTS)\'
 	@echo R_CRAN_OUTDIR=\'$(R_CRAN_OUTDIR)\'
 	@echo "Default packages:" $(shell $(R) --slave -e "cat(paste(getOption('defaultPackages'), collapse=', '))")
@@ -141,7 +143,7 @@ install_force:
 ../$(R_CHECK_OUTDIR)/.check.complete: ../$(R_OUTDIR)/$(PKG_TARBALL)
 	$(CD) ../$(R_OUTDIR);\
 	$(RM) -r $(PKG_NAME).Rcheck;\
-	export _R_CHECK_CRAN_INCOMING_=1;\
+	export _R_CHECK_CRAN_INCOMING_=$(R_CHECK_CRAN_INCOMING);\
 	export _R_CHECK_DOT_INTERNAL_=1;\
 	export _R_CHECK_USE_CODETOOLS_=1;\
 	export _R_CHECK_CRAN_INCOMING_USE_ASPELL_=$(HAS_ASPELL);\
