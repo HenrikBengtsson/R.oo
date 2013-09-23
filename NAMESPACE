@@ -15,7 +15,7 @@ importFrom("utils", "packageDescription")
 importFrom("utils", "update.packages")
 importFrom("utils", "capture.output")
 
-#importFrom("stats", "getCall") # Only in R (>= 2.14.0)
+## importFrom("stats", "getCall") # Only in R (>= 2.14.0)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -114,7 +114,7 @@ S3method("throw", "error")
 
 # Exception
 S3method("as.character", "Exception")
-S3method("getCall", "Exception")
+## S3method("getCall", "Exception") # Only in R (>= 2.14.0)
 S3method("getCalls", "Exception")
 S3method("getLastException", "Exception")
 S3method("getMessage", "Exception")
