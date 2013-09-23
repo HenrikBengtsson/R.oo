@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.15.3 [2013-09-23]
+o Now properly declaring all S3 methods in the NAMESPACE file.
+
+
 Version: 1.15.2 [2013-09-20]
 o ROBUSTNESS: Forgot to import R.methodsS3::appendVarArgs().
 o BUG FIX: The finalizer function registered by extend() for Object:s
