@@ -161,8 +161,8 @@ S3method("ll", "Object")
 S3method("load", "Object")
 S3method("objectSize", "Object")
 S3method("print", "Object")
-S3method("registerFinalizer", "Object")
 S3method("save", "Object")
+S3method("registerFinalizer", "Object")
 
 # Package
 S3method("as.character", "Package")

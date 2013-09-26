@@ -1,6 +1,14 @@
 Package: R.oo
 =============
 
+Version: 1.16.0 [2013-09-25]
+o Now finalizers for Object:s only loads (no longer attaches)
+  the 'R.oo' package if not loaded/unloaded.  This means that
+  finalizers can not assume that 'R.oo' is *attached*.
+o CLEANUP: Deprecated update() for Package.
+o CLEANUP: Deprecated non-used registerFinalizer() for Object.
+
+
 Version: 1.15.3 [2013-09-23]
 o Now properly declaring all S3 methods in the NAMESPACE file.
 
