@@ -1703,8 +1703,7 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
     } # for (url ...)
 
     if (!found) {
-      requireNamespace("R.oo");  # In case it was unloaded!
-      throw(InternalErrorException("Could not update package ", getName(this), " v", getVersion(this), " since none of the URLs available (", paste(contribUrl, collapse=", "), ") seems to contain no R packages or bundles, i.e. no PACKAGE file was found. The URLs were extracted from the DESCRIPTION file of the package.", package=this));
+      R.methodsS3::throw(R.oo::InternalErrorException("Could not update package ", this$name, " v", this$version, " since none of the URLs available (", paste(contribUrl, collapse=", "), ") seems to contain no R packages or bundles, i.e. no PACKAGE file was found. The URLs were extracted from the DESCRIPTION file of the package.", package=this));
     }
   }
   attr(updated, "contriburl") <- contribUrl;
