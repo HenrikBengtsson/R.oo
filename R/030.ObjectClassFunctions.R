@@ -27,12 +27,14 @@ attachX(list(
       # it, this will be our best chance to run the correct finalizer(),
       # which might be in a subclass of a different package that is still
       # loaded.
-      isRooLoaded <- any(is.element(c("package:R.oo", "dummy:R.oo"), search()));
+      isRooLoaded <- is.element("R.oo", loadedNamespaces())
+      isRooLoaded <- isRooLoaded || is.element("dummy:R.oo", search());
       if (isRooLoaded) {
         finalize(this);
       } else {
+        # (1) Load the 'R.oo' namespace
         suppressMessages({
-##          isRooLoaded <- require("R.oo", quietly=TRUE);
+          isRooLoaded <- requireNamespace("R.oo");
         })
 
         # For unknown reasons R.oo might not have been loaded.
@@ -42,27 +44,27 @@ attachX(list(
 ##          warning("Failed to temporarily reload 'R.oo' and finalize().");
         }
 
-        # NOTE! Before detach R.oo again, we have to make sure the Object:s
+        # NOTE! Before unloading R.oo again, we have to make sure the Object:s
         # allocated by R.oo itself (e.g. an Package object), will not reload
         # R.oo again when being garbage collected, resulting in an endless
         # loop.  We do this by creating a dummy finalize() function, detach
         # R.oo, call garbage collect to clean out all R.oo's objects, and
         # then remove the dummy finalize() function.
-        # (1) Put a dummy finalize() function on the search path.
+        # (2) Put a dummy finalize() function on the search path.
         # To please R CMD check
         attachX <- base::attach;
         attachX(list(finalize = function(...) { }), name="dummy:R.oo",
                                                       warn.conflicts=FALSE);
 
-        # (2) Detach R.oo
-        if (is.element("package:R.oo", search())) {
-          detach("package:R.oo");
+        # (3) Since the 'R.oo' namespace was loaded above, unload it
+        if (is.element("R.oo", loadedNamespaces())) {
+          unloadNamespace("R.oo");
         }
 
-        # (3) Force all R.oo's Object:s to be finalize():ed.
+        # (4) Force all R.oo's Object:s to be finalize():ed.
         gc();
 
-        # (4) Remove the dummy finalize():er again.
+        # (5) Remove the dummy finalize():er again.
         if (is.element("dummy:R.oo", search())) {
           detach("dummy:R.oo");
         }
