@@ -1,10 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.16.0 [2013-09-25]
-o Now finalizers for Object:s only loads (no longer attaches)
-  the 'R.oo' package if not loaded/unloaded.  This means that
-  finalizers can not assume that 'R.oo' is *attached*.
+Version: 1.15.4 [2013-09-26]
 o CLEANUP: Deprecated update() for Package.
 o CLEANUP: Deprecated non-used registerFinalizer() for Object.
 

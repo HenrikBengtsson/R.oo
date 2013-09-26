@@ -107,7 +107,7 @@
     # it, this will be our best chance to run the correct finalizer(),
     # which might be in a subclass of a different package that is still
     # loaded.
-    isRooLoaded <- is.element("R.oo", loadedNamespaces())
+    isRooLoaded <- is.element("package:R.oo", search());
     isRooLoaded <- isRooLoaded || is.element("dummy:R.oo", search());
     if (isRooLoaded) {
       finalize(this);
@@ -135,7 +135,7 @@
     if (reloadRoo) {
       # (1) Load the 'R.oo' namespace
       suppressMessages({
-        isRooLoaded <- requireNamespace("R.oo");
+        isRooLoaded <- require("R.oo", quietly=TRUE);
       })
     }
 

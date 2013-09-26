@@ -2199,14 +2199,14 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
     # it, this will be our best chance to run the correct finalizer(),
     # which might be in a subclass of a different package that is still
     # loaded.
-    isRooLoaded <- is.element("R.oo", loadedNamespaces());
+    isRooLoaded <- is.element("package:R.oo", search());
     isRooLoaded <- isRooLoaded || is.element("dummy:R.oo", search());
     if (isRooLoaded) {
       finalize(this);
     } else {
       # (1) Load the 'R.oo' namespace
       suppressMessages({
-        isRooLoaded <- requireNamespace("R.oo");
+        isRooLoaded <- require("R.oo", quietly=TRUE);
       })
 
       # For unknown reasons R.oo might not have been loaded.
@@ -2229,8 +2229,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
                                                     warn.conflicts=FALSE);
 
       # (3) Since the 'R.oo' namespace was loaded above, unload it
-      if (is.element("R.oo", loadedNamespaces())) {
-        unloadNamespace("R.oo");
+      if (is.element("package:R.oo", search())) {
+        adetach("package:R.oo");
       }
 
       # (4) Force all R.oo's Object:s to be finalize():ed.
