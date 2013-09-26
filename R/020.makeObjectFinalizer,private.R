@@ -133,10 +133,10 @@
     }
 
     if (reloadRoo) {
-      # (1) Load the 'R.oo' namespace
+      # (1) Attach the 'R.oo' package
       suppressMessages({
         isRooLoaded <- require("R.oo", quietly=TRUE);
-      })
+      });
     }
 
     # For unknown reasons R.oo might not have been loaded.
@@ -148,7 +148,7 @@
       warning("Object may not be finalize():d properly because the R.oo package is not loaded: ", getObjectInfo(this));
     }
 
-    # NOTE! Before unloading R.oo again, we have to make sure the Object:s
+    # NOTE! Before detaching R.oo again, we have to make sure the Object:s
     # allocated by R.oo itself (e.g. an Package object), will not reload
     # R.oo again when being garbage collected, resulting in an endless
     # loop.  We do this by creating a dummy finalize() function, detach
@@ -160,9 +160,9 @@
     attachX(list(finalize = function(...) { }), name="dummy:R.oo",
                                                   warn.conflicts=FALSE);
 
-    # (3) Since the 'R.oo' namespace was loaded above, unload it
-    if (is.element("R.oo", loadedNamespaces())) {
-      unloadNamespace("R.oo");
+    # (3) Since 'R.oo' was attached above, unload it
+    if (is.element("package:R.oo", search())) {
+      detach("package:R.oo");
     }
 
     # (4) Force all R.oo's Object:s to be finalize():ed.

@@ -2204,10 +2204,10 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
     if (isRooLoaded) {
       finalize(this);
     } else {
-      # (1) Load the 'R.oo' namespace
+      # (1) Attach the 'R.oo' package
       suppressMessages({
         isRooLoaded <- require("R.oo", quietly=TRUE);
-      })
+      });
 
       # For unknown reasons R.oo might not have been loaded.
       if (isRooLoaded) {
@@ -2228,9 +2228,9 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
       attachX(list(finalize = function(...) { }), name="dummy:R.oo",
                                                     warn.conflicts=FALSE);
 
-      # (3) Since the 'R.oo' namespace was loaded above, unload it
+      # (3) Since 'R.oo' was attached above, unload it
       if (is.element("package:R.oo", search())) {
-        adetach("package:R.oo");
+        detach("package:R.oo");
       }
 
       # (4) Force all R.oo's Object:s to be finalize():ed.

@@ -22,4 +22,4 @@ assertPackages()
 rm(x)
 gc()
 
-assertPackages()
+assertPackages(loaded="R.oo")
