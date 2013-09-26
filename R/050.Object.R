@@ -2186,8 +2186,11 @@ setMethodS3("gc", "Object", function(this, ...) {
 #
 # @keyword programming
 # @keyword methods
+# @keyword internal
 #*/###########################################################################
 setMethodS3("registerFinalizer", "Object", function(this, ...) {
+  .Deprecated(msg="registerFinalizer() for Object is deprecated.");
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2196,12 +2199,14 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
     # it, this will be our best chance to run the correct finalizer(),
     # which might be in a subclass of a different package that is still
     # loaded.
-    isRooLoaded <- any(is.element(c("package:R.oo", "dummy:R.oo"), search()));
+    isRooLoaded <- is.element("R.oo", loadedNamespaces());
+    isRooLoaded <- isRooLoaded || is.element("dummy:R.oo", search());
     if (isRooLoaded) {
       finalize(this);
     } else {
+      # (1) Load the 'R.oo' namespace
       suppressMessages({
-        isRooLoaded <- require("R.oo", quietly=TRUE);
+        isRooLoaded <- requireNamespace("R.oo");
       })
 
       # For unknown reasons R.oo might not have been loaded.
@@ -2211,22 +2216,27 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
         warning("Failed to temporarily reload 'R.oo' and finalize().");
       }
 
-      # NOTE! Before detach R.oo again, we have to make sure the Object:s
+      # NOTE! Before detaching R.oo again, we have to make sure the Object:s
       # allocated by R.oo itself (e.g. an Package object), will not reload
       # R.oo again when being garbage collected, resulting in an endless
       # loop.  We do this by creating a dummy finalize() function, detach
       # R.oo, call garbage collect to clean out all R.oo's objects, and
       # then remove the dummy finalize() function.
-      # (1) Put a dummy finalize() function on the search path.
+      # (2) Put a dummy finalize() function on the search path.
       # To please R CMD check
       attachX <- base::attach;
       attachX(list(finalize = function(...) { }), name="dummy:R.oo",
                                                     warn.conflicts=FALSE);
-      # (2) Detach R.oo
-      detach("package:R.oo");
-      # (3) Force all R.oo's Object:s to be finalize():ed.
+
+      # (3) Since the 'R.oo' namespace was loaded above, unload it
+      if (is.element("R.oo", loadedNamespaces())) {
+        unloadNamespace("R.oo");
+      }
+
+      # (4) Force all R.oo's Object:s to be finalize():ed.
       gc();
-      # (4) Remove the dummy finalize():er again.
+
+      # (5) Remove the dummy finalize():er again.
       detach("dummy:R.oo");
     }
   } # localFinalizer()
@@ -2240,11 +2250,14 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
   reg.finalizer(attr(this, ".env"), localFinalizer, onexit=FALSE);
 
   invisible(this);
-}, protected=TRUE) # registerFinalizer()
+}, protected=TRUE, deprecated=TRUE) # registerFinalizer()
 
 
 ############################################################################
 # HISTORY:
+# 2013-09-25
+# o CLEANUP: Deprecated registerFinalizer() for Object, which is
+#   not used.
 # 2013-08-20
 # o Updated getStaticInstance() for Object to search more locations.
 # 2013-01-08
