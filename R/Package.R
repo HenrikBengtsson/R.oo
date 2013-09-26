@@ -1626,8 +1626,12 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
 #   @see "utils::update.packages".
 #   @seeclass
 # }
+#
+# @keyword internal
 #*/#########################################################################
 setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(this), getDevelUrl(this)), force=FALSE, reload=TRUE, verbose=TRUE, ...) {
+  .Deprecated(msg=sprintf("update() for Package is deprecated. Use update.packages(\"%s\") instead."), getName(object));
+
   this <- object;  # Because generic method update() exists in 'stats'.
 
   msg <- paste("Checking for updates of package ", getName(this), sep="");
@@ -1699,18 +1703,20 @@ setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(thi
     } # for (url ...)
 
     if (!found) {
-      require("R.oo");  # In case it was unloaded!
+      requireNamespace("R.oo");  # In case it was unloaded!
       throw(InternalErrorException("Could not update package ", getName(this), " v", getVersion(this), " since none of the URLs available (", paste(contribUrl, collapse=", "), ") seems to contain no R packages or bundles, i.e. no PACKAGE file was found. The URLs were extracted from the DESCRIPTION file of the package.", package=this));
     }
   }
   attr(updated, "contriburl") <- contribUrl;
 
   invisible(updated);
-}, protected=TRUE)
+}, protected=TRUE, deprecated=TRUE)
 
 
 ############################################################################
 # HISTORY:
+# 2013-09-25
+# o CLEANUP: Deprecated update() for Package.
 # 2013-08-29
 # o Now startupMessage() for Package utiliizes new pkgStartupMessage()
 #   of R.methodsS3,  which acknowledge library(..., quietly=TRUE).
