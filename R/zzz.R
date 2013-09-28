@@ -6,9 +6,9 @@ if (is.element("R.oo", search())) detach("R.oo");
 .conflicts.OK <- TRUE;
 
 .onLoad <- function(libname, pkgname) {
-  ns <- asNamespace(pkgname);
-  # This make print(R.oo::R.oo) work without loading the package
-  delayedAssign(pkgname, Package(pkgname), assign.env=ns);
+  ns <- getNamespace(pkgname);
+  pkg <- Package(pkgname);
+  assign(pkgname, pkg, envir=ns);
 } # .onLoad()
 
 
@@ -36,8 +36,7 @@ if (is.element("R.oo", search())) detach("R.oo");
     if (!exists("getCall", mode="function")) {
       assign("getCall", function(...) UseMethod("getCall"), envir=env);
     }
-
-    pkg <- Package(pkgname);
-    startupMessage(pkg);
   } # if (length(pos) == 1L)
+
+  startupMessage(get(pkgname, envir=getNamespace(pkgname)));
 } # .onAttach()
