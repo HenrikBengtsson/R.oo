@@ -1604,7 +1604,7 @@ setMethodS3("$", "Object", function(this, name) {
   assign(cacheName, lookup, envir=envir);
 
   NULL;
-}, createGeneric=FALSE) # $()
+}) # $()
 
 
 
@@ -1768,7 +1768,7 @@ setMethodS3("$<-", "Object", function(this, name, value) {
   } # for (memberAccessor in memberAccessorOrder)
 
   invisible(this);
-}, createGeneric=FALSE) # $<-()
+}) # $<-()
 
 
 
@@ -1776,13 +1776,13 @@ setMethodS3("$<-", "Object", function(this, name, value) {
 setMethodS3("[[", "Object", function(this, name) {
   UseMethod("$");
 #   "$"(this, name);
-}, createGeneric=FALSE) # "[["()
+}) # "[["()
 
 
 setMethodS3("[[<-", "Object", function(this, name, value) {
   UseMethod("$<-");
 #   "$<-"(this, name, value);
-}, createGeneric=FALSE) # "[[<-"()
+}) # "[[<-"()
 
 
 

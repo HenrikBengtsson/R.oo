@@ -1468,7 +1468,7 @@ setMethodS3("$", "Class", function(this, name) {
   }
 
   NULL;
-}, createGeneric=FALSE) # $()
+}) # $()
 
 
 
@@ -1573,19 +1573,19 @@ setMethodS3("$<-", "Class", function(this, name, value) {
   assign(name, value, envir=attr(static, ".env"));
 
   invisible(this);
-}, createGeneric=FALSE) # $<-()
+}) # $<-()
 
 
 
 
 setMethodS3("[[", "Class", function(this, name) {
   get("$")(this, name);
-}, createGeneric=FALSE) # "[["()
+}) # "[["()
 
 
 setMethodS3("[[<-", "Class", function(this, name, value) {
   get("$<-")(this, name, value);
-}, createGeneric=FALSE) # "[[<-"()
+}) # "[[<-"()
 
 
 

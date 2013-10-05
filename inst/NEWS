@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.15.6 [2013-10-05]
+o Now importing getCall() from 'stats', iff R (>= 2.14.0).
+
+
 Version: 1.15.5 [2013-09-28]
 o Now the 'R.oo' Package object is also available when the
   package is only loaded (but not attached).

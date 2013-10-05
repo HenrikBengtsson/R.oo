@@ -15,15 +15,14 @@ importFrom("utils", "packageDescription")
 importFrom("utils", "update.packages")
 importFrom("utils", "capture.output")
 
-## importFrom("stats", "getCall") # Only in R (>= 2.14.0)
+if (getRversion() >= "2.14.0") {
+  importFrom("stats", "getCall") # Only available in R (>= 2.14.0)
+}
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Object that must exported explicitly
-export(.conflicts.OK)
-
 # Export all public methods, that is, those without a preceeding dot
 # in their names.
 exportPattern("^[^\\.]")

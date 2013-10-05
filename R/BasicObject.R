@@ -6,7 +6,7 @@
 # \description{
 #  R.oo\cr
 #  \bold{Class BasicObject}\cr
-#  
+#
 #  public class \bold{BasicObject}\cr
 # }
 #
@@ -25,7 +25,7 @@
 # \keyword{programming}
 # \keyword{methods}
 # \keyword{internal}
-#*/########################################################################### 
+#*/###########################################################################
 setConstructorS3("BasicObject", function(core=NULL) {
   # Create a new environment and wrap it up as a private field of a list.
   if (is.null(core))
@@ -37,7 +37,7 @@ setConstructorS3("BasicObject", function(core=NULL) {
     attr(this, "...instantiationTime") <- Sys.time();
   }
 
-  this; 
+  this;
 })
 
 
@@ -57,7 +57,7 @@ setConstructorS3("BasicObject", function(core=NULL) {
 # }
 #
 # \value{
-#  Returns a @logical value, which by default is @TRUE for all 
+#  Returns a @logical value, which by default is @TRUE for all
 #  @see "BasicObject"'s.
 # }
 #
@@ -72,7 +72,7 @@ setConstructorS3("BasicObject", function(core=NULL) {
 #*/###########################################################################
 setMethodS3("isReferable", "BasicObject", function(this, ...) {
   TRUE;
-}) # isReferable() 
+}) # isReferable()
 
 
 
@@ -107,7 +107,7 @@ setMethodS3("as.character", "BasicObject", function(x, ...) {
 
   paste(class(this)[1L], ": ", getInstantiationTime(this), sep="");
 }) # as.character()
- 
+
 
 
 
@@ -145,7 +145,7 @@ setMethodS3("as.character", "BasicObject", function(x, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("getInstantiationTime", "BasicObject", function(this, ...) {
   time <- attr(this, "...instantiationTime");
   if (!is.null(time)) return(time);
@@ -187,7 +187,7 @@ setMethodS3("getInstantiationTime", "BasicObject", function(this, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("hashCode", "BasicObject", function(this, ...) {
   as.integer(getInstantiationTime(this));
 })
@@ -203,16 +203,16 @@ setMethodS3("hashCode", "BasicObject", function(this, ...) {
 #
 # \description{
 #  @get "title" and returns @TRUE if they are equal.
-#  The equal property must be 
+#  The equal property must be
 #
 #  1) \emph{reflexive}, i.e. \code{equals(o1,o1)} should be @TRUE.
 #
 #  2) \emph{symmetric}, i.e. \code{equals(o1,o2)} is @TRUE if and only
-#  if \code{equals(o2,o1)} is @TRUE. 
+#  if \code{equals(o2,o1)} is @TRUE.
 #
-#  3) \emph{transitive}, i.e. \code{equals(o1,o2)} is @TRUE and 
+#  3) \emph{transitive}, i.e. \code{equals(o1,o2)} is @TRUE and
 #  \code{equals(o2,o3)} is @TRUE, then \code{equals(o1,o3)} should
-#  be @TRUE. 
+#  be @TRUE.
 #
 #  5) \emph{consistent}, i.e. \code{equals(o1,o2)} should return the same
 #  result on multiple invocations as long as noting has changed.
@@ -243,7 +243,7 @@ setMethodS3("hashCode", "BasicObject", function(this, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("equals", "BasicObject", function(this, other, ...) {
   ( !is.null(other) && (hashCode(this) == hashCode(other)) );
 })
@@ -258,7 +258,7 @@ setMethodS3("equals", "BasicObject", function(this, other, ...) {
 #
 # \description{
 #  For all objects of class @see "BasicObject", this method will print the
-#  value of \code{as.character()} of the object. Note that this function is 
+#  value of \code{as.character()} of the object. Note that this function is
 #  not called if the argument is not an object of class @see "BasicObject".
 # }
 #
@@ -277,7 +277,7 @@ setMethodS3("equals", "BasicObject", function(this, other, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("print", "BasicObject", function(x, ...) {
   print(as.character(x));
 }) # print()
@@ -291,7 +291,7 @@ setMethodS3("print", "BasicObject", function(x, ...) {
 # @title "Gets the size of the BasicObject in bytes"
 #
 # \description{
-#   @get "title" by summing the sizes of all its members. For this reason, 
+#   @get "title" by summing the sizes of all its members. For this reason,
 #   the size of memory the BasicObject actually allocates might vary slighty.
 # }
 #
@@ -314,10 +314,10 @@ setMethodS3("print", "BasicObject", function(x, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("objectSize", "BasicObject", function(this, ...) {
   object.size(this);
-}) # objectSize() 
+}) # objectSize()
 
 
 
@@ -352,7 +352,7 @@ setMethodS3("objectSize", "BasicObject", function(this, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("getFields", "BasicObject", function(this, private=FALSE, ...) {
   members <- names(attributes(this));
   if (!private) {
@@ -361,7 +361,7 @@ setMethodS3("getFields", "BasicObject", function(this, private=FALSE, ...) {
   }
   members;
 }) # getFields()
- 
+
 
 
 ###########################################################################/**
@@ -393,7 +393,7 @@ setMethodS3("getFields", "BasicObject", function(this, private=FALSE, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("hasField", "BasicObject", function(this, field, ...) {
   !is.na(match(field, getFields(this, private=TRUE)));
 }) # hasFields()
@@ -409,14 +409,14 @@ setMethodS3("hasField", "BasicObject", function(this, field, ...) {
 # \description{
 #  Attach the members of an BasicObject to the \R search path.
 #
-#  If trying to attach the same BasicObject twice without detaching it 
+#  If trying to attach the same BasicObject twice without detaching it
 #  inbetween, a @warning will be generated and nothing will be done.
 # }
 #
 # @synopsis
 #
 # \arguments{
-#   \item{private}{If @TRUE, private fields will also be attached, 
+#   \item{private}{If @TRUE, private fields will also be attached,
 #     otherwise not.}
 #   \item{pos}{The position at in search path where the BasicObject should be
 #              inserted.}
@@ -453,13 +453,13 @@ setMethodS3("attach", "BasicObject", function(this, private=FALSE, pos=2, ...) {
     attachX(list(), name=attachName, pos=pos);
   }
   members <- names(attributes(this));
-  
+
   for (member in members) {
     assign(member, attr(this, member), pos=pos);
   }
 
   return(invisible(TRUE));
-}) # attach() 
+}) # attach()
 
 
 
@@ -472,7 +472,7 @@ setMethodS3("attach", "BasicObject", function(this, private=FALSE, pos=2, ...) {
 #
 # \description{
 #  Detach, from the \R search path, an BasicObject that has previously been
-#  attached. If the BasicObject was not attached, a @warning will be 
+#  attached. If the BasicObject was not attached, a @warning will be
 #  generated and nothing will be done.
 # }
 #
@@ -508,7 +508,7 @@ setMethodS3("detach", "BasicObject", function(this, ...) {
 
   return(invisible(TRUE));
 }) # detach()
- 
+
 
 
 ###########################################################################/**
@@ -520,8 +520,8 @@ setMethodS3("detach", "BasicObject", function(this, ...) {
 #   via a mechanism known as "parasitic inheritance".
 #   Simply speaking this method "extends another class". What is actually
 #   happening is that it creates an instance of class name \code{...className},
-#   by taking another BasicObject instance and add \code{...className} to 
-#   the class list and also add all the named values in @... as fields to the 
+#   by taking another BasicObject instance and add \code{...className} to
+#   the class list and also add all the named values in @... as fields to the
 #   new instance.
 #
 #   The method should be used by the constructor of a class and nowhere else.
@@ -546,7 +546,7 @@ setMethodS3("detach", "BasicObject", function(this, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("extend", "BasicObject", function(this, ...className, ...) {
   fields <- list(...);
   names <- names(fields);
@@ -559,7 +559,7 @@ setMethodS3("extend", "BasicObject", function(this, ...className, ...) {
       for (jj in seq(matchNames)) {
         if (regexpr(matchNames[jj], "...className") != -1) {
           className <- sys.call()[[3]];
-          throw("Could not set field of class (probably called ", className, 
+          throw("Could not set field of class (probably called ", className,
                 ") because the field name is a prefix to the argument name ",
                 "\"...className\": ", callNames[jj]);
         }
@@ -572,7 +572,7 @@ setMethodS3("extend", "BasicObject", function(this, ...className, ...) {
 
   class(this) <- c(...className, class(this));
   this;
-}) # extend() 
+}) # extend()
 
 
 
@@ -583,7 +583,7 @@ setMethodS3("extend", "BasicObject", function(this, ...className, ...) {
 # @title "Creates a new instance of the same class as this object"
 #
 # \description{
-#  @get "title". 
+#  @get "title".
 # }
 #
 # @synopsis
@@ -612,7 +612,7 @@ setMethodS3("newInstance", "BasicObject", function(this, ...) {
   # Creates a new instance of the same class
   clazz <- Class$forName(class(this)[1]);
   newInstance(clazz, ...);
-}, private=TRUE) 
+}, private=TRUE)
 
 
 
@@ -648,7 +648,7 @@ setMethodS3("newInstance", "BasicObject", function(this, ...) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("$", "BasicObject", function(this, name) {
   memberAccessorOrder <- attr(this, ".memberAccessorOrder");
   if (is.null(memberAccessorOrder))
@@ -677,14 +677,14 @@ setMethodS3("$", "BasicObject", function(this, name) {
   	}
       }
     } else if (memberAccessor == 2) {
-  
+
       # 2. Is it a field?
       value <- attr(this, name);
       if (!is.null(value))
   	return(value);
 
     } else if (memberAccessor == 3) {
-   
+
       # 3. Is it a static S3 method?
       methodNames <- paste(name, class(this), sep=".");
       for (methodName in methodNames) {
@@ -695,7 +695,7 @@ setMethodS3("$", "BasicObject", function(this, name) {
           # Alt 3. Using explicit UseMethod() code
           code <- sprintf("function(...) \"%s\"(this, ...)", name);
           fcn <- eval(base::parse(text=code));
-          return(fcn); 
+          return(fcn);
   	}
       }
     }
@@ -703,10 +703,10 @@ setMethodS3("$", "BasicObject", function(this, name) {
 
   # 5. Otherwise, return NULL.
   NULL;
-}, createGeneric=FALSE) # $()
+}) # $()
 
 
- 
+
 
 ###########################################################################/**
 # @RdocMethod $<-
@@ -724,7 +724,7 @@ setMethodS3("$", "BasicObject", function(this, name) {
 # }
 #
 # \arguments{
-#   \item{name}{The name of the \preformatted{set<Name>()} method or the 
+#   \item{name}{The name of the \preformatted{set<Name>()} method or the
 #     name of the field to be assigned the new value.}
 #   \item{value}{The value to be assigned.}
 # }
@@ -741,7 +741,7 @@ setMethodS3("$", "BasicObject", function(this, name) {
 #
 # \keyword{programming}
 # \keyword{methods}
-#*/########################################################################### 
+#*/###########################################################################
 setMethodS3("$<-", "BasicObject", function(this, name, value) {
   memberAccessorOrder <- attr(this, ".memberAccessorOrder");
   if (is.null(memberAccessorOrder))
@@ -758,7 +758,7 @@ setMethodS3("$<-", "BasicObject", function(this, name, value) {
       isField <- (regexpr(" ", name) != -1);
       if (!isField && !isPrivate && is.null(attr(this, "disableSetMethods"))) {
   	# 1. Is it a set<name>() method?
-    
+
   	setName <- paste(c("set", toupper(firstChar),
   			 substr(name,2,nchar(name))),collapse="");
   	setMethodNames <- paste(setName, class(this), sep=".");
@@ -787,8 +787,8 @@ setMethodS3("$<-", "BasicObject", function(this, name, value) {
   } # for (memberAccessor in memberAccessorOrder)
 
   this;
-}, createGeneric=FALSE) # $<-()
- 
+}) # $<-()
+
 
 setMethodS3("[[", "BasicObject", function(this, name) {
   memberAccessorOrder <- attr(this, ".memberAccessorOrder");
@@ -818,14 +818,14 @@ setMethodS3("[[", "BasicObject", function(this, name) {
   	}
       }
     } else if (memberAccessor == 2) {
-  
+
       # 2. Is it a field?
       value <- attr(this, name);
       if (!is.null(value))
   	return(value);
 
     } else if (memberAccessor == 3) {
-   
+
       # 3. Is it a method?
       methodNames <- paste(name, class(this), sep=".");
       for (methodName in methodNames) {
@@ -839,13 +839,13 @@ setMethodS3("[[", "BasicObject", function(this, name) {
 
   # 5. Otherwise, return NULL.
   NULL;
-}, createGeneric=FALSE) # "[["()
+}) # "[["()
 
 
 setMethodS3("[[<-", "BasicObject", function(this, name, value) {
   UseMethod("$<-");
-}, createGeneric=FALSE) # "[[<-"()
- 
+}) # "[[<-"()
+
 
 ############################################################################
 # HISTORY:
@@ -854,7 +854,7 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 # 2012-12-18
 # o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-10-14
-# o Now <BasicObject>$<staticFcn>(...) calls <staticFcn>(<BasicObject>, ...). 
+# o Now <BasicObject>$<staticFcn>(...) calls <staticFcn>(<BasicObject>, ...).
 # 2012-06-22
 # o ROBUSTNESS: Now constructor BasicObject() is guaranteed to return
 #   an object with non-duplicated class attribute elements.
@@ -862,7 +862,7 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 # 2011-04-02
 # o Added option "R.oo::Object/instantiationTime", which controls
 #   whether the instantiation timestamp should be set when instantiating
-#   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime" 
+#   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime"
 #   controls ditto for a BasicObject.
 # 2008-05-28
 # o SPELL CORRECTION: Used '...instanciation' instead of 'instantiation'.
@@ -872,7 +872,7 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 # o Added Rdoc comments.
 # 2003-01-18
 # o Replaced all occurences of getClass() with data.class(). Will change
-#   the use of getClass() in the future to return a Class object. 
+#   the use of getClass() in the future to return a Class object.
 # 2002-11-05
 # o Added class(core) to the class list.
 # 2002-11-04
