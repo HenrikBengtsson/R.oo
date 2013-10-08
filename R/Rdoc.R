@@ -1389,13 +1389,17 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       bfr <- getTagValue(bfr);
       value <- attr(bfr, "value");
       package <- Package(value);
-      howToCite <- getHowToCite(package, newline="\n");
+      howToCite <- getHowToCite(package, newline=NULL);
       if (is.null(howToCite)) {
         line <- "\\emph{No citation information available.}\n";
       } else {
-        line <- strwrap(howToCite, width=85L);
-        line <- paste(line, collapse="\n");
-        line <- paste("\\preformatted{", line, "}\n", sep="");
+        line <- gsub("\n", " ", howToCite);
+        line <- gsub("[ ]+", " ", line);
+        line <- lapply(line, FUN=strwrap, width=85L);
+        line <- lapply(line, FUN=paste, collapse="\n");
+        line <- unlist(line, use.names=FALSE);
+        line <- paste(line, collapse="\n\n");
+        line <- paste("\\preformatted{\n", line, "\n}\n", sep="");
         # Add the following line to fix a "R CMD check-bug" in LaTeX.
         # /HB 2004-03-10
         line <- paste(line, "\\emph{}\n", sep="");
@@ -2823,6 +2827,9 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2013-10-07
+# o Now Rdoc tag @howToCite does a better job when there are
+#   multiple citations in CITATION.
 # 2013-06-27
 # o Added trial version of Rdoc tag @usage.
 # 2013-05-30
