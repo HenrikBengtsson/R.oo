@@ -160,6 +160,8 @@ setMethodS3("getRdDeclaration", "classRepresentation", function(this, ...) {
   if (length(links) > 0) {
     name <- links[1];
     link <- name;
+    # TO DO/FIX ME: This part only works when packages are attached.
+    # /HB 2013-10-08
     if (exists(name, mode="function")) {
       cls <- get(name, mode="function");
       if (inherits(cls, "Class")) {

@@ -869,8 +869,8 @@ setMethodS3("ll", "Package", function(this, envir=pos.to.env(getPosition(this)),
 setMethodS3("getClasses", "Package", function(this, ...) {
   classes <- c();
   for (name in ls(pos=getPosition(this))) {
-    if (exists(name, mode="function")) {
-      object <- get(name, mode="function");
+    if (exists(name, mode="function", inherits=FALSE)) {
+      object <- get(name, mode="function", inherits=FALSE);
       if (inherits(object, "Class"))
         classes <- c(classes, name);
     }

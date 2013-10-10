@@ -698,6 +698,8 @@ setMethodS3("isDeprecated", "Class", function(this, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("forName", "Class", function(this, name, ...) {
+  # TO DO/FIX ME: This part only works when packages are attached.
+  # /HB 2013-10-08
   if (!exists(name, mode="function")) {
     throw("No such class: ", name);
   }
@@ -838,8 +840,8 @@ setMethodS3("getStaticInstance", "Class", function(this, ...) {
   envir <- attr(this, ".env");
   static <- get(".staticInstance", envir=envir);
   if (is.null(static)) {
-    if (!exists(".isCreatingStaticInstance", envir=envir)) {
-      assign(".isCreatingStaticInstance", TRUE, envir=envir);
+    if (!exists(".isCreatingStaticInstance", envir=envir, inherits=FALSE)) {
+      assign(".isCreatingStaticInstance", TRUE, envir=envir, inherits=FALSE);
       on.exit({
         rm(list=".isCreatingStaticInstance", envir=envir);
       }, add=TRUE);
@@ -921,10 +923,10 @@ setMethodS3("isBeingCreated", "Class", function(this, ...) {
   if (!is.null(staticInstance))
     return(FALSE);
 
-  if (!exists(".isCreatingStaticInstance", envir=envir))
+  if (!exists(".isCreatingStaticInstance", envir=envir, inherits=FALSE))
     return(FALSE);
 
-  get(".isCreatingStaticInstance", envir=envir);
+  get(".isCreatingStaticInstance", envir=envir, inherits=FALSE);
 })
 
 
@@ -1431,7 +1433,7 @@ setMethodS3("$", "Class", function(this, name) {
   # environment assigned and therefore, for now, no static
   # fields.
   if (!is.null(envir) && exists(name, envir=envir, inherits=FALSE)) {
-    return(get(name, envir=envir));
+    return(get(name, envir=envir, inherits=FALSE));
   }
 
   # 3. Is it an attribute field (slot)?

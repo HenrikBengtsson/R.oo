@@ -25,7 +25,7 @@
 #*/###########################################################################
 setMethodS3("typeOfClass", "default", function(object, ...) {
   if (is.null(object))
-    return(NA);
+    return(NA_character_);
 
   if (inherits(object, "classRepresentation"))
     return("S4");
@@ -36,18 +36,23 @@ setMethodS3("typeOfClass", "default", function(object, ...) {
         return("S3");
       return("S4");
     }
+
+    # TO DO/FIX ME: This part only works when packages are attached.
+    # /HB 2013-10-08
     if (!exists(object, mode="function"))
-      return(NA);
+      return(NA_character_);
     object <- get(object, mode="function");
   }
 
   if (is.function(object) && inherits(object, "Class"))
     return("S3-Object");
 
-  return(NA);
+  return(NA_character_);
 })
 
 ############################################################################
+# 2013-10-08
+# o Now returning NA_character_ instead of NA.
 # 2005-02-15
 # o Added arguments '...' in order to match any generic functions.
 ############################################################################

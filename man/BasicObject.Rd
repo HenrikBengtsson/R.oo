@@ -6,30 +6,30 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{BasicObject}
+\name{BasicObject}
 \docType{class}
 \alias{BasicObject}
 
 
- \title{A root class like Object but without references}
+\title{A root class like Object but without references}
 
- \description{
-  R.oo\cr
-  \bold{Class BasicObject}\cr
+\description{
+ R.oo\cr
+ \bold{Class BasicObject}\cr
 
-  public class \bold{BasicObject}\cr
- }
+ public class \bold{BasicObject}\cr
+}
 
- \usage{
+\usage{
 BasicObject(core=NULL)
 }
 
- \arguments{
-   \item{core}{The core value of the object.}
- }
+\arguments{
+  \item{core}{The core value of the object.}
+}
 
- \section{Fields and Methods}{
-  \bold{Methods:}\cr
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
 \tabular{rll}{
  \tab \code{$} \tab  -\cr
  \tab \code{$<-} \tab  -\cr
@@ -55,11 +55,11 @@ BasicObject(core=NULL)
 as.data.frame, as.raster
 
 
- }
+}
 
- \author{Henrik Bengtsson}
+\author{Henrik Bengtsson}
 
- \keyword{programming}
- \keyword{methods}
- \keyword{internal}
+\keyword{programming}
+\keyword{methods}
+\keyword{internal}
 \keyword{classes}

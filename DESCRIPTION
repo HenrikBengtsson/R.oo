@@ -1,9 +1,9 @@
 Package: R.oo
-Version: 1.15.6
+Version: 1.15.7
 Depends: R (>= 2.4.0), R.methodsS3 (>= 1.5.2)
 Imports: methods, utils
 Suggests: tools
-Date: 2013-10-07
+Date: 2013-10-08
 Title: R object-oriented programming with or without references
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))

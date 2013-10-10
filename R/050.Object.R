@@ -1357,8 +1357,8 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   modifiers <- attr(fields, "modifiers");
 
   # Append already existing modifiers?
-  if (exists("...modifiers", envir=this.env)) {
-    modifiersT <- get("...modifiers", envir=this.env);
+  if (exists("...modifiers", envir=this.env, inherits=FALSE)) {
+    modifiersT <- get("...modifiers", envir=this.env, inherits=FALSE);
     for (key in names(modifiersT)) {
       modifiers[[key]] <- c(modifiers[[key]], modifiersT[[key]]);
     }
@@ -1460,7 +1460,7 @@ setMethodS3("$", "Object", function(this, name) {
   cacheName <- paste("...$.lookup", name, sep=".");
   if (!is.null(envir) && exists(cacheName, envir=envir, inherits=FALSE)) {
     envirCache <- envir;
-    lookup <- get(cacheName, envir=envirCache);
+    lookup <- get(cacheName, envir=envirCache, inherits=FALSE);
     if (identical(attr(lookup, "memberAccessorOrder"), memberAccessorOrder)) {
       if (lookup == 1L) {
         # Still to be figured out how to do! /HB 2003-01-18
@@ -1544,7 +1544,7 @@ setMethodS3("$", "Object", function(this, name) {
         attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
         assign(cacheName, lookup, envir=envir);
         envirStatic <- envir;
-        return(get(name, envir=envirStatic));
+        return(get(name, envir=envirStatic, inherits=FALSE));
       }
     } else if (memberAccessor == 3L) {
 
@@ -1590,7 +1590,7 @@ setMethodS3("$", "Object", function(this, name) {
         attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
         attr(lookup, "static.envir") <- static.envir;
         assign(cacheName, lookup, envir=envir);
-        return(get(name, envir=static.envir));
+        return(get(name, envir=static.envir, inherits=FALSE));
       }
     }
   } # for (memberAccessor in memberAccessorOrder)
@@ -1730,7 +1730,7 @@ setMethodS3("$<-", "Object", function(this, name, value) {
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 2. If there exists a field, assign the value to that field.
       envir <- attr(this, ".env");
-      if (exists(name, envir=envir)) {
+      if (exists(name, envir=envir, inherits=FALSE)) {
         assign(name, value, envir=envir);
         return(invisible(this));
       }
@@ -1876,6 +1876,8 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
   availableMethods <- c(methods(methodName), methodName);
   for (method in methods) {
     if (is.element(method, availableMethods)) {
+      # TO DO/FIX ME: This part only works when packages are attached.
+      # /HB 2013-10-08
       if (exists(method, mode="function")) {
         return(do.call(method, args=list(this, ...)))
       }
@@ -2055,12 +2057,12 @@ setMethodS3("clearCache", "Object", function(this, recursive=TRUE, ...) {
   if (recursive) {
     # Make sure that this object has not already been called
     # earlier in the same clear-cache request.
-    if (!exists("...clearCache", envir=env)) {
+    if (!exists("...clearCache", envir=env, inherits=FALSE)) {
       assign("...clearCache", TRUE, envir=env);
       on.exit(rm(list="...clearCache", envir=env));
       fields <- getFields(this, private=TRUE);
       for (field in fields) {
-        object <- get(field, envir=env);
+        object <- get(field, envir=env, inherits=FALSE);
         if (inherits(object, "Object")) {
           clearCache(object, recursive=TRUE);
         }
@@ -2101,11 +2103,11 @@ setMethodS3("clearCache", "Object", function(this, recursive=TRUE, ...) {
 setMethodS3("getFieldModifiers", "Object", function(this, ...) {
   env <- attr(this, ".env");
 
-  if (!exists("...modifiers", envir=env)) {
+  if (!exists("...modifiers", envir=env, inherits=FALSE)) {
     return(list());
   }
 
-  get("...modifiers", envir=env);
+  get("...modifiers", envir=env, inherits=FALSE);
 }, protected=TRUE)
 
 

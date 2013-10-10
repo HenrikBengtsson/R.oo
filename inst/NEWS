@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.15.7 [2013-10-08]
+o ROBUSTNESS: Now using inherits=FALSE in several internal
+  exists()/get() calls.
+
+
 Version: 1.15.6 [2013-10-07]
 o Now importing getCall() from 'stats', iff R (>= 2.14.0).
 o Now Rdoc tag @howToCite does a better job when there are

@@ -26,6 +26,8 @@
 # @keyword "methods"
 #*/###########################################################################
 setMethodS3("getConstructorS3", "default", function(name, ...) {
+  # TO DO/FIX ME: This part only works when packages are attached.
+  # /HB 2013-10-08
   if (!exists(name, mode="function")) {
     throw("No such function found: ", name);
   }

@@ -44,6 +44,8 @@ setMethodS3("getRdDeclaration", "Class", function(this, ...) {
   if (length(links) > 0) {
     name <- links[1];
     link <- name;
+    # TO DO/FIX ME: This part only works when packages are attached.
+    # /HB 2013-10-08
     if (exists(name, mode="function")) {
       cls <- get(name, mode="function");
       if (inherits(cls, "Class")) {
@@ -105,6 +107,8 @@ setMethodS3("getRdMethods", "Class", function(class, visibilities=c("private", "
   count <- 0;
   for (method in methods) {
     fcnName <- paste(method, className, sep=".");
+    # TO DO/FIX ME: This part only works when packages are attached.
+    # /HB 2013-10-08
     if (!exists(fcnName, mode="function"))
       throw(RdocException("Method definition not found: ", fcnName));
     fcn <- get(fcnName, mode="function");
@@ -116,7 +120,7 @@ setMethodS3("getRdMethods", "Class", function(class, visibilities=c("private", "
       package <- attr(title, "package");
       if (is.null(package))
         package <- Rdoc$package;
-      
+
       # Is there a specific help document for this method or not?
       if (!is.null(title)) {
   	link <- paste("\\link[", package, ":", helpName, "]{", label, "}", sep="");
@@ -124,7 +128,7 @@ setMethodS3("getRdMethods", "Class", function(class, visibilities=c("private", "
   	link <- label;
       }
       item <- paste(" \\tab \\code{", link, "} \\tab ", sep="");
-  
+
       # Create the title
       if (!is.null(title)) {
   	if (title != "")
@@ -132,13 +136,13 @@ setMethodS3("getRdMethods", "Class", function(class, visibilities=c("private", "
       } else {
   	item <- paste(item, " -\\cr", sep="");
       }
-  
+
       tmpsrc <- paste(tmpsrc, item, "\n", sep="");
       count <- count + 1;
     } # if(isVisible(...))
   }
   tmpsrc <- paste(tmpsrc, "}\n", sep=""); # end of \tabular{rll}
-  
+
   if (count == 0)
     src <- paste(src, "\\emph{No methods defined}.\n", sep="")
   else
@@ -186,6 +190,8 @@ setMethodS3("getRdHierarchy", "Class", function(this, ...) {
     link <- sapply(extend, FUN=function(name) {
 #      isAbstract <- FALSE;
       link <- name;
+      # TO DO/FIX ME: This part only works when packages are attached.
+      # /HB 2013-10-08
       if (exists(name, mode="function")) {
         cls <- get(name, mode="function");
         if (inherits(cls, "Class")) {

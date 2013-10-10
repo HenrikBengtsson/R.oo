@@ -669,7 +669,9 @@ setMethodS3("$", "BasicObject", function(this, name) {
   			 substr(name,2,nchar(name))),collapse="");
   	getMethodNames <- paste(getName, class(this), sep=".");
   	for (getMethodName in getMethodNames) {
-  	  if (exists(getMethodName, mode="function")) {
+            # TO DO/FIX ME: This part only works when packages are attached.
+            # /HB 2013-10-08
+            if (exists(getMethodName, mode="function")) {
   	    ref <- this;
   	    attr(ref, "disableGetMethods") <- TRUE;
   	    return( get(getMethodName, mode="function")(ref) );
@@ -688,7 +690,9 @@ setMethodS3("$", "BasicObject", function(this, name) {
       # 3. Is it a static S3 method?
       methodNames <- paste(name, class(this), sep=".");
       for (methodName in methodNames) {
-  	if (exists(methodName, mode="function")) {
+          # TO DO/FIX ME: This part only works when packages are attached.
+          # /HB 2013-10-08
+          if (exists(methodName, mode="function")) {
 #         # Alt 1. Rather "obfuscated" code
 #         method <- get(methodName, mode="function");
 #         fcn <- function(...) method(this, ...);
@@ -763,7 +767,9 @@ setMethodS3("$<-", "BasicObject", function(this, name, value) {
   			 substr(name,2,nchar(name))),collapse="");
   	setMethodNames <- paste(setName, class(this), sep=".");
   	for (setMethodName in setMethodNames) {
-  	  if (exists(setMethodName, mode="function")) {
+            # TO DO/FIX ME: This part only works when packages are attached.
+            # /HB 2013-10-08
+            if (exists(setMethodName, mode="function")) {
   	    ref <- this;
   	    attr(ref, "disableSetMethods") <- TRUE;
   	    this <- get(setMethodName, mode="function")(ref, value);
@@ -810,7 +816,9 @@ setMethodS3("[[", "BasicObject", function(this, name) {
   			 substr(name,2,nchar(name))),collapse="");
   	getMethodNames <- paste(getName, class(this), sep=".");
   	for (getMethodName in getMethodNames) {
-  	  if (exists(getMethodName, mode="function")) {
+            # TO DO/FIX ME: This part only works when packages are attached.
+            # /HB 2013-10-08
+            if (exists(getMethodName, mode="function")) {
   	    ref <- this;
   	    attr(ref, "disableGetMethods") <- TRUE;
   	    return( get(getMethodName, mode="function")(ref) );
@@ -829,7 +837,9 @@ setMethodS3("[[", "BasicObject", function(this, name) {
       # 3. Is it a method?
       methodNames <- paste(name, class(this), sep=".");
       for (methodName in methodNames) {
-  	if (exists(methodName, mode="function")) {
+          # TO DO/FIX ME: This part only works when packages are attached.
+          # /HB 2013-10-08
+          if (exists(methodName, mode="function")) {
   	  method <- get(methodName, mode="function");
   	  return( function(...) method(this, ...) );
   	}
