@@ -1,6 +1,15 @@
 Package: R.oo
 =============
 
+Version: 1.15.8 [2013-10-10]
+o BUG FIX/ROBUSTNESS: It appears that when loading the package
+  it may happen that the 'R.oo' namespace is loaded cyclicly.
+  This may be because a Package object (R.oo::R.oo) is assigned
+  during the loading of the namespace.  Since Package extends()
+  and Object object, this may endup loading 'R.oo' again.  To
+  avoid this, R.oo::R.oo is now assigned using delayed assignment.
+
+
 Version: 1.15.7 [2013-10-08]
 o ROBUSTNESS: Now using inherits=FALSE in several internal
   exists()/get() calls.

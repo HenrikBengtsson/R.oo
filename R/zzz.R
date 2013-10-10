@@ -7,10 +7,14 @@ if (is.element("R.oo", search())) detach("R.oo");
 
 .onLoad <- function(libname, pkgname) {
   ns <- getNamespace(pkgname);
-  pkg <- Package(pkgname);
-  assign(pkgname, pkg, envir=ns);
 
-  # Create a getCall() generic function, iff missing (R < 2.14.0)
+  ## Doing assign(pkgname, Package(pkgname), envir=ns) seems to
+  ## introduce potential cyclic loading of the R.oo namespace.
+  ## My best guess is that it has to do with garbage collection.
+  ## Because of this, we use a "delayed" assignment. /HB 2013-10-10
+  delayedAssign(pkgname, Package("R.oo"), eval.env=ns, assign.env=ns);
+
+  # Create getCall() generic function, iff missing (R < 2.14.0)
   if (!exists("getCall", mode="function")) {
     assign("getCall", function(...) UseMethod("getCall"), envir=ns);
   }
@@ -25,5 +29,6 @@ if (is.element("R.oo", search())) detach("R.oo");
     names(args) <- key;
     do.call(options, args=args);
   }
-  startupMessage(get(pkgname, envir=getNamespace(pkgname)));
+  pkg <- get(pkgname, envir=getNamespace(pkgname));
+  startupMessage(pkg);
 } # .onAttach()
