@@ -23,6 +23,8 @@
 #     which is the case with the Class class.
 #     \emph{Note that this value belongs to the reference variable
 #     and not to the Object, which means it can not be referenced.}}
+#   \item{finalize}{If @TRUE, method @seemethod "finalize" will
+#     be called on this Object when it is garbage collected.}
 # }
 #
 # \section{Fields and Methods}{
@@ -211,7 +213,7 @@ setMethodS3("clone", "Object", function(this, ...) {
   attr(clone, ".env") <- clone.env
 
   # Copy all variables in the environment.
-  this.env <- attr(this, ".env")
+  this.env <- attr(this, ".env");
   fields <- getFields(this, private=TRUE);
   for (field in fields) {
     value <- get(field, envir=this.env, inherits=FALSE);
@@ -1238,6 +1240,13 @@ setMethodS3("staticCode", "Object", function(static, ...) {
 #   \item{...fields}{An optional named @list of fields.  This makes it possible
 #     to specify a set of fields using a @list object.}
 #   \item{...envir}{An @environment.}
+#   \item{...finalize}{
+#     A @logical controlling whether method @seemethod "finalize" should
+#     be called on the @see Object when it is garbage collected or not.
+#     If @TRUE, it will be called.  If @FALSE, it will not be called.
+#     If @NA, it will be called according to argument \code{finalize}
+#     of the @see Object constructor.
+#   }
 # }
 #
 # \value{
@@ -1274,7 +1283,7 @@ setMethodS3("staticCode", "Object", function(static, ...) {
 if (is.element("R.oo", search())) {
   rm(list="extend", pos="R.oo"); # To avoid warning about renaming existing extend()
 }
-setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL, ...envir=parent.frame()) {
+setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL, ...envir=parent.frame(), ...finalize=NA) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1336,13 +1345,25 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   # Set class
   class(this) <- unique(c(...className, class(this)));
 
-  # Note, we have to re-register the finalizer here and not in Object(),
-  # because here the reference variable 'this' will have the correct
-  # class attribute, which it does not in Object().
-  finalizer <- .makeObjectFinalizer(this, reloadRoo=TRUE);
-  onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
-  reg.finalizer(this.env, finalizer, onexit=onexit);
+  # Should the Object be finalized?
+  finalize <- isTRUE(attr(this, "finalize"));
+  # Override by extend(..., ...finalize=TRUE/FALSE)?
+  if (!is.na(...finalize)) finalize <- isTRUE(...finalize);
+  if (finalize) {
+    # Note, we have to re-register the finalizer here and not in Object(),
+    # because here the reference variable 'this' will have the correct
+    # class attribute, which it does not in Object().
+    finalizer <- .makeObjectFinalizer(this, reloadRoo=TRUE);
+    onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
+    reg.finalizer(this.env, finalizer, onexit=onexit);
+  }
 
+  # extend(..., ...finalize=FALSE) should always remove any
+  # previously registered finalizers.
+  if (!is.na(...finalize) && !isTRUE(...finalize)) {
+    # Unregister finalizer (by registering a dummy one)
+    reg.finalizer(this.env, f=function(...) {});
+  }
 
   # Finally, create the static instance?
   if (!is.element("Class", ...className)) {
@@ -2257,6 +2278,9 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2013-10-13
+# o Now extend() for Object only registers a finalizer if attribute
+#   'finalize' is TRUE.
 # 2013-09-25
 # o CLEANUP: Deprecated registerFinalizer() for Object, which is
 #   not used.

@@ -1,3 +1,4 @@
+library("R.methodsS3")
 library("R.oo")
 
 lotsOfParsing <- function(code="y <- 1:3") {

@@ -6,7 +6,7 @@
 attachX <- base::attach;
 
 attachX(list(
-  Object = function(core=NA) {
+  Object = function(core=NA, finalize=TRUE) {
     # Create a new environment and wrap it up as a private field of a list.
     this <- core;
     attr(this, ".env") <- new.env();
@@ -71,18 +71,31 @@ attachX(list(
       }
     } # finalizer()
 
-    onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
-    reg.finalizer(attr(this, ".env"), finalizer, onexit=onexit);
+    # Should this Object be finalized?
+    if (finalize) {
+      onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
+      reg.finalizer(attr(this, ".env"), finalizer, onexit=onexit);
+    }
+    attr(this, "finalize") <- finalize;
 
     this;
   },
 
-  extend = function(this, ...className, ...) {
+  extend = function(this, ...className, ..., ...finalize=TRUE) {
     fields <- list(...);
     names <- names(fields);
+    this.env <- attr(this, ".env");
     for (name in names)
-      assign(name, fields[[name]], envir=attr(this, ".env"));
+      assign(name, fields[[name]], envir=this.env);
     class(this) <- c(...className, class(this));
+
+    # Override this (=unregister finalizer) according to argument
+    # '...finalize' of extend()?
+    if (!is.na(...finalize) && !isTRUE(...finalize)) {
+      # Unregister finalizer (by registering a dummy one)
+      reg.finalizer(this.env, f=function(...) {});
+    }
+
     this;
   },
 
@@ -109,6 +122,9 @@ rm(list="attachX");
 
 ############################################################################
 # HISTORY:
+# 2013-10-13
+# o Added argument 'finalize' to Object() and '...finalize' to extend()
+#   for Object.  The latter override the former.
 # 2012-12-18
 # o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-11-28

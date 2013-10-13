@@ -25,7 +25,7 @@
 }
 
 \usage{
-Object(core=NA)
+Object(core=NA, finalize=TRUE)
 }
 
 \arguments{
@@ -35,6 +35,8 @@ Object(core=NA)
     which is the case with the Class class.
     \emph{Note that this value belongs to the reference variable
     and not to the Object, which means it can not be referenced.}}
+  \item{finalize}{If \code{\link[base:logical]{TRUE}}, method \code{\link[R.oo:finalize.Object]{*finalize}()} will
+    be called on this Object when it is garbage collected.}
 }
 
 \section{Fields and Methods}{

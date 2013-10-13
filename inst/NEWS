@@ -1,6 +1,20 @@
 Package: R.oo
 =============
 
+Version: 1.15.9 [2013-10-13]
+o ROBUSTNESS: Added argument 'finalize' to Object() to specify
+  whether a finalizer should be registered or not.  If so, then
+  generic function finalize() is called on the Object.
+  Furthermore, extend() for Object  gained argument '...finalize',
+  which, regardless of argument 'finalize' of Object, force the
+  registration of a finalizer (...finalize=TRUE) or the removal
+  of one (...finalize=FALSE).  If ...finalize=NA (default), then
+  the finalizer is enabled/disasbled according to argument
+  'finalize' of Object.  For backward compatibility reasons, the
+  default behavior is still to register a finalizer for Object:s,
+  but this may change in a future release.
+
+
 Version: 1.15.8 [2013-10-10]
 o BUG FIX/ROBUSTNESS: It appears that when loading the package
   it may happen that the 'R.oo' namespace is loaded cyclicly,

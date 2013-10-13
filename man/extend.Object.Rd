@@ -25,7 +25,7 @@
 }
 
 \usage{
-\method{extend}{Object}(this, ...className, ..., ...fields=NULL, ...envir=parent.frame())
+\method{extend}{Object}(this, ...className, ..., ...fields=NULL, ...envir=parent.frame(), ...finalize=NA)
 }
 
 \arguments{
@@ -34,6 +34,13 @@
   \item{...fields}{An optional named \code{\link[base]{list}} of fields.  This makes it possible
     to specify a set of fields using a \code{\link[base]{list}} object.}
   \item{...envir}{An \code{\link[base]{environment}}.}
+  \item{...finalize}{
+    A \code{\link[base]{logical}} controlling whether method \code{\link[R.oo:finalize.Object]{*finalize}()} should
+    be called on the \code{\link{Object}} when it is garbage collected or not.
+    If \code{\link[base:logical]{TRUE}}, it will be called.  If \code{\link[base:logical]{FALSE}}, it will not be called.
+    If \code{\link[base]{NA}}, it will be called according to argument \code{finalize}
+    of the \code{\link{Object}} constructor.
+  }
 }
 
 \value{
