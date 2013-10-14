@@ -9,7 +9,8 @@ attachX(list(
   Object = function(core=NA, finalize=TRUE) {
     # Create a new environment and wrap it up as a private field of a list.
     this <- core;
-    attr(this, ".env") <- new.env();
+    this.env <- new.env();
+    attr(this, ".env") <- this.env;
     class(this) <- "Object";
 
     if (getOption("R.oo::Object/instantiationTime", FALSE)) {
@@ -27,18 +28,18 @@ attachX(list(
       # it, this will be our best chance to run the correct finalizer(),
       # which might be in a subclass of a different package that is still
       # loaded.
-      isRooLoaded <- is.element("package:R.oo", search());
-      isRooLoaded <- isRooLoaded || is.element("dummy:R.oo", search());
-      if (isRooLoaded) {
+      isRooAttached <- is.element("package:R.oo", search());
+      isRooAttached <- isRooAttached || is.element("dummy:R.oo", search());
+      if (isRooAttached) {
         finalize(this);
       } else {
         # (1) Attach the 'R.oo' package
         suppressMessages({
-          isRooLoaded <- require("R.oo", quietly=TRUE);
+          isRooAttached <- require("R.oo", quietly=TRUE);
         });
 
         # For unknown reasons R.oo might not have been loaded.
-        if (isRooLoaded) {
+        if (isRooAttached) {
           finalize(this);
         } else {
 ##          warning("Failed to temporarily reload 'R.oo' and finalize().");
@@ -74,9 +75,9 @@ attachX(list(
     # Should this Object be finalized?
     if (finalize) {
       onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
-      reg.finalizer(attr(this, ".env"), finalizer, onexit=onexit);
+      reg.finalizer(this.env, finalizer, onexit=onexit);
     }
-    attr(this, "finalize") <- finalize;
+    assign("...finalize", finalize, envir=this.env, inherits=FALSE);
 
     this;
   },

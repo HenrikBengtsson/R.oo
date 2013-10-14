@@ -11,7 +11,7 @@ setConstructorS3("MyClass", function(a=1:10) {
 
 setMethodS3("finalize", "MyClass", function(this, ...) {
   cat("finalize...\n")
-  str(sys.calls())
+  utils::str(sys.calls())
   cat("finalize...done\n")
 })
 

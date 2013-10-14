@@ -79,13 +79,18 @@ debug:
 	@echo R_VERSION_FULL=\'$(R_VERSION_FULL)\'
 	@echo R_LIBS_USER_X=\'$(R_LIBS_USER_X)\'
 	@echo R_OUTDIR=\'$(R_OUTDIR)\'
+	@echo
+	@echo "Default packages:" $(shell $(R) --slave -e "cat(paste(getOption('defaultPackages'), collapse=', '))")
+	@echo
+	@echo R_BUILD_OPTS=\'$(R_BUILD_OPTS)\'
+	@echo
 	@echo R_CHECK_OUTDIR=\'$(R_CHECK_OUTDIR)\'
 	@echo R_CHECK_CRAN_INCOMING=\'$(R_CHECK_CRAN_INCOMING)\'
 	@echo _R_CHECK_XREFS_REPOSITORIES_=\'$(_R_CHECK_XREFS_REPOSITORIES_)\'
 	@echo R_CHECK_FULL=\'$(R_CHECK_FULL)\'
 	@echo R_CHECK_OPTS=\'$(R_CHECK_OPTS)\'
+	@echo
 	@echo R_CRAN_OUTDIR=\'$(R_CRAN_OUTDIR)\'
-	@echo "Default packages:" $(shell $(R) --slave -e "cat(paste(getOption('defaultPackages'), collapse=', '))")
 
 
 debug_full: debug

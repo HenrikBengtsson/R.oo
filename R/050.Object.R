@@ -1346,7 +1346,11 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   class(this) <- unique(c(...className, class(this)));
 
   # Should the Object be finalized?
-  finalize <- isTRUE(attr(this, "finalize"));
+  finalize <- TRUE;
+  if (exists("...finalize", finalize, envir=this.env, inherits=FALSE)) {
+    finalize <- get("...finalize", finalize, envir=this.env, inherits=FALSE);
+    finalize <- isTRUE(finalize);
+  }
   # Override by extend(..., ...finalize=TRUE/FALSE)?
   if (!is.na(...finalize)) finalize <- isTRUE(...finalize);
   if (finalize) {
@@ -2222,18 +2226,18 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
     # it, this will be our best chance to run the correct finalizer(),
     # which might be in a subclass of a different package that is still
     # loaded.
-    isRooLoaded <- is.element("package:R.oo", search());
-    isRooLoaded <- isRooLoaded || is.element("dummy:R.oo", search());
-    if (isRooLoaded) {
+    isRooAttached <- is.element("package:R.oo", search());
+    isRooAttached <- isRooAttached || is.element("dummy:R.oo", search());
+    if (isRooAttached) {
       finalize(this);
     } else {
       # (1) Attach the 'R.oo' package
       suppressMessages({
-        isRooLoaded <- require("R.oo", quietly=TRUE);
+        isRooAttached <- require("R.oo", quietly=TRUE);
       });
 
       # For unknown reasons R.oo might not have been loaded.
-      if (isRooLoaded) {
+      if (isRooAttached) {
         finalize(this);
       } else {
         warning("Failed to temporarily reload 'R.oo' and finalize().");

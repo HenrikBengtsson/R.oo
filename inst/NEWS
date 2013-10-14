@@ -1,7 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.15.9 [2013-10-13]
+Version: 1.16.0 [2013-10-13]
 o ROBUSTNESS: Added argument 'finalize' to Object() to specify
   whether a finalizer should be registered or not.  If so, then
   generic function finalize() is called on the Object.
@@ -13,6 +13,14 @@ o ROBUSTNESS: Added argument 'finalize' to Object() to specify
   'finalize' of Object.  For backward compatibility reasons, the
   default behavior is still to register a finalizer for Object:s,
   but this may change in a future release.
+o ROBUSTNESS: Now the package's system tests assumes that it's
+  only the 'base' package that is attached.
+o BUG FIX/ROBUSTNESS: Now Object finalizers will no longer try to 
+  re-attach the 'R.oo' package if library() is in the process of
+  trying to attach another package, because otherwise a cyclic
+  loading of namespaces may occur.  This was observed for a package
+  that allocated a temporary Object .onAttach() which then was
+  garbage collected and finalized.
 
 
 Version: 1.15.8 [2013-10-10]

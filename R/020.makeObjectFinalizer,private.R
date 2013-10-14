@@ -40,7 +40,7 @@
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getObjectInfo <- function(this) {
     env <- attr(this, ".env");
-    if (is.null(env)) return(NA);
+    if (is.null(env)) return(NA_character_);
 
     # base::environmentName() was added to R v2.5.0
     if (exists("environmentName", mode="function")) {
@@ -52,25 +52,30 @@
     if (name == "") {
       # Cannot assume 'utils' is attached
       name <- utils::capture.output(print.default(env));
-      name <- name[1]; # Just in case
+      name <- name[1L]; # Just in case
       name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
     }
 
-    name <- paste(class(this)[1L], ": ", name, sep="");
+    className <- class(this)[1L];
+    name <- paste(className, ": ", name, sep="");
+    # More debug information
+    if (className == "Package") {
+      name <- sprintf("%s {.name='%s'}", name, env$.name);
+    }
 
     name;
   } # getObjectInfo()
 
-  getRversion2 <- function() {
-    rVer <- R.version[c("major", "minor", "status", "svn rev")];
-    names(rVer)[3:4] <- c("patched", "rev");
-    rVer$patched <- ifelse(identical(rVer$patched, "Patched"), 1L, 0L);
-    rVer$rev <- ifelse(is.null(rVer$rev), 0L, rVer$rev);
-    rVer <- lapply(rVer, FUN=as.numeric);
-    rVer;
-  } # getRversion2()
-
   isLibraryReentrant <- function() {
+    getRversion2 <- function() {
+      rVer <- R.version[c("major", "minor", "status", "svn rev")];
+      names(rVer)[3:4] <- c("patched", "rev");
+      rVer$patched <- ifelse(identical(rVer$patched, "Patched"), 1L, 0L);
+      rVer$rev <- ifelse(is.null(rVer$rev), 0L, rVer$rev);
+      rVer <- lapply(rVer, FUN=as.numeric);
+      rVer;
+    } # getRversion2()
+
     rVer <- getRversion2();
     if (rVer$major >= 3) return(TRUE);
     if (rVer$major < 2) return(FALSE);
@@ -100,6 +105,31 @@
     FALSE;
   } # isParseCalled()
 
+  isLibraryActive <- function() {
+    # Just in case the below won't work one day due to R updates...
+    tryCatch({
+      # Identify the environment/frame of interest by making sure
+      # it at least contains all the arguments of source().
+      argsToFind <- names(formals(base::library));
+
+      # Scan the call frames/environments backwards...
+      srcfileList <- list();
+      for (ff in sys.nframe():0) {
+        env <- sys.frame(ff);
+
+        # Does the environment look like a library() environment?
+        exist <- sapply(argsToFind, FUN=exists, envir=env, inherits=FALSE);
+        if (!all(exist)) {
+          # Nope, then skip to the next one
+          next;
+        }
+
+        return(TRUE);
+      } # for (ff ...)
+    }, error = function() {});
+
+    FALSE;
+  } # isLibraryActive()
 
   # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
   finalizer <- function(env) {
@@ -107,11 +137,19 @@
     # it, this will be our best chance to run the correct finalizer(),
     # which might be in a subclass of a different package that is still
     # loaded.
-    isRooLoaded <- is.element("package:R.oo", search());
-    isRooLoaded <- isRooLoaded || is.element("dummy:R.oo", search());
-    if (isRooLoaded) {
+    isRooAttached <- is.element("package:R.oo", search());
+    isRooAttached <- isRooAttached || is.element("dummy:R.oo", search());
+    if (isRooAttached) {
       finalize(this);
       return();
+    }
+
+    # Don't re-attach 'R.oo' if library() is "active"
+    if (!isRooAttached && reloadRoo) {
+      if (isLibraryActive()) {
+        warning(sprintf("Detected finalization of Object while library() is working on attaching a package and the R.oo package is not attached.  This is most likely due to a *temporary* Object allocated in .onLoad()/.onAttach(), which is not allowed. Finalization of Object will *not* be skipped: %s", getObjectInfo(this)));
+        return();
+      }
     }
 
     alreadyWarned <- FALSE;
@@ -132,20 +170,28 @@
       }
     }
 
+    warnMsg <- "";
     if (reloadRoo) {
       # (1) Attach the 'R.oo' package
       suppressMessages({
-        isRooLoaded <- require("R.oo", quietly=TRUE);
+        warnMsg <- suppressWarnings({
+          isRooAttached <- require("R.oo", quietly=TRUE);
+        });
       });
+      if (is.character(warnMsg)) {
+        warnMsg <- sprintf(" (with warning %s)", warnMsg);
+      } else {
+        warnMsg <- "";
+      }
     }
 
     # For unknown reasons R.oo might not have been loaded.
-    if (isRooLoaded) {
+    if (isRooAttached) {
       finalize(this);
     } else if (reloadRoo) {
-      warning("Object may not be finalize():d properly because the R.oo package failed to reload: ", getObjectInfo(this));
+      warning(sprintf("Object may not be finalize():d properly because the R.oo package failed to reload%s: %s", warnMsg, getObjectInfo(this)));
     } else if (!alreadyWarned) {
-      warning("Object may not be finalize():d properly because the R.oo package is not loaded: ", getObjectInfo(this));
+      warning(sprintf("Object may not be finalize():d properly because the R.oo package is not loaded: %s", getObjectInfo(this)));
     }
 
     # NOTE! Before detaching R.oo again, we have to make sure the Object:s
@@ -180,6 +226,12 @@
 
 ############################################################################
 # HISTORY:
+# 2013-10-13
+# o ROBUSTNESS: Now Object finalizers will only try to re-attach the
+#   'R.oo' package if library() is currently attaching a package.  This
+#   can occur if a temporary Object is allocated in .onAttach().
+# o Now warnings generated by the finalizer function returned by
+#   .makeObjectFinalizer() is more informative on Package objects.
 # 2013-09-20
 # o BUG FIX: The finalizer returned by .makeObjectFinalizer() assumed
 #   that the 'utils' is attached while calling capture.output(), which

@@ -1,5 +1,5 @@
 assertPackages <- function(loaded=c("R.methodsS3", "R.oo")) {
-  s <- sessionInfo()
+  s <- utils::sessionInfo()
   s$R.version <- NULL;
   s$platform <- "";
   s$locale <- "";
