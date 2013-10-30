@@ -9,7 +9,7 @@ o ROBUSTNESS: Added argument 'finalize' to Object() to specify
   which, regardless of argument 'finalize' of Object, force the
   registration of a finalizer (...finalize=TRUE) or the removal
   of one (...finalize=FALSE).  If ...finalize=NA (default), then
-  the finalizer is enabled/disasbled according to argument
+  the finalizer is enabled/disabled according to argument
   'finalize' of Object.  For backward compatibility reasons, the
   default behavior is still to register a finalizer for Object:s,
   but this may change in a future release.
@@ -29,7 +29,7 @@ o BUG FIX/ROBUSTNESS: It appears that when loading the package
   though this has only been observed while running 'R CMD INSTALL'.
   This may be because a Package object (R.oo::R.oo) is assigned
   during the loading of the namespace.  Since Package extends()
-  and Object object, this may endup loading 'R.oo' again.  To
+  and Object object, this may end up loading 'R.oo' again.  To
   avoid this, R.oo::R.oo is now assigned using delayed assignment.
 
 
@@ -90,7 +90,7 @@ Version: 1.14.0 [2013-08-20]
 o Now it's possible to call static methods without attaching
   ("loading") the package, e.g. R.oo::Class$forName("Object").
   Added unit tests for this.
-o Now getPackage() for Class first searches the namesspace of the
+o Now getPackage() for Class first searches the namespace of the
   Class object and then the attached ("loaded") packages.
 o Now '$' and '$<-' for Object locates the static instance of the
   Class using getStaticInstance() for Object.
@@ -241,7 +241,7 @@ o Updated the URL returned by RccViolationException$getRccUrl().
 
 Version: 1.10.2 [2012-11-07]
 o BUG FIX: obj$<method>(...) would throw an error iff the Object 'obj'
-  was saved/instanciated by R.oo (< 1.10.0).  Code is now backward
+  was saved/instantiated by R.oo (< 1.10.0).  Code is now backward
   compatible with this case.  Thanks Roger Day at University of
   Pittsburgh Cancer Institute and Dan Tenenbaum (BioC core) for
   reporting on this.
@@ -270,7 +270,7 @@ Version: 1.9.10 [2012-09-14]
 o ROBUSTNESS/BUG FIX: The Exception constructor could generate warning
   'In if (regexpr("^function\\(", code) != -1) return("") : the
   condition has length > 1 and only the first element will be used'
-  occuring in its local fcnName() function.  Now code no longer assumes
+  occurring in its local fcnName() function.  Now code no longer assumes
   that 'code' is of length 1.
 
 
@@ -282,7 +282,7 @@ o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
   invokeRestart("abort").  This avoids having to call
   .Internal(.signalCondition(...)).  It also means that the message
   outputted by abort() no longer starts with a "Error in ...:" line.
-  abort() immitates how stop() works but without the signalling.
+  abort() imitates how stop() works but without the signalling.
 o BUG FIX: getContribUrl() and getDevelUrl() would give an error if
   corresponding fields did not exists in the DESCRIPTION file.  Now
   they return NAs just as getUrl().
@@ -367,7 +367,7 @@ o CLEANUP/FIX: Dropped package.description() from getDescriptionFile()
 
 Version: 1.8.2 [2011-08-25]
 o DOCUMENTATION: Added further clarification to help(setConstructorS3)
-  about the requirment that constructors defined by setConstructorS3()
+  about the requirement that constructors defined by setConstructorS3()
   have to be callable without arguments.
 
 
@@ -402,7 +402,7 @@ o ROBUSTNESS: Now using 'inherits' (not 'inherit') in all calls to
 
 
 Version: 1.7.4 [2010-09-22]
-o Now Rdoc lines are allowed to start with double ('##') or tripple
+o Now Rdoc lines are allowed to start with double ('##') or triple
   ('###') comment characters in addition to single ('#') ones.
 
 
@@ -581,7 +581,7 @@ o Made trycatch() defunct, i.e. it gives an error suggesting to use
 Version: 1.2.5 [2007-01-05]
 o BUG FIX: getMethods(..., private=FALSE) for class Class would return
   private methods, and private=TRUE would remove them.  It should be
-  the otherway around.
+  the other way around.
 o BUG FIX: getMethods() for Class would sometimes give error message:
   "Error in result[[k]] : subscript out of bounds".  This in turn would
   cause Rdoc to fail.
@@ -606,8 +606,9 @@ o Added support for give modifiers to fields in classes extending
   the Object class. Currently it is only the "cached" modifier that
   is recognized. To specify that a field, say, "foo" is "cached",
   list it as "cached:foo".  Fields that are "cached" will be assigned
-  to NULL when clearCache() of the object is called.  For conviency
-  there is also a gc() method for all Object:s.  See ?gc.Object for
+  to NULL when clearCache() of the object is called.  For convenience
+  there is also a 
+gc() method for all Object:s.  See ?gc.Object for
   an example.
 o Made the package smaller by removing the DSC-2003 logo from
   the R.oo paper, which shrunk from 324kb to 220kb.  The rest
@@ -1339,3 +1340,5 @@ o The very first version.
 Version: 0.0 [2001-03-10]
 o The very first attempt to create an object-oriented core for [R].
   At this moment I was a beginner in [R].
+
+LocalWords:  HOWTOCITE FIXUP
