@@ -1,6 +1,14 @@
 Package: R.oo
 =============
 
+Version: 1.16.2 [2014-01-05]
+o Added arguments 'envir=NULL' and 'inherits=TRUE' to static
+  method Class$forName().
+o Added argument 'gc=FALSE' to clearCache().  It is recommended
+  to start using clearCache(obj, gc=TRUE) instead of gc(obj).
+o Bumped package dependencies.
+
+
 Version: 1.16.1 [2014-01-04]
 o ROBUSTNESS: Added several missing importFrom() and S3method()
   statements to the NAMESPACE file.

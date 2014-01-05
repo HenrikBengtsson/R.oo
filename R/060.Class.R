@@ -675,6 +675,10 @@ setMethodS3("isDeprecated", "Class", function(this, ...) {
 # @synopsis
 #
 # \arguments{
+#   \item{envir}{(optional) An @environment to search from.
+#    If @NULL, only attached namespaces are searched.}
+#   \item{inherits}{If @TRUE, enclosing frames are also searched,
+#    otherwise not.}
 #   \item{...}{Not used.}
 # }
 #
@@ -697,16 +701,28 @@ setMethodS3("isDeprecated", "Class", function(this, ...) {
 # @keyword programming
 # @keyword methods
 #*/###########################################################################
-setMethodS3("forName", "Class", function(this, name, ...) {
-  # TO DO/FIX ME: This part only works when packages are attached.
-  # /HB 2013-10-08
-  if (!exists(name, mode="function")) {
+setMethodS3("forName", "Class", function(this, name, envir=NULL, inherits=TRUE, ...) {
+  # TO DO/FIX ME: The default of this method is to only search attached
+  # namespaced. /HB 2013-10-08
+
+  # (a) Search from a specific environment/namespace?
+  if (is.environment(envir)) {
+    if (exists(name, mode="function", envir=envir, inherits=inherits)) {
+      fcn <- get(name, mode="function", envir=envir, inherits=inherits);
+      if (inherits(fcn, "Class")) return(fcn);
+    }
+  }
+
+  # (b) Search attached namespaces
+  if (!exists(name, mode="function", inherits=inherits)) {
     throw("No such class: ", name);
   }
-  fcn <- get(name, mode="function");
+  fcn <- get(name, mode="function", inherits=inherits);
   if (!inherits(fcn, "Class")) {
-    throw("Can not find Class: ", name);
+    throw("The located function is not a Class function: ", name);
   }
+
+  # Return
   fcn;
 }, static=TRUE) # forName()
 
@@ -1593,6 +1609,9 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2014-01-05
+# o Added arguments 'envir=NULL' and 'inherits=TRUE' to static method
+#   Class$forName().
 # 2013-08-20
 # o Now getPackage() for Object first searches the namesspace of the
 #   Class object and then the attached ("loaded") packages.

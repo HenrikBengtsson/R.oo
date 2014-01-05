@@ -18,12 +18,13 @@
 }
 
 \usage{
-\method{clearCache}{Object}(this, recursive=TRUE, ...)
+\method{clearCache}{Object}(this, recursive=TRUE, gc=FALSE, ...)
 }
 
 \arguments{
   \item{recursive}{If \code{\link[base:logical]{TRUE}}, the same method is called also on all
      fields that are \code{\link{Object}}:s. Circular dependencies can exists.}
+  \item{gc}{If \code{\link[base:logical]{TRUE}}, the garbage collector is called, otherwise not.}
   \item{...}{Not used.}
 }
 

@@ -2048,6 +2048,7 @@ setMethodS3("clearLookupCache", "Object", function(this, ...) {
 # \arguments{
 #   \item{recursive}{If @TRUE, the same method is called also on all
 #      fields that are @see "Object":s. Circular dependencies can exists.}
+#   \item{gc}{If @TRUE, the garbage collector is called, otherwise not.}
 #   \item{...}{Not used.}
 # }
 #
@@ -2068,7 +2069,7 @@ setMethodS3("clearLookupCache", "Object", function(this, ...) {
 # @keyword programming
 # @keyword methods
 #*/###########################################################################
-setMethodS3("clearCache", "Object", function(this, recursive=TRUE, ...) {
+setMethodS3("clearCache", "Object", function(this, recursive=TRUE, gc=FALSE, ...) {
   env <- attr(this, ".env");
 
   fields <- getFieldModifier(this, "cached");
@@ -2094,6 +2095,9 @@ setMethodS3("clearCache", "Object", function(this, recursive=TRUE, ...) {
       }
     }
   }
+
+  # Run the garbage collector?
+  if (gc) gc();
 
   invisible(this);
 })
@@ -2282,6 +2286,8 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-01-05
+# o Added argument 'gc=FALSE' to clearCache().
 # 2013-10-13
 # o Now extend() for Object only registers a finalizer if attribute
 #   'finalize' is TRUE.
