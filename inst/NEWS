@@ -2,8 +2,8 @@ Package: R.oo
 =============
 
 Version: 1.16.2 [2014-01-05]
-o Added arguments 'envir=NULL' and 'inherits=TRUE' to static
-  method Class$forName().
+o Now static method Class$forName() accepts optional 'envir'
+  argument for specifying from where to search for the Class object.
 o Added argument 'gc=FALSE' to clearCache().  It is recommended
   to start using clearCache(obj, gc=TRUE) instead of gc(obj).
 o Bumped package dependencies.

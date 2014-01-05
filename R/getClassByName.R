@@ -1,8 +1,7 @@
 .getClassByName <- function(name, where=c("ns", "search"), envir=NULL, mustExist=TRUE, ...) {
-  # Backward compatibility
-  # Enable: options("R.oo::Class/searchNamespaces"=TRUE)
+  # Backward compatibility (ignore where="ns*" if explicitly disabled)
   if (!getOption("R.oo::Class/searchNamespaces", TRUE)) {
-    where <- where[-1L];
+    where <- setdiff(where, "ns*");
   }
 
   # Ignore where = "ns" if 'envir' was not specified
@@ -47,7 +46,7 @@
   if (mustExist) {
     # Don't use throw() here, because it may result in an endless loop
     # if Exception is not found. /HB 2012-11-23
-    stop("No such Class: ", name);
+    stop("INTERNAL ERROR: No such Class: ", name);
   }
 
   # Not found
@@ -57,6 +56,9 @@
 
 ############################################################################
 # HISTORY:
+# 2014-01-05
+# o ROBUSTNESS: .getClassByName() assumed that argument 'where' was
+#   not explicitly passed.
 # 2013-08-20
 # o Now .getClassByName() searches in the order of 'where'.
 # o Added argument 'mustExist' to .getClassByName().

@@ -20,18 +20,14 @@
 
 \usage{
 ## Static method (use this):
-## Class$forName(name, envir=NULL, inherits=TRUE, ...)
+## Class$forName(name, ...)
 
 ## Don't use the below:
-\method{forName}{Class}(this, name, envir=NULL, inherits=TRUE, ...)
+\method{forName}{Class}(static, name, ...)
 }
 
 \arguments{
-  \item{envir}{(optional) An \code{\link[base]{environment}} to search from.
-   If \code{\link[base]{NULL}}, only attached namespaces are searched.}
-  \item{inherits}{If \code{\link[base:logical]{TRUE}}, enclosing frames are also searched,
-   otherwise not.}
-  \item{...}{Not used.}
+  \item{...}{Optional arguments passed to internal lookup function.}
 }
 
 \value{
