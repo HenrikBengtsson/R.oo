@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.16.1 [2014-01-04]
+o ROBUSTNESS: Added several missing importFrom() and S3method()
+  statements to the NAMESPACE file.
+
+
 Version: 1.16.0 [2013-10-13]
 o ROBUSTNESS: Added argument 'finalize' to Object() to specify
   whether a finalizer should be registered or not.  If so, then
@@ -15,7 +20,7 @@ o ROBUSTNESS: Added argument 'finalize' to Object() to specify
   but this may change in a future release.
 o ROBUSTNESS: Now the package's system tests assumes that it's
   only the 'base' package that is attached.
-o BUG FIX/ROBUSTNESS: Now Object finalizers will no longer try to 
+o BUG FIX/ROBUSTNESS: Now Object finalizers will no longer try to
   re-attach the 'R.oo' package if library() is in the process of
   trying to attach another package, because otherwise a cyclic
   loading of namespaces may occur.  This was observed for a package
@@ -607,7 +612,7 @@ o Added support for give modifiers to fields in classes extending
   is recognized. To specify that a field, say, "foo" is "cached",
   list it as "cached:foo".  Fields that are "cached" will be assigned
   to NULL when clearCache() of the object is called.  For convenience
-  there is also a 
+  there is also a
 gc() method for all Object:s.  See ?gc.Object for
   an example.
 o Made the package smaller by removing the DSC-2003 logo from
