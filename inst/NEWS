@@ -42,7 +42,7 @@ o BUG FIX/ROBUSTNESS: It appears that when loading the package
   though this has only been observed while running 'R CMD INSTALL'.
   This may be because a Package object (R.oo::R.oo) is assigned
   during the loading of the namespace.  Since Package extends()
-  and Object object, this may end up loading 'R.oo' again.  To
+  an Object object, this may end up loading 'R.oo' again.  To
   avoid this, R.oo::R.oo is now assigned using delayed assignment.
 
 
