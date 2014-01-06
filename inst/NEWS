@@ -6,6 +6,12 @@ o Now static method Class$forName() accepts optional 'envir'
   argument for specifying from where to search for the Class object.
 o Added argument 'gc=FALSE' to clearCache().  It is recommended
   to start using clearCache(obj, gc=TRUE) instead of gc(obj).
+o CLEANUP: Defunct registerFinalizer() for Object.
+o BUG FIX: The temporary finalizer() registered for Object while
+  loading the R.oo package itself would cause cyclic loading of R.oo.
+  The reason was that it checked whether R.oo was available or not,
+  by only looking at attached namespaces but not loaded ones.  This
+  bug was introduced in R.oo 1.16.0.
 o Bumped package dependencies.
 
 

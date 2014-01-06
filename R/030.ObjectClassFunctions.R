@@ -28,18 +28,19 @@ attachX(list(
       # it, this will be our best chance to run the correct finalizer(),
       # which might be in a subclass of a different package that is still
       # loaded.
-      isRooAttached <- is.element("package:R.oo", search());
-      isRooAttached <- isRooAttached || is.element("dummy:R.oo", search());
-      if (isRooAttached) {
+      isRooAvail <- is.element("package:R.oo", search());
+      isRooAvail <- isRooAvail || is.element("dummy:R.oo", search());
+      isRooAvail <- isRooAvail || is.element("R.oo", loadedNamespaces());
+      if (isRooAvail) {
         finalize(this);
       } else {
         # (1) Attach the 'R.oo' package
         suppressMessages({
-          isRooAttached <- require("R.oo", quietly=TRUE);
+          isRooAvail <- require("R.oo", quietly=TRUE);
         });
 
         # For unknown reasons R.oo might not have been loaded.
-        if (isRooAttached) {
+        if (isRooAvail) {
           finalize(this);
         } else {
 ##          warning("Failed to temporarily reload 'R.oo' and finalize().");
@@ -123,6 +124,11 @@ rm(list="attachX");
 
 ############################################################################
 # HISTORY:
+# 2014-01-05
+# o BUG FIX: The temporary finalizer() registered for Object while
+#   loading the R.oo package itself would cause cyclic loading of R.oo.
+#   The reason was that it checked whether R.oo was available or not,
+#   by only looking at attached namespaces but not loaded ones.
 # 2013-10-13
 # o Added argument 'finalize' to Object() and '...finalize' to extend()
 #   for Object.  The latter override the former.

@@ -332,7 +332,7 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
 
 ##  # (a) Search loaded namespaces
 ##  for (ns in loadedNamespaces()) {
-##    envir <- asNamespace(ns);
+##    envir <- getNamespace(ns);
 ##    classesT <- getKnownSubclassesInEnvironment(name, envir=envir);
 ##    classes <- c(classes, classesT);
 ##  }
@@ -444,7 +444,7 @@ setMethodS3("isAbstract", "Class", function(this, ...) {
   methods <- unlist(methods);
   methods <- methods[nchar(methods) > 0L];
   for (method in methods) {
-    mtd <- .findS3Method(method, envir=environment(this));
+    mtd <- .getS3Method(method, envir=environment(this));
     if (is.element("abstract", attr(mtd, "modifiers")))
       return(TRUE);
   }
@@ -493,7 +493,7 @@ setMethodS3("isStatic", "Class", function(this, ...) {
   methods <- unlist(methods);
   methods <- methods[nchar(methods) > 0L];
   for (method in methods) {
-    mtd <- .findS3Method(method, envir=environment(this));
+    mtd <- .getS3Method(method, envir=environment(this));
     if (is.element("static", attr(mtd, "modifiers")))
       return(TRUE);
   }
@@ -1077,7 +1077,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
 ##    # (a) Search loaded namespaces
 ##    if (is.element("ns", where)) {
 ##      for (ns in loadedNamespaces()) {
-##        envir <- asNamespace(ns);
+##        envir <- getNamespace(ns);
 ##        res <- findS3MethodsByEnvironment(classNames, envir=envir, exclMods=exclMods, res=res);
 ##      }
 ##    }
@@ -1302,7 +1302,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
         isPrivate <- (regexpr("^\\.", methodNames) != -1L);
         modifiers[isPrivate] <- "private";
         for (kk in seq(along=methodNames)) {
-          fcn <- .findS3Method(methods[kk], envir=envir, mustExist=TRUE);
+          fcn <- .getS3Method(methods[kk], envir=envir, mustExist=TRUE);
           fcnModifiers <- attr(fcn, "modifiers");
           if (is.element("protected", fcnModifiers)) {
             modifiers[kk] <- "protected";
@@ -1412,7 +1412,7 @@ setMethodS3("$", "Class", function(this, name) {
     getMethodNames <- paste("get", capitalizedName, ".", class(static), sep="");
     envir <- environment(static);
     for (getMethodName in getMethodNames) {
-      fcn <- .findS3Method(getMethodName, envir=envir, mustExist=FALSE);
+      fcn <- .getS3Method(getMethodName, envir=envir, mustExist=FALSE);
       if (!is.null(fcn)) {
         ref <- static;
         attr(ref, "disableGetMethods") <- TRUE;
@@ -1439,7 +1439,7 @@ setMethodS3("$", "Class", function(this, name) {
   envir <- environment(static);
   methodNames <- paste(name, class(static), sep=".");
   for (methodName in methodNames) {
-    mtd <- .findS3Method(methodName, envir=envir, mustExist=FALSE);
+    mtd <- .getS3Method(methodName, envir=envir, mustExist=FALSE);
     if (!is.null(mtd)) {
       # Using explicit UseMethod() code
       code <- sprintf("function(...) \"%s\"(static, ...)", name);
@@ -1549,7 +1549,7 @@ setMethodS3("$<-", "Class", function(this, name, value) {
     setMethodNames <- paste("set", capitalizedName, ".", class(static), sep="");
     envir <- environment(static);
     for (setMethodName in setMethodNames) {
-      mtd <- .findS3Method(setMethodName, envir=envir, mustExist=FALSE);
+      mtd <- .getS3Method(setMethodName, envir=envir, mustExist=FALSE);
       if (!is.null(mtd)) {
         ref <- static;
         attr(ref, "disableSetMethods") <- TRUE;

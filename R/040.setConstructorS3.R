@@ -132,13 +132,13 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create
   expr <- substitute({
-      ns <- asNamespace("R.oo");
+      ns <- getNamespace("R.oo");
       if (exists("Class", mode="function", envir=ns, inherits=FALSE)) {
         R.oo_Class <- get("Class", mode="function", envir=ns, inherits=FALSE);
         fcn <- R.oo_Class(name, definition);
         rm(list="R.oo_Class");
       } else {
-        # Only used for R.oo itself.
+        # Only used for/by R.oo itself.
         fcn <- Class(name, definition);
       }
       rm(list="ns");

@@ -2560,7 +2560,7 @@ setMethodS3("getRdTitle", "Rdoc", function(this, class, method, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  tools_fetchRdDB <- get("fetchRdDB", mode="function", envir=asNamespace("tools"), inherits=FALSE);
+  tools_fetchRdDB <- get("fetchRdDB", mode="function", envir=getNamespace("tools"), inherits=FALSE);
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2750,7 +2750,7 @@ setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FA
     }
   } else {
     # For R (< 2.10.0)
-    tools_check_Rd_files_in_man_dir <- get("check_Rd_files_in_man_dir", mode="function", envir=asNamespace("tools"), inherits=FALSE);
+    tools_check_Rd_files_in_man_dir <- get("check_Rd_files_in_man_dir", mode="function", envir=getNamespace("tools"), inherits=FALSE);
     res <- tools_check_Rd_files_in_man_dir(manPath);
     if (length(res$files_with_surely_bad_Rd) > 0) {
       throw("Syntax error in Rd file(s): ",

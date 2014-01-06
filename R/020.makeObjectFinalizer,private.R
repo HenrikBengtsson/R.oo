@@ -152,6 +152,12 @@
       }
     }
 
+    loading <- dynGet("__NameSpacesLoading__", NULL)
+    isRooLoading <- is.element("R.oo", loading)
+    if (reloadRoo && isRooLoading) {
+      throw("INTERNAL ERROR: Cyclic loading of R.oo in finalizer.");
+    }
+
     alreadyWarned <- FALSE;
 
     # Assure that this finalizer is truly reentrant.
@@ -222,6 +228,22 @@
 
   return(finalizer);
 } # .makeObjectFinalizer()
+
+
+# Local function of base::loadNamespace()
+# Example: List namespaces currently being loaded
+# loading <- dynGet("__NameSpacesLoading__", NULL)
+# isRooLoading <- is.element("R.oo", loading)
+dynGet <- function(name, notFound = stop(gettextf("%s not found", name), domain = NA)) {
+    n <- sys.nframe()
+    while (n > 1) {
+        n <- n - 1
+        env <- sys.frame(n)
+        if (exists(name, envir = env, inherits = FALSE))
+            return(get(name, envir = env, inherits = FALSE))
+    }
+    notFound
+} # dynGet()
 
 
 ############################################################################

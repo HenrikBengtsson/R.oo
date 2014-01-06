@@ -1,10 +1,6 @@
 # Detach the 'R.oo' attached in file 030.ObjectClassFunctions.R
 if (is.element("R.oo", search())) detach("R.oo");
 
-# Allows conflicts. For more information, see library() and
-# conflicts() in [R] base.
-.conflicts.OK <- TRUE;
-
 .onLoad <- function(libname, pkgname) {
   ns <- getNamespace(pkgname);
 
