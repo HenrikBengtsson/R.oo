@@ -131,6 +131,17 @@
     FALSE;
   } # isLibraryActive()
 
+  isRooLoading <- function() {
+    for (n in seq(from=sys.nframe(), to=1L, by=-1L)) {
+      env <- sys.frame(n);
+      if (exists("__NameSpacesLoading__", envir=env, inherits=FALSE)) {
+        pkgs <- get("__NameSpacesLoading__", envir=env, inherits=FALSE);
+        if (is.element("R.oo", pkgs)) return(TRUE);
+      }
+    } # for (n ...)
+    FALSE;
+  } # isRooLoading()
+
   # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
   finalizer <- function(env) {
     # Note, R.oo might be detached when this is called!  If so, reload
@@ -152,12 +163,6 @@
       }
     }
 
-    loading <- dynGet("__NameSpacesLoading__", NULL)
-    isRooLoading <- is.element("R.oo", loading)
-    if (reloadRoo && isRooLoading) {
-      throw("INTERNAL ERROR: Cyclic loading of R.oo in finalizer.");
-    }
-
     alreadyWarned <- FALSE;
 
     # Assure that this finalizer is truly reentrant.
@@ -173,6 +178,10 @@
           warning("Object may not be finalize():d properly because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getObjectInfo(this));
           alreadyWarned <- TRUE;
         }
+      }
+      # Don't reattach R.oo if it is currently being loaded
+      if (isRooLoading()) {
+        reloadRoo <- FALSE;
       }
     }
 
@@ -228,22 +237,6 @@
 
   return(finalizer);
 } # .makeObjectFinalizer()
-
-
-# Local function of base::loadNamespace()
-# Example: List namespaces currently being loaded
-# loading <- dynGet("__NameSpacesLoading__", NULL)
-# isRooLoading <- is.element("R.oo", loading)
-dynGet <- function(name, notFound = stop(gettextf("%s not found", name), domain = NA)) {
-    n <- sys.nframe()
-    while (n > 1) {
-        n <- n - 1
-        env <- sys.frame(n)
-        if (exists(name, envir = env, inherits = FALSE))
-            return(get(name, envir = env, inherits = FALSE))
-    }
-    notFound
-} # dynGet()
 
 
 ############################################################################
