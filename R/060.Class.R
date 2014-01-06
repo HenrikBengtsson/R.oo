@@ -698,9 +698,6 @@ setMethodS3("isDeprecated", "Class", function(this, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("forName", "Class", function(static, name, ...) {
-  # TO DO/FIX ME: The default of this method is still to only search
-  # attached namespaced.  That can be changed by passing
-  # where=c("ns", "search", "ns*"). /HB 2014-01-05
   .getClassByName(name, ..., mustExist=TRUE);
 }, static=TRUE) # forName()
 

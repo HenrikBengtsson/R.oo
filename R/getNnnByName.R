@@ -1,4 +1,4 @@
-.getFunctionByName <- function(name, where=c("ns", "search"), envir=NULL, callEnvir=as.environment(-1L), class="function", mustExist=TRUE, ...) {
+.getFunctionByName <- function(name, where=c("ns", "search", "ns*"), envir=NULL, callEnvir=as.environment(-1L), class="function", mustExist=TRUE, ...) {
   # Backward compatibility (ignore where="ns*" if explicitly disabled)
   if (!getOption("R.oo::Class/searchNamespaces", TRUE)) {
     where <- setdiff(where, "ns*");
@@ -66,6 +66,7 @@
 ############################################################################
 # HISTORY:
 # 2014-01-05
+# o Now .getFunctionByName() also searches all loaded namespaces at the end.
 # o Renamed .findS3Method() to .getS3Method() for consistency.
 # o CONSISTENCY: Added .getFunctionByName(), which .getClassByName() and
 #   .findS3Method() utilizes.  This makes it particularly easy to change
