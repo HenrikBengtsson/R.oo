@@ -29,6 +29,7 @@ if (getRversion() >= "2.14.0") {
   importFrom("stats", "getCall") # Only available in R (>= 2.14.0)
 }
 
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
