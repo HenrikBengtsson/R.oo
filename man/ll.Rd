@@ -17,8 +17,8 @@
 }
 
 \usage{
-\method{ll}{default}(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties"),
-  sortBy=NULL, envir=parent.frame())
+\method{ll}{default}(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties",
+  c("data.class", "dimension", "objectSize")), sortBy=NULL, envir=parent.frame())
 }
 
 \arguments{

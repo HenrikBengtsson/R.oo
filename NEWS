@@ -1,12 +1,19 @@
 Package: R.oo
 =============
 
+Version: 1.17.1 [2014-02-05]
+o CLEANUP: Argument 'properties' of ll() defaults to an options, which
+  if not set in turn defaults to a given value.  The ll() method is no
+  longer trying to set that option if missing.  The option is also no
+  longer set when the package is attached.
+
+
 Version: 1.17.0 [2014-01-05]
 o Now Class$forName() searches all loaded namespaces as a last resort.
 
 
 Version: 1.16.2 [2014-01-05]
-o Now static method Class$forName() accepts optional 'envir' 
+o Now static method Class$forName() accepts optional 'envir'
   argument for specifying from where to search for the Class object.
 o Added argument 'gc=FALSE' to clearCache().  It is recommended
   to start using clearCache(obj, gc=TRUE) instead of gc(obj).

@@ -81,7 +81,7 @@
 #
 # \keyword{utilities}
 #*/###########################################################################
-setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties"), sortBy=NULL, envir=parent.frame()) {
+setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties", c("data.class", "dimension", "objectSize")), sortBy=NULL, envir=parent.frame()) {
   # AD HOC: Workaround to make sure property functions can be found.
   # This is because they are currently search for via the global
   # environment. /HB 2013-07-11
@@ -166,17 +166,8 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     members <- keep;
   }
 
-  if (identical(properties, ""))
+  if (length(properties) == 0L || identical(properties, ""))
     return(data.frame(member=members));
-
-  if (length(properties) == 0L) {
-    # Set default 'properties' argument for ll(), if missing
-    key <- "R.oo::ll/properties";
-    if (!is.element(key, names(options()))) {
-      properties <- c("data.class", "dimension", "objectSize");
-      options(key=properties);
-    }
-  }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -263,6 +254,11 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
 
 ############################################################################
 # HISTORY:
+# 2014-02-05
+# o CLEANUP: Argument 'properties' of ll() defaults to an options, which
+#   if not set in turn defaults to a given value.  The ll() method is no
+#   longer trying to set that option if missing.  The option is also no
+#   longer set when the package is attached.
 # 2013-07-11
 # o Now R.oo::ll() works without attaching the package.
 # o BUG FIX: ll(private=TRUE) gave an error if the environment

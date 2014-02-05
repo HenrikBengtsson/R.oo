@@ -18,13 +18,6 @@ if (is.element("R.oo", search())) detach("R.oo");
 
 
 .onAttach <- function(libname, pkgname) {
-  # Set default 'properties' argument for ll(), if missing
-  key <- paste(pkgname, "::ll/properties", sep="");
-  if (!is.element(key, names(options()))) {
-    args <- list(c("data.class", "dimension", "objectSize"));
-    names(args) <- key;
-    do.call(options, args=args);
-  }
   pkg <- get(pkgname, envir=getNamespace(pkgname));
   startupMessage(pkg);
 } # .onAttach()
