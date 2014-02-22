@@ -43,14 +43,14 @@
     if (is.null(env)) return(NA_character_);
 
     # base::environmentName() was added to R v2.5.0
-    if (exists("environmentName", mode="function")) {
+    if (exists("environmentName", mode="function", envir=getNamespace("base"), inherits=FALSE)) {
       name <- environmentName(env);
     } else {
       name <- "";
     }
 
     if (name == "") {
-      # Cannot assume 'utils' is attached
+      # Cannot assume 'utils' is loaded
       name <- utils::capture.output(print.default(env));
       name <- name[1L]; # Just in case
       name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
@@ -132,7 +132,7 @@
   } # isLibraryActive()
 
   isRooLoading <- function() {
-    for (n in seq(from=sys.nframe(), to=1L, by=-1L)) {
+    for (n in sys.nframe():1) {
       env <- sys.frame(n);
       if (exists("__NameSpacesLoading__", envir=env, inherits=FALSE)) {
         pkgs <- get("__NameSpacesLoading__", envir=env, inherits=FALSE);
@@ -142,97 +142,113 @@
     FALSE;
   } # isRooLoading()
 
+  isRooLoaded <- function() {
+    is.element("R.oo", loadedNamespaces());
+  } # isRooLoaded()
+
   # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
+  # Note, R.oo might be detached when this is called!  If so, reload
+  # it, this will be our best chance to run the correct finalizer(),
+  # which might be in a subclass of a different package that is still
+  # loaded.
   finalizer <- function(env) {
-    # Note, R.oo might be detached when this is called!  If so, reload
-    # it, this will be our best chance to run the correct finalizer(),
-    # which might be in a subclass of a different package that is still
-    # loaded.
-    isRooAttached <- is.element("package:R.oo", search());
-    isRooAttached <- isRooAttached || is.element("dummy:R.oo", search());
-    if (isRooAttached) {
-      finalize(this);
+    debug <- FALSE;
+    if (debug) message(sprintf("finalizer(): reloadRoo=%s", reloadRoo));
+    if (debug) message(paste(capture.output(print(sessionInfo())), collapse="\n"))
+    # Classes for which it is known that finalizer() does nothing
+    if (is.element(class(this)[1L], c("Object", "Class", "Package"))) {
       return();
     }
 
-    # Don't re-attach 'R.oo' if library() is "active"
-    if (!isRooAttached && reloadRoo) {
-      if (isLibraryActive()) {
-        warning(sprintf("Detected finalization of Object while library() is working on attaching a package and the R.oo package is not attached.  This is most likely due to a *temporary* Object allocated in .onLoad()/.onAttach(), which is not allowed. Finalization of Object will *not* be skipped: %s", getObjectInfo(this)));
+    # Do nothing if R.oo is being loaded
+    if (isRooLoading()) return();
+
+    # Is R.oo::finalize() available?
+    if (isRooLoaded()) {
+      if (debug) message(sprintf("finalizer(): Call finalize()..."));
+      R.oo::finalize(this);
+      if (debug) message(sprintf("finalizer(): Call finalize()...done"));
+      return();
+    }
+
+    # Nothing to do?
+    if (!reloadRoo) return();
+
+    warning(sprintf("Object was not be finalize():d properly because the R.oo package was not loaded: %s", getObjectInfo(this)));
+    return();
+
+    # Skip the finalizer()?
+    genv <- globalenv();
+    if (exists("...R.oo::skipFinalizer", envir=genv, inherits=FALSE)) {
+      if (debug) message(sprintf("Skipping finalizer()."));
+      return();
+    }
+
+    # Skip because library() is active?
+    if (isLibraryActive()) {
+      warning(sprintf("Detected finalization of Object while library() is working on attaching a package and the R.oo package is not loaded.  This is most likely due to a *temporary* Object allocated in .onLoad()/.onAttach(), which is not allowed. Finalization of Object will *not* be skipped: %s", getObjectInfo(this)));
+      return();
+    }
+
+    # Check if base::library() is reentrant...
+    if (!isLibraryReentrant()) {
+      # If not, check if base::parse() triggered the garbage collection
+      # and/or has been called, because then we must not call library(),
+      # because it will in turn call parse() potentially causing R to
+      # crash.
+      if (isParseCalled()) {
+        warning("Object may not be finalize():d properly because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getObjectInfo(this));
         return();
       }
     }
 
-    alreadyWarned <- FALSE;
-
-    # Assure that this finalizer is truly reentrant.
-    if (reloadRoo) {
-      # Check if base::library() is reentrant...
-      if (!isLibraryReentrant()) {
-        # If not, check if base::parse() triggered the garbage collection
-        # and/or has been called, because then we must not call library(),
-        # because it will in turn call parse() potentially causing R to
-        # crash.
-        if (isParseCalled()) {
-          reloadRoo <- FALSE;
-          warning("Object may not be finalize():d properly because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getObjectInfo(this));
-          alreadyWarned <- TRUE;
-        }
-      }
-      # Don't reattach R.oo if it is currently being loaded
-      if (isRooLoading()) {
-        reloadRoo <- FALSE;
-      }
-    }
-
     warnMsg <- "";
-    if (reloadRoo) {
-      # (1) Attach the 'R.oo' package
-      suppressMessages({
-        warnMsg <- suppressWarnings({
-          isRooAttached <- require("R.oo", quietly=TRUE);
-        });
+    # (1) Load the 'R.oo' package
+    if (debug) message(sprintf("finalizer(): Reloaded R.oo..."));
+    suppressMessages({
+      warnMsg <- suppressWarnings({
+        loadNamespace("R.oo");
       });
-      if (is.character(warnMsg)) {
-        warnMsg <- sprintf(" (with warning %s)", warnMsg);
-      } else {
-        warnMsg <- "";
-      }
+    });
+    if (debug) message(sprintf("finalizer(): Reloading R.oo...done"));
+    if (is.character(warnMsg)) {
+      warnMsg <- sprintf(" (with warning %s)", warnMsg);
+    } else {
+      warnMsg <- "";
     }
 
     # For unknown reasons R.oo might not have been loaded.
-    if (isRooAttached) {
-      finalize(this);
-    } else if (reloadRoo) {
+    if (!isRooLoaded()) {
       warning(sprintf("Object may not be finalize():d properly because the R.oo package failed to reload%s: %s", warnMsg, getObjectInfo(this)));
-    } else if (!alreadyWarned) {
-      warning(sprintf("Object may not be finalize():d properly because the R.oo package is not loaded: %s", getObjectInfo(this)));
+      return();
     }
 
-    # NOTE! Before detaching R.oo again, we have to make sure the Object:s
+    # Make sure to unload R.oo at the end
+    on.exit(unloadNamespace("R.oo"));
+
+    if (debug) message(sprintf("finalizer(): Call finalize()..."));
+    R.oo::finalize(this);
+    if (debug) message(sprintf("finalizer(): Call finalize()...done"));
+
+    # NOTE! Before unloading R.oo again, we have to make sure the Object:s
     # allocated by R.oo itself (e.g. an Package object), will not reload
     # R.oo again when being garbage collected, resulting in an endless
     # loop.  We do this by creating a dummy finalize() function, detach
     # R.oo, call garbage collect to clean out all R.oo's objects, and
     # then remove the dummy finalize() function.
     # (2) Put a dummy finalize() function on the search path.
-    # To please R CMD check
-    attachX <- base::attach;
-    attachX(list(finalize = function(...) { }), name="dummy:R.oo",
-                                                  warn.conflicts=FALSE);
-
-    # (3) Since 'R.oo' was attached above, unload it
-    if (is.element("package:R.oo", search())) {
-      detach("package:R.oo");
+    if (!exists("...R.oo::skipFinalizer", envir=genv, inherits=FALSE)) {
+      assign("...R.oo::skipFinalizer", TRUE, envir=genv, inherits=FALSE);
+      on.exit({
+        rm(list="...R.oo::skipFinalizer", envir=genv, inherits=FALSE);
+      }, add=TRUE)
     }
 
     # (4) Force all R.oo's Object:s to be finalize():ed.
-    gc();
+    if (debug) message(sprintf("finalizer(): Calling base::gc()"));
+    base::gc();
 
-    # (5) Remove the dummy finalize():er again.
-    if (is.element("dummy:R.oo", search())) {
-      detach("dummy:R.oo");
-    }
+    if (debug) message(sprintf("finalizer(): done"));
   } # finalizer()
 
   return(finalizer);
@@ -241,6 +257,10 @@
 
 ############################################################################
 # HISTORY:
+# 2014-02-21
+# o Now .makeObjectFinalizer() returns a finalizer that only loads the
+#   R.oo package (it used to attach it).
+# o Now calling base::gc() explicitly.
 # 2013-10-13
 # o ROBUSTNESS: Now Object finalizers will only try to re-attach the
 #   'R.oo' package if library() is currently attaching a package.  This

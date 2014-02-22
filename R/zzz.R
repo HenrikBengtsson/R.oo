@@ -1,6 +1,13 @@
 # Detach the 'R.oo' attached in file 030.ObjectClassFunctions.R
 if (is.element("R.oo", search())) detach("R.oo");
 
+.onUnload <- function(libpath) {
+##  message("R.oo::.onUnload()");
+  # Force finalize() on Object:s
+  base::gc();
+} # .onUnload()
+
+
 .onLoad <- function(libname, pkgname) {
   ns <- getNamespace(pkgname);
 
@@ -21,3 +28,11 @@ if (is.element("R.oo", search())) detach("R.oo");
   pkg <- get(pkgname, envir=getNamespace(pkgname));
   startupMessage(pkg);
 } # .onAttach()
+
+
+
+############################################################################
+# HISTORY:
+# 2014-02-21:
+# o Added .onUnload() which calls the garbage collector.
+############################################################################
