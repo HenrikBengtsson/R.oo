@@ -64,7 +64,7 @@ attachX(list(
         }
 
         # (4) Force all R.oo's Object:s to be finalize():ed.
-        gc();
+        base::gc();
 
         # (5) Remove the dummy finalize():er again.
         if (is.element("dummy:R.oo", search())) {

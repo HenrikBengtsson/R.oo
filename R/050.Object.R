@@ -1347,7 +1347,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 
   # Should the Object be finalized?
   finalize <- TRUE;
-  if (exists("...finalize", finalize, envir=this.env, inherits=FALSE)) {
+  if (exists("...finalize", envir=this.env, inherits=FALSE)) {
     finalize <- get("...finalize", finalize, envir=this.env, inherits=FALSE);
     finalize <- isTRUE(finalize);
   }
@@ -2085,14 +2085,14 @@ setMethodS3("clearCache", "Object", function(this, recursive=TRUE, gc=FALSE, ...
       for (field in fields) {
         object <- get(field, envir=env, inherits=FALSE);
         if (inherits(object, "Object")) {
-          clearCache(object, recursive=TRUE);
+          clearCache(object, recursive=TRUE, gc=FALSE);
         }
       }
     }
   }
 
   # Run the garbage collector?
-  if (gc) gc();
+  if (gc) base::gc();
 
   invisible(this);
 })
@@ -2141,45 +2141,6 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 
 
 
-
-###########################################################################/**
-# @RdocMethod gc
-#
-# @title "Clear cached fields and calls the garbage collector"
-#
-# \description{
-#  @get "title".  Cached fields are set to @NULL when cleared.
-# }
-#
-# @synopsis
-#
-# \arguments{
-#   \item{...}{Passed to @see "base::gc" returns.}
-# }
-#
-# \value{
-#   Returns what @see "base::gc" returns.
-# }
-#
-# @examples "../incl/gc.Object.Rex"
-#
-# @author
-#
-# \seealso{
-#   To clear the fields without calling the garbage collector,
-#   see @seemethod "clearCache".
-#   @seeclass
-# }
-#
-# @keyword programming
-# @keyword methods
-#*/###########################################################################
-setMethodS3("gc", "Object", function(this, ...) {
-  clearCache(this);
-  gc();
-})
-
-
 ###########################################################################/**
 # @RdocMethod registerFinalizer
 #
@@ -2221,6 +2182,12 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 
 ############################################################################
 # HISTORY:
+# 2014-02-22
+# o DEPRECATED: Deprecated gc() for Object.  Use clearCache(..., gc=TRUE)
+#   instead.
+# 2014-02-21
+# o CLEANUP: extend() passed a stray argument to one of the exists(),
+#   which had no effect.
 # 2014-01-05
 # o CLEANUP: Defunct registerFinalizer() for Object.
 # o Added argument 'gc=FALSE' to clearCache().

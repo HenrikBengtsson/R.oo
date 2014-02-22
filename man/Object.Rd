@@ -56,7 +56,6 @@ Object(core=NA, finalize=TRUE)
  \tab \code{\link[R.oo:equals.Object]{equals}} \tab Compares an object with another.\cr
  \tab \code{\link[R.oo:extend.Object]{extend}} \tab Extends another class.\cr
  \tab \code{\link[R.oo:finalize.Object]{finalize}} \tab Finalizer methods called when object is clean out.\cr
- \tab \code{\link[R.oo:gc.Object]{gc}} \tab Clear cached fields and calls the garbage collector.\cr
  \tab \code{\link[R.oo:getEnvironment.Object]{getEnvironment}} \tab Gets the environment of this object.\cr
  \tab \code{getFieldModifier} \tab  -\cr
  \tab \code{\link[R.oo:getFieldModifiers.Object]{getFieldModifiers}} \tab Gets all types of field modifiers.\cr

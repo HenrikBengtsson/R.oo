@@ -168,5 +168,6 @@
 \author{Henrik Bengtsson}
 
 
-\keyword{documentation}
 \keyword{internal}
+\keyword{methods}
+\keyword{documentation}

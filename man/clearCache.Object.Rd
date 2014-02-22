@@ -58,7 +58,7 @@ obj <- CachedObject(a=1, b=1:10^5, "cached:c"=1:10^6)
 print(obj)
 print(ll(obj))
 
-gc(obj)
+clearCache(obj, gc=TRUE)
 print(obj)
 print(ll(obj))
 
@@ -67,7 +67,7 @@ obj$c <- 1:10^6
 print(obj)
 print(ll(obj))
 
-gc(obj)
+clearCache(obj, gc=TRUE)
 print(obj)
 print(ll(obj))
 
@@ -87,7 +87,7 @@ print(ll(objC))
 
 objA$prev <- objC;
 
-gc(objA)
+clearCache(objA, gc=TRUE)
 print(ll(objA))
 print(ll(objB))
 print(ll(objC))

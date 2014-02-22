@@ -1,13 +1,15 @@
 Package: R.oo
 =============
 
-Version: 1.18.0 [2014-02-20]
+Version: 1.18.0 [2014-02-22]
 o IMPORTANT: A registered finalizer function for Object:s no longer
   calls finalize() on the Object itself unless the R.oo package is
   loaded, whereas previously it would have tried to temporarily reattach
   the R.oo package.  On the other hand, it is now sufficient to have
   R.oo loaded for finalize() to be called, whereas in the passed it also
   had to be attached.
+o DEPRECATED: Deprecated gc() for Object.  Use clearCache(..., gc=TRUE)
+  instead.
 
 
 Version: 1.17.1 [2014-02-05]
