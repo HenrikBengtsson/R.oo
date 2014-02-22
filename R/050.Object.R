@@ -2056,8 +2056,6 @@ setMethodS3("clearLookupCache", "Object", function(this, ...) {
 # @author
 #
 # \seealso{
-#   To clear the cached fields and run the garbage collector
-#   see @seemethod "gc".
 #   @seeclass
 # }
 #

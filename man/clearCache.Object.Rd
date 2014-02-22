@@ -97,8 +97,6 @@ print(ll(objC))
 \author{Henrik Bengtsson}
 
 \seealso{
-  To clear the cached fields and run the garbage collector
-  see \code{\link[R.oo:gc.Object]{*gc}()}.
   For more information see \code{\link{Object}}.
 }
 

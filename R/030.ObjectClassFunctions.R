@@ -17,60 +17,11 @@ attachX(list(
       attr(this, "...instantiationTime", Sys.time());
     }
 
-    # Note, we cannot register the finalizer here, because then
-    # the reference variable 'this' will be of the wrong class,
-    # that is, not the "final" class. However, we still do it so
-    # that pure Object:s will be finalized too.  This will be
-    # overridden if extend(<Object>) is called.
-    # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
     finalizer <- function(env) {
-      # Note, R.oo might be detached when this is called!  If so, reload
-      # it, this will be our best chance to run the correct finalizer(),
-      # which might be in a subclass of a different package that is still
-      # loaded.
-      isRooAvail <- is.element("package:R.oo", search());
-      isRooAvail <- isRooAvail || is.element("dummy:R.oo", search());
-      isRooAvail <- isRooAvail || is.element("R.oo", loadedNamespaces());
-      if (isRooAvail) {
-        finalize(this);
-      } else {
-        # (1) Attach the 'R.oo' package
-        suppressMessages({
-          isRooAvail <- require("R.oo", quietly=TRUE);
-        });
-
-        # For unknown reasons R.oo might not have been loaded.
-        if (isRooAvail) {
-          finalize(this);
-        } else {
-##          warning("Failed to temporarily reload 'R.oo' and finalize().");
-        }
-
-        # NOTE! Before detaching R.oo again, we have to make sure the Object:s
-        # allocated by R.oo itself (e.g. an Package object), will not reload
-        # R.oo again when being garbage collected, resulting in an endless
-        # loop.  We do this by creating a dummy finalize() function, detach
-        # R.oo, call garbage collect to clean out all R.oo's objects, and
-        # then remove the dummy finalize() function.
-        # (2) Put a dummy finalize() function on the search path.
-        # To please R CMD check
-        attachX <- base::attach;
-        attachX(list(finalize = function(...) { }), name="dummy:R.oo",
-                                                      warn.conflicts=FALSE);
-
-        # (3) Since 'R.oo' was attached above, unload it
-        if (is.element("package:R.oo", search())) {
-          detach("package:R.oo");
-        }
-
-        # (4) Force all R.oo's Object:s to be finalize():ed.
-        base::gc();
-
-        # (5) Remove the dummy finalize():er again.
-        if (is.element("dummy:R.oo", search())) {
-          detach("dummy:R.oo");
-        }
-      }
+      # Nothing needed to be done in this temporary finalizer factory,
+      # because it is only utilized by this very package and none of
+      # the classes in this package created Object:s that needs to be
+      # finalized.
     } # finalizer()
 
     # Should this Object be finalized?
@@ -124,6 +75,11 @@ rm(list="attachX");
 
 ############################################################################
 # HISTORY:
+# 2014-02-22
+# o Now the temporary registered finalizer for Object:s returns a
+#   finalizer function that does nothing.  This is possible because
+#   none of the classes in this package produces Object:s that needs
+#   finalization.
 # 2014-01-05
 # o BUG FIX: The temporary finalizer() registered for Object while
 #   loading the R.oo package itself would cause cyclic loading of R.oo.
