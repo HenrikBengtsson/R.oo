@@ -1,6 +1,11 @@
 Package: R.oo
 =============
 
+Version: 1.18.1 [2014-03-30]
+o BUG FIX: Now getRdDeclaration(), getRdHierarchy() and getRdMethods()
+  for Class handles also non-exported methods and Classes.
+
+
 Version: 1.18.0 [2014-02-22]
 o IMPORTANT: A registered finalizer function for Object:s no longer
   calls finalize() on the Object itself unless the R.oo package is
