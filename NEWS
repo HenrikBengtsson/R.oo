@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.18.2 [2014-04-26]
+o Now Rdoc$getRdUsage() escapes '%*%' to `'\%*\%'` in the Rd output.
+
+
 Version: 1.18.1 [2014-03-30]
 o BUG FIX: Now getRdDeclaration(), getRdHierarchy() and getRdMethods()
   for Class handles also non-exported methods and Classes.

@@ -2246,6 +2246,11 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
     if (length(head) == 0L) {
       if (is.null(class)) {
         head <- method;
+        # Escape '%*%' to '\%*\%'
+        head <- gsub("%", "\\%", head, fixed=TRUE);
+        # Quote any method name containing '%'
+        if (regexpr("%", head, fixed=TRUE) != -1L)
+          head <- sprintf("`%s`", head);
       } else {
         # The effective length of this in the help manual is nchar(method).
         head <- sprintf("\\method{%s}{%s}", method, class);
@@ -2827,6 +2832,8 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2014-04-26
+# o Now Rdoc$getRdUsage() escapes '%*%' to '\%*\%'.
 # 2013-10-07
 # o Now Rdoc tag @howToCite does a better job when there are
 #   multiple citations in CITATION.
