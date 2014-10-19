@@ -2693,15 +2693,32 @@ setMethodS3("getRdTitle", "Rdoc", function(this, class, method, ...) {
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("getPackageNameOf", "Rdoc", function(static, objectName, mode="any", unique=TRUE, ...) {
-  package <- find(objectName, mode=mode);
-  isPackage <- (regexpr("^package:", package) != -1);
-  package <- package[isPackage];
-  package <- gsub("^package:", "", package);
-  if (length(package) > 1 && unique) {
-    warning(paste("Found more than one occurance of '", objectName, "' in the search path. Will return the first one: ", package, sep=""));
-    package <- package[1];
+  # Search all namespaces that are *attached*
+  pkgs <- grep("^package:", search(), value=TRUE)
+  pkgs <- gsub("^package:", "", pkgs)
+  found <- sapply(pkgs, FUN=function(pkg) {
+    exists(objectName, mode=mode, envir=asNamespace(pkg))
+  })
+  package <- names(found)[found]
+  if (length(package) == 1L) return(package)
+  if (length(package) > 1L && unique) {
+    warning("Found more than one occurance of '", objectName, "' among the attached namespaces. Will only return the first one: ", paste(sQuote(packages), collapse=", "))
+    return(package[1L])
   }
-  package;
+
+  # If not found, then search any other namespace *loaded*
+  pkgs <- setdiff(loadedNamespaces(), pkgs)
+  found <- sapply(pkgs, FUN=function(pkg) {
+    exists(objectName, mode=mode, envir=asNamespace(pkg))
+  })
+  package <- names(found)[found]
+  if (length(package) == 1L) return(package)
+  if (length(package) > 1L && unique) {
+    warning("Found more than one occurance of '", objectName, "' among the loaded namespaces. Will only return the first one: ", paste(sQuote(packages), collapse=", "))
+    return(package[1L])
+  }
+
+  character(0L)
 }, private=TRUE, static=TRUE)
 
 
@@ -2832,6 +2849,9 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2014-10-18
+# o Now Rdoc$getPackageNameOf() also finds non-exported objects, and
+#   it first searches all attached and then all loaded namespaces.
 # 2014-04-26
 # o Now Rdoc$getRdUsage() escapes '%*%' to '\%*\%'.
 # 2013-10-07
