@@ -23,6 +23,8 @@
 #    one can extract any type of property by defining new methods.}
 #   \item{sortBy}{Name or index of column (property) to be sorted by.
 #    If @NULL, the objects are listed in the order they are found.}
+#   \item{decreasing}{A @logical indiciating whether the sorting should
+#    be done in increasing or decreasing order.}
 #   \item{envir}{An @environment, a search path index or a name of a package
 #    to be scanned.}
 # }
@@ -81,7 +83,7 @@
 #
 # \keyword{utilities}
 #*/###########################################################################
-setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties", c("data.class", "dimension", "objectSize")), sortBy=NULL, envir=parent.frame()) {
+setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properties=getOption("R.oo::ll/properties", c("data.class", "dimension", "objectSize")), sortBy=NULL, decreasing=FALSE, envir=parent.frame()) {
   # AD HOC: Workaround to make sure property functions can be found.
   # This is because they are currently search for via the global
   # environment. /HB 2013-07-11
@@ -245,7 +247,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     }
 
     # Finally, sort the result table
-    df <- df[order(by),];
+    df <- df[order(by, decreasing=decreasing),];
   }
 
   as.data.frame(df);
@@ -254,6 +256,9 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
 
 ############################################################################
 # HISTORY:
+# 2014-12-29
+# o Added argument 'decreasing' to ll(), e.g.
+#   ll(sortBy="objectSize", decreasing=TRUE).
 # 2014-02-05
 # o CLEANUP: Argument 'properties' of ll() defaults to an options, which
 #   if not set in turn defaults to a given value.  The ll() method is no
