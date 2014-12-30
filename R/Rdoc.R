@@ -2702,7 +2702,7 @@ setMethodS3("getPackageNameOf", "Rdoc", function(static, objectName, mode="any",
   package <- names(found)[found]
   if (length(package) == 1L) return(package)
   if (length(package) > 1L && unique) {
-    warning("Found more than one occurance of '", objectName, "' among the attached namespaces. Will only return the first one: ", paste(sQuote(packages), collapse=", "))
+    warning("Found more than one occurance of '", objectName, "' among the attached namespaces. Will only return the first one: ", paste(sQuote(package), collapse=", "))
     return(package[1L])
   }
 
@@ -2714,7 +2714,7 @@ setMethodS3("getPackageNameOf", "Rdoc", function(static, objectName, mode="any",
   package <- names(found)[found]
   if (length(package) == 1L) return(package)
   if (length(package) > 1L && unique) {
-    warning("Found more than one occurance of '", objectName, "' among the loaded namespaces. Will only return the first one: ", paste(sQuote(packages), collapse=", "))
+    warning("Found more than one occurance of '", objectName, "' among the loaded namespaces. Will only return the first one: ", paste(sQuote(package), collapse=", "))
     return(package[1L])
   }
 
