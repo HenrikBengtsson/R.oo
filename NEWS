@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.18.5 [2015-01-05]
+o CLEANUP: Now update() for Package is defunct; use update.packages().
+
+
 Version: 1.18.4 [2014-12-29]
 o Added argument 'decreasing' to ll(), e.g.
  ll(sortBy="objectSize", decreasing=TRUE).

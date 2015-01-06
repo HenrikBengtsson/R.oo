@@ -733,8 +733,9 @@ setMethodS3("isLoaded", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("load", "Package", function(this, ...) {
-  eval(substitute(library(pkg), list(pkg=as.name(getName(this)))));
-  isLoaded(this);
+  .library <- library
+  .library(package=getName(this), character.only=TRUE)
+  isLoaded(this)
 })
 
 
@@ -1596,10 +1597,7 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
 # @title "Updates the package is a newer version is available"
 #
 # \description{
-#   @get "title". If the package is part of a bundle, the whole bundle
-#   will be updated.
-#   This method is a convientent alternative to \code{update.packages()},
-#   especially for non-CRAN packages.
+#   \emph{This method is defunct. Use @see "base::update.packages" instead.
 # }
 #
 # @synopsis
@@ -1618,8 +1616,6 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
 #   Returns (invisibly) @TRUE if the package was updated, otherwise @FALSE.
 # }
 #
-# \examples{\dontrun{update(R.oo)}}
-#
 # @author
 #
 # \seealso{
@@ -1629,91 +1625,15 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
 #
 # @keyword internal
 #*/#########################################################################
-setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(this), getDevelUrl(this)), force=FALSE, reload=TRUE, verbose=TRUE, ...) {
-  .Deprecated(msg=sprintf("update() for Package is deprecated. Use update.packages(\"%s\") instead."), getName(object));
-
-  this <- object;  # Because generic method update() exists in 'stats'.
-
-  msg <- paste("Checking for updates of package ", getName(this), sep="");
-  bundle <- getBundle(this);
-  if (!is.null(bundle)) {
-    msg <- paste(msg, ", which is part of bundle ", bundle, ",", sep="");
-    pkgs <- bundle;
-  } else {
-    pkgs <- getName(this);
-  }
-
-  # Store a few object in case they are unloaded below.
-  pkgName <- getName(this);
-  contribUrl <- as.character(contribUrl);
-
-  # Have to detach a package for update.packages() to reinstall it.
-  unload(this);
-  on.exit({
-    library(pkgName, character.only=TRUE);
-  });
-
-  updated <- FALSE;
-  found <- FALSE;
-  if (is.null(contribUrl)) {
-    msg <- paste(msg, " by asking the CRAN server.\n", sep="");
-    if (verbose)
-      cat(msg);
-    tryCatch({
-      if (force) {
-  	install.packages(pkgs);
-  	found <- TRUE;
-        updated <- TRUE;
-      } else {
-  	old <- old.packages();
-  	found <- TRUE;
-  	if (is.element(pkgs, old)) {
-  	  update.packages();
-  	  updated <- TRUE;
-  	}
-      } # if (force)
-    }, error = function(ex) {
-    })
-  } else {
-    msg <- paste(msg, " by asking the server(s) at ", paste(contribUrl, collapse=", "), ".\n", sep="");
-    if (verbose)
-      cat(msg);
-    contribUrl <- gsub("/$", "", contribUrl);
-    tmpfile <- tempfile();
-    on.exit(unlink(tmpfile), add=TRUE);
-    for (url in contribUrl) {
-      tryCatch({
-        if (force) {
-          install.packages(pkgs, contriburl=url);
-          found <- TRUE;
-          updated <- TRUE;
-        } else {
-          old <- old.packages(contriburl=url);
-          found <- TRUE;
-          if (is.element(pkgs, old)) {
-            update.packages(contriburl=url);
-            updated <- TRUE;
-            break;
-          }
-        } # if (force)
-      }, warning = function(warn) {
-      }, error = function(ex) {
-        print(ex);
-      })
-    } # for (url ...)
-
-    if (!found) {
-      R.methodsS3::throw(R.oo::InternalErrorException("Could not update package ", this$name, " v", this$version, " since none of the URLs available (", paste(contribUrl, collapse=", "), ") seems to contain no R packages or bundles, i.e. no PACKAGE file was found. The URLs were extracted from the DESCRIPTION file of the package.", package=this));
-    }
-  }
-  attr(updated, "contriburl") <- contribUrl;
-
-  invisible(updated);
+setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(object), getDevelUrl(object)), force=FALSE, reload=TRUE, verbose=TRUE, ...) {
+  .Defunct(msg=sprintf("update() for Package is defunct. Use update.packages(\"%s\") instead."), getName(object));
 }, protected=TRUE, deprecated=TRUE)
 
 
 ############################################################################
 # HISTORY:
+# 2015-01-05
+# o CLEANUP: Defunct update() for Package.
 # 2013-09-25
 # o CLEANUP: Deprecated update() for Package.
 # 2013-08-29
