@@ -1591,44 +1591,6 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
 
 
 
-#########################################################################/**
-# @RdocMethod update
-#
-# @title "Updates the package is a newer version is available"
-#
-# \description{
-#   \emph{This method is defunct. Use @see "base::update.packages" instead.
-# }
-#
-# @synopsis
-#
-# \arguments{
-#   \item{contribUrl}{The URL from where the package can be installed and
-#    updated. By default the URL according to the DESCRIPTION is assumed.
-#    If the URL is missing, CRAN is assumed.}
-#   \item{force}{If @TRUE, the package will reinstalled even if it is
-#    up to date according to the version number.}
-#   \item{verbose}{If @TRUE, more detailed information is returned.}
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#   Returns (invisibly) @TRUE if the package was updated, otherwise @FALSE.
-# }
-#
-# @author
-#
-# \seealso{
-#   @see "utils::update.packages".
-#   @seeclass
-# }
-#
-# @keyword internal
-#*/#########################################################################
-setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(object), getDevelUrl(object)), force=FALSE, reload=TRUE, verbose=TRUE, ...) {
-  .Defunct(msg=sprintf("update() for Package is defunct. Use update.packages(\"%s\") instead."), getName(object));
-}, protected=TRUE, deprecated=TRUE)
-
 
 ############################################################################
 # HISTORY:

@@ -1,20 +1,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  050.Object.R
+%  999.DEPRECATED.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \name{gc.Object}
 \alias{gc.Object}
 \alias{Object.gc}
 \alias{gc,Object-method}
 
-\title{Clear cached fields and calls the garbage collector}
+\title{Deprecated: Clear cached fields and calls the garbage collector}
 
 \description{
- Clear cached fields and calls the garbage collector.  Cached fields are set to \code{\link[base]{NULL}} when cleared.
+ Deprecated: Clear cached fields and calls the garbage collector.  Cached fields are set to \code{\link[base]{NULL}} when cleared.
+
+ \emph{This method is deprecated.
+  Please use \code{clearCache(..., gc=TRUE)} instead.}
 }
 
 \usage{
@@ -22,11 +26,11 @@
 }
 
 \arguments{
-  \item{...}{Passed to \code{\link[base]{gc}}() returns.}
+  \item{...}{Not used.}
 }
 
 \value{
-  Returns what \code{\link[base]{gc}}() returns.
+  Returns nothing.
 }
 
 \examples{
@@ -46,7 +50,7 @@ obj <- CachedObject(a=1, b=1:10^5, "cached:c"=1:10^6)
 print(ll(obj))
 print(obj) # [1] "CachedObject: 0x02466E28. RAM: 4297.16kb."
 
-gc(obj)         # Clear all cached fields
+clearCache(obj, gc=TRUE)    # Clear all cached fields
 print(ll(obj))
 print(obj) # [1] "CachedObject: 0x02466E28. RAM: 391.05kb."
 

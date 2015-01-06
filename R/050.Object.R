@@ -2138,46 +2138,6 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 }, protected=TRUE)
 
 
-
-###########################################################################/**
-# @RdocMethod registerFinalizer
-#
-# @title "Registers a finalizer hook for the object [DEFUNCT]"
-#
-# \description{
-#  @get "title".
-#  The finalizer hook calls @seemethod "finalize" on the @see Object when
-#  it is garbage collected.
-#  This method is only intended to be called inside the constructor, if
-#  at all.
-# }
-#
-# @synopsis
-#
-# \arguments{
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#  Returns nothing.
-# }
-#
-# @author
-#
-# \seealso{
-#   Internally, @see "base::reg.finalizer" is used.
-#   @seeclass
-# }
-#
-# @keyword programming
-# @keyword methods
-# @keyword internal
-#*/###########################################################################
-setMethodS3("registerFinalizer", "Object", function(this, ...) {
-  .Defunct("registerFinalizer() for Object is deprecated.");
-}, protected=TRUE, deprecated=TRUE) # registerFinalizer()
-
-
 ############################################################################
 # HISTORY:
 # 2014-02-22

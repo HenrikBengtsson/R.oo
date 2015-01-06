@@ -71,10 +71,10 @@ as.character, getCall, getCalls, getLastException, getMessage, getStackTrace, ge
 as.character, throw
 
  \bold{Methods inherited from condition}:\cr
-abort, as.character, conditionCall, conditionMessage, print
+as.character, conditionCall, conditionMessage, print
 
  \bold{Methods inherited from Object}:\cr
-$, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFieldModifier, getFieldModifiers, getFields, getInstantiationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, registerFinalizer, save
 
 
 }
@@ -105,8 +105,8 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
 
 
 
-\keyword{internal}
-\keyword{methods}
 \keyword{classes}
 \keyword{programming}
+\keyword{methods}
 \keyword{error}
+\keyword{internal}
