@@ -1481,7 +1481,8 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       } else {
         pkg <- pkgObject[1];
         obj <- pkgObject[2];
-        if (eval(substitute(require(pkg), list(pkg=pkg)))) {
+        .require <- require;  # To please R CMD check
+        if (.require(package=pkg, character.only=TRUE)) {
           pos <- which(paste("package:", "base", sep="") == search());
           if (exists(obj, where=pos, mode="function", inherits=FALSE))
             fcn <- "()";

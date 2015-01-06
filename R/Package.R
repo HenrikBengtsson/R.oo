@@ -733,7 +733,7 @@ setMethodS3("isLoaded", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("load", "Package", function(this, ...) {
-  .library <- library
+  .library <- library  # To please R CMD check
   .library(package=getName(this), character.only=TRUE)
   isLoaded(this)
 })
