@@ -983,11 +983,19 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
 
   # (b) Search all loaded namespaces
   clazz <- .getClassByName(className, where=c("ns*", "search"), mustExist=FALSE);
-  if (is.null(clazz)) {
-    stop("Cannot get static instance. Failed to locate Class object for class '", className, "'.");
+  if (!is.null(clazz)) {
+    static <- getStaticInstance(clazz);
+    return(static);
   }
 
-  getStaticInstance(clazz);
+  # (c) Search parent environment
+  clazz <- .getClassByName(className, where="ns", envir=parent.frame(2L), mustExist=FALSE);
+  if (!is.null(clazz)) {
+    static <- getStaticInstance(clazz);
+    return(static);
+  }
+
+  stop("Cannot get static instance. Failed to locate Class object for class '", className, "'.");
 }, protected=TRUE) # getStaticInstance()
 
 
@@ -2140,6 +2148,8 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-01-15
+# o Now getStaticInstance() for Object also searches the parent environment.
 # 2014-02-22
 # o DEPRECATED: Deprecated gc() for Object.  Use clearCache(..., gc=TRUE)
 #   instead.
