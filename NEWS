@@ -2,6 +2,8 @@ Package: R.oo
 =============
 
 Version: 1.19.0-1 [2015-01-15]
+o BUG FIX: Forgot to explicitly import getClasses and getMethods from
+  the 'methods' package. Interestingly, this one has never given an error.
 o BUG FIX: getStaticInstance() for Object now searches the parent/calling
   environment as well.  This covers the case when constructors and objects
   are created in a local environment (contrary to package namespaces and

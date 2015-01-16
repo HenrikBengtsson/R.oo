@@ -8,6 +8,8 @@ importFrom("R.methodsS3", "throw")
 importFrom("R.methodsS3", "pkgStartupMessage")
 importFrom("R.methodsS3", "appendVarArgs")
 
+importFrom("methods", "getClasses")
+importFrom("methods", "getMethods")
 importFrom("methods", "getClass")
 importFrom("methods", "isClass")
 
