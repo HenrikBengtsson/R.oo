@@ -1,6 +1,6 @@
 library("R.oo")
 
-pkg <- Package("boot")
+pkg <- Package("datasets")
 load(pkg)
 print(isLoaded(pkg))
 unload(pkg)
