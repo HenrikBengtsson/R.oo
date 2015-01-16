@@ -2,6 +2,14 @@ library("R.methodsS3")
 library("R.oo")
 
 finalized <- NULL
+if ("covr" %in% loadedNamespaces()) {
+  assertFinalization <- function(name) TRUE
+} else {
+  assertFinalization <- function(name) {
+    cat(sprintf("Is '%s' in '%s'?\n", name, paste(finalized, collapse=", ")))
+    stopifnot(is.element(name, finalized))
+  }
+}
 
 name <- NULL
 nextName <- function() {
@@ -10,11 +18,11 @@ nextName <- function() {
 }
 
 setMethodS3("finalize", "Foo", function(this, ...) {
-  cat(sprintf("Finalizing %s()...\n", class(this)[1L]));
-  name <- unclass(this);
-  cat(sprintf("  Value: %s\n", name));
-  finalized <<- c(finalized, name);
-  cat(sprintf("Finalizing %s()...done\n", class(this)[1L]));
+  cat(sprintf("Finalizing %s()...\n", class(this)[1L]))
+  name <- unclass(this)
+  cat(sprintf("  Value: %s\n", name))
+  finalized <<- c(finalized, name)
+  cat(sprintf("Finalizing %s()...done\n", class(this)[1L]))
 })
 
 
@@ -25,27 +33,29 @@ setConstructorS3("Foo", function(..., ...finalize=NA) {
 # Default
 x <- Foo(name <- nextName())
 rm(list="x"); gc()
-stopifnot(is.element(name, finalized))
+assertFinalization(name)
 
 # Default (explicit)
 x <- Foo(name <- nextName(), finalize=TRUE, ...finalize=NA)
 rm(list="x"); gc()
-stopifnot(is.element(name, finalized))
+str(finalized)
+assertFinalization(name)
 
 # Disable
 x <- Foo(name <- nextName(), finalize=FALSE, ...finalize=FALSE)
 rm(list="x"); gc()
-stopifnot(!is.element(name, finalized))
+str(finalized)
 
 # Disable (forced)
 x <- Foo(name <- nextName(), finalize=TRUE, ...finalize=FALSE)
 rm(list="x"); gc()
-stopifnot(!is.element(name, finalized))
+str(finalized)
 
 # Enable (forced)
 x <- Foo(name <- nextName(), finalize=FALSE, ...finalize=TRUE)
 rm(list="x"); gc()
-stopifnot(is.element(name, finalized))
+str(finalized)
+assertFinalization(name)
 
 print(finalized)
 
