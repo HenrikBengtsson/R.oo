@@ -53,6 +53,7 @@ script:
 
 after_success:
   - $RENV dump_logs_by_extension out
+  - $RENV install_github HenrikBengtsson/R.methodsS3@develop
   - curl -OL https://raw.githubusercontent.com/HenrikBengtsson/covr-utils/master/covr-utils.R;
   - $RENV run_script .coveralls.R
 

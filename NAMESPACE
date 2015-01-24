@@ -41,6 +41,10 @@ exportPattern("^[^\\.]")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# default
+S3method("getClasses", "default") ## Should be renamed/removed from API
+S3method("getMethods", "default") ## Should be renamed/removed from API
+
 # BasicObject
 S3method("$", "BasicObject")
 S3method("$<-", "BasicObject")
