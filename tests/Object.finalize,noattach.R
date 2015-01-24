@@ -1,3 +1,5 @@
+message("TESTING: finalize() without attach...")
+
 pkgs <- c("R.methodsS3", "R.oo")
 isAttached <- function(pkgs) {
   structure(sprintf("package:%s", pkgs) %in% search(), names=pkgs)
@@ -34,3 +36,5 @@ rm(x)
 gc()
 
 assertPackages(loaded="R.oo")
+
+message("TESTING: finalize() without attach...DONE")

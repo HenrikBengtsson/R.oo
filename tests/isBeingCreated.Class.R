@@ -1,3 +1,5 @@
+message("TESTING: isBeingCreated()...")
+
 library("R.oo")
 
 setConstructorS3("Car", function(brand=NULL, nbrOfWheels=0) {
@@ -24,3 +26,5 @@ print(Car("Volvo", 4))
 print(Car("BMW", 4))
 print(Car("Tyrrell P34", 6))
 print(Car("T-Rex", 3))
+
+message("TESTING: isBeingCreated()...DONE")

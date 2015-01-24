@@ -1,3 +1,5 @@
+message("TESTING: attachLocally()...")
+
 library("R.oo")
 
 foo <- function(object, arg1="some value", ...) {
@@ -21,3 +23,5 @@ obj$a <- "Another string"
 obj$b <- NA
 foo(obj)
 print(a)
+
+message("TESTING: attachLocally()...DONE")

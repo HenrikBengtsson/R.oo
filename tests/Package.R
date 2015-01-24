@@ -1,3 +1,5 @@
+message("TESTING: Package...")
+
 library("R.oo")
 
 # By defining .onAttach() as follows in zzz.R for a package, an
@@ -31,3 +33,5 @@ print(R.oo::R.oo)
 #      webpage is http://www.braju.com/R/ and the maintainer is Henrik
 #      Bengtsson <henrikb@braju.com>. The package is installed in
 #      c:/PROGRA~1/R/rw1062/library/R.oo/."
+
+message("TESTING: Package...DONE")

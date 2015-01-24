@@ -1,3 +1,5 @@
+message("TESTING: finalize()...")
+
 library("R.oo")
 
 setConstructorS3("MyClass", function() {
@@ -26,3 +28,5 @@ rm(o)
 ##          used (Mb) gc trigger (Mb)
 ## Ncells 229903  6.1     467875 12.3
 ## Vcells  53725  0.5     786432  6.0
+
+message("TESTING: finalize()...DONE")

@@ -1,3 +1,5 @@
+message("TESTING: Exception...")
+
 library("R.oo")
 oopts <- options(warn=1)
 
@@ -76,3 +78,4 @@ cat("The logarithm of ", x, " is ", l, ".\n\n", sep="")
 
 options(oopts)
 
+message("TESTING: Exception...DONE")

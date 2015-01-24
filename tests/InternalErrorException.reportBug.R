@@ -1,3 +1,5 @@
+message("TESTING: InternalErrorException...")
+
 library("R.oo")
 
 myLog <- function(x, ...) {
@@ -17,3 +19,5 @@ tryCatch({
 }, error= function(ex) {
   ex <- Exception$getLastException()
 })
+
+message("TESTING: InternalErrorException...DONE")

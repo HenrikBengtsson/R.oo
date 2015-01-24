@@ -1,3 +1,5 @@
+message("TESTING: abort()...")
+
 library("R.oo")
 
 foo <- function() {
@@ -34,3 +36,5 @@ bar()
 # This expression is never reached
 cat("This line will never be outputted.\n")
 } #
+
+message("TESTING: abort()...DONE")

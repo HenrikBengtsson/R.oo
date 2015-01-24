@@ -1,3 +1,5 @@
+message("TESTING: finalize() on and off...")
+
 library("R.methodsS3")
 library("R.oo")
 
@@ -62,3 +64,5 @@ print(finalized)
 # Finalize upon exit
 options("R.oo::Object/finalizeOnExit"=TRUE)
 y <- Foo(name <- "OnExit")
+
+message("TESTING: finalize() on and off...DONE")

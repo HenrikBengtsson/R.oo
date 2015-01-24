@@ -1,3 +1,5 @@
+message("TESTING: local()...")
+
 library("R.oo")
 
 setConstructorS3("Foo", function() {
@@ -35,3 +37,5 @@ rm(list="x")
 gc()
 
 })
+
+message("TESTING: local()...DONE")

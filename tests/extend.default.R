@@ -1,3 +1,5 @@
+message("TESTING: extend()...")
+
 library("R.oo")
 
 setConstructorS3("MyDouble", function(value=0, ...) {
@@ -50,5 +52,4 @@ print(x)
 x$fmtstr <- "%e"
 print(x)
 
-
-
+message("TESTING: extend()...DONE")

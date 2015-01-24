@@ -1,3 +1,5 @@
+message("TESTING: finalize() reentrant...")
+
 library("R.methodsS3")
 library("R.oo")
 
@@ -52,3 +54,5 @@ print(y)
 stopifnot(identical(y, 1:4))
 
 print(warnings())
+
+message("TESTING: finalize() reentrant...DONE")
