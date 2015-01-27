@@ -20,6 +20,7 @@ stopifnot(y == y0)
 env <- new.env()
 env$a <- 1:100
 env$b <- as.list(1:100)
+env$c <- new.env()
 y0 <- object.size(env)
 print(y0)
 y <- objectSize(env)
