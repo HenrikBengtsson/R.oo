@@ -301,12 +301,16 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
     if (length(objectNames) == 0L) return(NULL);
 
     # Keep only functions that are Class objects
-    keep <- sapply(objectNames, FUN=function(objectName) {
-      expr <- substitute({
-        is.function(x) && inherits(x, "Class")
-      }, list(x=as.name(objectName)));
-      eval(expr, envir=envir);
-    });
+    keep <- suppressWarnings({
+      sapply(objectNames, FUN=function(objectName) {
+        expr <- substitute({
+          tryCatch({
+            is.function(x) && inherits(x, "Class")
+          }, error=function(ex) FALSE)
+        }, list(x=as.name(objectName)))
+        eval(expr, envir=envir)
+      })
+    })
     objectNames <- objectNames[keep];
 
     # Nothing to do?
@@ -1584,6 +1588,12 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 
 ############################################################################
 # HISTORY:
+# 2015-01-27
+# o BUG FIX: getKnownSubclasses() could throw an error if one of the
+#   objects "scanned" for being a function and of class Class would
+#   thrown an error from just looking at it.  See  R-devel thread
+#   'Inspect a "delayed" assigned whose value throws an error?'
+#   on 2015-01-26 for details.
 # 2014-01-05
 # o CLEANUP: Now static method Class$forName() utilizes .getClassByName().
 # 2013-08-20
