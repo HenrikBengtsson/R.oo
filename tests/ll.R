@@ -1,4 +1,4 @@
-message("TESTING: objectSize()...")
+message("TESTING: ll()...")
 
 library("R.oo")
 
@@ -30,8 +30,4 @@ print(x)
 x <- ll(envir="R.oo", mode="function")
 str(x)
 
-
-
-
-
-message("TESTING: objectSize()...DONE")
+message("TESTING: ll()...DONE")
