@@ -4,6 +4,9 @@ Package: R.oo
 Version: 1.18.0-9000 [2015-01-15]
 o ROBUSTNESS: Now explicitly declare "default" S3 methods for
   getClasses and getMethods.
+o BUG FIX: objectSize() for environment could result in infinite
+  recursive calls if there circular dependencies between environments.
+  Added package test for objectSize() including this case.
 o BUG FIX: getKnownSubclasses() for Class could throw an error if one
   of the objects "scanned" for being a function and of class Class
   would thrown an error from just looking at it.  See  R-devel thread
