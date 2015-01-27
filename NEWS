@@ -2,6 +2,8 @@ Package: R.oo
 =============
 
 Version: 1.18.0-9000 [2015-01-15]
+o ROBUSTNESS: Now explicitly export "default" S3 methods for getClasses
+  and getMethods.
 o BUG FIX: getKnownSubclasses() for Class could throw an error if one
   of the objects "scanned" for being a function and of class Class
   would thrown an error from just looking at it.  See  R-devel thread
