@@ -44,7 +44,7 @@ before_install:
     fi
 
 install:
-  - #RENV install_aptget r.methodss3
+  - $RENV install_aptget r.methodss3
 #  - $RENV install_r R.methodsS3
 #  - $RENV install_deps
 
