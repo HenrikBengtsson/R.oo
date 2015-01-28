@@ -1,3 +1,5 @@
+## covr: skip=all
+
 ###########################################################################/**
 # @RdocDefault abort
 # @alias abort.condition
@@ -93,7 +95,7 @@ setMethodS3("abort", "default", function(..., call.=TRUE, domain=NULL) {
 #   of a condition.
 # 2012-09-10
 # o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
-#   invokeRestart("abort").  This avoids having to call 
+#   invokeRestart("abort").  This avoids having to call
 #   .Internal(.signalCondition(...)).  It also means that the message
 #   outputted by abort() no longer starts with a "Error in ...:" line.
 # 2012-03-05
