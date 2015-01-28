@@ -42,6 +42,7 @@ before_install:
     else
       export R_RSP_COMPILELATEX_FALLBACK="copy-force";
     fi
+  - $RENV dump_sysinfo
 
 install:
   - $RENV install_r_binary R.methodsS3
