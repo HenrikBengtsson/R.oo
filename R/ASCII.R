@@ -114,7 +114,7 @@ ASCII.ESC <- "\033";
 # }
 #
 # \value{
-#   Returns an ASCII @character @vector.
+#   Returns an ASCII @integer @vector.
 # }
 #
 # @author
@@ -136,7 +136,7 @@ ASCII.ESC <- "\033";
 # @keyword internal
 #*/#########################################################################
 setMethodS3("charToInt", "default", function(ch, ...) {
-  match(ch, ASCII) - 1;
+  match(ch, ASCII) - 1L;
 })
 
 
@@ -162,7 +162,7 @@ setMethodS3("charToInt", "default", function(ch, ...) {
 # }
 #
 # \value{
-#   Returns a ASCII @integer @vector.
+#   Returns an ASCII @character @vector.
 # }
 #
 # @author
@@ -191,6 +191,8 @@ setMethodS3("intToChar", "default", function(i, ...) {
 
 ############################################################################
 # HISTORY:
+# 2015-01-27
+# o Now charToInt() returns integers (was numerics).
 # 2013-08-23
 # o CLEANUP: Hiding charToInt() and intToChar() from help indices.
 # 2009-05-18
