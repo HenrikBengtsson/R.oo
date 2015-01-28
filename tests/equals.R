@@ -8,4 +8,9 @@ a <- 1:100
 b <- 1:100
 print(equals(a,b))
 
+obj <- Object()
+print(equals(obj, 1))
+print(equals(obj, obj))
+
+
 message("TESTING: equals()...DONE")

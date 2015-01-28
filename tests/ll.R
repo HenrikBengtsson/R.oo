@@ -38,4 +38,11 @@ str(x)
 x <- ll(R.oo, mode="function", sortBy="objectSize")
 str(x)
 
+## List all functions of an Object
+obj <- Object()
+obj$a <- 1:100
+obj$b <- new.env()
+x <- ll(obj)
+print(x)
+
 message("TESTING: ll()...DONE")
