@@ -34,4 +34,8 @@ print(x)
 x <- ll(envir="R.oo", mode="function", sortBy="objectSize")
 str(x)
 
+## List all functions of a package and sort them by size
+x <- ll(R.oo, mode="function", sortBy="objectSize")
+str(x)
+
 message("TESTING: ll()...DONE")
