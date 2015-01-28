@@ -45,10 +45,11 @@ before_install:
   - sudo apt-add-repository -y "deb http://cran.rstudio.com/bin/linux/ubuntu `lsb_release -cs`/"
   - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
   - sudo apt-add-repository -y ppa:marutter/c2d4u
+  - sudo apt-get update -qq
 
 install:
   - sudo apt-get install -qq r-cran-xml r-cran-rcurl r-cran-devtools r-cran-knitr
-##  - sudo apt-get install -qq r-cran-r.methodss3
+  - sudo apt-get install -qq r-cran-r.methodss3
 ##  - $RENV install_aptget r-cran-r.methodss3
   - $RENV install_r R.methodsS3
 #  - $RENV install_deps
