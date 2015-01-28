@@ -16,6 +16,10 @@ x <- ll(envir=new.env())
 print(x)
 
 ## search() path environment
+x <- ll(envir=1L)
+str(x)
+
+## search() path environment
 x <- ll(envir="R.oo")
 str(x)
 
@@ -26,8 +30,8 @@ print(x)
 x <- ll(envir="R.oo", pattern="^NonExistingName$")
 print(x)
 
-## List all functions
-x <- ll(envir="R.oo", mode="function")
+## List all functions and sort them by size
+x <- ll(envir="R.oo", mode="function", sortBy="objectSize")
 str(x)
 
 message("TESTING: ll()...DONE")
