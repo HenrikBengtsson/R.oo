@@ -4,7 +4,7 @@ library("R.oo")
 
 ## Generate an error
 ex <- tryCatch({
-  throw("An error")
+  stop("An error")
 }, error = function(ex) {
   ex
 })
@@ -19,5 +19,25 @@ ex2 <- tryCatch({
 print(ex2)
 
 stopifnot(identical(ex2, ex))
+
+
+## Generate an Exception
+ex <- tryCatch({
+  throw("An error")
+}, error = function(ex) {
+  ex
+})
+print(ex)
+
+## Re-throw the Exception
+ex2 <- tryCatch({
+  throw(ex)
+}, error = function(ex) {
+  ex
+})
+print(ex2)
+
+stopifnot(identical(ex2, ex))
+
 
 message("TESTING: throw()...DONE")
