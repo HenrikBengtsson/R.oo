@@ -18,6 +18,7 @@ README[.]md
 #----------------------------
 # R related
 #----------------------------
+^cran-comments[.].*$
 ^vignettes/.*[.](pdf|PDF)$
 ^vignettes/.*[.](r|R)$
 ^vignettes/[.]install_extras$
