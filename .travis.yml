@@ -49,6 +49,9 @@ before_install:
 
 install:
   - $RENV install_r_binary R.methodsS3
+  - $RENV run_script -e "sessionInfo()"
+  - $RENV run_script -e ".libPaths()"
+  - $RENV run_script -e "installed.packages()"
 #  - $RENV install_deps
 
 script:
