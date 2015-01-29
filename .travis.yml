@@ -49,6 +49,8 @@ before_install:
 
 install:
   - $RENV install_r_binary R.methodsS3
+  - ls -R "${BINDIR}/R-${RVERSION}/"
+  - ls -R /usr/local/lib/R/
   - $RENV run_script -e "sessionInfo()"
   - $RENV run_script -e ".libPaths()"
   - $RENV run_script -e "installed.packages()"
