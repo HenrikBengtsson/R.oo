@@ -43,18 +43,9 @@ before_install:
     else
       export R_RSP_COMPILELATEX_FALLBACK="copy-force";
     fi
-  - $RENV run_script -e "sessionInfo()"
-  - $RENV run_script -e ".libPaths()"
-  - $RENV run_script -e "installed.packages()"
-#  - $RENV dump_sysinfo
 
 install:
-  - $RENV install_r_binary R.methodsS3
-  - ls -R "${BINDIR}/R-${RVERSION}/"
-  - ls -R /usr/local/lib/R/
-  - $RENV run_script -e "sessionInfo()"
-  - $RENV run_script -e ".libPaths()"
-  - $RENV run_script -e "installed.packages()"
+  - $RENV install_r R.methodsS3
 #  - $RENV install_deps
 
 script:
