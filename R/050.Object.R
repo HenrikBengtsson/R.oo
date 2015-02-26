@@ -2272,7 +2272,7 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 #   (except for the set<Name>() match), but instead contiued search for
 #   the rest.  One effect of this was that the new value was always assign
 #   to the static field too.  Thanks Edouard Duchesnay at Service
-#   Hospitalier Frédéric Joliot, Commissariat à l'Energie Atomique, France
+#   Hospitalier Frederic Joliot, Commissariat a l'Energie Atomique, France
 #   for spotting this.
 # o Minor typo corrections in the Rdoc.
 # o Replaced all TABs with spaces in source code. Don't know where they
