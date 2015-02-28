@@ -1,27 +1,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  Package.R
+%  999.DEPRECATED.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \name{update.Package}
 \alias{update.Package}
 \alias{Package.update}
 \alias{update,Package-method}
 
-\title{Updates the package is a newer version is available}
+\title{Deprecated: Updates the package is a newer version is available}
 
 \description{
-  Updates the package is a newer version is available. If the package is part of a bundle, the whole bundle
-  will be updated.
-  This method is a convientent alternative to \code{update.packages()},
-  especially for non-CRAN packages.
+  \emph{This method is defunct. Use \code{\link[utils]{update.packages}} instead.}
 }
 
 \usage{
-\method{update}{Package}(object, contribUrl=c(getContribUrl(this), getDevelUrl(this)), force=FALSE,
+\method{update}{Package}(object, contribUrl=c(getContribUrl(object), getDevelUrl(object)), force=FALSE,
   reload=TRUE, verbose=TRUE, ...)
 }
 
@@ -39,13 +37,13 @@
   Returns (invisibly) \code{\link[base:logical]{TRUE}} if the package was updated, otherwise \code{\link[base:logical]{FALSE}}.
 }
 
-\examples{\dontrun{update(R.oo)}}
-
 \author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[utils]{update.packages}}.
   For more information see \code{\link{Package}}.
 }
+
+
 \keyword{internal}
 \keyword{methods}

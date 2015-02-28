@@ -983,11 +983,19 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
 
   # (b) Search all loaded namespaces
   clazz <- .getClassByName(className, where=c("ns*", "search"), mustExist=FALSE);
-  if (is.null(clazz)) {
-    stop("Cannot get static instance. Failed to locate Class object for class '", className, "'.");
+  if (!is.null(clazz)) {
+    static <- getStaticInstance(clazz);
+    return(static);
   }
 
-  getStaticInstance(clazz);
+  # (c) Search parent environment
+  clazz <- .getClassByName(className, where="ns", envir=parent.frame(2L), mustExist=FALSE);
+  if (!is.null(clazz)) {
+    static <- getStaticInstance(clazz);
+    return(static);
+  }
+
+  stop("Cannot get static instance. Failed to locate Class object for class '", className, "'.");
 }, protected=TRUE) # getStaticInstance()
 
 
@@ -2138,48 +2146,10 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 }, protected=TRUE)
 
 
-
-###########################################################################/**
-# @RdocMethod registerFinalizer
-#
-# @title "Registers a finalizer hook for the object [DEFUNCT]"
-#
-# \description{
-#  @get "title".
-#  The finalizer hook calls @seemethod "finalize" on the @see Object when
-#  it is garbage collected.
-#  This method is only intended to be called inside the constructor, if
-#  at all.
-# }
-#
-# @synopsis
-#
-# \arguments{
-#   \item{...}{Not used.}
-# }
-#
-# \value{
-#  Returns nothing.
-# }
-#
-# @author
-#
-# \seealso{
-#   Internally, @see "base::reg.finalizer" is used.
-#   @seeclass
-# }
-#
-# @keyword programming
-# @keyword methods
-# @keyword internal
-#*/###########################################################################
-setMethodS3("registerFinalizer", "Object", function(this, ...) {
-  .Defunct("registerFinalizer() for Object is deprecated.");
-}, protected=TRUE, deprecated=TRUE) # registerFinalizer()
-
-
 ############################################################################
 # HISTORY:
+# 2015-01-15
+# o Now getStaticInstance() for Object also searches the parent environment.
 # 2014-02-22
 # o DEPRECATED: Deprecated gc() for Object.  Use clearCache(..., gc=TRUE)
 #   instead.
@@ -2302,7 +2272,7 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 #   (except for the set<Name>() match), but instead contiued search for
 #   the rest.  One effect of this was that the new value was always assign
 #   to the static field too.  Thanks Edouard Duchesnay at Service
-#   Hospitalier Frédéric Joliot, Commissariat à l'Energie Atomique, France
+#   Hospitalier Frederic Joliot, Commissariat a l'Energie Atomique, France
 #   for spotting this.
 # o Minor typo corrections in the Rdoc.
 # o Replaced all TABs with spaces in source code. Don't know where they

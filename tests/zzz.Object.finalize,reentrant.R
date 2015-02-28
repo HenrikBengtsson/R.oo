@@ -1,3 +1,12 @@
+message("TESTING: finalize() reentrant...")
+
+## FIXME: 'covr' does not play well with tests
+## detaching/unloading packages
+if ("covr" %in% loadedNamespaces()) {
+  detach <- function(...) NULL
+}
+
+
 library("R.methodsS3")
 library("R.oo")
 
@@ -52,3 +61,5 @@ print(y)
 stopifnot(identical(y, 1:4))
 
 print(warnings())
+
+message("TESTING: finalize() reentrant...DONE")

@@ -1481,7 +1481,8 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       } else {
         pkg <- pkgObject[1];
         obj <- pkgObject[2];
-        if (eval(substitute(require(pkg), list(pkg=pkg)))) {
+        .require <- require;  # To please R CMD check
+        if (.require(package=pkg, character.only=TRUE)) {
           pos <- which(paste("package:", "base", sep="") == search());
           if (exists(obj, where=pos, mode="function", inherits=FALSE))
             fcn <- "()";
@@ -2246,6 +2247,11 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
     if (length(head) == 0L) {
       if (is.null(class)) {
         head <- method;
+        # Escape '%*%' to '\%*\%'
+        head <- gsub("%", "\\%", head, fixed=TRUE);
+        # Quote any method name containing '%'
+        if (regexpr("%", head, fixed=TRUE) != -1L)
+          head <- sprintf("`%s`", head);
       } else {
         # The effective length of this in the help manual is nchar(method).
         head <- sprintf("\\method{%s}{%s}", method, class);
@@ -2688,15 +2694,32 @@ setMethodS3("getRdTitle", "Rdoc", function(this, class, method, ...) {
 # @keyword documentation
 #*/###########################################################################
 setMethodS3("getPackageNameOf", "Rdoc", function(static, objectName, mode="any", unique=TRUE, ...) {
-  package <- find(objectName, mode=mode);
-  isPackage <- (regexpr("^package:", package) != -1);
-  package <- package[isPackage];
-  package <- gsub("^package:", "", package);
-  if (length(package) > 1 && unique) {
-    warning(paste("Found more than one occurance of '", objectName, "' in the search path. Will return the first one: ", package, sep=""));
-    package <- package[1];
+  # Search all namespaces that are *attached*
+  pkgs <- grep("^package:", search(), value=TRUE)
+  pkgs <- gsub("^package:", "", pkgs)
+  found <- sapply(pkgs, FUN=function(pkg) {
+    exists(objectName, mode=mode, envir=asNamespace(pkg))
+  })
+  package <- names(found)[found]
+  if (length(package) == 1L) return(package)
+  if (length(package) > 1L && unique) {
+    warning("Found more than one occurance of '", objectName, "' among the attached namespaces. Will only return the first one: ", paste(sQuote(package), collapse=", "))
+    return(package[1L])
   }
-  package;
+
+  # If not found, then search any other namespace *loaded*
+  pkgs <- setdiff(loadedNamespaces(), pkgs)
+  found <- sapply(pkgs, FUN=function(pkg) {
+    exists(objectName, mode=mode, envir=asNamespace(pkg))
+  })
+  package <- names(found)[found]
+  if (length(package) == 1L) return(package)
+  if (length(package) > 1L && unique) {
+    warning("Found more than one occurance of '", objectName, "' among the loaded namespaces. Will only return the first one: ", paste(sQuote(package), collapse=", "))
+    return(package[1L])
+  }
+
+  character(0L)
 }, private=TRUE, static=TRUE)
 
 
@@ -2827,6 +2850,11 @@ setMethodS3("isVisible", "Rdoc", function(static, modifiers, visibilities, ...) 
 
 #########################################################################
 # HISTORY:
+# 2014-10-18
+# o Now Rdoc$getPackageNameOf() also finds non-exported objects, and
+#   it first searches all attached and then all loaded namespaces.
+# 2014-04-26
+# o Now Rdoc$getRdUsage() escapes '%*%' to '\%*\%'.
 # 2013-10-07
 # o Now Rdoc tag @howToCite does a better job when there are
 #   multiple citations in CITATION.

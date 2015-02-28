@@ -44,19 +44,15 @@ setMethodS3("getRdDeclaration", "Class", function(this, ...) {
   if (length(links) > 0) {
     name <- links[1];
     link <- name;
-    # TO DO/FIX ME: This part only works when packages are attached.
-    # /HB 2013-10-08
-    if (exists(name, mode="function")) {
-      cls <- get(name, mode="function");
-      if (inherits(cls, "Class")) {
-        pkg <- getPackage(cls);
-        if (is.null(pkg))
-          link <- paste("\\link{", link ,"}", sep="")
-        else
-          link <- paste("\\link[", pkg, "]{", link ,"}", sep="");
-        if (isAbstract(cls))
-          link <- paste("\\emph{", link, "}", sep="");
-      }
+    cls <- .getClassByName(name, mustExist=FALSE);
+    if (inherits(cls, "Class")) {
+      pkg <- getPackage(cls);
+      if (is.null(pkg))
+        link <- paste("\\link{", link ,"}", sep="")
+      else
+        link <- paste("\\link[", pkg, "]{", link ,"}", sep="");
+      if (isAbstract(cls))
+        link <- paste("\\emph{", link, "}", sep="");
     }
     paste("\\code{", link ,"}", sep="");
     s <- paste(s, "extends ", link, "\\cr\n", sep="");
@@ -107,11 +103,7 @@ setMethodS3("getRdMethods", "Class", function(class, visibilities=c("private", "
   count <- 0;
   for (method in methods) {
     fcnName <- paste(method, className, sep=".");
-    # TO DO/FIX ME: This part only works when packages are attached.
-    # /HB 2013-10-08
-    if (!exists(fcnName, mode="function"))
-      throw(RdocException("Method definition not found: ", fcnName));
-    fcn <- get(fcnName, mode="function");
+    fcn <- .getS3Method(fcnName);
     modifiers <- attr(fcn, "modifiers");
     if (Rdoc$isVisible(modifiers, visibilities)) {
       helpName <- Rdoc$createName(getName(class), method, escape=TRUE);
@@ -190,21 +182,17 @@ setMethodS3("getRdHierarchy", "Class", function(this, ...) {
     link <- sapply(extend, FUN=function(name) {
 #      isAbstract <- FALSE;
       link <- name;
-      # TO DO/FIX ME: This part only works when packages are attached.
-      # /HB 2013-10-08
-      if (exists(name, mode="function")) {
-        cls <- get(name, mode="function");
-        if (inherits(cls, "Class")) {
-          pkg <- getPackage(cls);
-          if (is.null(pkg))
-            link <- paste("\\link{", link ,"}", sep="")
-          else
-            link <- paste("\\link[", pkg, "]{", link ,"}", sep="");
-#          if (isAbstract(cls)) {
-#            link <- paste("\\emph{", link, "}", sep="");
-#            isAbstract <- TRUE;
-#          }
+      cls <- .getClassByName(name, mustExist=FALSE);
+      if (inherits(cls, "Class")) {
+        pkg <- getPackage(cls);
+        if (is.null(pkg)) {
+          link <- paste("\\link{", link ,"}", sep="")
+        } else {
+          link <- paste("\\link[", pkg, "]{", link ,"}", sep="");
         }
+#       if (isAbstract(cls)) {
+#         link <- paste("\\emph{", link, "}", sep="");
+#         isAbstract <- TRUE;
       }
       paste("\\code{", link ,"}", sep="");
     });
@@ -227,6 +215,9 @@ setMethodS3("getRdHierarchy", "Class", function(this, ...) {
 
 #########################################################################
 # HISTORY:
+# 2014-03-30
+# o BUG FIX: Now getRdDeclaration(), getRdHierarchy() and getRdMethods()
+#   for Class handles also non-exported methods and Classes.
 # 2006-05-29
 # o Added support for visibility of getRdMethods().
 # 2005-02-15

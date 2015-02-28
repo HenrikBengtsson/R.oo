@@ -27,7 +27,7 @@
 }
 
 \value{
-  Returns an ASCII \code{\link[base]{character}} \code{\link[base]{vector}}.
+  Returns an ASCII \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
 \author{Henrik Bengtsson}

@@ -4,7 +4,7 @@
 # @title "Gets the size of the object in bytes"
 #
 # \description{
-#   @get "title".  
+#   @get "title".
 #   This method is just a wrapper for @see "utils::object.size".
 # }
 #
@@ -28,10 +28,10 @@
 # \keyword{utilities}
 #*/###########################################################################
 setMethodS3("objectSize", "default", function(...) {
-  object.size(...);
+  args <- list(...)
+  args$.scannedEnvs <- NULL ## Used by objectSize() for environment
+  do.call(object.size, args=args)
 })
-
-
 
 
 ############################################################################

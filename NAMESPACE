@@ -8,6 +8,8 @@ importFrom("R.methodsS3", "throw")
 importFrom("R.methodsS3", "pkgStartupMessage")
 importFrom("R.methodsS3", "appendVarArgs")
 
+importFrom("methods", "getClasses")
+importFrom("methods", "getMethods")
 importFrom("methods", "getClass")
 importFrom("methods", "isClass")
 
@@ -16,7 +18,6 @@ importFrom("utils", "capture.output")
 importFrom("utils", "citation")
 importFrom("utils", "compareVersion")
 importFrom("utils", "file_test")
-importFrom("utils", "find")
 importFrom("utils", "install.packages")
 importFrom("utils", "installed.packages")
 importFrom("utils", "object.size")
@@ -40,6 +41,10 @@ exportPattern("^[^\\.]")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# default
+S3method("getClasses", "default") ## Should be renamed/removed from API
+S3method("getMethods", "default") ## Should be renamed/removed from API
+
 # BasicObject
 S3method("$", "BasicObject")
 S3method("$<-", "BasicObject")

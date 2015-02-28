@@ -94,7 +94,6 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
 
 
 
-\keyword{internal}
-\keyword{methods}
 \keyword{classes}
 \keyword{programming}
+\keyword{methods}

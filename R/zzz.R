@@ -1,3 +1,5 @@
+## covr: skip=all
+
 # Detach the 'R.oo' attached in file 030.ObjectClassFunctions.R
 if (is.element("R.oo", search())) detach("R.oo");
 

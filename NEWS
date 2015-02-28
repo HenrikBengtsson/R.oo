@@ -1,6 +1,50 @@
 Package: R.oo
 =============
 
+Version: 1.19.0 [2015-02-27]
+o Now charToInt() returns integers as documented (was numerics).
+o ROBUSTNESS: Now explicitly declare "default" S3 methods for
+  getClasses and getMethods.
+o ROBUSTNESS: Dropped non-ASCII characters from R source comments.
+o BUG FIX: objectSize() for environment could result in infinite
+  recursive calls if there circular dependencies between environments.
+  Added package test for objectSize() including this case.
+o BUG FIX: getKnownSubclasses() for Class could throw an error if one
+  of the objects "scanned" for being a function and of class Class
+  would thrown an error from just looking at it.  See  R-devel thread
+  'Inspect a "delayed" assigned whose value throws an error?'
+  on 2015-01-26 for details.
+o BUG FIX: Forgot to explicitly import getClasses and getMethods from
+  the 'methods' package. Interestingly, this one has never given an error.
+o BUG FIX: getStaticInstance() for Object now searches the parent/calling
+  environment as well.  This covers the case when constructors and objects
+  are created in a local environment (contrary to package namespaces and
+  the global environment).
+
+
+Version: 1.18.5 [2015-01-05]
+o CLEANUP: Now update() for Package is defunct; use update.packages().
+
+
+Version: 1.18.4 [2014-12-29]
+o Added argument 'decreasing' to ll(), e.g. 
+  ll(sortBy="objectSize", decreasing=TRUE).
+
+
+Version: 1.18.3 [2014-10-18]
+o BUG FIX: Rdoc$compile() and Rdoc tag @allmethods failed to provide
+  links and titles on non-exported S3 methods.
+
+
+Version: 1.18.2 [2014-04-26]
+o Now Rdoc$getRdUsage() escapes '%*%' to `'\%*\%'` in the Rd output.
+
+
+Version: 1.18.1 [2014-03-30]
+o BUG FIX: Now getRdDeclaration(), getRdHierarchy() and getRdMethods()
+  for Class handles also non-exported methods and Classes.
+
+
 Version: 1.18.0 [2014-02-22]
 o IMPORTANT: A registered finalizer function for Object:s no longer
   calls finalize() on the Object itself unless the R.oo package is

@@ -1,3 +1,15 @@
+message("TESTING: finalize() without attach...")
+
+pkgs <- c("R.methodsS3", "R.oo")
+isAttached <- function(pkgs) {
+  structure(sprintf("package:%s", pkgs) %in% search(), names=pkgs)
+}
+
+# Record which packages were attached from the beginning
+# (happens if not a fresh session)
+wasAttached <- isAttached(pkgs)
+
+
 assertPackages <- function(loaded=c("R.methodsS3", "R.oo")) {
   s <- utils::sessionInfo()
   s$R.version <- NULL;
@@ -6,7 +18,8 @@ assertPackages <- function(loaded=c("R.methodsS3", "R.oo")) {
   cat("----------------------------------")
   print(s)
   cat("----------------------------------\n\n")
-  stopifnot(!any(sprintf("package:%s", loaded) %in% search()))
+  loaded <- loaded[!wasAttached[loaded]]
+  stopifnot(!any(isAttached(loaded)))
 }
 
 R.oo::setConstructorS3("MyClass", function(a=1:10) {
@@ -23,3 +36,5 @@ rm(x)
 gc()
 
 assertPackages(loaded="R.oo")
+
+message("TESTING: finalize() without attach...DONE")
