@@ -3,6 +3,7 @@ Package: R.oo
 
 Version: 1.19.0-9000 [2015-07-01]
 o Explicit namespace imports also from 'utils' package. 
+o CLEANUP: Drop unused code.
 
 
 Version: 1.19.0 [2015-02-27]
