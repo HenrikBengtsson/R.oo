@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.19.0-9000 [2015-07-01]
+o Explicit namespace imports also from 'utils' package. 
+
+
 Version: 1.19.0 [2015-02-27]
 o Now charToInt() returns integers as documented (was numerics).
 o ROBUSTNESS: Now explicitly declare "default" S3 methods for

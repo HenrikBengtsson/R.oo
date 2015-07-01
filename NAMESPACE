@@ -23,6 +23,7 @@ importFrom("utils", "installed.packages")
 importFrom("utils", "object.size")
 importFrom("utils", "old.packages")
 importFrom("utils", "packageDescription")
+importFrom("utils", "sessionInfo")
 importFrom("utils", "str")
 importFrom("utils", "update.packages")
 

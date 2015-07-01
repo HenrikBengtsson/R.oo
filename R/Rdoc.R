@@ -1608,6 +1608,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     tag <- function(bfr) {
       bfr <- getTagValue(bfr);
       value <- attr(bfr, "value");
+      ## FIXME: 'line' is undefined here?!? /HB 2015-07-01
       rd <<- paste(rd, line, sep="");
       bfr;
     }
