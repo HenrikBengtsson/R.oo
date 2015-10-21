@@ -28,7 +28,10 @@ importFrom("utils", "str")
 importFrom("utils", "update.packages")
 
 if (getRversion() >= "2.14.0") {
-  importFrom("stats", "getCall") # Only available in R (>= 2.14.0)
+  importFrom("stats", "getCall")
+}
+if (getRversion() >= "3.3.0") {
+  importFrom("utils", "getSource")
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
