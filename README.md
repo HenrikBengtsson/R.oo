@@ -7,6 +7,15 @@ R package R.oo is available on [CRAN](http://cran.r-project.org/package=R.oo) an
 install.packages('R.oo')
 ```
 
+### Pre-release version
+
+To install the pre-release version that is available in branch `develop`, use:
+```r
+source('http://callr.org/install#HenrikBengtsson/R.oo@develop')
+```
+This will install the package from source.  
+
+
 
 ## Software status
 
