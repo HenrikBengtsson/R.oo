@@ -5,7 +5,7 @@
 #
 # \description{
 #  @classhierarchy
-#  
+#
 #  @get "title" when it fails to generate a Rd file from an Rdoc comment.
 # }
 #
@@ -72,7 +72,7 @@ setMethodS3("as.character", "RdocException", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  paste("[", getWhen(this), "] ", class(this)[1L], " in ", getSource(this), 
+  paste("[", getWhen(this), "] ", class(this)[1L], " in ", getSource(this),
                                           ": ", getMessage(this), sep = "");
 })
 
@@ -107,8 +107,8 @@ setMethodS3("as.character", "RdocException", function(x, ...) {
 # \keyword{methods}
 # \keyword{error}
 #*/###########################################################################
-setMethodS3("getSource", "RdocException", function(this, ...) {
-  this$.source;
+setMethodS3("getSource", "RdocException", function(x, ...) {
+  x$.source
 })
 
 
