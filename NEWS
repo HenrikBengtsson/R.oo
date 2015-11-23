@@ -1,8 +1,10 @@
 Package: R.oo
 =============
 
-Version: 1.19.0-9000 [2015-07-01]
-o Explicit namespace imports also from 'utils' package. 
+Version: 1.19.0-9000 [2015-11-22]
+o Now print() and startupMessage() for Package only report
+  on package date if date exists.
+o Explicit namespace imports also from 'utils' package.
 o CLEANUP: Drop unused code.
 
 
@@ -32,7 +34,7 @@ o CLEANUP: Now update() for Package is defunct; use update.packages().
 
 
 Version: 1.18.4 [2014-12-29]
-o Added argument 'decreasing' to ll(), e.g. 
+o Added argument 'decreasing' to ll(), e.g.
   ll(sortBy="objectSize", decreasing=TRUE).
 
 
