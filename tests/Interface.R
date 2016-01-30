@@ -18,7 +18,7 @@ obj <- MyClass()
 print(obj)
 
 
-if ("covr" %in% loadedNamespaces()) {
+if (!"covr" %in% loadedNamespaces()) {
   setConstructorS3("MyClass", function(...) {
     extend(Object(), c("MyClass", uses("MyInterface")))
   })
