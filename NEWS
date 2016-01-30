@@ -1,7 +1,14 @@
 Package: R.oo
 =============
 
-Version: 1.19.0-9000 [2015-07-01]
+Version: 1.19.0-9000 [2016-01-30]
+o Some S3 methods for R.oo classes Object and Exception would
+  interfere with ditto for rJava objects that had class attributes
+  containing "Object" and "Exception".  Although these classes have
+  the same name, and therefore are in conflict, they represent
+  completely different classes.  For methods where conflicts have
+  been identified, the R.oo implementations will try to detect the
+  conflict and call the next method instead.
 o Explicit namespace imports also from 'utils' package. 
 o CLEANUP: Drop unused code.
 

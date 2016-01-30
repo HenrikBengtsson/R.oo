@@ -3,7 +3,7 @@ Version: 1.19.0-9000
 Depends: R (>= 2.4.0), R.methodsS3 (>= 1.7.0)
 Imports: methods, utils
 Suggests: tools
-Date: 2015-07-01
+Date: 2016-01-30
 Title: R Object-Oriented Programming with or without References
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))
