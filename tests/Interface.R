@@ -18,6 +18,7 @@ obj <- MyClass()
 print(obj)
 
 
+## For some reason uses(<string>) doesn't play well with covr
 if (!"covr" %in% loadedNamespaces()) {
   setConstructorS3("MyClass", function(...) {
     extend(Object(), c("MyClass", uses("MyInterface")))
