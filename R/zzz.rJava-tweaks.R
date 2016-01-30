@@ -6,36 +6,31 @@
 ##
 ## See https://github.com/s-u/rJava/issues/60
 ## - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-.fixMethodS3 <- function(generic, class, definition, envir=parent.frame()) {
+.fixMethodS3 <- function(generic, class, expr=NULL, envir=parent.frame()) {
   method <- sprintf("%s.%s", generic, class)
-  f <- get(method, mode="function", envir=envir, inherits=FALSE)
+  expr <- substitute(expr)
+
+  f <- get(method, mode="function", envir=getNamespace("R.oo"), inherits=TRUE)
+  if (is.null(expr)) {
+    x <- as.symbol(names(formals(f)[1]))
+    expr <- substitute(
+      if(!.isRoo(x)) return(NextMethod())
+    , list(x=x))
+  }
+  
   body(f) <- substitute({
     a
     b
-  }, list(a=body(definition), b=body(f)))
+  }, list(a=expr, b=body(f)))
   assign(method, f, envir=envir, inherits=TRUE)
-}
+ 
+  invisible(f)
+} ## .fixMethodS3()
 
-.isRoo <- function(x) {
-  is.environment(attr(x, ".env"))
-}
+.isRoo <- function(x) is.environment(attr(x, ".env"))
 
-.fixMethodS3("names", "Object", function(x, ...) {
-  if(!.isRoo(x)) return(NextMethod())
-})
-
-.fixMethodS3("$", "Object", function(this, name) {
-  if(!.isRoo(this)) return(NextMethod())
-})
-
-.fixMethodS3("[[", "Object", function(this, name) {
-  if(!.isRoo(this)) return(NextMethod())
-})
-
-.fixMethodS3("print", "Object", function(x, ...) {
-  if(!.isRoo(x)) return(NextMethod())
-})
-
-.fixMethodS3("print", "Exception", function(x, ...) {
-  if(!.isRoo(x)) return(NextMethod())
-})
+.fixMethodS3("names", "Object")
+.fixMethodS3("$", "Object")
+.fixMethodS3("[[", "Object")
+.fixMethodS3("print", "Object")
+.fixMethodS3("print", "Exception")
