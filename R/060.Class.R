@@ -1125,7 +1125,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
   nClasses <- length(result);
   if (unique && nClasses >= 2L) {
     names <- lapply(result, FUN=names);
-    for (kk in seq(length.out=nClasses-1L)) {
+    for (kk in seq_len(nClasses-1L)) {
       # Nothing todo?
       if (length(names[[kk]]) == 0L) next;
       for (ll in (kk+1L):nClasses) {

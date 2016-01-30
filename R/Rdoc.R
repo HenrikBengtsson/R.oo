@@ -656,7 +656,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
 
     rdocs <- list();
-    for (k in seq(length=length(begins))) {
+    for (k in seq_len(length(begins))) {
       idx <- begins[k]:ends[k];
       tmp <- lines[idx];
 
@@ -2281,7 +2281,7 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
       suffix <- if (nargs > 0L) ", " else ") ";
 
       # For each subargument
-      for (kk in seq(length=nsubargs)) {
+      for (kk in seq_len(nsubargs)) {
         subarg <- subargs[kk];
 ##        str(list(kk=kk, subarg=subarg));
 

@@ -437,7 +437,7 @@ setMethodS3("getStackTrace", "Exception", function(this, cleanup=getOption("R.oo
     idxs <- which(is.element(names, "throw"));
     if (length(idxs) > 0) {
       idx <- idxs[1L];
-      keep <- seq(length=idx-1L);
+      keep <- seq_len(idx-1L);
       stackTrace <- stackTrace[keep];
     }
   }

@@ -127,7 +127,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     # Precreate a function to filter out members to be returned
     names <- names(args);
     expr <- NULL;
-    for (kk in seq(length=length(args))) {
+    for (kk in seq_len(length(args))) {
       value <- args[[kk]];
       if (is.null(value)) {
         e <- substitute(is.null(fcn(..object)), list(fcn=as.name(names[kk])));

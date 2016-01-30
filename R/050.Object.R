@@ -1907,7 +1907,7 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
 
   classes <- class(this);
   nbrOfClassesAbove <- min(nbrOfClassesAbove, length(classes))
-  classes <- classes[-seq(length=nbrOfClassesAbove)];
+  classes <- classes[-seq_len(nbrOfClassesAbove)];
   if (length(classes) == 0) {
     methods <- methodName;
   } else {
