@@ -34,4 +34,24 @@ print(R.oo::R.oo)
 #      Bengtsson <henrikb@braju.com>. The package is installed in
 #      c:/PROGRA~1/R/rw1062/library/R.oo/."
 
+
+pkg <- Package("R.oo")
+classes <- getClasses(pkg)
+print(classes)
+
+
+pkg <- Package("R.oo")
+res <- showDescriptionFile(pkg, pager=function(...) TRUE)
+stopifnot(isTRUE(res))
+res <- showNews(pkg, pager=function(...) TRUE)
+stopifnot(isTRUE(res))
+res <- showChangeLog(pkg, pager=function(...) TRUE)
+stopifnot(isTRUE(res))
+res <- showHistory(pkg, pager=function(...) TRUE)
+stopifnot(isTRUE(res))
+
+
+res <- try(Package("Non-Existing-Package"), silent=TRUE)
+stopifnot(inherits(res, "try-error"))
+
 message("TESTING: Package...DONE")

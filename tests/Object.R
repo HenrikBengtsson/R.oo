@@ -49,8 +49,34 @@ print(res)
 stopifnot(exists("a", mode="integer"))
 str(a)
 
+## Object already attached
+res <- tryCatch(attach(obj), warning=function(w) w)
+stopifnot(inherits(res, "warning"))
+
 res <- detach(obj)
 print(res)
+
+## Object already detached
+res <- tryCatch(detach(obj), warning=function(w) w)
+stopifnot(inherits(res, "warning"))
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Save and load
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+obj <- Object()
+obj$a <- 1
+obj$b <- 2
+pathnameT <- tempfile()
+save(obj, file=pathnameT)
+
+obj2 <- Object$load(pathnameT)
+stopifnot(all.equal(getFields(obj2), getFields(obj)))
+for (key in getFields(obj)) {
+  stopifnot(identical(obj2[[key]], obj[[key]]))
+}
+
+file.remove(pathnameT)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -

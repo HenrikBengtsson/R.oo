@@ -237,7 +237,7 @@ setMethodS3("showContents", "Package", function(this, ...) {
     throw("CONTENTS file for package ", getName(this), " does not exist.");
 
   pathname <- file.path(path, file);
-  file.show(pathname);
+  file.show(pathname, ...);
 }, protected=TRUE)
 
 
@@ -309,7 +309,7 @@ setMethodS3("showDescriptionFile", "Package", function(this, ...) {
     throw("DESCRIPTION file for package ", getName(this), " does not exist.");
 
   pathname <- file.path(path, file);
-  file.show(pathname);
+  file.show(pathname, ...);
 })
 
 
@@ -1462,7 +1462,7 @@ setMethodS3("showChangeLog", "Package", function(this, filenames=c("NEWS", "HIST
     throw("NEWS/HISTORY/ChangeLog file for package ", getName(this), " does not exist.");
 
   pathname <- file.path(path, file);
-  file.show(pathname);
+  file.show(pathname, ...);
 })
 
 
