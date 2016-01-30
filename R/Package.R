@@ -95,39 +95,42 @@ setMethodS3("as.character", "Package", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  s <- paste(class(this)[1L], ": ", getName(this), " v", getVersion(this), " (", getDate(this), ")", sep="");
-  pos <- getPosition(this);
+  s <- paste(class(this)[1L], ": ", getName(this), " v", getVersion(this), sep="")
+  date <- getDate(this)
+  if (!is.na(date))
+    s <- paste(s, " (", getDate(this), ")", sep="")
+  pos <- getPosition(this)
   if (pos != -1)
     s <- paste(s, " is loaded (pos=", pos, ").", sep="")
   else
-    s <- paste(s, ".");
+    s <- paste(s, ".")
 
-  s <- paste(s, "  Title: ", getTitle(this), ".", sep="");
+  s <- paste(s, "  Title: ", getTitle(this), ".", sep="")
 
   # Do not call getBundle() here; it can be very slow!
 #  bundle <- getBundle(this);
 #  if (!is.null(bundle))
 #    s <- paste(s, "  It is part of bundle ", bundle, " (", paste(getBundlePackages(this), collapse=", "), ").", sep="")
 
-  url <- getUrl(this);
+  url <- getUrl(this)
   if (!is.null(url))
     s <- paste(s, "  The official webpage is ", url, " and the", sep="")
   else
-    s <- paste(s, "  The", sep="");
-  s <- paste(s, " maintainer is ", getMaintainer(this), ".", sep="");
+    s <- paste(s, "  The", sep="")
+  s <- paste(s, " maintainer is ", getMaintainer(this), ".", sep="")
 
-  s <- paste(s, "  The package is installed in ", getPath(this), ".", sep="");
+  s <- paste(s, "  The package is installed in ", getPath(this), ".", sep="")
 
-  license <- getLicense(this);
+  license <- getLicense(this)
   if (!is.null(license))
-    s <- paste(s, "  License: ", license, ".", sep="");
+    s <- paste(s, "  License: ", license, ".", sep="")
 
-  s <- paste(s, "  Description: ", getDescription(this), sep="");
+  s <- paste(s, "  Description: ", getDescription(this), sep="")
 
   s <- paste(s, "  Type showNews(", getName(this),
-       ") for package history, and ?", getName(this), " for help.", sep="");
+       ") for package history, and ?", getName(this), " for help.", sep="")
 
-  s;
+  s
 })
 
 
@@ -1584,9 +1587,15 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("startupMessage", "Package", function(this, ...) {
-  msg <- sprintf("%s v%s (%s) successfully loaded. See ?%s for help.",
-            getName(this), getVersion(this), getDate(this), getName(this));
-  pkgStartupMessage(msg, ...);
+  date <- getDate(this)
+  if (is.na(date)) {
+    msg <- sprintf("%s v%s successfully loaded. See ?%s for help.",
+              getName(this), getVersion(this), getName(this))
+  } else {
+    msg <- sprintf("%s v%s (%s) successfully loaded. See ?%s for help.",
+              getName(this), getVersion(this), date, getName(this))
+  }
+  pkgStartupMessage(msg, ...)
 }, protected=TRUE)
 
 
