@@ -1,8 +1,10 @@
 Package: R.oo
 =============
 
-Version: 1.19.0-9000 [2015-07-01]
-o Explicit namespace imports also from 'utils' package. 
+Version: 1.19.0-9000 [2016-01-30]
+o CLEANUP: Package requires R (>= 2.13.0) (April 2011), because
+  R.methodsS3 effectively requires that version.
+o CLEANUP: Explicit namespace imports also from 'utils' package.
 o CLEANUP: Drop unused code.
 
 

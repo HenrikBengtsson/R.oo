@@ -30,7 +30,7 @@ importFrom("utils", "update.packages")
 if (getRversion() >= "2.14.0") {
   importFrom("stats", "getCall")
 }
-if (getRversion() >= "3.3.0" && exists("getSource", envir=asNamespace("utils"))) {
+if (getRversion() >= "3.3.0" && "getSource" %in% getNamespaceExports("utils")) {
   importFrom("utils", "getSource")
 }
 
