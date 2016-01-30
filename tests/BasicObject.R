@@ -86,13 +86,24 @@ stopifnot(obj2 == 43L)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Inheritance
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-MyObject <- function(...) {
+setConstructorS3("MyObject", function(...) {
   extend(BasicObject(), "MyObject", ...)
-}
+})
 obj <- MyObject(a=1, b=2)
 print(obj)
 str(obj)
 stopifnot(all(c("a", "b") %in% names(attributes(obj))))
+
+
+setMethodS3("foo", "MyObject", function(static, x=1L, ...) {
+  list(x=x, ...)
+}, static=TRUE)
+
+res <- MyObject$foo(y=2L)
+stopifnot(identical(res$x, 1L))
+stopifnot(identical(res$y, 2L))
+
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # FIXME: hashCode() return integer(0) whenever
