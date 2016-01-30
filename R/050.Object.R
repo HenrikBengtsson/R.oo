@@ -968,6 +968,18 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
   envir <- getEnvironment(this);
   package <- envir$...package;
   if (!is.null(package)) {
+    ## As long as package supports R (< 2.14.0)
+    if (!exists("requireNamespace", envir=baseenv(), inherits=TRUE)) {
+      requireNamespace <- function(package, quietly=TRUE, ...) {
+        tryCatch({
+          suppressPackageStartupMessages({
+            loadNamespace(package, ...)
+          })
+          TRUE
+        }, error = function(ex) FALSE)
+      }
+    }
+
     # Check if namespace can be retrieved.  This may not possible if
     # for instance an Object is loaded from disk and the package name
     # has changed since it was last saved.
