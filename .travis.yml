@@ -50,11 +50,6 @@ before_install:
     fi
 
 install:
-
-
-
-
-
  - $RENV install_r R.methodsS3
 
 
