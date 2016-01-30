@@ -10,6 +10,7 @@ o CLEANUP: Explicit namespace imports also from 'utils' package.
 o CLEANUP: Drop unused code.
 o BUG FIX: clazz[[method]]() for Class object clazz did not call
   the intended static method, as clazz$<method>() would do.
+o BUG FIX: getClasses() for Package would return NULL.
 
 
 Version: 1.19.0 [2015-02-27]

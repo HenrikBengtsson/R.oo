@@ -38,7 +38,7 @@ print(R.oo::R.oo)
 pkg <- Package("R.oo")
 classes <- getClasses(pkg)
 print(classes)
-
+stopifnot(all(c("Object", "Class", "Interface", "Exception", "Package") %in% classes))
 
 pkg <- Package("R.oo")
 res <- showDescriptionFile(pkg, pager=function(...) TRUE)
