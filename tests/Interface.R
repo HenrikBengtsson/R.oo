@@ -12,7 +12,7 @@ int <- MyInterface()
 print(int)
 
 setConstructorS3("MyClass", function(...) {
-  extend(Object(), c("MyClass", uses(MyInterface())))
+  extend(Object(), c("MyClass", uses(MyInterface(), Interface())))
 })
 obj <- MyClass()
 print(obj)
@@ -21,7 +21,7 @@ print(obj)
 ## For some reason uses(<string>) doesn't play well with covr
 if (!"covr" %in% loadedNamespaces()) {
   setConstructorS3("MyClass", function(...) {
-    extend(Object(), c("MyClass", uses("MyInterface")))
+    extend(Object(), c("MyClass", uses("MyInterface", "Interface")))
   })
   obj <- MyClass()
   print(obj)
