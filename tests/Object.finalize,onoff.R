@@ -1,6 +1,8 @@
 library("R.methodsS3")
 library("R.oo")
 
+oopts <- options(warn=1L)
+
 message("TESTING: finalize() on and off...")
 
 ## For some reason uses(<string>) doesn't play well with covr
@@ -71,3 +73,5 @@ y <- Foo(name <- "OnExit")
 } ## if (!"covr" ...)
 
 message("TESTING: finalize() on and off...DONE")
+
+options(oopts)

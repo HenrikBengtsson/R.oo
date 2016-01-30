@@ -1,3 +1,5 @@
+oopts <- options(warn=1L)
+
 message("TESTING: finalize() without attach...")
 
 ## For some reason uses(<string>) doesn't play well with covr
@@ -43,3 +45,5 @@ assertPackages(loaded="R.oo")
 } ## if (!"covr" ...)
 
 message("TESTING: finalize() without attach...DONE")
+
+options(oopts)

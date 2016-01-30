@@ -1,5 +1,7 @@
 library("R.oo")
 
+oopts <- options(warn=1L)
+
 message("TESTING: finalize()...")
 
 ## For some reason uses(<string>) doesn't play well with covr
@@ -35,3 +37,5 @@ rm(o)
 } ## if (!"covr" ...)
 
 message("TESTING: finalize()...DONE")
+
+options(oopts)
