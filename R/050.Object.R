@@ -444,7 +444,7 @@ setMethodS3("getInternalAddress", "Object", function(this, format=c("numeric", "
     hexDigits <- unlist(strsplit("0123456789ABCDEF", ""));
     digits16 <- unlist(strsplit(toupper(hex), ""));
     digits10 <- match(digits16, hexDigits) - 1;
-    bases10 <- rev(16^(seq(along=digits10)-1));
+    bases10 <- rev(16^(seq(along.with=digits10)-1));
     sum(digits10 * bases10);
   }
 
@@ -1343,13 +1343,13 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   fields <- parseModifiers(fields);
 
   names <- names(fields);
-  for (ii in seq(along=fields)) {
+  for (ii in seq(along.with=fields)) {
     name <- names[ii];
     if (is.null(name) || nchar(name) == 0) {
       callNames <- names(sys.call());
       callNames <- callNames[nchar(callNames) > 0];
       matchNames <- paste("^", callNames, sep="");
-      for (jj in seq(along=matchNames)) {
+      for (jj in seq(along.with=matchNames)) {
         if (regexpr(matchNames[jj], "...className") != -1) {
           className <- sys.call()[[3]];
           throw("Could not set field of class (probably called ", className,

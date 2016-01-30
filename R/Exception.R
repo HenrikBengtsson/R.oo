@@ -41,7 +41,7 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   sys.functions <- function(parents) {
     functions <- list();
-    for (kk in seq(along=parents)) {
+    for (kk in seq(along.with=parents)) {
       parent <- parents[kk];
       functions[[kk]] <- sys.function(which=kk);
     }
@@ -78,7 +78,7 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
   functions <- sys.functions(parents);
 
   stackTrace <- list();
-  for (kk in seq(along=calls)) {
+  for (kk in seq(along.with=calls)) {
     call <- calls[[kk]];
     fcn <- functions[[kk]];
     name <- fcnName(call);
@@ -419,7 +419,7 @@ setMethodS3("getLastException", "Exception", function(this, ...) {
 #*/###########################################################################
 setMethodS3("getStackTrace", "Exception", function(this, cleanup=getOption("R.oo::Exception/getStackTrace/args/cleanup", TRUE), ...) {
   stackTrace <- this$.stackTrace;
-  names(stackTrace) <- seq(along=stackTrace);
+  names(stackTrace) <- seq(along.with=stackTrace);
 
   # Remove "uninformative" steps, e.g. tryCatch()
   if (cleanup) {
@@ -543,7 +543,7 @@ setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE
 
   calls <- sapply(stackTrace, FUN=function(trace) trace$call);
   res <- character(length=length(calls));
-  for (kk in seq(along=calls)) {
+  for (kk in seq(along.with=calls)) {
     call <- calls[[kk]];
     rows <- deparse(call);
     if (details) {
