@@ -3,10 +3,7 @@ library("R.oo")
 
 oopts <- options(warn=1L)
 
-message("TESTING: finalize() on and off...")
-
-## For some reason uses(<string>) doesn't play well with covr
-if (!"covr" %in% loadedNamespaces()) {
+message("TESTING: finalize() on Object on and off ...")
 
 finalized <- NULL
 if ("covr" %in% loadedNamespaces()) {
@@ -70,8 +67,6 @@ print(finalized)
 options("R.oo::Object/finalizeOnExit"=TRUE)
 y <- Foo(name <- "OnExit")
 
-} ## if (!"covr" ...)
-
-message("TESTING: finalize() on and off...DONE")
+message("TESTING: finalize() on Object on and off ... DONE")
 
 options(oopts)

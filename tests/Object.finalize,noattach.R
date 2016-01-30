@@ -1,9 +1,6 @@
 oopts <- options(warn=1L)
 
-message("TESTING: finalize() without attach...")
-
-## For some reason uses(<string>) doesn't play well with covr
-if (!"covr" %in% loadedNamespaces()) {
+message("TESTING: finalize() on Object without attach ...")
 
 pkgs <- c("R.methodsS3", "R.oo")
 isAttached <- function(pkgs) {
@@ -42,8 +39,6 @@ gc()
 
 assertPackages(loaded="R.oo")
 
-} ## if (!"covr" ...)
-
-message("TESTING: finalize() without attach...DONE")
+message("TESTING: finalize() on Object without attach ... DONE")
 
 options(oopts)

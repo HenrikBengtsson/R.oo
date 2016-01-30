@@ -2,10 +2,7 @@ library("R.oo")
 
 oopts <- options(warn=1L)
 
-message("TESTING: finalize()...")
-
-## For some reason uses(<string>) doesn't play well with covr
-if (!"covr" %in% loadedNamespaces()) {
+message("TESTING: finalize() on Object ...")
 
 setConstructorS3("MyClass", function() {
   extend(Object(), "MyClass")
@@ -34,8 +31,6 @@ rm(o)
 ## Ncells 229903  6.1     467875 12.3
 ## Vcells  53725  0.5     786432  6.0
 
-} ## if (!"covr" ...)
-
-message("TESTING: finalize()...DONE")
+message("TESTING: finalize() on Object ... DONE")
 
 options(oopts)
