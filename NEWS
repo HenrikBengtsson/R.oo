@@ -8,6 +8,8 @@ o CLEANUP: Package requires R (>= 2.13.0) (April 2011), because
   R.methodsS3 effectively requires that version.
 o CLEANUP: Explicit namespace imports also from 'utils' package.
 o CLEANUP: Drop unused code.
+o BUG FIX: clazz[[method]]() for Class object clazz did not call
+  the intended static method, as clazz$<method>() would do.
 
 
 Version: 1.19.0 [2015-02-27]

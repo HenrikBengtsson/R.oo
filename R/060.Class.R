@@ -1576,12 +1576,12 @@ setMethodS3("$<-", "Class", function(this, name, value) {
 
 
 setMethodS3("[[", "Class", function(this, name) {
-  get("$")(this, name);
+  do.call(`$`, list(this, name))
 }) # "[["()
 
 
 setMethodS3("[[<-", "Class", function(this, name, value) {
-  get("$<-")(this, name, value);
+  do.call(`$<-`, list(this, name, value))
 }) # "[[<-"()
 
 
