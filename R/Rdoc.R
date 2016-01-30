@@ -1912,7 +1912,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
     # Create a call expression to source(..., local=local)
     expr <- substitute({
-      do.call("source", args)
+      do.call(source, args)
     }, list(args=args));
 
     # Call source()
