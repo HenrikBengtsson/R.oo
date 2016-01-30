@@ -550,13 +550,13 @@ setMethodS3("detach", "BasicObject", function(this, ...) {
 setMethodS3("extend", "BasicObject", function(this, ...className, ...) {
   fields <- list(...);
   names <- names(fields);
-  for (ii in seq(along.with=fields)) {
+  for (ii in seq_along(fields)) {
     name <- names[ii];
     if (is.null(name) || nchar(name) == 0) {
       callNames <- names(sys.call());
       callNames <- callNames[nchar(callNames) > 0];
       matchNames <- paste("^", callNames, sep="");
-      for (jj in seq(along.with=matchNames)) {
+      for (jj in seq_along(matchNames)) {
         if (regexpr(matchNames[jj], "...className") != -1) {
           className <- sys.call()[[3]];
           throw("Could not set field of class (probably called ", className,

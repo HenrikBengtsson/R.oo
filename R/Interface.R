@@ -101,12 +101,12 @@ setMethodS3("uses", "Interface", function(this, ...) {
     names <- sort(unique(unlist(res, use.names=FALSE)));
     idxs <- integer(length(names));
     names(idxs) <- names;
-    for (kk in seq(along.with=res)) {
+    for (kk in seq_along(res)) {
       for (name in res[[kk]]) {
         idxs[name] <- kk;
       }
     }
-    for (kk in seq(along.with=res)) {
+    for (kk in seq_along(res)) {
       keep <- (idxs[res[[kk]]] == kk);
       res[[kk]] <- res[[kk]][keep];
     }
