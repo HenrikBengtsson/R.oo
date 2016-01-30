@@ -958,7 +958,7 @@ setMethodS3("getContribUrl", "Package", function(this, ...) {
   if (is.null(urls) || is.na(urls)) {
     urls <- getDescriptionFile(this, fields="URL");
     if (is.null(urls) || is.na(urls)) {
-      return(NA);
+      return(NA_character_)
     }
   }
   urls <- strsplit(urls, "[,;]")[[1]];
@@ -1004,7 +1004,7 @@ setMethodS3("getContribUrl", "Package", function(this, ...) {
 setMethodS3("getDevelUrl", "Package", function(this, ...) {
   urls <- getDescriptionFile(this, fields="DevelURL");
   if (is.null(urls) || is.na(urls)) {
-    return(NA);
+    return(NA_character_)
   }
   urls <- strsplit(urls, "[,;]")[[1]];
   urls <- gsub("^[ \t]*", "", urls);
@@ -1054,7 +1054,7 @@ setMethodS3("getMaintainer", "Package", function(this, as=c("character", "person
   persons <- getDescriptionFile(this, fields=c("Authors@R", "Maintainer"));
   persons <- persons[!is.na(persons)];
   if (length(persons) == 0L) {
-    return(NA);
+    return(NA_character_)
   }
 
   persons <- persons[1L];
@@ -1126,7 +1126,7 @@ setMethodS3("getAuthor", "Package", function(this, as=c("character", "person"), 
   persons <- getDescriptionFile(this, fields=c("Authors@R", "Author"));
   persons <- persons[!is.na(persons)];
   if (length(persons) == 0L) {
-    return(NA);
+    return(NA_character_)
   }
   persons <- persons[1L];
   key <- names(persons)[1L];

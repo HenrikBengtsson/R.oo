@@ -201,7 +201,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   df <- NULL;
   for (member in members) {
     if (is.element(member, c("..."))) {
-      dfRow <- c(member, rep(NA, length=length(properties)));
+      dfRow <- c(member, rep(NA_character_, length=length(properties)));
       dfRow <- as.list(dfRow);
     } else {
       rowExpr <- substitute({
