@@ -656,7 +656,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
 
     rdocs <- list();
-    for (k in seq_len(length(begins))) {
+    for (k in seq_along(begins)) {
       idx <- begins[k]:ends[k];
       tmp <- lines[idx];
 
