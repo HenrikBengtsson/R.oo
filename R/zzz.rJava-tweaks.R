@@ -6,10 +6,6 @@
 ##
 ## See https://github.com/s-u/rJava/issues/60
 ## - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-.isRoo <- function(x) {
-  is.environment(attr(x, ".env"))
-}
-
 .fixMethodS3 <- function(generic, class, definition, envir=parent.frame()) {
   method <- sprintf("%s.%s", generic, class)
   f <- get(method, mode="function", envir=envir, inherits=FALSE)
@@ -18,6 +14,10 @@
     b
   }, list(a=body(definition), b=body(f)))
   assign(method, f, envir=envir, inherits=TRUE)
+}
+
+.isRoo <- function(x) {
+  is.environment(attr(x, ".env"))
 }
 
 .fixMethodS3("names", "Object", function(x, ...) {
