@@ -47,5 +47,21 @@ print(isStatic(clazz))  ## TRUE because of Object$load()
 message(" - modifiers ... DONE")
 
 
+message(" - inheritance ...")
+setConstructorS3("MyClass", function(...) {
+  extend(Object(), "MyClass", ...)
+})
+
+obj <- MyClass(a=1, b=2, c=3)
+print(obj)
+stopifnot(all(c("a", "b", "c") %in% names(obj)))
+
+obj <- newInstance(MyClass, a=1, b=2, c=3)
+print(obj)
+stopifnot(all(c("a", "b", "c") %in% names(obj)))
+
+message(" - inheritance ... DONE")
+
+
 
 message("TESTING: Class...DONE")
