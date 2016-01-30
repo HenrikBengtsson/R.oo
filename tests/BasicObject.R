@@ -44,6 +44,28 @@ print(time)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Attach and detach
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+obj <- BasicObject(42L)
+obj$a <- 1:99
+
+res <- attach(obj)
+print(res)
+stopifnot(exists("a", mode="integer"))
+str(a)
+
+## Object already attached
+res <- tryCatch(attach(obj), warning=function(w) w)
+stopifnot(inherits(res, "warning"))
+
+res <- detach(obj)
+print(res)
+
+## Object already detached
+res <- tryCatch(detach(obj), warning=function(w) w)
+stopifnot(inherits(res, "warning"))
+
+
+obj <- BasicObject(list(a=1L, b=2, c=3))
+
 res <- attach(obj)
 print(res)
 stopifnot(exists("a", mode="integer"))
@@ -60,6 +82,17 @@ obj2 <- newInstance(obj, 43L)
 print(obj2)
 stopifnot(obj2 == 43L)
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Inheritance
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+MyObject <- function(...) {
+  extend(BasicObject(), "MyObject", ...)
+}
+obj <- MyObject(a=1, b=2)
+print(obj)
+str(obj)
+stopifnot(all(c("a", "b") %in% names(attributes(obj))))
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # FIXME: hashCode() return integer(0) whenever
