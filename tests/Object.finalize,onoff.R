@@ -1,7 +1,10 @@
-message("TESTING: finalize() on and off...")
-
 library("R.methodsS3")
 library("R.oo")
+
+message("TESTING: finalize() on and off...")
+
+## For some reason uses(<string>) doesn't play well with covr
+if (!"covr" %in% loadedNamespaces()) {
 
 finalized <- NULL
 if ("covr" %in% loadedNamespaces()) {
@@ -64,5 +67,7 @@ print(finalized)
 # Finalize upon exit
 options("R.oo::Object/finalizeOnExit"=TRUE)
 y <- Foo(name <- "OnExit")
+
+} ## if (!"covr" ...)
 
 message("TESTING: finalize() on and off...DONE")

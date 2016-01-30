@@ -1,6 +1,9 @@
+library("R.oo")
+
 message("TESTING: finalize()...")
 
-library("R.oo")
+## For some reason uses(<string>) doesn't play well with covr
+if (!"covr" %in% loadedNamespaces()) {
 
 setConstructorS3("MyClass", function() {
   extend(Object(), "MyClass")
@@ -28,5 +31,7 @@ rm(o)
 ##          used (Mb) gc trigger (Mb)
 ## Ncells 229903  6.1     467875 12.3
 ## Vcells  53725  0.5     786432  6.0
+
+} ## if (!"covr" ...)
 
 message("TESTING: finalize()...DONE")

@@ -1,5 +1,8 @@
 message("TESTING: finalize() without attach...")
 
+## For some reason uses(<string>) doesn't play well with covr
+if (!"covr" %in% loadedNamespaces()) {
+
 pkgs <- c("R.methodsS3", "R.oo")
 isAttached <- function(pkgs) {
   structure(sprintf("package:%s", pkgs) %in% search(), names=pkgs)
@@ -36,5 +39,7 @@ rm(x)
 gc()
 
 assertPackages(loaded="R.oo")
+
+} ## if (!"covr" ...)
 
 message("TESTING: finalize() without attach...DONE")
