@@ -444,7 +444,7 @@ setMethodS3("getInternalAddress", "Object", function(this, format=c("numeric", "
     hexDigits <- unlist(strsplit("0123456789ABCDEF", ""));
     digits16 <- unlist(strsplit(toupper(hex), ""));
     digits10 <- match(digits16, hexDigits) - 1;
-    bases10 <- rev(16^(seq(along=digits10)-1));
+    bases10 <- rev(16^(seq_along(digits10)-1));
     sum(digits10 * bases10);
   }
 
@@ -968,6 +968,18 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
   envir <- getEnvironment(this);
   package <- envir$...package;
   if (!is.null(package)) {
+    ## As long as package supports R (< 2.14.0)
+    if (!exists("requireNamespace", envir=baseenv(), inherits=TRUE)) {
+      requireNamespace <- function(package, quietly=TRUE, ...) {
+        tryCatch({
+          suppressPackageStartupMessages({
+            loadNamespace(package, ...)
+          })
+          TRUE
+        }, error = function(ex) FALSE)
+      }
+    }
+
     # Check if namespace can be retrieved.  This may not possible if
     # for instance an Object is loaded from disk and the package name
     # has changed since it was last saved.
@@ -1331,13 +1343,13 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   fields <- parseModifiers(fields);
 
   names <- names(fields);
-  for (ii in seq(along=fields)) {
+  for (ii in seq_along(fields)) {
     name <- names[ii];
     if (is.null(name) || nchar(name) == 0) {
       callNames <- names(sys.call());
       callNames <- callNames[nchar(callNames) > 0];
       matchNames <- paste("^", callNames, sep="");
-      for (jj in seq(along=matchNames)) {
+      for (jj in seq_along(matchNames)) {
         if (regexpr(matchNames[jj], "...className") != -1) {
           className <- sys.call()[[3]];
           throw("Could not set field of class (probably called ", className,
@@ -1895,7 +1907,7 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
 
   classes <- class(this);
   nbrOfClassesAbove <- min(nbrOfClassesAbove, length(classes))
-  classes <- classes[-seq(length=nbrOfClassesAbove)];
+  classes <- classes[-seq_len(nbrOfClassesAbove)];
   if (length(classes) == 0) {
     methods <- methodName;
   } else {

@@ -1,4 +1,6 @@
-message("TESTING: finalize() without attach...")
+oopts <- options(warn=1L)
+
+message("TESTING: finalize() on Object without attach ...")
 
 pkgs <- c("R.methodsS3", "R.oo")
 isAttached <- function(pkgs) {
@@ -37,4 +39,6 @@ gc()
 
 assertPackages(loaded="R.oo")
 
-message("TESTING: finalize() without attach...DONE")
+message("TESTING: finalize() on Object without attach ... DONE")
+
+options(oopts)

@@ -1,6 +1,25 @@
 Package: R.oo
 =============
 
+Version: 1.20.0 [2016-02-17]
+o Some S3 methods for R.oo classes Object and Exception would
+  interfere with ditto for rJava objects that had class attributes
+  containing "Object" and "Exception".  Although these classes have
+  the same name, and therefore are in conflict, they represent
+  completely different classes.  For methods where conflicts have
+  been identified, the R.oo implementations will try to detect the
+  conflict and call the next method instead.
+o Now print() and startupMessage() for Package only report
+  on package date if date exists.
+o CLEANUP: Package requires R (>= 2.13.0) (April 2011), because
+  R.methodsS3 effectively requires that version.
+o CLEANUP: Explicit namespace imports also from 'utils' package.
+o CLEANUP: Drop unused code.
+o BUG FIX: clazz[[method]]() for Class object clazz did not call
+  the intended static method, as clazz$<method>() would do.
+o BUG FIX: getClasses() for Package would return NULL.
+
+
 Version: 1.19.0 [2015-02-27]
 o Now charToInt() returns integers as documented (was numerics).
 o ROBUSTNESS: Now explicitly declare "default" S3 methods for
@@ -27,7 +46,7 @@ o CLEANUP: Now update() for Package is defunct; use update.packages().
 
 
 Version: 1.18.4 [2014-12-29]
-o Added argument 'decreasing' to ll(), e.g. 
+o Added argument 'decreasing' to ll(), e.g.
   ll(sortBy="objectSize", decreasing=TRUE).
 
 

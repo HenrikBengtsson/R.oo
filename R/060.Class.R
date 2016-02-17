@@ -342,7 +342,7 @@ setMethodS3("getKnownSubclasses", "Class", function(this, sort=TRUE, ...) {
 ##  }
 
   # (a) Search attached search paths
-  for (pos in seq(along=search())) {
+  for (pos in seq_along(search())) {
     envir <- as.environment(pos);
     classesT <- getKnownSubclassesInEnvironment(name, envir=envir);
     classes <- c(classes, classesT);
@@ -772,7 +772,7 @@ setMethodS3("getPackage", "Class", function(this, ...) {
 
   # (b) Search attached ("loaded") packages
   packages <- search();
-  for (pos in seq(along=packages)) {
+  for (pos in seq_along(packages)) {
     envir <- pos.to.env(pos);
     if (exists(name, mode="function", envir=envir, inherits=FALSE)) {
       res <- get(name, mode="function", envir=envir, inherits=FALSE);
@@ -1085,7 +1085,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
 
     # (a) Search attached search paths
     if (is.element("search", where)) {
-      for (pos in seq(along=search())) {
+      for (pos in seq_along(search())) {
         envir <- as.environment(pos);
         res <- findS3MethodsByEnvironment(classNames, envir=envir, exclMods=exclMods, res=res);
       }
@@ -1125,7 +1125,7 @@ setMethodS3("getMethods", "Class", function(this, private=FALSE, deprecated=TRUE
   nClasses <- length(result);
   if (unique && nClasses >= 2L) {
     names <- lapply(result, FUN=names);
-    for (kk in seq(length.out=nClasses-1L)) {
+    for (kk in seq_len(nClasses-1L)) {
       # Nothing todo?
       if (length(names[[kk]]) == 0L) next;
       for (ll in (kk+1L):nClasses) {
@@ -1194,7 +1194,7 @@ setMethodS3("argsToString", "Class", function(this, fcn, ...) {
   argsNames <- names(args);
 
   res <- list();
-  for (kk in seq(along=args)) {
+  for (kk in seq_along(args)) {
     arg     <- args[kk];
     argName <- argsNames[kk];
 
@@ -1283,7 +1283,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
     modifiers <- rep("public", length.out=length(fields));
     isPrivate <- (regexpr("^\\.", fields) != -1L);
     modifiers[isPrivate] <- "private";
-    for (kk in seq(along=fields)) {
+    for (kk in seq_along(fields)) {
       s <- paste(s, indentStr, modifiers[kk], " ", fields[kk], "\n", sep="");
     }
   }
@@ -1302,7 +1302,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
         modifiers <- rep("public", length.out=length(methodNames));
         isPrivate <- (regexpr("^\\.", methodNames) != -1L);
         modifiers[isPrivate] <- "private";
-        for (kk in seq(along=methodNames)) {
+        for (kk in seq_along(methodNames)) {
           fcn <- .getS3Method(methods[kk], envir=envir, mustExist=TRUE);
           fcnModifiers <- attr(fcn, "modifiers");
           if (is.element("protected", fcnModifiers)) {
@@ -1576,12 +1576,12 @@ setMethodS3("$<-", "Class", function(this, name, value) {
 
 
 setMethodS3("[[", "Class", function(this, name) {
-  get("$")(this, name);
+  do.call(`$`, list(this, name))
 }) # "[["()
 
 
 setMethodS3("[[<-", "Class", function(this, name, value) {
-  get("$<-")(this, name, value);
+  do.call(`$<-`, list(this, name, value))
 }) # "[[<-"()
 
 

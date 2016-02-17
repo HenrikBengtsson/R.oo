@@ -18,7 +18,7 @@
 }
 
 \usage{
-\method{getSource}{RdocException}(this, ...)
+\method{getSource}{RdocException}(x, ...)
 }
 
 \arguments{

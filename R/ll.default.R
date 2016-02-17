@@ -127,7 +127,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     # Precreate a function to filter out members to be returned
     names <- names(args);
     expr <- NULL;
-    for (kk in seq(length=length(args))) {
+    for (kk in seq_along(args)) {
       value <- args[[kk]];
       if (is.null(value)) {
         e <- substitute(is.null(fcn(..object)), list(fcn=as.name(names[kk])));
@@ -201,7 +201,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   df <- NULL;
   for (member in members) {
     if (is.element(member, c("..."))) {
-      dfRow <- c(member, rep(NA, length=length(properties)));
+      dfRow <- c(member, rep(NA_character_, length=length(properties)));
       dfRow <- as.list(dfRow);
     } else {
       rowExpr <- substitute({
@@ -215,7 +215,7 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     if (is.null(df)) {
       df <- dfRow;
     } else {
-      for (kk in seq_len(length(df))) {
+      for (kk in seq_along(df)) {
         df[[kk]] <- c(df[[kk]], dfRow[[kk]]);
       }
     }

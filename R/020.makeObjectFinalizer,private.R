@@ -89,7 +89,7 @@
   isParseCalled <- function() {
     calls <- sys.calls();
     if (length(calls) == 0L) return(FALSE);
-    for (kk in seq(along=calls)) {
+    for (kk in seq_along(calls)) {
       call <- calls[[kk]];
       name <- call[[1L]];
       if (!is.symbol(name)) next;

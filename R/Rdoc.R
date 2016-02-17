@@ -656,7 +656,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
 
     rdocs <- list();
-    for (k in seq(length=length(begins))) {
+    for (k in seq_along(begins)) {
       idx <- begins[k]:ends[k];
       tmp <- lines[idx];
 
@@ -1438,7 +1438,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
         exists <- sapply(methods, FUN=exists, mode="function");
         classes[[k]] <- classes[[k]][exists];
         methods <- methods[exists];
-        for (l in seq(along=methods)) {
+        for (l in seq_along(methods)) {
           fcn <- get(methods[l], mode="function");
           modifiers <- attr(fcn, "modifiers");
           isPrivate <- is.element("private", modifiers);
@@ -1599,15 +1599,6 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     tagInheritedmethods <- function(bfr) {
       methods <- Rdoc$methodsInheritedFrom(clazz, visibility, sort=sort);
       line <- methods;
-      rd <<- paste(rd, line, sep="");
-      bfr;
-    }
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    tag <- function(bfr) {
-      bfr <- getTagValue(bfr);
-      value <- attr(bfr, "value");
       rd <<- paste(rd, line, sep="");
       bfr;
     }
@@ -1921,7 +1912,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
 
     # Create a call expression to source(..., local=local)
     expr <- substitute({
-      do.call("source", args)
+      do.call(source, args)
     }, list(args=args));
 
     # Call source()
@@ -2290,7 +2281,7 @@ setMethodS3("getUsage", "Rdoc", function(static, method, class=NULL, wrap=90L, i
       suffix <- if (nargs > 0L) ", " else ") ";
 
       # For each subargument
-      for (kk in seq(length=nsubargs)) {
+      for (kk in seq_len(nsubargs)) {
         subarg <- subargs[kk];
 ##        str(list(kk=kk, subarg=subarg));
 
@@ -2500,7 +2491,7 @@ setMethodS3("argsToString", "Rdoc", function(static, fcn, escapeRd=FALSE, collap
   argsNames <- names(args);
 
   res <- list();
-  for (kk in seq(along=args)) {
+  for (kk in seq_along(args)) {
     arg     <- args[kk];
     argName <- argsNames[kk];
 
@@ -2767,7 +2758,7 @@ setMethodS3("check", "Rdoc", function(this, manPath=getManPath(this), verbose=FA
     # For R (>= 2.10.0)
     pathnames <- list.files(pattern="[.]Rd$", path=manPath, full.names=TRUE);
     res <- NULL;
-    for (kk in seq(along=pathnames)) {
+    for (kk in seq_along(pathnames)) {
       pathname <- pathnames[kk];
       res <- tools::checkRd(pathname);
     }

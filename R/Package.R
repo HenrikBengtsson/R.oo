@@ -95,39 +95,42 @@ setMethodS3("as.character", "Package", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  s <- paste(class(this)[1L], ": ", getName(this), " v", getVersion(this), " (", getDate(this), ")", sep="");
-  pos <- getPosition(this);
+  s <- paste(class(this)[1L], ": ", getName(this), " v", getVersion(this), sep="")
+  date <- getDate(this)
+  if (!is.na(date))
+    s <- paste(s, " (", getDate(this), ")", sep="")
+  pos <- getPosition(this)
   if (pos != -1)
     s <- paste(s, " is loaded (pos=", pos, ").", sep="")
   else
-    s <- paste(s, ".");
+    s <- paste(s, ".")
 
-  s <- paste(s, "  Title: ", getTitle(this), ".", sep="");
+  s <- paste(s, "  Title: ", getTitle(this), ".", sep="")
 
   # Do not call getBundle() here; it can be very slow!
 #  bundle <- getBundle(this);
 #  if (!is.null(bundle))
 #    s <- paste(s, "  It is part of bundle ", bundle, " (", paste(getBundlePackages(this), collapse=", "), ").", sep="")
 
-  url <- getUrl(this);
+  url <- getUrl(this)
   if (!is.null(url))
     s <- paste(s, "  The official webpage is ", url, " and the", sep="")
   else
-    s <- paste(s, "  The", sep="");
-  s <- paste(s, " maintainer is ", getMaintainer(this), ".", sep="");
+    s <- paste(s, "  The", sep="")
+  s <- paste(s, " maintainer is ", getMaintainer(this), ".", sep="")
 
-  s <- paste(s, "  The package is installed in ", getPath(this), ".", sep="");
+  s <- paste(s, "  The package is installed in ", getPath(this), ".", sep="")
 
-  license <- getLicense(this);
+  license <- getLicense(this)
   if (!is.null(license))
-    s <- paste(s, "  License: ", license, ".", sep="");
+    s <- paste(s, "  License: ", license, ".", sep="")
 
-  s <- paste(s, "  Description: ", getDescription(this), sep="");
+  s <- paste(s, "  Description: ", getDescription(this), sep="")
 
   s <- paste(s, "  Type showNews(", getName(this),
-       ") for package history, and ?", getName(this), " for help.", sep="");
+       ") for package history, and ?", getName(this), " for help.", sep="")
 
-  s;
+  s
 })
 
 
@@ -234,7 +237,7 @@ setMethodS3("showContents", "Package", function(this, ...) {
     throw("CONTENTS file for package ", getName(this), " does not exist.");
 
   pathname <- file.path(path, file);
-  file.show(pathname);
+  file.show(pathname, ...);
 }, protected=TRUE)
 
 
@@ -306,7 +309,7 @@ setMethodS3("showDescriptionFile", "Package", function(this, ...) {
     throw("DESCRIPTION file for package ", getName(this), " does not exist.");
 
   pathname <- file.path(path, file);
-  file.show(pathname);
+  file.show(pathname, ...);
 })
 
 
@@ -868,15 +871,15 @@ setMethodS3("ll", "Package", function(this, envir=pos.to.env(getPosition(this)),
 # }
 #*/#########################################################################
 setMethodS3("getClasses", "Package", function(this, ...) {
-  classes <- c();
-  for (name in ls(pos=getPosition(this))) {
-    if (exists(name, mode="function", inherits=FALSE)) {
-      object <- get(name, mode="function", inherits=FALSE);
-      if (inherits(object, "Class"))
-        classes <- c(classes, name);
-    }
+  pkgname <- getName(this)
+  ns <- getNamespace(pkgname)
+  names <- ls(envir=ns, all.names=FALSE)
+  classes <- c()
+  for (name in names) {
+    object <- .getFunctionByName(name, where=c("ns", "search"), envir=ns, class="Class", mustExist=FALSE)
+    if (inherits(object, "Class")) classes <- c(classes, name)
   }
-  classes;
+  classes
 }, protected=TRUE, dontWarn="base")
 
 
@@ -955,7 +958,7 @@ setMethodS3("getContribUrl", "Package", function(this, ...) {
   if (is.null(urls) || is.na(urls)) {
     urls <- getDescriptionFile(this, fields="URL");
     if (is.null(urls) || is.na(urls)) {
-      return(NA);
+      return(NA_character_)
     }
   }
   urls <- strsplit(urls, "[,;]")[[1]];
@@ -1001,7 +1004,7 @@ setMethodS3("getContribUrl", "Package", function(this, ...) {
 setMethodS3("getDevelUrl", "Package", function(this, ...) {
   urls <- getDescriptionFile(this, fields="DevelURL");
   if (is.null(urls) || is.na(urls)) {
-    return(NA);
+    return(NA_character_)
   }
   urls <- strsplit(urls, "[,;]")[[1]];
   urls <- gsub("^[ \t]*", "", urls);
@@ -1051,7 +1054,7 @@ setMethodS3("getMaintainer", "Package", function(this, as=c("character", "person
   persons <- getDescriptionFile(this, fields=c("Authors@R", "Maintainer"));
   persons <- persons[!is.na(persons)];
   if (length(persons) == 0L) {
-    return(NA);
+    return(NA_character_)
   }
 
   persons <- persons[1L];
@@ -1123,7 +1126,7 @@ setMethodS3("getAuthor", "Package", function(this, as=c("character", "person"), 
   persons <- getDescriptionFile(this, fields=c("Authors@R", "Author"));
   persons <- persons[!is.na(persons)];
   if (length(persons) == 0L) {
-    return(NA);
+    return(NA_character_)
   }
   persons <- persons[1L];
   key <- names(persons)[1L];
@@ -1459,7 +1462,7 @@ setMethodS3("showChangeLog", "Package", function(this, filenames=c("NEWS", "HIST
     throw("NEWS/HISTORY/ChangeLog file for package ", getName(this), " does not exist.");
 
   pathname <- file.path(path, file);
-  file.show(pathname);
+  file.show(pathname, ...);
 })
 
 
@@ -1584,9 +1587,15 @@ setMethodS3("showHowToCite", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("startupMessage", "Package", function(this, ...) {
-  msg <- sprintf("%s v%s (%s) successfully loaded. See ?%s for help.",
-            getName(this), getVersion(this), getDate(this), getName(this));
-  pkgStartupMessage(msg, ...);
+  date <- getDate(this)
+  if (is.na(date)) {
+    msg <- sprintf("%s v%s successfully loaded. See ?%s for help.",
+              getName(this), getVersion(this), getName(this))
+  } else {
+    msg <- sprintf("%s v%s (%s) successfully loaded. See ?%s for help.",
+              getName(this), getVersion(this), date, getName(this))
+  }
+  pkgStartupMessage(msg, ...)
 }, protected=TRUE)
 
 

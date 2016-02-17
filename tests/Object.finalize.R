@@ -1,6 +1,8 @@
-message("TESTING: finalize()...")
-
 library("R.oo")
+
+oopts <- options(warn=1L)
+
+message("TESTING: finalize() on Object ...")
 
 setConstructorS3("MyClass", function() {
   extend(Object(), "MyClass")
@@ -29,4 +31,6 @@ rm(o)
 ## Ncells 229903  6.1     467875 12.3
 ## Vcells  53725  0.5     786432  6.0
 
-message("TESTING: finalize()...DONE")
+message("TESTING: finalize() on Object ... DONE")
+
+options(oopts)

@@ -4,6 +4,8 @@
 ^.svn
 ^.git
 ^.make
+INSTALL[.]md
+OVERVIEW[.]md
 README[.]md
 
 #----------------------------
@@ -14,11 +16,13 @@ README[.]md
 ^pkg-build[.]sh$
 ^appveyor[.]yml$
 ^covr-utils.R$
-^[.]coveralls[.]R$
+^[.]covr[.]R$
+^[.]covr[.]rds$
 
 #----------------------------
 # R related
 #----------------------------
+Rplots.pdf$
 ^cran-comments[.].*$
 ^vignettes/.*[.](pdf|PDF)$
 ^vignettes/.*[.](r|R)$
@@ -27,7 +31,16 @@ README[.]md
 ^incl
 ^NAMESPACE,.*[.]txt$
 ^nohup.*$
+^[.]R
+^[.]benchmark
 ^[.]devel
 ^[.]test
 ^[.]check
 ^.*[.]tar[.]gz$
+
+#----------------------------
+# Package specific
+#----------------------------
+^[.]BatchJobs[.]R$
+[.]async
+

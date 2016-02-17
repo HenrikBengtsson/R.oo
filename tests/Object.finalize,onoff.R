@@ -1,7 +1,9 @@
-message("TESTING: finalize() on and off...")
-
 library("R.methodsS3")
 library("R.oo")
+
+oopts <- options(warn=1L)
+
+message("TESTING: finalize() on Object on and off ...")
 
 finalized <- NULL
 if ("covr" %in% loadedNamespaces()) {
@@ -65,4 +67,6 @@ print(finalized)
 options("R.oo::Object/finalizeOnExit"=TRUE)
 y <- Foo(name <- "OnExit")
 
-message("TESTING: finalize() on and off...DONE")
+message("TESTING: finalize() on Object on and off ... DONE")
+
+options(oopts)

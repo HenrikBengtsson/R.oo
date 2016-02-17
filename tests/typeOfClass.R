@@ -24,4 +24,8 @@ type <- typeOfClass(clazz)
 print(type)
 stopifnot(type == "S4")
 
+type <- typeOfClass("Non-Existing-Class")
+print(type)
+stopifnot(is.na(type))
+
 message("TESTING: typeOfClass()...DONE")

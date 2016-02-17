@@ -39,7 +39,7 @@ setMethodS3("extend", "default", function(this, ...className, ...) {
   # Add attributes
   args <- list(...);
   names <- names(args);
-  for (kk in seq(length=length(args))) {
+  for (kk in seq_along(args)) {
     name <- names[kk];
     if (name == "class")
       throw("Trying to set class attribute: ", as.character(this));
