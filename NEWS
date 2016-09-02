@@ -1,6 +1,10 @@
 Package: R.oo
 =============
 
+Version: 1.20.0-9000 [2016-09-02]
+o Now $() for Object and Class calls [[() for ditto (was vice versa).
+
+
 Version: 1.20.0 [2016-02-17]
 o Some S3 methods for R.oo classes Object and Exception would
   interfere with ditto for rJava objects that had class attributes

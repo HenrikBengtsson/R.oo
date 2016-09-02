@@ -1392,7 +1392,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # @keyword programming
 # @keyword methods
 #*/###########################################################################
-setMethodS3("$", "Class", function(this, name) {
+setMethodS3("[[", "Class", function(this, name) {
   if (is.function(this)) {
     static <- getStaticInstance(this)
   } else {
@@ -1465,7 +1465,7 @@ setMethodS3("$", "Class", function(this, name) {
   }
 
   NULL;
-}) # $()
+}) # [[()
 
 
 
@@ -1575,9 +1575,9 @@ setMethodS3("$<-", "Class", function(this, name, value) {
 
 
 
-setMethodS3("[[", "Class", function(this, name) {
-  do.call(`$`, list(this, name))
-}) # "[["()
+setMethodS3("$", "Class", function(this, name) {
+  do.call(`[[`, list(this, name))
+}) # "$"()
 
 
 setMethodS3("[[<-", "Class", function(this, name, value) {

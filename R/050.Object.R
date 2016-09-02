@@ -1483,7 +1483,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
-setMethodS3("$", "Object", function(this, name) {
+setMethodS3("[[", "Object", function(this, name) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1646,7 +1646,7 @@ setMethodS3("$", "Object", function(this, name) {
   assign(cacheName, lookup, envir=envir);
 
   NULL;
-}) # $()
+}) # [[()
 
 
 
@@ -1813,10 +1813,9 @@ setMethodS3("$<-", "Object", function(this, name, value) {
 
 
 
-setMethodS3("[[", "Object", function(this, name) {
-  UseMethod("$");
-#   "$"(this, name);
-}) # "[["()
+setMethodS3("$", "Object", function(this, name) {
+  UseMethod("[[")
+}) # "$"()
 
 
 setMethodS3("[[<-", "Object", function(this, name, value) {
