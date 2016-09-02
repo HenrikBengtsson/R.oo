@@ -1460,7 +1460,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 #
 # \usage{
 #   \method{$}{Object}(this, name)
-#   \method{[[}{Object}(this, name)
+#   \method{[[}{Object}(this, name, exact=TRUE)
 # }
 #
 # \arguments{
@@ -1483,7 +1483,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
-setMethodS3("[[", "Object", function(this, name) {
+setMethodS3("[[", "Object", function(this, name, exact=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

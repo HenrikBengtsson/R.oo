@@ -1341,7 +1341,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 #
 # \usage{
 #   \method{$}{Class}(this, name)
-#   \method{[[}{Class}(this, name)
+#   \method{[[}{Class}(this, name, exact=TRUE)
 # }
 #
 # \description{
@@ -1392,7 +1392,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # @keyword programming
 # @keyword methods
 #*/###########################################################################
-setMethodS3("[[", "Class", function(this, name) {
+setMethodS3("[[", "Class", function(this, name, exact=TRUE) {
   if (is.function(this)) {
     static <- getStaticInstance(this)
   } else {

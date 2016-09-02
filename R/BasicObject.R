@@ -628,7 +628,7 @@ setMethodS3("newInstance", "BasicObject", function(this, ...) {
 #
 # \usage{
 #   \method{$}{BasicObject}(this, name)
-#   \method{[[}{BasicObject}(this, name)
+#   \method{[[}{BasicObject}(this, name, exact=TRUE)
 # }
 #
 # \arguments{
@@ -796,7 +796,7 @@ setMethodS3("$<-", "BasicObject", function(this, name, value) {
 }) # $<-()
 
 
-setMethodS3("[[", "BasicObject", function(this, name) {
+setMethodS3("[[", "BasicObject", function(this, name, exact=TRUE) {
   memberAccessorOrder <- attr(this, ".memberAccessorOrder");
   if (is.null(memberAccessorOrder))
     memberAccessorOrder <- c(1,2,3,4);
