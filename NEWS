@@ -3,7 +3,8 @@ Package: R.oo
 
 Version: 1.20.0-9000 [2016-09-02]
 o Now getElement() works also for Object, Class and BasicObject.
-o [[() for Object, Class and BasicObject gained argument 'exact'.
+o [[() for Object, Class and BasicObject gained argument 'exact',
+  but exact=FALSE is currently ignored and treated as exact=TRUE.
 o Now $() for Object and Class calls [[() for ditto (was vice versa).
 
 
