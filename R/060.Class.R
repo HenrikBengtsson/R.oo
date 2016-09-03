@@ -1585,7 +1585,7 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 }) # "[[<-"()
 
 
-setMethodS3(".DollarNames", "Class", .DollarNames.Object, protected=TRUE)
+setMethodS3(".DollarNames", "Class", .DollarNames.Object, appendVarArgs=FALSE, protected=TRUE)
 
 
 ############################################################################

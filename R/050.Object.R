@@ -2169,7 +2169,7 @@ setMethodS3(".DollarNames", "Object", function(x, pattern="") {
    }
    
    findMatches(pattern, names(x))
-}, protected=TRUE)
+}, appendVarArgs=FALSE, protected=TRUE)
 
 
 

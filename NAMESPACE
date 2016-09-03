@@ -26,6 +26,7 @@ importFrom("utils", "packageDescription")
 importFrom("utils", "sessionInfo")
 importFrom("utils", "str")
 importFrom("utils", "update.packages")
+importFrom("utils", ".DollarNames")
 
 if (getRversion() >= "2.14.0") {
   importFrom("stats", "getCall")
