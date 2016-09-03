@@ -711,6 +711,67 @@ setMethodS3("$", "BasicObject", function(this, name) {
 
 
 
+setMethodS3("[[", "BasicObject", function(this, name, exact=TRUE) {
+  .subset2Internal(this, name=name, exact=exact)
+})
+
+setMethodS3(".subset2Internal", "BasicObject", function(this, name, exact=TRUE, ...) {
+  memberAccessorOrder <- attr(this, ".memberAccessorOrder");
+  if (is.null(memberAccessorOrder))
+    memberAccessorOrder <- c(1,2,3,4);
+
+  for (memberAccessor in memberAccessorOrder) {
+    if (memberAccessor == 1) {
+      firstChar <- substr(name, 1,1);
+      isPrivate <- identical(firstChar, ".");
+      isField <- (regexpr(" ", name) != -1);
+      # Do not try to access private fields using a get<Name>() method,
+      # because such a functionality means that the user *expects* that
+      # there actually is a field called '.<name>', which he or she
+      # should not do since it is a private field!
+      if (!isField && !isPrivate && is.null(attr(this, "disableGetMethods"))) {
+  	# 1. Is it a get<name>() method?
+  	getName <- paste(c("get", toupper(firstChar),
+  			 substr(name,2,nchar(name))),collapse="");
+  	getMethodNames <- paste(getName, class(this), sep=".");
+  	for (getMethodName in getMethodNames) {
+            # TO DO/FIX ME: This part only works when packages are attached.
+            # /HB 2013-10-08
+            if (exists(getMethodName, mode="function")) {
+  	    ref <- this;
+  	    attr(ref, "disableGetMethods") <- TRUE;
+  	    return( get(getMethodName, mode="function")(ref) );
+  	  }
+  	}
+      }
+    } else if (memberAccessor == 2) {
+
+      # 2. Is it a field?
+      value <- attr(this, name);
+      if (!is.null(value))
+  	return(value);
+
+    } else if (memberAccessor == 3) {
+
+      # 3. Is it a method?
+      methodNames <- paste(name, class(this), sep=".");
+      for (methodName in methodNames) {
+          # TO DO/FIX ME: This part only works when packages are attached.
+          # /HB 2013-10-08
+          if (exists(methodName, mode="function")) {
+  	  method <- get(methodName, mode="function");
+  	  return( function(...) method(this, ...) );
+  	}
+      }
+    }
+  } # for (memberAccessor in memberAccessorOrder)
+
+  # 5. Otherwise, return NULL.
+  NULL;
+}) # "[["()
+
+
+
 
 ###########################################################################/**
 # @RdocMethod $<-
@@ -794,62 +855,6 @@ setMethodS3("$<-", "BasicObject", function(this, name, value) {
 
   this;
 }) # $<-()
-
-
-setMethodS3("[[", "BasicObject", function(this, name, exact=TRUE) {
-  memberAccessorOrder <- attr(this, ".memberAccessorOrder");
-  if (is.null(memberAccessorOrder))
-    memberAccessorOrder <- c(1,2,3,4);
-
-  for (memberAccessor in memberAccessorOrder) {
-    if (memberAccessor == 1) {
-      firstChar <- substr(name, 1,1);
-      isPrivate <- identical(firstChar, ".");
-      isField <- (regexpr(" ", name) != -1);
-      # Do not try to access private fields using a get<Name>() method,
-      # because such a functionality means that the user *expects* that
-      # there actually is a field called '.<name>', which he or she
-      # should not do since it is a private field!
-      if (!isField && !isPrivate && is.null(attr(this, "disableGetMethods"))) {
-  	# 1. Is it a get<name>() method?
-  	getName <- paste(c("get", toupper(firstChar),
-  			 substr(name,2,nchar(name))),collapse="");
-  	getMethodNames <- paste(getName, class(this), sep=".");
-  	for (getMethodName in getMethodNames) {
-            # TO DO/FIX ME: This part only works when packages are attached.
-            # /HB 2013-10-08
-            if (exists(getMethodName, mode="function")) {
-  	    ref <- this;
-  	    attr(ref, "disableGetMethods") <- TRUE;
-  	    return( get(getMethodName, mode="function")(ref) );
-  	  }
-  	}
-      }
-    } else if (memberAccessor == 2) {
-
-      # 2. Is it a field?
-      value <- attr(this, name);
-      if (!is.null(value))
-  	return(value);
-
-    } else if (memberAccessor == 3) {
-
-      # 3. Is it a method?
-      methodNames <- paste(name, class(this), sep=".");
-      for (methodName in methodNames) {
-          # TO DO/FIX ME: This part only works when packages are attached.
-          # /HB 2013-10-08
-          if (exists(methodName, mode="function")) {
-  	  method <- get(methodName, mode="function");
-  	  return( function(...) method(this, ...) );
-  	}
-      }
-    }
-  } # for (memberAccessor in memberAccessorOrder)
-
-  # 5. Otherwise, return NULL.
-  NULL;
-}) # "[["()
 
 
 setMethodS3("[[<-", "BasicObject", function(this, name, value) {
