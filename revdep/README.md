@@ -10,7 +10,7 @@
 |language |en                           |
 |collate  |C                            |
 |tz       |NA                           |
-|date     |2016-09-02                   |
+|date     |2016-09-03                   |
 
 ## Packages
 
@@ -270,51 +270,7 @@ Bug reports: https://github.com/HenrikBengtsson/R.devices/issues
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/R.filesets/issues
 
-2 errors | 0 warnings | 0 notes
-
-```
-checking examples ... ERROR
-Running examples in 'R.filesets-Ex.R' failed
-The error most likely occurred in:
-
-> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
-> ### Name: FullNameInterface
-> ### Title: The FullNameInterface class interface
-> ### Aliases: FullNameInterface
-> ### Keywords: classes
-> 
-> ### ** Examples
-> 
-> # Setup a file set
-> path <- system.file("R", package="R.filesets")
-> ds <- GenericDataFileSet$byPath(path)
-> 
-> # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-> # Data set
-> # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-> cat("Path of data set:\n")
-Path of data set:
-> print(getPath(ds))
-Error: evaluation nested too deeply: infinite recursion / options(expressions=)?
-Execution halted
-
-checking tests ... ERROR
-Running the tests in 'tests/ChecksumFile.R' failed.
-Last 13 lines of output:
-  Checksum on record: NA (checksum file missing)
-  > 
-  > 
-  > ## Example files
-  > path <- system.file("exData", "dataSetA,original", package="R.filesets")
-  > print(path)
-  [1] "/cbc/henrik/repositories/R.oo/revdep/checks/R.filesets.Rcheck/R.filesets/exData/dataSetA,original"
-  > 
-  > ## Setting up a file set
-  > ds <- GenericDataFileSet$byPath(path)
-  > print(ds)
-  Error: evaluation nested too deeply: infinite recursion / options(expressions=)?
-  Execution halted
-```
+0 errors | 0 warnings | 0 notes
 
 ## R.huge (0.9.0)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
@@ -326,26 +282,7 @@ Bug reports: https://github.com/HenrikBengtsson/R.huge/issues
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/R.matlab/issues
 
-1 error  | 0 warnings | 0 notes
-
-```
-checking tests ... ERROR
-Running the tests in 'tests/Matlab.R' failed.
-Last 13 lines of output:
-            - readResult.Matlab() is in environment 'R.matlab'
-  
-    at #03. readResult(this)
-            - readResult() is in environment 'R.matlab'
-  
-    at #02. evaluate.Matlab(matlab, "A=1+2;", "B=ones(2,20);")
-            - evaluate.Matlab() is in environment 'R.matlab'
-  
-    at #01. evaluate(matlab, "A=1+2;", "B=ones(2,20);")
-            - evaluate() is in environment 'R.matlab'
-  
-  Error: Expected an 'answer' from MATLAB, but kept receiving nothing. Tried 30 times at intervals of approximately 1 seconds. To change this, see ?setOption.Matlab.
-  Execution halted
-```
+0 errors | 0 warnings | 0 notes
 
 ## R.rsp (0.30.0)
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
@@ -428,26 +365,9 @@ checking installed package size ... NOTE
 Maintainer: Henrik Bengtsson <henrikb@braju.com>  
 Bug reports: https://github.com/HenrikBengtsson/aroma.affymetrix/issues
 
-1 error  | 0 warnings | 1 note 
+0 errors | 0 warnings | 1 note 
 
 ```
-checking tests ... ERROR
-Running the tests in 'tests/AffymetrixCelSet.R' failed.
-Last 13 lines of output:
-  
-      averageQuantile, normalizeQuantile, plotDensity, plotMvsA,
-      plotXYCurve
-  
-  The following object is masked from 'package:affxparser':
-  
-      writeCdf
-  
-  > 
-  > ## Empty CEL set
-  > ds <- AffymetrixCelSet()
-  Error: evaluation nested too deeply: infinite recursion / options(expressions=)?
-  Execution halted
-
 checking installed package size ... NOTE
   installed size is 1028.1Mb
   sub-directories of 1Mb or more:
@@ -496,8 +416,8 @@ checking a package with encoding  'latin1'  in an ASCII locale
 
 Examples with CPU or elapsed time > 5s
                     user system elapsed
-normalizeCurveFit 11.344  0.008  11.376
-normalizeAffine   10.988  0.003  11.013
+normalizeCurveFit 12.154  0.008  12.171
+normalizeAffine   11.733  0.008  11.751
 
 checking for hidden files and directories ... NOTE
 Found the following hidden files and directories:
