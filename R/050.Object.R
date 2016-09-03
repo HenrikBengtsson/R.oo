@@ -2157,6 +2157,22 @@ setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
 }, protected=TRUE)
 
 
+
+setMethodS3(".DollarNames", "Object", function(x, pattern="") {
+   ns <- getNamespace("utils")
+   if (exists("findMatches", mode="function", envir=ns)) {
+     findMatches <- get("findMatches", mode="function", envir=ns)
+   } else {
+     findMatches <- function(pattern, values) {
+       grep(pattern, values, value=TRUE)
+     }
+   }
+   
+   findMatches(pattern, names(x))
+}, protected=TRUE)
+
+
+
 ############################################################################
 # HISTORY:
 # 2015-01-15
