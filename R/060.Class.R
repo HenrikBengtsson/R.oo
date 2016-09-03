@@ -1473,7 +1473,7 @@ setMethodS3(".subset2Internal", "Class", function(this, name, exact=TRUE, ...) {
   }
 
   NULL;
-}) # .subset2Internal()
+}, private=TRUE) # .subset2Internal()
 
 
 
@@ -1587,7 +1587,7 @@ setMethodS3("[[<-", "Class", function(this, name, value) {
 }) # "[[<-"()
 
 
-setMethodS3(".DollarNames", "Class", .DollarNames.Object, appendVarArgs=FALSE, protected=TRUE)
+setMethodS3(".DollarNames", "Class", .DollarNames.Object, appendVarArgs=FALSE, private=TRUE)
 
 
 ############################################################################

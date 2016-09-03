@@ -1655,7 +1655,7 @@ setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) 
   assign(cacheName, lookup, envir=envir);
 
   NULL;
-}) # .subset2Internal()
+}, private=TRUE) # .subset2Internal()
 
 
 
@@ -2172,7 +2172,7 @@ setMethodS3(".DollarNames", "Object", function(x, pattern="") {
    }
    
    findMatches(pattern, names(x))
-}, appendVarArgs=FALSE, protected=TRUE)
+}, appendVarArgs=FALSE, private=TRUE)
 
 
 

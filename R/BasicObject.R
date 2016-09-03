@@ -768,7 +768,7 @@ setMethodS3(".subset2Internal", "BasicObject", function(this, name, exact=TRUE, 
 
   # 5. Otherwise, return NULL.
   NULL;
-}) # "[["()
+}, private=TRUE) # .subset2Internal()
 
 
 
@@ -862,7 +862,7 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 }) # "[[<-"()
 
 
-setMethodS3(".DollarNames", "BasicObject", .DollarNames.Object, appendVarArgs=FALSE, protected=TRUE)
+setMethodS3(".DollarNames", "BasicObject", .DollarNames.Object, appendVarArgs=FALSE, private=TRUE)
 
 
 ############################################################################

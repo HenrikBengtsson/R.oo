@@ -51,6 +51,7 @@ S3method("getClasses", "default") ## Should be renamed/removed from API
 S3method("getMethods", "default") ## Should be renamed/removed from API
 
 # BasicObject
+S3method(".subset2Internal", "BasicObject")
 S3method("$", "BasicObject")
 S3method("$<-", "BasicObject")
 S3method("[[", "BasicObject")
@@ -74,6 +75,7 @@ S3method(".DollarNames", "BasicObject")
 S3method("uses", "character")
 
 # Class
+S3method(".subset2Internal", "Class")
 S3method("$", "Class")
 S3method("$<-", "Class")
 S3method("[[", "Class")
@@ -169,6 +171,7 @@ S3method("getMessage", "InternalErrorException")
 S3method("getPackage", "InternalErrorException")
 
 # Object
+S3method(".subset2Internal", "Object")
 S3method("$", "Object")
 S3method("$<-", "Object")
 S3method("[[", "Object")

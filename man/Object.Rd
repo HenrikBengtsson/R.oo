@@ -44,6 +44,8 @@ Object(core=NA, finalize=TRUE)
 \tabular{rll}{
  \tab \code{$} \tab  -\cr
  \tab \code{$<-} \tab  -\cr
+ \tab \code{.DollarNames} \tab  -\cr
+ \tab \code{.subset2Internal} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
  \tab \code{\link[R.oo:as.character.Object]{as.character}} \tab Gets a character string representing the object.\cr
