@@ -15,6 +15,15 @@ availableCores <- function() {
   1L
 }
 
-revdep_check(threads = availableCores())
+cran <- revdep(bioconductor = FALSE)
+pkgs <- revdep(bioconductor = TRUE)
+bioc <- setdiff(pkgs, cran)
+
+## IdMappingRetrieval -> ENVISIONQuery -> rJava (installation fails)
+ignore <- "IdMappingRetrieval"
+## IdMappingAnalysis -> rChoiceDialog -> rJava (installation fails)
+ignore <- c(ignore, "IdMappingAnalysis")
+
+revdep_check(bioconductor = TRUE, ignore = ignore, threads = availableCores())
 revdep_check_save_summary()
 revdep_check_print_problems()
