@@ -1392,7 +1392,15 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # @keyword programming
 # @keyword methods
 #*/###########################################################################
+setMethodS3("$", "Class", function(this, name) {
+  .subset2Internal(this, name=name, exact=TRUE)
+})
+
 setMethodS3("[[", "Class", function(this, name, exact=TRUE) {
+  .subset2Internal(this, name=name, exact=exact)
+})
+
+setMethodS3(".subset2Internal", "Class", function(this, name, exact=TRUE, ...) {
   if (is.function(this)) {
     static <- getStaticInstance(this)
   } else {
@@ -1465,8 +1473,7 @@ setMethodS3("[[", "Class", function(this, name, exact=TRUE) {
   }
 
   NULL;
-}) # [[()
-
+}, private=TRUE) # .subset2Internal()
 
 
 
@@ -1575,17 +1582,12 @@ setMethodS3("$<-", "Class", function(this, name, value) {
 
 
 
-setMethodS3("$", "Class", function(this, name) {
-  do.call(`[[`, list(this, name))
-}) # "$"()
-
-
 setMethodS3("[[<-", "Class", function(this, name, value) {
   do.call(`$<-`, list(this, name, value))
 }) # "[[<-"()
 
 
-setMethodS3(".DollarNames", "Class", .DollarNames.Object, appendVarArgs=FALSE, protected=TRUE)
+setMethodS3(".DollarNames", "Class", .DollarNames.Object, appendVarArgs=FALSE, private=TRUE)
 
 
 ############################################################################

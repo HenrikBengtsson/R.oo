@@ -48,6 +48,8 @@ Class(name=NULL, constructor=NULL)
 \tabular{rll}{
  \tab \code{$} \tab  -\cr
  \tab \code{$<-} \tab  -\cr
+ \tab \code{.DollarNames} \tab  -\cr
+ \tab \code{.subset2Internal} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
  \tab \code{\link[R.oo:argsToString.Class]{argsToString}} \tab Gets the arguments of a function as a character string.\cr

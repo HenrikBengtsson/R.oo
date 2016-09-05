@@ -1483,7 +1483,16 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
+setMethodS3("$", "Object", function(this, name) {
+  .subset2Internal(this, name=name, exact=TRUE)
+})
+
 setMethodS3("[[", "Object", function(this, name, exact=TRUE) {
+  .subset2Internal(this, name=name, exact=exact)
+})
+
+
+setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1646,7 +1655,7 @@ setMethodS3("[[", "Object", function(this, name, exact=TRUE) {
   assign(cacheName, lookup, envir=envir);
 
   NULL;
-}) # [[()
+}, private=TRUE) # .subset2Internal()
 
 
 
@@ -1810,12 +1819,6 @@ setMethodS3("$<-", "Object", function(this, name, value) {
   invisible(this);
 }) # $<-()
 
-
-
-
-setMethodS3("$", "Object", function(this, name) {
-  UseMethod("[[")
-}) # "$"()
 
 
 setMethodS3("[[<-", "Object", function(this, name, value) {
@@ -2169,7 +2172,7 @@ setMethodS3(".DollarNames", "Object", function(x, pattern="") {
    }
    
    findMatches(pattern, names(x))
-}, appendVarArgs=FALSE, protected=TRUE)
+}, appendVarArgs=FALSE, private=TRUE)
 
 
 
