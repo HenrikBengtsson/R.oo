@@ -7,7 +7,6 @@ o Now TAB-completion works on elements of Object, BasicObject
 o Now getElement() works also for Object, Class and BasicObject.
 o [[() for Object, Class and BasicObject gained argument 'exact',
   but exact=FALSE is currently ignored and treated as exact=TRUE.
-o Now $() for Object and Class calls [[() for ditto (was vice versa).
 
 
 Version: 1.20.0 [2016-02-17]
