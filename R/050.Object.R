@@ -1460,7 +1460,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 #
 # \usage{
 #   \method{$}{Object}(this, name)
-#   \method{[[}{Object}(this, name)
+#   \method{[[}{Object}(this, name, exact=TRUE)
 # }
 #
 # \arguments{
@@ -1484,6 +1484,15 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("$", "Object", function(this, name) {
+  .subset2Internal(this, name=name, exact=TRUE)
+})
+
+setMethodS3("[[", "Object", function(this, name, exact=TRUE) {
+  .subset2Internal(this, name=name, exact=exact)
+})
+
+
+setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1646,7 +1655,7 @@ setMethodS3("$", "Object", function(this, name) {
   assign(cacheName, lookup, envir=envir);
 
   NULL;
-}) # $()
+}, private=TRUE) # .subset2Internal()
 
 
 
@@ -1810,13 +1819,6 @@ setMethodS3("$<-", "Object", function(this, name, value) {
   invisible(this);
 }) # $<-()
 
-
-
-
-setMethodS3("[[", "Object", function(this, name) {
-  UseMethod("$");
-#   "$"(this, name);
-}) # "[["()
 
 
 setMethodS3("[[<-", "Object", function(this, name, value) {
@@ -2156,6 +2158,22 @@ setMethodS3("getFieldModifiers", "Object", function(this, ...) {
 setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
   getFieldModifiers(this, ...)[[name]];
 }, protected=TRUE)
+
+
+
+setMethodS3(".DollarNames", "Object", function(x, pattern="") {
+   ns <- getNamespace("utils")
+   if (exists("findMatches", mode="function", envir=ns)) {
+     findMatches <- get("findMatches", mode="function", envir=ns)
+   } else {
+     findMatches <- function(pattern, values) {
+       grep(pattern, values, value=TRUE)
+     }
+   }
+   
+   findMatches(pattern, names(x))
+}, appendVarArgs=FALSE, private=TRUE)
+
 
 
 ############################################################################

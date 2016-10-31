@@ -1,6 +1,14 @@
 Package: R.oo
 =============
 
+Version: 1.21.0 [2016-10-30]
+o Now TAB-completion works on elements of Object, BasicObject
+  and Class.
+o Now getElement() works also for Object, Class and BasicObject.
+o [[() for Object, Class and BasicObject gained argument 'exact',
+  but exact=FALSE is currently ignored and treated as exact=TRUE.
+
+
 Version: 1.20.0 [2016-02-17]
 o Some S3 methods for R.oo classes Object and Exception would
   interfere with ditto for rJava objects that had class attributes

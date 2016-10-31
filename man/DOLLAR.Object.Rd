@@ -47,7 +47,7 @@
 
 \usage{
   \method{$}{Object}(this, name)
-  \method{[[}{Object}(this, name)
+  \method{[[}{Object}(this, name, exact=TRUE)
 }
 
 \arguments{

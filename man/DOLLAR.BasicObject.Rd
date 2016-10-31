@@ -23,7 +23,7 @@
 
 \usage{
   \method{$}{BasicObject}(this, name)
-  \method{[[}{BasicObject}(this, name)
+  \method{[[}{BasicObject}(this, name, exact=TRUE)
 }
 
 \arguments{

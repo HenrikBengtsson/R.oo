@@ -26,6 +26,7 @@ importFrom("utils", "packageDescription")
 importFrom("utils", "sessionInfo")
 importFrom("utils", "str")
 importFrom("utils", "update.packages")
+importFrom("utils", ".DollarNames")
 
 if (getRversion() >= "2.14.0") {
   importFrom("stats", "getCall")
@@ -50,6 +51,7 @@ S3method("getClasses", "default") ## Should be renamed/removed from API
 S3method("getMethods", "default") ## Should be renamed/removed from API
 
 # BasicObject
+S3method(".subset2Internal", "BasicObject")
 S3method("$", "BasicObject")
 S3method("$<-", "BasicObject")
 S3method("[[", "BasicObject")
@@ -67,11 +69,13 @@ S3method("isReferable", "BasicObject")
 S3method("newInstance", "BasicObject")
 S3method("objectSize", "BasicObject")
 S3method("print", "BasicObject")
+S3method(".DollarNames", "BasicObject")
 
 # character
 S3method("uses", "character")
 
 # Class
+S3method(".subset2Internal", "Class")
 S3method("$", "Class")
 S3method("$<-", "Class")
 S3method("[[", "Class")
@@ -99,6 +103,7 @@ S3method("isPublic", "Class")
 S3method("isStatic", "Class")
 S3method("newInstance", "Class")
 S3method("print", "Class")
+S3method(".DollarNames", "Class")
 
 # classRepresentation
 S3method("getKnownSubclasses", "classRepresentation")
@@ -166,6 +171,7 @@ S3method("getMessage", "InternalErrorException")
 S3method("getPackage", "InternalErrorException")
 
 # Object
+S3method(".subset2Internal", "Object")
 S3method("$", "Object")
 S3method("$<-", "Object")
 S3method("[[", "Object")
@@ -201,6 +207,7 @@ S3method("print", "Object")
 S3method("save", "Object")
 S3method("registerFinalizer", "Object")
 S3method("staticCode", "Object")
+S3method(".DollarNames", "Object")
 
 # Package
 S3method("as.character", "Package")

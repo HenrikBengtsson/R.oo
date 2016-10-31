@@ -19,7 +19,7 @@
 
 \usage{
   \method{$}{Class}(this, name)
-  \method{[[}{Class}(this, name)
+  \method{[[}{Class}(this, name, exact=TRUE)
 }
 
 \description{

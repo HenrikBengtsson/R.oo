@@ -44,6 +44,8 @@ Object(core=NA, finalize=TRUE)
 \tabular{rll}{
  \tab \code{$} \tab  -\cr
  \tab \code{$<-} \tab  -\cr
+ \tab \code{.DollarNames} \tab  -\cr
+ \tab \code{.subset2Internal} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
  \tab \code{\link[R.oo:as.character.Object]{as.character}} \tab Gets a character string representing the object.\cr
@@ -293,7 +295,7 @@ stopifnot(MyClass$count == length(obj))
 \author{Henrik Bengtsson}
 
 \references{
- [1] H. Bengtsson, \emph{The R.oo package - Object-Oriented Programming with References Using Standard R Code}, In Kurt Hornik, Friedrich Leisch and Achim Zeileis, editors, Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003), March 20-22, Vienna, Austria. \url{http://www.r-project.org/conferences/DSC-2003/Proceedings/}
+ [1] H. Bengtsson, \emph{The R.oo package - Object-Oriented Programming with References Using Standard R Code}, In Kurt Hornik, Friedrich Leisch and Achim Zeileis, editors, Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003), March 20-22, Vienna, Austria. \url{https://www.r-project.org/conferences/DSC-2003/Proceedings/}
  \cr
 }
 
