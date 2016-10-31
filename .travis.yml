@@ -27,7 +27,7 @@ matrix:
       env: NB='w/ covr' ## Just a label
     - os: linux
       r: devel
-      env: _R_CHECK_CRAN_INCOMING=true
+      env: _R_CHECK_CRAN_INCOMING_=true
     - os: osx
       r: oldrel
     - os: osx
