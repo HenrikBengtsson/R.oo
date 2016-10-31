@@ -1,7 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.20.0-9000 [2016-09-02]
+Version: 1.21.0 [2016-10-30]
 o Now TAB-completion works on elements of Object, BasicObject
   and Class.
 o Now getElement() works also for Object, Class and BasicObject.
