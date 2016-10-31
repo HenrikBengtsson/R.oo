@@ -2,7 +2,7 @@
 
 
 ## Installation
-R package R.oo is available on [CRAN](http://cran.r-project.org/package=R.oo) and can be installed in R as:
+R package R.oo is available on [CRAN](https://cran.r-project.org/package=R.oo) and can be installed in R as:
 ```r
 install.packages('R.oo')
 ```
@@ -22,5 +22,5 @@ This will install the package from source.
 | Resource:     | CRAN        | Travis CI       | Appveyor         |
 | ------------- | ------------------- | --------------- | ---------------- |
 | _Platforms:_  | _Multiple_          | _Linux & macOS_ | _Windows_        |
-| R CMD check   | <a href="http://cran.r-project.org/web/checks/check_results_R.oo.html"><img border="0" src="http://www.r-pkg.org/badges/version/R.oo" alt="CRAN version"></a> | <a href="https://travis-ci.org/HenrikBengtsson/R.oo"><img src="https://travis-ci.org/HenrikBengtsson/R.oo.svg" alt="Build status"></a>   | <a href="https://ci.appveyor.com/project/HenrikBengtsson/r-oo"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/R.oo?svg=true" alt="Build status"></a> |
+| R CMD check   | <a href="https://cran.r-project.org/web/checks/check_results_R.oo.html"><img border="0" src="http://www.r-pkg.org/badges/version/R.oo" alt="CRAN version"></a> | <a href="https://travis-ci.org/HenrikBengtsson/R.oo"><img src="https://travis-ci.org/HenrikBengtsson/R.oo.svg" alt="Build status"></a>   | <a href="https://ci.appveyor.com/project/HenrikBengtsson/r-oo"><img src="https://ci.appveyor.com/api/projects/status/github/HenrikBengtsson/R.oo?svg=true" alt="Build status"></a> |
 | Test coverage |                     | <a href="https://codecov.io/gh/HenrikBengtsson/R.oo"><img src="https://codecov.io/gh/HenrikBengtsson/R.oo/branch/develop/graph/badge.svg" alt="Coverage Status"/></a>     |                  |
