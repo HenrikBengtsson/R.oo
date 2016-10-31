@@ -20,6 +20,6 @@ ignore <- "IdMappingRetrieval"
 ## IdMappingAnalysis -> rChoiceDialog -> rJava (installation fails)
 ignore <- c(ignore, "IdMappingAnalysis")
 
-revdep_check(bioconductor = TRUE, ignore = ignore, threads = availableCores())
+revdep_check(recursive = FALSE, bioconductor = TRUE, ignore = ignore, threads = availableCores())
 revdep_check_save_summary()
 revdep_check_print_problems()
