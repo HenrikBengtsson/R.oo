@@ -15,10 +15,6 @@ availableCores <- function() {
   1L
 }
 
-cran <- revdep(bioconductor = FALSE)
-pkgs <- revdep(bioconductor = TRUE)
-bioc <- setdiff(pkgs, cran)
-
 ## IdMappingRetrieval -> ENVISIONQuery -> rJava (installation fails)
 ignore <- "IdMappingRetrieval"
 ## IdMappingAnalysis -> rChoiceDialog -> rJava (installation fails)
