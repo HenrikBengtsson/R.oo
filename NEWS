@@ -1,8 +1,13 @@
 Package: R.oo
 =============
 
-Version: 1.21.0-9000 [2016-10-31]
-o ...
+Version: 1.21.0-9000 [2016-12-05]
+o Now generic function clone() is always created.  This avoids the
+  recurring issues where the creation of generic R.oo::clone() was
+  skipped if another clone() generic already existed during package
+  installation from source. This would in turn cause for instance
+  the R.utils package to fail during loading (R.utils Issue #29).
+  Thanks to Matt Dowle for reporting on this and insisting on a fix.
 
 
 Version: 1.21.0 [2016-10-30]

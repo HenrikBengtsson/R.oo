@@ -204,6 +204,7 @@ setMethodS3("getInstantiationTime", "Object", function(this, ...) {
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
+setGenericS3("clone", overwrite = TRUE)
 setMethodS3("clone", "Object", function(this, ...) {
   # Copy the reference.
   clone <- this
