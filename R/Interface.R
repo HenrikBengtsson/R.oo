@@ -227,21 +227,3 @@ setMethodS3("print", "Interface", function(x, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("getFields", "Interface", function(...) { NULL }, private=TRUE)
-
-
-############################################################################
-# HISTORY:
-# 2009-10-02
-# o Added Rdoc comments.
-# o Moved to R.oo.
-# 2009-07-22
-# o Now uses(...) takes multiple Interface classes.
-# 2009-06-10
-# o Added getFields() to Interface as an ad hoc solutions to avoid
-#   print(<Interface>) throwing 'Error in UseMethod("getFields") : no
-#   applicable method for "getFields"'.
-# 2008-05-09
-# o Added uses() for a character string.
-# 2006-09-11
-# o Added trial version of an Interface class.
-############################################################################

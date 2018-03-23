@@ -119,18 +119,3 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(object), getDevelUrl(object)), force=FALSE, reload=TRUE, verbose=TRUE, ...) {
   .Defunct(msg=sprintf("update() for Package is defunct. Use update.packages(\"%s\") instead."), getName(object));
 }, protected=TRUE, deprecated=TRUE)
-
-
-############################################################################
-# HISTORY:
-# 2015-01-05
-# o CLEANUP: Defunct update() for Package.
-# 2013-09-25
-# o CLEANUP: Deprecated update() for Package.
-# 2014-02-22
-# o DEPRECATED: Deprecated gc() for Object.  Use clearCache(..., gc=TRUE)
-#   instead.
-# 2014-01-05
-# o CLEANUP: Defunct registerFinalizer() for Object.
-# o Created.
-############################################################################

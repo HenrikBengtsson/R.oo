@@ -73,18 +73,3 @@ setMethodS3("hashCode", "default", function(object, ...) {
   }
   hashCode;
 }) # hashCode.default()
-
-
-############################################################################
-# HISTORY:
-# 2013-08-23
-# o CLEANUP: Hiding hashCode() from help indices.
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2003-10-18
-# o Added Rdoc comments.
-# 2002-10-15
-# o Currently character string are treated specially and all other objects
-#   are just returned using as.integer().
-# o Extracted the code from old String.R in R.oo.
-############################################################################

@@ -46,14 +46,3 @@ setMethodS3("dimension", "default", function(object, ...) {
     size <- length(object);
   as.integer(size);
 })
-
-
-
-
-############################################################################
-# HISTORY:
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2002-10-17
-# o Created to be used by ll().
-############################################################################

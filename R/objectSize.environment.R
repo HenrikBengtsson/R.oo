@@ -63,15 +63,3 @@ setMethodS3("objectSize", "environment", function(envir, ...) {
 
   size
 })
-
-
-
-
-############################################################################
-# HISTORY:
-# 2015-01-27
-# o BUG FIX: objectSize() for environment could result in infinite
-#   recursive calls if there circular dependencies between environments.
-# 2009-10-26
-# o Added objectSize() for environments.
-############################################################################

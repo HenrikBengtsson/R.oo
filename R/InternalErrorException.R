@@ -129,22 +129,3 @@ setMethodS3("getMessage", "InternalErrorException", function(this, ...) {
   msg <- paste(msg, ". Do not forget to report that you are using R v", getVersion(Package("base")), " on a ", R.Version()$platform, " platform together with R.oo v", getVersion(R.oo), ".", sep="");
   msg;
 })
-
-
-############################################################################
-# HISTORY:
-# 2012-11-13
-# o ROBUSTNESS: Now getMessage() for InternalErrorException setups an
-#   Package("R.oo") object, instead of assuming that R.oo is loaded.
-# 2007-04-07
-# o Removed reportBug() for InternalErrorException.  Never completed/used.
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2003-12-02
-# o Bug report now generates a form process by the braju.com server.
-# 2003-04-15
-# o First trial version of a bug report system from within R that 
-#   automatically fills in the version information since that is the most
-#   commonly forgotten information.
-# o Created.
-############################################################################

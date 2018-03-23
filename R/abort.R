@@ -85,26 +85,3 @@ setMethodS3("abort", "default", function(..., call.=TRUE, domain=NULL) {
   # Now abort R.
   invokeRestart("abort");
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2012-09-11
-# o Now abort() immitates how stop() works but without the signalling
-#   of a condition.
-# 2012-09-10
-# o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
-#   invokeRestart("abort").  This avoids having to call
-#   .Internal(.signalCondition(...)).  It also means that the message
-#   outputted by abort() no longer starts with a "Error in ...:" line.
-# 2012-03-05
-# o The abort() method is hidden and is not used by any R.oo methods.
-#   Will keep it until it is fully certain that throw() for Exception
-#   will work as expected without it.
-# 2012-02-29
-# o KNOWN ISSUES: abort() for 'condition' still uses .Internal().
-# o Added abort(), which is available as default function as well as
-#   a method for 'condition' objects.
-# o Created.
-############################################################################

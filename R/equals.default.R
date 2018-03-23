@@ -49,15 +49,3 @@
 setMethodS3("equals", "default", function(object, other, ...) {
   (is.null(object) && is.null(other)) || identical(object, other);
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2004-10-18
-# o Added Rdoc comments.
-# 2002-12-08
-# o Created because it was needed for convience in the R.util::Tree class.
-############################################################################

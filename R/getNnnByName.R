@@ -61,28 +61,3 @@
 .getClassByName <- function(name, ...) {
   .getFunctionByName(name, class="Class", ..., callEnvir=as.environment(-1L));
 }
-
-
-############################################################################
-# HISTORY:
-# 2014-01-05
-# o Now .getFunctionByName() also searches all loaded namespaces at the end.
-# o Renamed .findS3Method() to .getS3Method() for consistency.
-# o CONSISTENCY: Added .getFunctionByName(), which .getClassByName() and
-#   .findS3Method() utilizes.  This makes it particularly easy to change
-#   both their behaviors.
-# o ROBUSTNESS: .getClassByName() assumed that argument 'where' was
-#   not explicitly passed.
-# 2013-08-20
-# o Now .getClassByName() searches in the order of 'where'.
-# o Added argument 'mustExist' to .getClassByName().
-# o Now option 'R.oo::Class/searchNamespaces' defaults to TRUE.
-# 2013-07-11
-# o Now internal .findS3Method() and .getClassByName() search the given
-#   environment (argument 'envir') if a secret option is enabled.
-# 2012-12-27
-# o Added argument 'envir' to .getClassByName().
-# 2012-11-23
-# o Added internal .getClassByName().
-# o Created.
-############################################################################

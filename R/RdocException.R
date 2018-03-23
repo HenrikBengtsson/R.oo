@@ -110,19 +110,3 @@ setMethodS3("as.character", "RdocException", function(x, ...) {
 setMethodS3("getSource", "RdocException", function(x, ...) {
   x$.source
 })
-
-
-############################################################################
-# HISTORY:
-# 2012-12-28
-# o Replaced all data.class(obj) with class(obj)[1].
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2004-10-17
-# o Added more Rdoc comments.
-# 2003-04-28
-# o Added the field source to refer to the source file in which the error
-#   was found.
-# 2003-04-12
-# o Created.
-############################################################################

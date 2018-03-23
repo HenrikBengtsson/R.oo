@@ -863,37 +863,3 @@ setMethodS3("[[<-", "BasicObject", function(this, name, value) {
 
 
 setMethodS3(".DollarNames", "BasicObject", .DollarNames.Object, appendVarArgs=FALSE, private=TRUE)
-
-
-############################################################################
-# HISTORY:
-# 2012-12-28
-# o Replaced all data.class(obj) with class(obj)[1].
-# 2012-12-18
-# o R CMD check for R devel no longer gives a NOTE about attach().
-# 2012-10-14
-# o Now <BasicObject>$<staticFcn>(...) calls <staticFcn>(<BasicObject>, ...).
-# 2012-06-22
-# o ROBUSTNESS: Now constructor BasicObject() is guaranteed to return
-#   an object with non-duplicated class attribute elements.
-# o GENERALIZATION: Added newInstance() for BasicObject.
-# 2011-04-02
-# o Added option "R.oo::Object/instantiationTime", which controls
-#   whether the instantiation timestamp should be set when instantiating
-#   an Object. Analogoulsy, option "R.oo::BasicObject/instantiationTime"
-#   controls ditto for a BasicObject.
-# 2008-05-28
-# o SPELL CORRECTION: Used '...instanciation' instead of 'instantiation'.
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2004-10-17
-# o Added Rdoc comments.
-# 2003-01-18
-# o Replaced all occurences of getClass() with data.class(). Will change
-#   the use of getClass() in the future to return a Class object.
-# 2002-11-05
-# o Added class(core) to the class list.
-# 2002-11-04
-# o Created to be the upcoming root class which does not create a reference
-#   object by default.
-############################################################################

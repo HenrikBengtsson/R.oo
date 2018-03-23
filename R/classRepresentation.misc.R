@@ -215,15 +215,3 @@ setMethodS3("getRdMethods", "classRepresentation", function(class, visibility=c(
   src <- paste(src, "\\emph{No methods defined}.\n", sep="")
   src;
 }, private=TRUE);
-
-
-
-#########################################################################
-# HISTORY:
-# 2005-06-08
-# o Added keyword "internal" to all methods, because of change in Rdoc.
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2004-10-17
-# o Added Rdoc comments.
-#########################################################################

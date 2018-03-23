@@ -40,22 +40,3 @@ setMethodS3("gc", "default", function(...) {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 getClasses <- appendVarArgs(getClasses)
 getMethods <- appendVarArgs(getMethods)
-
-
-
-############################################################################
-# HISTORY:
-# 2012-06-20
-# o CLEANUP: Dropped non-used adjusted getClass() generic function.
-# 2012-02-29
-# o Replaced all appendVarArgs() for 'base' functions that do .Internal()
-#   calls, because they would then appear as local functions of this
-#   package and hence not be accepted by CRAN according to their new
-#   policies.  Instead we now create "default" functions that are
-#   wrappers to the corresponding functions in the 'base' package.
-#   Extra care has to be taken for functions that have arguments whose
-#   values are dependent on the call environment/closure.
-# o CLEANUP: Dropped unused(?) 'environment <- appendVarArgs(environment)'.
-# 2005-02-15
-# o Created to please R CMD check.
-############################################################################

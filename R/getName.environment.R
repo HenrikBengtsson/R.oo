@@ -51,14 +51,3 @@ setMethodS3("getName", "environment", function(env, ...) {
 
   name;
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2008-03-25
-# o Added getName() for 'environment':s. It extends base::environmentName()
-#   to return the "pointer" if not a name.  It is used by 
-#   getInternalAddress() of Object in R.oo.
-# o Created.
-############################################################################

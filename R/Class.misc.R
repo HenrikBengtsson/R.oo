@@ -211,22 +211,3 @@ setMethodS3("getRdHierarchy", "Class", function(this, ...) {
   s <- paste(s, "\\code{", indent, "+--}", link, "\\cr\n\n", sep="");
   s;
 }, private=TRUE);
-
-
-#########################################################################
-# HISTORY:
-# 2014-03-30
-# o BUG FIX: Now getRdDeclaration(), getRdHierarchy() and getRdMethods()
-#   for Class handles also non-exported methods and Classes.
-# 2006-05-29
-# o Added support for visibility of getRdMethods().
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2004-10-22
-# o BUG FIX: getRdMethods() returned empty \tabular{rll}{} if no methods
-#   exist, but this gives an error in R CMD Rdconv.
-# 2004-10-18
-# o BUG FIX: Invalid filenames and link names are now escaped.
-# 2004-10-17
-# o Added Rdoc comments.
-#########################################################################

@@ -88,14 +88,3 @@ compileRdoc <- function(pkgname=NULL, path=pkgname, ..., verbose=TRUE) {
 
   Rdoc$compile(..., verbose=verbose);
 } # compileRdoc()
-
-
-############################################################################
-# HISTORY:
-# 2013-05-30
-# o Added argument 'path' to compileRdoc().
-# 2013-04-03
-# o CLEANUP: compileRdoc() was outputting search() and sessionInfo().
-# 2013-03-08
-# o Created.
-############################################################################
