@@ -46,9 +46,6 @@ exportPattern("^[^\\.]")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# default
-S3method("getClasses", "default") ## Should be renamed/removed from API
-S3method("getMethods", "default") ## Should be renamed/removed from API
 
 # BasicObject
 S3method(".subset2Internal", "BasicObject")
@@ -147,7 +144,7 @@ S3method("throw", "error")
 # Exception
 S3method("as.character", "Exception")
 if (getRversion() >= "2.14.0") {
-  S3method("getCall", "Exception") # Only in R (>= 2.14.0)
+  S3method("getCall", "Exception")
 }
 S3method("getCalls", "Exception")
 S3method("getLastException", "Exception")
@@ -281,3 +278,10 @@ S3method("setNameFormat", "Rdoc")
 # RdocException
 S3method("as.character", "RdocException")
 S3method("getSource", "RdocException")
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## Should be renamed/removed from API
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# default
+S3method("getClasses", "default")
+S3method("getMethods", "default")
