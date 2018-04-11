@@ -3,18 +3,18 @@
 # are used for loading this package only.
 ############################################################################
 # To please R CMD check
-attachX <- base::attach;
+attachX <- base::attach
 
 attachX(list(
   Object = function(core=NA, finalize=TRUE) {
     # Create a new environment and wrap it up as a private field of a list.
-    this <- core;
-    this.env <- new.env();
-    attr(this, ".env") <- this.env;
-    class(this) <- "Object";
+    this <- core
+    this.env <- new.env()
+    attr(this, ".env") <- this.env
+    class(this) <- "Object"
 
     if (getOption("R.oo::Object/instantiationTime", FALSE)) {
-      attr(this, "...instantiationTime", Sys.time());
+      attr(this, "...instantiationTime", Sys.time())
     }
 
     finalizer <- function(env) {
@@ -26,48 +26,48 @@ attachX(list(
 
     # Should this Object be finalized?
     if (finalize) {
-      onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
-      reg.finalizer(this.env, finalizer, onexit=onexit);
+      onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE)
+      reg.finalizer(this.env, finalizer, onexit=onexit)
     }
-    assign("...finalize", finalize, envir=this.env, inherits=FALSE);
+    assign("...finalize", finalize, envir=this.env, inherits=FALSE)
 
-    this;
+    this
   },
 
   extend = function(this, ...className, ..., ...finalize=TRUE) {
-    fields <- list(...);
-    names <- names(fields);
-    this.env <- attr(this, ".env");
+    fields <- list(...)
+    names <- names(fields)
+    this.env <- attr(this, ".env")
     for (name in names)
-      assign(name, fields[[name]], envir=this.env);
-    class(this) <- c(...className, class(this));
+      assign(name, fields[[name]], envir=this.env)
+    class(this) <- c(...className, class(this))
 
     # Override this (=unregister finalizer) according to argument
     # '...finalize' of extend()?
     if (!is.na(...finalize) && !isTRUE(...finalize)) {
       # Unregister finalizer (by registering a dummy one)
-      reg.finalizer(this.env, f=function(...) {});
+      reg.finalizer(this.env, f=function(...) {})
     }
 
-    this;
+    this
   },
 
   Class = function(name=NULL, constructor=NULL) {
     if (is.null(name)) {
-      constructor <- NA;
+      constructor <- NA
     } else if (!is.function(constructor)) {
-      throw("Argument 'constructor' must be a function: ", mode(constructor));
+      throw("Argument 'constructor' must be a function: ", mode(constructor))
     }
 
     # This is an example where one wants to have the core of an Object to not
     # be NA, but something else.
     this <- extend(Object(constructor), "Class",
       .staticInstance = NULL
-    );
+    )
 
-    this;
+    this
   }
-), name="R.oo");
+), name="R.oo")
 
 # Cleanup
-rm(list="attachX");
+rm(list="attachX")

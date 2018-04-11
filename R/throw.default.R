@@ -54,8 +54,8 @@
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("throw", "default", function(...) {
-  throw(Exception(...));
+  throw(Exception(...))
 }, overwrite=TRUE, conflict="quiet")
 
 
-## setGenericS3("throw", force=TRUE);
+## setGenericS3("throw", force=TRUE)

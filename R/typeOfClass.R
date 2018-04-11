@@ -25,29 +25,29 @@
 #*/###########################################################################
 setMethodS3("typeOfClass", "default", function(object, ...) {
   if (is.null(object))
-    return(NA_character_);
+    return(NA_character_)
 
   if (inherits(object, "classRepresentation"))
-    return("S4");
+    return("S4")
 
   if (is.character(object)) {
     if (isClass(object)) {
       if (inherits(object, "oldClass"))
-        return("S3");
-      return("S4");
+        return("S3")
+      return("S4")
     }
 
     # TO DO/FIX ME: This part only works when packages are attached.
     # /HB 2013-10-08
     if (!exists(object, mode="function"))
-      return(NA_character_);
-    object <- get(object, mode="function");
+      return(NA_character_)
+    object <- get(object, mode="function")
   }
 
   if (is.function(object) && inherits(object, "Class"))
-    return("S3-Object");
+    return("S3-Object")
 
-  return(NA_character_);
+  return(NA_character_)
 })
 
 ############################################################################

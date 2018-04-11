@@ -40,32 +40,32 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   sys.functions <- function(parents) {
-    functions <- list();
+    functions <- list()
     for (kk in seq_along(parents)) {
-      parent <- parents[kk];
-      functions[[kk]] <- sys.function(which=kk);
+      parent <- parents[kk]
+      functions[[kk]] <- sys.function(which=kk)
     }
-    functions;
+    functions
   } # sys.functions()
 
   fcnPathname <- function(call) {
-    res <- attr(call, "srcref");
-    if (is.null(res)) return("");
-    res <- attr(res, "srcfile");
-    res$filename;
+    res <- attr(call, "srcref")
+    if (is.null(res)) return("")
+    res <- attr(res, "srcfile")
+    res$filename
   } # fcnPathname()
 
   fcnName <- function(call) {
-    code <- deparse(call[1]);
-#    code <- grep("^function\\(", code, value=TRUE);
-    if (length(code) == 0) return("");
-    code <- code[1];
-    code <- gsub("\\(.*", "", code);
-    code;
+    code <- deparse(call[1])
+#    code <- grep("^function\\(", code, value=TRUE)
+    if (length(code) == 0) return("")
+    code <- code[1]
+    code <- gsub("\\(.*", "", code)
+    code
   } # fcnName()
 
   fcnBody <- function(fcn) {
-    paste(deparse(fcn), collapse="\n");
+    paste(deparse(fcn), collapse="\n")
   } # fcnBody()
 
   # "Each [...] function evaluation has a tuple,
@@ -73,29 +73,29 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
   #  coupled to it, which can be retrieved via sys.{call,function,frame}()."
   # Source: help("sys.parent", package="base")
 
-  calls <- sys.calls();
-  parents <- sys.parents();
-  functions <- sys.functions(parents);
+  calls <- sys.calls()
+  parents <- sys.parents()
+  functions <- sys.functions(parents)
 
-  stackTrace <- list();
+  stackTrace <- list()
   for (kk in seq_along(calls)) {
-    call <- calls[[kk]];
-    fcn <- functions[[kk]];
-    name <- fcnName(call);
-    body <- fcnBody(fcn);
-    envir <- environment(fcn);
-    envirName <- environmentName(envir);
-    pathname <- fcnPathname(call);
+    call <- calls[[kk]]
+    fcn <- functions[[kk]]
+    name <- fcnName(call)
+    body <- fcnBody(fcn)
+    envir <- environment(fcn)
+    envirName <- environmentName(envir)
+    pathname <- fcnPathname(call)
     trace <- list(
       call=call,
       name=name,
       body=body,
       envir=envirName,
       pathname=pathname
-    );
-    stackTrace[[kk]] <- trace;
+    )
+    stackTrace[[kk]] <- trace
   } # for (kk ...)
-  rm(list=c("calls", "parents", "functions"));
+  rm(list=c("calls", "parents", "functions"))
 
   # The new class is Exception, but for convenience it should also
   # derive from 'try-error', which is used by try() etc.
@@ -143,9 +143,9 @@ setConstructorS3("Exception", function(..., sep="", collapse=", ") {
 #*/###########################################################################
 setMethodS3("as.character", "Exception", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  paste("[", getWhen(this), "] ", class(this)[1], ": ", getMessage(this), sep="");
+  paste("[", getWhen(this), "] ", class(this)[1], ": ", getMessage(this), sep="")
 })
 
 
@@ -184,7 +184,7 @@ setMethodS3("as.character", "Exception", function(x, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("print", "Exception", function(x, ...) {
-  cat(getStackTraceString(x, ...));
+  cat(getStackTraceString(x, ...))
 })
 
 
@@ -222,7 +222,7 @@ setMethodS3("print", "Exception", function(x, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getWhen", "Exception", function(this, ...) {
-  this$.when;
+  this$.when
 })
 
 
@@ -261,7 +261,7 @@ setMethodS3("getWhen", "Exception", function(this, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getMessage", "Exception", function(this, ...) {
-  this$.msg;
+  this$.msg
 })
 
 
@@ -305,12 +305,12 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Record this Exception
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  Exception$.lastException <- this;
+  Exception$.lastException <- this
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Signal the exception as a condition
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  signalCondition(this);
+  signalCondition(this)
 
   # Question: Are there ways to catch the above signals, and then via
   # some revoking mechanism continue below?!? /HB 2012-03-05
@@ -320,8 +320,8 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # If not caught by any handlers, output message containing the stack trace
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Output an error message containing the stacktrace
-  msg <- getStackTraceString(this, ...);
-  cat(msg, file=stderr());
+  msg <- getStackTraceString(this, ...)
+  cat(msg, file=stderr())
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -329,7 +329,7 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Alt 1: Abort the current evaluation, but unfortunately abort()
   # is not guaranteed to not be "caught", cf. help("abort").
-  # abort();
+  # abort()
 
   # Alt 2: An alternative is to call stop() again, which will resignal
   # a condition and then abort.  The resignalled condition should not
@@ -337,9 +337,9 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # caught by the above signalling.  This is based on the assumption
   # that it is not possible to continue after the above signal,
   # iff it is caught. /HB 2012-03-05
-  cond <- simpleCondition(getMessage(this));
-  class(cond) <- "condition";
-  stop(cond);
+  cond <- simpleCondition(getMessage(this))
+  class(cond) <- "condition"
+  stop(cond)
 }, overwrite=TRUE, conflict="quiet")
 
 
@@ -377,8 +377,8 @@ setMethodS3("throw", "Exception", function(this, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getLastException", "Exception", function(this, ...) {
-  Exception$.lastException;
-}, static=TRUE);
+  Exception$.lastException
+}, static=TRUE)
 
 
 
@@ -418,33 +418,33 @@ setMethodS3("getLastException", "Exception", function(this, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getStackTrace", "Exception", function(this, cleanup=getOption("R.oo::Exception/getStackTrace/args/cleanup", TRUE), ...) {
-  stackTrace <- this$.stackTrace;
-  names(stackTrace) <- seq_along(stackTrace);
+  stackTrace <- this$.stackTrace
+  names(stackTrace) <- seq_along(stackTrace)
 
   # Remove "uninformative" steps, e.g. tryCatch()
   if (cleanup) {
     # (a) Drop anything before doTryCatch()
-    names <- sapply(stackTrace, FUN=function(x) x$name);
-    idxs <- which(is.element(names, c("doTryCatch")));
+    names <- sapply(stackTrace, FUN=function(x) x$name)
+    idxs <- which(is.element(names, c("doTryCatch")))
     if (length(idxs) > 0) {
-      idx <- idxs[length(idxs)];
-      keep <- seq(from=idx+1L, to=length(stackTrace));
-      stackTrace <- stackTrace[keep];
+      idx <- idxs[length(idxs)]
+      keep <- seq(from=idx+1L, to=length(stackTrace))
+      stackTrace <- stackTrace[keep]
     }
 
     # (b) Drop anything after throw()
-    names <- sapply(stackTrace, FUN=function(x) x$name);
-    idxs <- which(is.element(names, "throw"));
+    names <- sapply(stackTrace, FUN=function(x) x$name)
+    idxs <- which(is.element(names, "throw"))
     if (length(idxs) > 0) {
-      idx <- idxs[1L];
-      keep <- seq_len(idx-1L);
-      stackTrace <- stackTrace[keep];
+      idx <- idxs[1L]
+      keep <- seq_len(idx-1L)
+      stackTrace <- stackTrace[keep]
     }
   }
 
-  stackTrace <- rev(stackTrace);
+  stackTrace <- rev(stackTrace)
 
-  stackTrace;
+  stackTrace
 })
 
 
@@ -484,19 +484,19 @@ setMethodS3("getStackTrace", "Exception", function(this, cleanup=getOption("R.oo
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getCalls", "Exception", function(this, ...) {
-  stackTrace <- getStackTrace(this, ...);
-  calls <- lapply(stackTrace, FUN=function(x) x$call);
-  calls;
+  stackTrace <- getStackTrace(this, ...)
+  calls <- lapply(stackTrace, FUN=function(x) x$call)
+  calls
 })
 
 setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
   # To please R CMD check (R >= 2.14.0)
-  this <- x;
-  calls <- getCalls(this, ...);
+  this <- x
+  calls <- getCalls(this, ...)
   if (length(calls) == 0) {
-    return(NULL);
+    return(NULL)
   }
-  calls[[which]];
+  calls[[which]]
 })
 
 
@@ -533,64 +533,64 @@ setMethodS3("getCall", "Exception", function(x, which=1L, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE) {
-  head <- sprintf("%s\n", as.character(this));
+  head <- sprintf("%s\n", as.character(this))
 
-  stackTrace <- getStackTrace(this, ...);
+  stackTrace <- getStackTrace(this, ...)
 
   if (length(stackTrace) == 0) {
-    return(head);
+    return(head)
   }
 
-  calls <- sapply(stackTrace, FUN=function(trace) trace$call);
-  res <- character(length=length(calls));
+  calls <- sapply(stackTrace, FUN=function(trace) trace$call)
+  res <- character(length=length(calls))
   for (kk in seq_along(calls)) {
-    call <- calls[[kk]];
-    rows <- deparse(call);
+    call <- calls[[kk]]
+    rows <- deparse(call)
     if (details) {
-      prefix1 <- sprintf("  at #%02d. ", as.integer(names(calls)[kk]));
+      prefix1 <- sprintf("  at #%02d. ", as.integer(names(calls)[kk]))
     } else {
-      prefix1 <- "  at ";
+      prefix1 <- "  at "
     }
-    prefixT <- paste(rep(" ", times=nchar(prefix1)), collapse="");
-    prefix <- rep(prefixT, times=length(rows));
-    prefix[1] <- prefix1;
-    rows <- sprintf("%s%s", prefix, rows);
-    res[kk] <- paste(rows, collapse="\n");
+    prefixT <- paste(rep(" ", times=nchar(prefix1)), collapse="")
+    prefix <- rep(prefixT, times=length(rows))
+    prefix[1] <- prefix1
+    rows <- sprintf("%s%s", prefix, rows)
+    res[kk] <- paste(rows, collapse="\n")
   } # for (kk ...)
 
   if (details) {
     locs <- sapply(stackTrace, FUN=function(trace) {
-      name <- trace$name;
-      envir <- trace$envir;
-      s <- sprintf("%s()", name);
+      name <- trace$name
+      envir <- trace$envir
+      s <- sprintf("%s()", name)
       if (envir == "") {
-        s <- sprintf("%s is local of the calling function", s);
+        s <- sprintf("%s is local of the calling function", s)
       } else {
-        s <- sprintf("%s is in environment '%s'", s, envir);
+        s <- sprintf("%s is in environment '%s'", s, envir)
       }
-      s;
-    });
+      s
+    })
 
-    res <- sprintf("%s\n          - %s", res, locs);
+    res <- sprintf("%s\n          - %s", res, locs)
 
     pathnames <- sapply(stackTrace, FUN=function(trace) {
-      trace$pathname;
-    });
-    pathnamesT <- sprintf("\n          - originating from '%s'", pathnames);
-    pathnamesT[nchar(pathnames) == 0] <- "";
-    res <- sprintf("%s%s", res, pathnamesT);
+      trace$pathname
+    })
+    pathnamesT <- sprintf("\n          - originating from '%s'", pathnames)
+    pathnamesT[nchar(pathnames) == 0] <- ""
+    res <- sprintf("%s%s", res, pathnamesT)
 
-    res <- sprintf("%s\n", res);
+    res <- sprintf("%s\n", res)
   } # if (details)
-  res <- paste(res, collapse="\n");
+  res <- paste(res, collapse="\n")
 
   if (details) {
-    res <- sprintf("%s\n%s\n", head, res);
+    res <- sprintf("%s\n%s\n", head, res)
   } else {
-    res <- sprintf("%s%s\n", head, res);
+    res <- sprintf("%s%s\n", head, res)
   }
 
-  res;
+  res
 }, private=TRUE)
 
 
@@ -630,5 +630,5 @@ setMethodS3("getStackTraceString", "Exception", function(this, ..., details=TRUE
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("printStackTrace", "Exception", function(this, ...) {
-  cat(getStackTraceString(this, ...));
+  cat(getStackTraceString(this, ...))
 })

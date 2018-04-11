@@ -34,19 +34,19 @@
 #*/###########################################################################
 setMethodS3("extend", "default", function(this, ...className, ...) {
   # Add class '...className' to the class vector
-  class(this) <- unique(c(...className, class(this)));
+  class(this) <- unique(c(...className, class(this)))
 
   # Add attributes
-  args <- list(...);
-  names <- names(args);
+  args <- list(...)
+  names <- names(args)
   for (kk in seq_along(args)) {
-    name <- names[kk];
+    name <- names[kk]
     if (name == "class")
-      throw("Trying to set class attribute: ", as.character(this));
-    arg <- args[[kk]];
-    attr(this, name) <- arg;
+      throw("Trying to set class attribute: ", as.character(this))
+    arg <- args[[kk]]
+    attr(this, name) <- arg
   }
 
   # Return modified object
-  this;
+  this
 }, conflict="quiet")

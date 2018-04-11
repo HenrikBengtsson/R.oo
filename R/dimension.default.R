@@ -40,9 +40,9 @@
 #*/###########################################################################
 setMethodS3("dimension", "default", function(object, ...) {
   if (is.function(object))
-    return(NULL);
-  size <- dim(object);
+    return(NULL)
+  size <- dim(object)
   if (is.null(size))
-    size <- length(object);
-  as.integer(size);
+    size <- length(object)
+  as.integer(size)
 })

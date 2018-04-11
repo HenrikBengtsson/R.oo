@@ -48,40 +48,40 @@
 # @keyword internal
 #*/###########################################################################
 setMethodS3("abort", "condition", function(cond, ..., call.=TRUE, domain=NULL) {
-  message <- conditionMessage(cond);
-  call <- conditionCall(cond);
+  message <- conditionMessage(cond)
+  call <- conditionCall(cond)
   if (is.null(call)) {
-    msg <- sprintf("%s", .makeMessage("Abort", domain=domain));
+    msg <- sprintf("%s", .makeMessage("Abort", domain=domain))
   } else {
-    call <- deparse(call);
-    msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call);
+    call <- deparse(call)
+    msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call)
   }
-  msg <- sprintf("%s: %s\n", msg, message);
-  cat(msg, file=stderr());
-  abort();
+  msg <- sprintf("%s: %s\n", msg, message)
+  cat(msg, file=stderr())
+  abort()
 })
 
 setMethodS3("abort", "default", function(..., call.=TRUE, domain=NULL) {
-  args <- list(...);
+  args <- list(...)
   if (nargs() > 0) {
-    message <- .makeMessage(..., domain=domain);
-    nframe <- sys.nframe();
-    if (nframe <= 2) call. <- FALSE;
+    message <- .makeMessage(..., domain=domain)
+    nframe <- sys.nframe()
+    if (nframe <= 2) call. <- FALSE
     if (call.) {
-      call <- sys.call(which=nframe-2L);
+      call <- sys.call(which=nframe-2L)
       if (is.null(call)) {
-        msg <- sprintf("%s", .makeMessage("Abort", domain=domain));
+        msg <- sprintf("%s", .makeMessage("Abort", domain=domain))
       } else {
-        call <- deparse(call);
-        msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call);
+        call <- deparse(call)
+        msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call)
       }
-      msg <- sprintf("%s: %s\n", msg, message);
+      msg <- sprintf("%s: %s\n", msg, message)
     } else {
-      msg <- sprintf("%s: %s\n", .makeMessage("Abort", domain=domain), message);
+      msg <- sprintf("%s: %s\n", .makeMessage("Abort", domain=domain), message)
     }
-    cat(msg, file=stderr());
+    cat(msg, file=stderr())
   }
 
   # Now abort R.
-  invokeRestart("abort");
+  invokeRestart("abort")
 })

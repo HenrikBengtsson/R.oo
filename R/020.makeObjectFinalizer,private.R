@@ -39,70 +39,70 @@
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   getObjectInfo <- function(this) {
-    env <- attr(this, ".env");
-    if (is.null(env)) return(NA_character_);
+    env <- attr(this, ".env")
+    if (is.null(env)) return(NA_character_)
 
     # base::environmentName() was added to R v2.5.0
     if (exists("environmentName", mode="function", envir=getNamespace("base"), inherits=FALSE)) {
-      name <- environmentName(env);
+      name <- environmentName(env)
     } else {
-      name <- "";
+      name <- ""
     }
 
     if (name == "") {
       # Cannot assume 'utils' is loaded
-      name <- utils::capture.output(print.default(env));
+      name <- utils::capture.output(print.default(env))
       name <- name[1L]; # Just in case
-      name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
+      name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name)
     }
 
-    className <- class(this)[1L];
-    name <- paste(className, ": ", name, sep="");
+    className <- class(this)[1L]
+    name <- paste(className, ": ", name, sep="")
     # More debug information
     if (className == "Package") {
-      name <- sprintf("%s {.name='%s'}", name, env$.name);
+      name <- sprintf("%s {.name='%s'}", name, env$.name)
     }
 
-    name;
+    name
   } # getObjectInfo()
 
   isLibraryReentrant <- function() {
     getRversion2 <- function() {
-      rVer <- R.version[c("major", "minor", "status", "svn rev")];
-      names(rVer)[3:4] <- c("patched", "rev");
-      rVer$patched <- ifelse(identical(rVer$patched, "Patched"), 1L, 0L);
-      rVer$rev <- ifelse(is.null(rVer$rev), 0L, rVer$rev);
-      rVer <- lapply(rVer, FUN=as.numeric);
-      rVer;
+      rVer <- R.version[c("major", "minor", "status", "svn rev")]
+      names(rVer)[3:4] <- c("patched", "rev")
+      rVer$patched <- ifelse(identical(rVer$patched, "Patched"), 1L, 0L)
+      rVer$rev <- ifelse(is.null(rVer$rev), 0L, rVer$rev)
+      rVer <- lapply(rVer, FUN=as.numeric)
+      rVer
     } # getRversion2()
 
-    rVer <- getRversion2();
-    if (rVer$major >= 3) return(TRUE);
-    if (rVer$major < 2) return(FALSE);
-    if (rVer$minor >= 15.3) return(TRUE);
-    if (rVer$minor < 15.2) return(FALSE);
-    if (rVer$patched < 1) return(FALSE);
-    if (rVer$rev < 61487) return(FALSE);
-    TRUE;
+    rVer <- getRversion2()
+    if (rVer$major >= 3) return(TRUE)
+    if (rVer$major < 2) return(FALSE)
+    if (rVer$minor >= 15.3) return(TRUE)
+    if (rVer$minor < 15.2) return(FALSE)
+    if (rVer$patched < 1) return(FALSE)
+    if (rVer$rev < 61487) return(FALSE)
+    TRUE
   } # isLibraryReentrant()
 
   isParseCalled <- function() {
-    calls <- sys.calls();
-    if (length(calls) == 0L) return(FALSE);
+    calls <- sys.calls()
+    if (length(calls) == 0L) return(FALSE)
     for (kk in seq_along(calls)) {
-      call <- calls[[kk]];
-      name <- call[[1L]];
-      if (!is.symbol(name)) next;
+      call <- calls[[kk]]
+      name <- call[[1L]]
+      if (!is.symbol(name)) next
       if (name == "do.call") {
-        name <- call[[2L]];
-        if (!is.symbol(name)) next;
-        name <- as.character(name);
+        name <- call[[2L]]
+        if (!is.symbol(name)) next
+        name <- as.character(name)
       }
       if (name == "parse") {
-        return(TRUE);
+        return(TRUE)
       }
     } # for (kk ...)
-    FALSE;
+    FALSE
   } # isParseCalled()
 
   isLibraryActive <- function() {
@@ -110,40 +110,40 @@
     tryCatch({
       # Identify the environment/frame of interest by making sure
       # it at least contains all the arguments of source().
-      argsToFind <- names(formals(base::library));
+      argsToFind <- names(formals(base::library))
 
       # Scan the call frames/environments backwards...
-      srcfileList <- list();
+      srcfileList <- list()
       for (ff in sys.nframe():0) {
-        env <- sys.frame(ff);
+        env <- sys.frame(ff)
 
         # Does the environment look like a library() environment?
-        exist <- sapply(argsToFind, FUN=exists, envir=env, inherits=FALSE);
+        exist <- sapply(argsToFind, FUN=exists, envir=env, inherits=FALSE)
         if (!all(exist)) {
           # Nope, then skip to the next one
-          next;
+          next
         }
 
-        return(TRUE);
+        return(TRUE)
       } # for (ff ...)
-    }, error = function() {});
+    }, error = function() {})
 
-    FALSE;
+    FALSE
   } # isLibraryActive()
 
   isRooLoading <- function() {
     for (n in sys.nframe():1) {
-      env <- sys.frame(n);
+      env <- sys.frame(n)
       if (exists("__NameSpacesLoading__", envir=env, inherits=FALSE)) {
-        pkgs <- get("__NameSpacesLoading__", envir=env, inherits=FALSE);
-        if (is.element("R.oo", pkgs)) return(TRUE);
+        pkgs <- get("__NameSpacesLoading__", envir=env, inherits=FALSE)
+        if (is.element("R.oo", pkgs)) return(TRUE)
       }
     } # for (n ...)
-    FALSE;
+    FALSE
   } # isRooLoading()
 
   isRooLoaded <- function() {
-    is.element("R.oo", loadedNamespaces());
+    is.element("R.oo", loadedNamespaces())
   } # isRooLoaded()
 
   # NOTE: The finalizer() depends on the 'this' object. # /HB 2011-04-02
@@ -152,42 +152,42 @@
   # which might be in a subclass of a different package that is still
   # loaded.
   finalizer <- function(env) {
-    debug <- FALSE;
-    if (debug) message(sprintf("finalizer(): reloadRoo=%s", reloadRoo));
+    debug <- FALSE
+    if (debug) message(sprintf("finalizer(): reloadRoo=%s", reloadRoo))
     if (debug) message(paste(capture.output(print(sessionInfo())), collapse="\n"))
     # Classes for which it is known that finalizer() does nothing
     if (is.element(class(this)[1L], c("Object", "Class", "Package"))) {
-      return();
+      return()
     }
 
     # Do nothing if R.oo is being loaded
-    if (isRooLoading()) return();
+    if (isRooLoading()) return()
 
     # Is R.oo::finalize() available?
     if (isRooLoaded()) {
-      if (debug) message(sprintf("finalizer(): Call finalize()..."));
-      R.oo::finalize(this);
-      if (debug) message(sprintf("finalizer(): Call finalize()...done"));
-      return();
+      if (debug) message(sprintf("finalizer(): Call finalize()..."))
+      R.oo::finalize(this)
+      if (debug) message(sprintf("finalizer(): Call finalize()...done"))
+      return()
     }
 
     # Nothing to do?
-    if (!reloadRoo) return();
+    if (!reloadRoo) return()
 
-    warning(sprintf("Object was not be finalize():d properly because the R.oo package was not loaded: %s", getObjectInfo(this)));
-    return();
+    warning(sprintf("Object was not be finalize():d properly because the R.oo package was not loaded: %s", getObjectInfo(this)))
+    return()
 
     # Skip the finalizer()?
-    genv <- globalenv();
+    genv <- globalenv()
     if (exists("...R.oo::skipFinalizer", envir=genv, inherits=FALSE)) {
-      if (debug) message(sprintf("Skipping finalizer()."));
-      return();
+      if (debug) message(sprintf("Skipping finalizer()."))
+      return()
     }
 
     # Skip because library() is active?
     if (isLibraryActive()) {
-      warning(sprintf("Detected finalization of Object while library() is working on attaching a package and the R.oo package is not loaded.  This is most likely due to a *temporary* Object allocated in .onLoad()/.onAttach(), which is not allowed. Finalization of Object will *not* be skipped: %s", getObjectInfo(this)));
-      return();
+      warning(sprintf("Detected finalization of Object while library() is working on attaching a package and the R.oo package is not loaded.  This is most likely due to a *temporary* Object allocated in .onLoad()/.onAttach(), which is not allowed. Finalization of Object will *not* be skipped: %s", getObjectInfo(this)))
+      return()
     }
 
     # Check if base::library() is reentrant...
@@ -197,38 +197,38 @@
       # because it will in turn call parse() potentially causing R to
       # crash.
       if (isParseCalled()) {
-        warning("Object may not be finalize():d properly because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getObjectInfo(this));
-        return();
+        warning("Object may not be finalize():d properly because the R.oo package was not loaded and will not be reloaded, because if done it may crash R (running version of R is prior to R v2.15.2 Patched r61487 and the garbage collection was triggered by base::parse()): ", getObjectInfo(this))
+        return()
       }
     }
 
-    warnMsg <- "";
+    warnMsg <- ""
     # (1) Load the 'R.oo' package
-    if (debug) message(sprintf("finalizer(): Reloaded R.oo..."));
+    if (debug) message(sprintf("finalizer(): Reloaded R.oo..."))
     suppressMessages({
       warnMsg <- suppressWarnings({
-        loadNamespace("R.oo");
-      });
-    });
-    if (debug) message(sprintf("finalizer(): Reloading R.oo...done"));
+        loadNamespace("R.oo")
+      })
+    })
+    if (debug) message(sprintf("finalizer(): Reloading R.oo...done"))
     if (is.character(warnMsg)) {
-      warnMsg <- sprintf(" (with warning %s)", warnMsg);
+      warnMsg <- sprintf(" (with warning %s)", warnMsg)
     } else {
-      warnMsg <- "";
+      warnMsg <- ""
     }
 
     # For unknown reasons R.oo might not have been loaded.
     if (!isRooLoaded()) {
-      warning(sprintf("Object may not be finalize():d properly because the R.oo package failed to reload%s: %s", warnMsg, getObjectInfo(this)));
-      return();
+      warning(sprintf("Object may not be finalize():d properly because the R.oo package failed to reload%s: %s", warnMsg, getObjectInfo(this)))
+      return()
     }
 
     # Make sure to unload R.oo at the end
-    on.exit(unloadNamespace("R.oo"));
+    on.exit(unloadNamespace("R.oo"))
 
-    if (debug) message(sprintf("finalizer(): Call finalize()..."));
-    R.oo::finalize(this);
-    if (debug) message(sprintf("finalizer(): Call finalize()...done"));
+    if (debug) message(sprintf("finalizer(): Call finalize()..."))
+    R.oo::finalize(this)
+    if (debug) message(sprintf("finalizer(): Call finalize()...done"))
 
     # NOTE! Before unloading R.oo again, we have to make sure the Object:s
     # allocated by R.oo itself (e.g. an Package object), will not reload
@@ -238,18 +238,18 @@
     # then remove the dummy finalize() function.
     # (2) Put a dummy finalize() function on the search path.
     if (!exists("...R.oo::skipFinalizer", envir=genv, inherits=FALSE)) {
-      assign("...R.oo::skipFinalizer", TRUE, envir=genv, inherits=FALSE);
+      assign("...R.oo::skipFinalizer", TRUE, envir=genv, inherits=FALSE)
       on.exit({
-        rm(list="...R.oo::skipFinalizer", envir=genv, inherits=FALSE);
+        rm(list="...R.oo::skipFinalizer", envir=genv, inherits=FALSE)
       }, add=TRUE)
     }
 
     # (4) Force all R.oo's Object:s to be finalize():ed.
-    if (debug) message(sprintf("finalizer(): Calling base::gc()"));
-    base::gc();
+    if (debug) message(sprintf("finalizer(): Calling base::gc()"))
+    base::gc()
 
-    if (debug) message(sprintf("finalizer(): done"));
+    if (debug) message(sprintf("finalizer(): done"))
   } # finalizer()
 
-  return(finalizer);
+  return(finalizer)
 } # .makeObjectFinalizer()

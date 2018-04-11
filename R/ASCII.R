@@ -66,7 +66,7 @@ ASCII <- c(
   "\350","\351","\352","\353","\354","\355","\356","\357", # 350-357
   "\360","\361","\362","\363","\364","\365","\366","\367", # 360-367
   "\370","\371","\372","\373","\374","\375","\376","\377"  # 370-377
-);
+)
 
 # We removed ASCII 0x00, because it represents an empty string in
 # R v2.7.0 (and maybe some earlier version) and in R v2.8.0 we will get
@@ -74,26 +74,26 @@ ASCII <- c(
 # for version prior to R v2.7.0.  See also email from Brian Ripley
 # on 2008-04-23 on this problem.
 if (compareVersion(as.character(getRversion()), "2.7.0") < 0) {
-  ASCII[1] <- eval(parse(text="\"\\000\""));
+  ASCII[1] <- eval(parse(text="\"\\000\""))
 }
 
 # Alternatively one can do like this. Idea by Peter Dalgaard,
 # Dept. of Biostatistics, University of Copenhagen, Denmark.
 # ASCII <- c("\000", sapply(1:255, function(i) parse(text=paste("\"\\",
-#                    structure(i,class="octmode"), "\"", sep=""))[[1]]) );
+#                    structure(i,class="octmode"), "\"", sep=""))[[1]]) )
 
 # Some special ASCII characters.
-ASCII.BEL <- "\007";
-ASCII.BS  <- "\010";
-ASCII.HT  <- "\011";
-ASCII.LF  <- "\012";
-ASCII.FF  <- "\014";
-ASCII.CR  <- "\015";
-ASCII.SO  <- "\016";
-ASCII.SI  <- "\017";
-ASCII.DC1 <- "\021";
-ASCII.DC3 <- "\023";
-ASCII.ESC <- "\033";
+ASCII.BEL <- "\007"
+ASCII.BS  <- "\010"
+ASCII.HT  <- "\011"
+ASCII.LF  <- "\012"
+ASCII.FF  <- "\014"
+ASCII.CR  <- "\015"
+ASCII.SO  <- "\016"
+ASCII.SI  <- "\017"
+ASCII.DC1 <- "\021"
+ASCII.DC3 <- "\023"
+ASCII.ESC <- "\033"
 
 
 #########################################################################/**
@@ -136,7 +136,7 @@ ASCII.ESC <- "\033";
 # @keyword internal
 #*/#########################################################################
 setMethodS3("charToInt", "default", function(ch, ...) {
-  match(ch, ASCII) - 1L;
+  match(ch, ASCII) - 1L
 })
 
 
@@ -183,5 +183,5 @@ setMethodS3("charToInt", "default", function(ch, ...) {
 # @keyword internal
 #*/#########################################################################
 setMethodS3("intToChar", "default", function(i, ...) {
-  ASCII[i %% 256 + 1];
+  ASCII[i %% 256 + 1]
 })

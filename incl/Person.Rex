@@ -4,8 +4,8 @@
 # with methods print(), getName(), setName(), getAge() and setAge().
 #########################################################################
 setConstructorS3("Person", function(name, age) {
-  if (missing(name)) name <- NA;
-  if (missing(age))  age <- NA;
+  if (missing(name)) name <- NA
+  if (missing(age))  age <- NA
 
   extend(Object(), "Person", 
     .name=name, 
@@ -15,39 +15,39 @@ setConstructorS3("Person", function(name, age) {
 
 
 setMethodS3("as.character", "Person", function(this, ...) {
-  paste(this$.name, "is", as.integer(this$.age), "years old.");
+  paste(this$.name, "is", as.integer(this$.age), "years old.")
 })
 
 setMethodS3("equals", "Person", function(this, obj, ...) {
   ( identical(data.class(this), data.class(obj)) &&
     identical(this$getName(), obj$getName()) &&
-    identical(this$getAge() , obj$getAge() )    );
+    identical(this$getAge() , obj$getAge() )    )
 })
 
 setMethodS3("hashCode", "Person", function(this, ...) {
   # Get the hashCode() of the '.name' and the '.age' fields
   # using hashCode.default().
-  hashCode(this$.name) * hashCode(this$.age);
+  hashCode(this$.name) * hashCode(this$.age)
 })
 
 setMethodS3("getName", "Person", function(this, ...) {
-  this$.name;
+  this$.name
 })
 
 setMethodS3("setName", "Person", function(this, newName, ...) {
-  throw("It is not possible to change the name of a Person.");
+  throw("It is not possible to change the name of a Person.")
 })
 
 setMethodS3("getAge", "Person", function(this, ...) {
-  this$.age;
+  this$.age
 })
 
 setMethodS3("setAge", "Person", function(this, newAge, ...) {
   if (!is.numeric(newAge))
-    throw("Age must be numeric: ", newAge);
+    throw("Age must be numeric: ", newAge)
   if (newAge < 0)
-    throw("Trying to set a negative age: ", newAge);
-  this$.age <- newAge;
+    throw("Trying to set a negative age: ", newAge)
+  this$.age <- newAge
 })
 
 

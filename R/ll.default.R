@@ -87,89 +87,89 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   # AD HOC: Workaround to make sure property functions can be found.
   # This is because they are currently search for via the global
   # environment. /HB 2013-07-11
-  require("R.oo") || throw("Package not loaded: R.oo");
+  require("R.oo") || throw("Package not loaded: R.oo")
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'envir':
   if (is.numeric(envir)) {
-    envir <- as.environment(envir);
+    envir <- as.environment(envir)
   } else if (is.character(envir)) {
-    search <- gsub("^package:", "", search());
-    pos <- which(search == envir);
-    envir <- as.environment(pos);
+    search <- gsub("^package:", "", search())
+    pos <- which(search == envir)
+    envir <- as.environment(pos)
   }
 
-  members <- ls(envir=envir, all.names=private);
+  members <- ls(envir=envir, all.names=private)
 
   # Any members at all?
   if (length(members) == 0L)
-    return(data.frame());
+    return(data.frame())
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Keep members whose names match the pattern
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is.null(pattern)) {
-    matches <- regexpr(pattern, members);
-    members <- members[matches != -1L];
+    matches <- regexpr(pattern, members)
+    members <- members[matches != -1L]
     if (length(members) == 0L)
-      return(data.frame());
+      return(data.frame())
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Filter out members that to not match the search criteria according to "...".
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  args <- list(...);
+  args <- list(...)
   if (length(args) > 0L) {
     # Precreate a function to filter out members to be returned
-    names <- names(args);
-    expr <- NULL;
+    names <- names(args)
+    expr <- NULL
     for (kk in seq_along(args)) {
-      value <- args[[kk]];
+      value <- args[[kk]]
       if (is.null(value)) {
-        e <- substitute(is.null(fcn(..object)), list(fcn=as.name(names[kk])));
+        e <- substitute(is.null(fcn(..object)), list(fcn=as.name(names[kk])))
       } else {
         e <- substitute(is.element(fcn(..object), value),
-                        list(fcn=as.name(names[kk]), value=value));
+                        list(fcn=as.name(names[kk]), value=value))
       }
       if (is.null(expr)) {
-        expr <- e;
+        expr <- e
       } else {
-        expr <- substitute(expr && e, list(expr=expr, e=e));
+        expr <- substitute(expr && e, list(expr=expr, e=e))
       }
     } # for (kk ...)
 
 #    expr <- substitute(filter <- function(name) {
 #      eval(substitute(expr, list(..object=as.name(name))), envir=envir)
-#    }, list(expr=expr, envir=envir));
+#    }, list(expr=expr, envir=envir))
     # Now, create the filter() function
-#    eval(expr);
+#    eval(expr)
 
     # Replaces the above construct.
     filter <- eval(substitute({
       function(name) {
-        ..object <- get(name, envir=envir);
+        ..object <- get(name, envir=envir)
         eval(expr, envir=envir)
       }
-    }, list(expr=expr)));
+    }, list(expr=expr)))
 
     # Filter out members
-    keep <- c();
+    keep <- c()
     for (member in members) {
       # Keep the member or not?
       if (filter(member))
-  	keep <- c(keep, member);
+  	keep <- c(keep, member)
     }
     if (length(keep) == 0L)
-      return(data.frame());
-    members <- keep;
+      return(data.frame())
+    members <- keep
   }
 
   if (length(properties) == 0L || identical(properties, ""))
-    return(data.frame(member=members));
+    return(data.frame(member=members))
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -177,52 +177,52 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
   # member and the properties as character strings.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Precreate a function returning a row in the resulting data frame
-  expr <- expression();
+  expr <- expression()
   for (property in properties) {
     e <- substitute({
       ..exp <- substitute(propertyFcn(object),
-              list(propertyFcn=as.name(property), object=..object));
-      ..value <- eval(..exp, envir=globalenv());
+              list(propertyFcn=as.name(property), object=..object))
+      ..value <- eval(..exp, envir=globalenv())
   	  if (is.null(..value)) {
-  	    ..value <- "NULL";
+  	    ..value <- "NULL"
   	  } else if (is.vector(..value) && length(..value) > 1L) {
-  	    ..value <- sprintf("c(%s)", paste(..value, collapse=","));
+  	    ..value <- sprintf("c(%s)", paste(..value, collapse=","))
   	  } else if (is.list(..value)) {
-  	    ..value <- unlist(..value);
+  	    ..value <- unlist(..value)
       }
   	  if (length(..value) > 0L) {
-  	    ..value <- ..value[1L];
+  	    ..value <- ..value[1L]
       }
-    }, list(property=property));
+    }, list(property=property))
     expr <- substitute({expr; e; ..row <- cbind(..row, ..value);},
-                                             list(expr=expr,e=e));
+                                             list(expr=expr,e=e))
   }
 
-  df <- NULL;
+  df <- NULL
   for (member in members) {
     if (is.element(member, c("..."))) {
-      dfRow <- c(member, rep(NA_character_, times=length(properties)));
-      dfRow <- as.list(dfRow);
+      dfRow <- c(member, rep(NA_character_, times=length(properties)))
+      dfRow <- as.list(dfRow)
     } else {
       rowExpr <- substitute({
-        ..row <- list(name);
-        ..object <- get(name, envir=envir);
-        expr;
-      }, list(name=member, member=as.name(member), expr=expr));
-      dfRow <- eval(rowExpr);
+        ..row <- list(name)
+        ..object <- get(name, envir=envir)
+        expr
+      }, list(name=member, member=as.name(member), expr=expr))
+      dfRow <- eval(rowExpr)
     }
 
     if (is.null(df)) {
-      df <- dfRow;
+      df <- dfRow
     } else {
       for (kk in seq_along(df)) {
-        df[[kk]] <- c(df[[kk]], dfRow[[kk]]);
+        df[[kk]] <- c(df[[kk]], dfRow[[kk]])
       }
     }
   }
-  attributes(df) <- NULL;
-  names(df) <- c("member", properties);
-  df <- as.data.frame(df);
+  attributes(df) <- NULL
+  names(df) <- c("member", properties)
+  df <- as.data.frame(df)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Sort data frame?
@@ -231,24 +231,24 @@ setMethodS3("ll", "default", function(pattern=".*", ..., private=FALSE, properti
     if (is.numeric(sortBy))
       pos <- sortBy
     else
-      pos <- pmatch(sortBy, colnames(df));
+      pos <- pmatch(sortBy, colnames(df))
     if (is.na(pos) || pos > ncol(df))
-      throw("The column to sort by does not exist: ", sortBy);
+      throw("The column to sort by does not exist: ", sortBy)
 
-    by <- df[,pos];
+    by <- df[,pos]
 
     # We know that the first column always contains character strings...
     if (pos > 1L) {
-      sortBy <- colnames(df)[pos];
+      sortBy <- colnames(df)[pos]
 
       # Figure out the data type of the sort column
-      dummy <- eval(substitute(property(2), list(property=as.name(sortBy))));
-      mode(by) <- mode(dummy);
+      dummy <- eval(substitute(property(2), list(property=as.name(sortBy))))
+      mode(by) <- mode(dummy)
     }
 
     # Finally, sort the result table
-    df <- df[order(by, decreasing=decreasing),];
+    df <- df[order(by, decreasing=decreasing),]
   }
 
-  as.data.frame(df);
+  as.data.frame(df)
 }) # ll.default()

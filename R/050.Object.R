@@ -57,7 +57,7 @@
 # \keyword{programming}
 # \keyword{methods}
 #*/###########################################################################
-setConstructorS3("Object", Object);
+setConstructorS3("Object", Object)
 
 
 
@@ -101,9 +101,9 @@ setConstructorS3("Object", Object);
 #*/###########################################################################
 setMethodS3("as.character", "Object", function(x, ...) {
   # To please R CMD check
-  this <- x;
-  addr <- getInternalAddress(this, format="hexstring");
-  paste(class(this)[1], ": ", addr, sep="");
+  this <- x
+  addr <- getInternalAddress(this, format="hexstring")
+  paste(class(this)[1], ": ", addr, sep="")
 }) # as.character()
 
 
@@ -152,13 +152,13 @@ setMethodS3("as.character", "Object", function(x, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("getInstantiationTime", "Object", function(this, ...) {
-  time <- attr(this, "...instantiationTime");
-  if (!is.null(time)) return(time);
+  time <- attr(this, "...instantiationTime")
+  if (!is.null(time)) return(time)
 
   # Backward compatibility (due to a SPELLING ERROR in an earlier version)
-  time <- attr(this, "...instanciationTime");
+  time <- attr(this, "...instanciationTime")
 
-  NULL;
+  NULL
 })
 
 
@@ -214,10 +214,10 @@ setMethodS3("clone", "Object", function(this, ...) {
   attr(clone, ".env") <- clone.env
 
   # Copy all variables in the environment.
-  this.env <- attr(this, ".env");
-  fields <- getFields(this, private=TRUE);
+  this.env <- attr(this, ".env")
+  fields <- getFields(this, private=TRUE)
   for (field in fields) {
-    value <- get(field, envir=this.env, inherits=FALSE);
+    value <- get(field, envir=this.env, inherits=FALSE)
     # The following line must be included to do nothing, but the effect
     # is that it fools the lazy evaluation (?) to create a true copy of
     # the object. If this is not done, it won't be a true clone even if
@@ -225,10 +225,10 @@ setMethodS3("clone", "Object", function(this, ...) {
     #  b <- clone(a)
     #  b$matrix[1,1] <- 2
     # will otherwise also change a$matrix[1,1]. /HB 021023
-    attr(value, "R.oo::.clone.Object") <- NULL;
-    assign(field, value, envir=clone.env);
+    attr(value, "R.oo::.clone.Object") <- NULL
+    assign(field, value, envir=clone.env)
   }
-  clone;
+  clone
 })
 
 
@@ -291,7 +291,7 @@ setMethodS3("clone", "Object", function(this, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("equals", "Object", function(this, other, ...) {
-  ( !is.null(other) && (hashCode(this) == hashCode(other)) );
+  ( !is.null(other) && (hashCode(this) == hashCode(other)) )
 })
 
 
@@ -390,7 +390,7 @@ setMethodS3("finalize", "Object", function(this, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("hashCode", "Object", function(this, ...) {
-  getInternalAddress(this, format="numeric");
+  getInternalAddress(this, format="numeric")
 }) # hashCode()
 
 
@@ -442,27 +442,27 @@ setMethodS3("getInternalAddress", "Object", function(this, format=c("numeric", "
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   hexStringToDouble <- function(hex) {
-    hexDigits <- unlist(strsplit("0123456789ABCDEF", ""));
-    digits16 <- unlist(strsplit(toupper(hex), ""));
-    digits10 <- match(digits16, hexDigits) - 1;
-    bases10 <- rev(16^(seq_along(digits10)-1));
-    sum(digits10 * bases10);
+    hexDigits <- unlist(strsplit("0123456789ABCDEF", ""))
+    digits16 <- unlist(strsplit(toupper(hex), ""))
+    digits10 <- match(digits16, hexDigits) - 1
+    bases10 <- rev(16^(seq_along(digits10)-1))
+    sum(digits10 * bases10)
   }
 
   hexStringToInt <- function(hex) {
-    as.integer(hexStringToDouble(hex));
+    as.integer(hexStringToDouble(hex))
   }
 
   # Argument 'format':
-  format <- match.arg(format);
+  format <- match.arg(format)
 
-  pointer <- getName(attr(this, ".env"));
+  pointer <- getName(attr(this, ".env"))
   if (format == "numeric") {
-    pointer <- gsub("0x", "", pointer);
-    pointer <- hexStringToDouble(pointer);
+    pointer <- gsub("0x", "", pointer)
+    pointer <- hexStringToDouble(pointer)
   }
 
-  pointer;
+  pointer
 }, private=TRUE) # getInternalAddress()
 
 
@@ -495,7 +495,7 @@ setMethodS3("getInternalAddress", "Object", function(this, format=c("numeric", "
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("print", "Object", function(x, ...) {
-  print(as.character(x));
+  print(as.character(x))
 }) # print()
 
 
@@ -545,19 +545,19 @@ setMethodS3("print", "Object", function(x, ...) {
 #*/#########################################################################
 setMethodS3("attachLocally", "Object", function(this, private=FALSE, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...) {
   if (is.null(fields)) {
-    fields <- getFields(this, private=private);
+    fields <- getFields(this, private=private)
   }
-  fields <- setdiff(fields, excludeFields);
+  fields <- setdiff(fields, excludeFields)
 
-  attachedFields <- c();
+  attachedFields <- c()
   for (field in fields) {
     if (overwrite || !hasField(this, field)) {
-      assign(field, this[[field]], envir=envir);
-      attachedFields <- c(attachedFields, field);
+      assign(field, this[[field]], envir=envir)
+      attachedFields <- c(attachedFields, field)
     }
   }
 
-  invisible(attachedFields);
+  invisible(attachedFields)
 })
 
 
@@ -602,23 +602,23 @@ setMethodS3("attachLocally", "Object", function(this, private=FALSE, fields=NULL
 #*/###########################################################################
 setMethodS3("attach", "Object", function(this, private=FALSE, pos=2, ...) {
   # To please R CMD check
-  attachX <- base::attach;
+  attachX <- base::attach
 
-  attachName <- as.character.Object(this);
+  attachName <- as.character.Object(this)
   if (is.element(attachName, search())) {
-    warning(paste("Object is already attached:", attachName));
-    return(invisible(FALSE));
+    warning(paste("Object is already attached:", attachName))
+    return(invisible(FALSE))
   }
 
-  envir <- attr(this, ".env");
-  attachX(list(), name=attachName, pos=pos);
+  envir <- attr(this, ".env")
+  attachX(list(), name=attachName, pos=pos)
 
-  members <- ls(envir=envir, all.names=private);
+  members <- ls(envir=envir, all.names=private)
   for (member in members) {
-    assign(member, get(member, envir=envir), pos=pos);
+    assign(member, get(member, envir=envir), pos=pos)
   }
 
-  return(invisible(TRUE));
+  return(invisible(TRUE))
 }) # attach()
 
 
@@ -659,16 +659,16 @@ setMethodS3("attach", "Object", function(this, private=FALSE, pos=2, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("detach", "Object", function(this, ...) {
-  attachName <- as.character.Object(this);
+  attachName <- as.character.Object(this)
   if (!is.element(attachName, search())) {
-    warning(paste("Object is not attached:", attachName));
-    return(invisible(FALSE));
+    warning(paste("Object is not attached:", attachName))
+    return(invisible(FALSE))
   }
 
-  pos <- which(search() == attachName);
-  if (length(pos) == 1L) detach(pos=pos);
+  pos <- which(search() == attachName)
+  if (length(pos) == 1L) detach(pos=pos)
 
-  return(invisible(TRUE));
+  return(invisible(TRUE))
 }) # detach()
 
 
@@ -716,59 +716,59 @@ setMethodS3("detach", "Object", function(this, ...) {
 #*/###########################################################################
 setMethodS3("save", "Object", function(this, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE) {
   if (is.null(file)) {
-    file <- sprintf("%s.%d.RData", class(this)[1], getInternalAddress(this, format="numeric"));
+    file <- sprintf("%s.%d.RData", class(this)[1], getInternalAddress(this, format="numeric"))
   }
 
   # Saving to a file?
-  saveToFile <- (!inherits(file, "connection"));
+  saveToFile <- (!inherits(file, "connection"))
   if (saveToFile) {
     if (!is.null(path) && path != "") {
       # 1. Remove any '/' or '\' at the end of the path string.
-      path <- gsub("[/\\]*$", "", path);
+      path <- gsub("[/\\]*$", "", path)
       # 2. Add a '/' to the end.
       if (regexpr("/$", path) == -1)
-        path <- paste(path, "/", sep="");
+        path <- paste(path, "/", sep="")
       # 3. Paste the path and the file together.
-      file <- as.character(file);
-      file <- paste(path, file, sep="");
+      file <- as.character(file)
+      file <- paste(path, file, sep="")
     }
   }
 
   # Write to a temporary file?
   if (safe && saveToFile) {
     # Final pathname
-    pathname <- file;
+    pathname <- file
     # Temporary pathname
-    pathnameT <- sprintf("%s.tmp", pathname);
+    pathnameT <- sprintf("%s.tmp", pathname)
     if (file.exists(pathnameT)) {
-      throw("Cannot save to file. Temporary file already exists: ", pathnameT);
+      throw("Cannot save to file. Temporary file already exists: ", pathnameT)
     }
     # Write to a temporary file
-    file <- pathnameT;
+    file <- pathnameT
     on.exit({
       if (!is.null(pathnameT) && file.exists(pathnameT)) {
-        file.remove(pathnameT);
+        file.remove(pathnameT)
       }
-    }, add=TRUE);
+    }, add=TRUE)
   }
 
   # For some unknown reason is save.default() adding the variables
   # 'exp', 'object', 'row' and 'value' to environment of this object.
   # /HB 031020
-  saveLoadReference <- this;
-  res <- base::save(saveLoadReference, file=file, ..., compress=compress);
+  saveLoadReference <- this
+  res <- base::save(saveLoadReference, file=file, ..., compress=compress)
 
   # Rename temporary file?
   if (safe && saveToFile) {
-    file.rename(pathnameT, pathname);
+    file.rename(pathnameT, pathname)
     if (!file.exists(pathname) || file.exists(pathnameT)) {
-      throw("Failed to rename temporary file: ", pathnameT, " -> ", pathname);
+      throw("Failed to rename temporary file: ", pathnameT, " -> ", pathname)
     }
-    pathnameT <- NULL;
-    file <- pathname;
+    pathnameT <- NULL
+    file <- pathname
   }
 
-  invisible(res);
+  invisible(res)
 }) # save()
 
 
@@ -836,34 +836,34 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
   if (!inherits(file, "connection")) {
     if (!is.null(path) && path != "") {
       # 1. Remove any '/' or '\' at the end of the path string.
-      path <- gsub("[/\\]*$", "", path);
+      path <- gsub("[/\\]*$", "", path)
       # 2. Add a '/' to the end.
       if (regexpr("/$", path) == -1)
-        path <- paste(path, "/", sep="");
+        path <- paste(path, "/", sep="")
       # 3. Paste the path and the file together.
-      file <- as.character(file);
-      file <- paste(path, file, sep="");
+      file <- as.character(file)
+      file <- paste(path, file, sep="")
     }
   }
 
   # load.default() recognized gzip'ed files too.
   saveLoadReference <- NULL; # To please R CMD check R v2.6.0
-  vars <- load.default(file=file);
+  vars <- load.default(file=file)
 
   if (!is.element("saveLoadReference", vars))
-    throw("The file does not contain an R.oo Object: ", file);
+    throw("The file does not contain an R.oo Object: ", file)
 
-  object <- saveLoadReference;
+  object <- saveLoadReference
 
   # Assert that the loaded object inherits from the same class as the
   # static object used to call this method.
   if (!inherits(object, class(static)[1])) {
     throw("Loaded an Object from file, but it does not inherit from ",
                                    class(static)[1], " as expected: ",
-                                 paste(class(object), collapse=", "));
+                                 paste(class(object), collapse=", "))
   }
 
-  object;
+  object
 }, static=TRUE) # load()
 
 
@@ -911,15 +911,15 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("objectSize", "Object", function(this, ...) {
-  envir <- attr(this, ".env");
-  members <- ls(envir=envir, all.names=TRUE);
-  totalSize <- 0;
+  envir <- attr(this, ".env")
+  members <- ls(envir=envir, all.names=TRUE)
+  totalSize <- 0
   for (member in members) {
     size <- eval(substitute(object.size(member),
-                 list(member=as.name(member))), envir=envir);
-    totalSize <- totalSize + size;
+                 list(member=as.name(member))), envir=envir)
+    totalSize <- totalSize + size
   }
-  totalSize;
+  totalSize
 }) # objectSize()
 
 
@@ -959,15 +959,15 @@ setMethodS3("objectSize", "Object", function(this, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("getStaticInstance", "Object", function(this, ...) {
-  className <- class(this)[1L];
-  # WAS: clazz <- get(className);
+  className <- class(this)[1L]
+  # WAS: clazz <- get(className)
 
   # (a) Search namespace of package specified by internal field
   #     '...package' of the Object environment.  This field is
   #     set by the constructor.  Since it was introduced in
   #     R.oo v1.14.0, it is not guaranteed to exist.
-  envir <- getEnvironment(this);
-  package <- envir$...package;
+  envir <- getEnvironment(this)
+  package <- envir$...package
   if (!is.null(package)) {
     ## As long as package supports R (< 2.14.0)
     if (!exists("requireNamespace", envir=baseenv(), inherits=TRUE)) {
@@ -985,30 +985,30 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
     # for instance an Object is loaded from disk and the package name
     # has changed since it was last saved.
     if (requireNamespace(package, quietly=TRUE)) {
-      ns <- getNamespace(package);
-      clazz <- .getClassByName(className, where="ns", envir=ns, mustExist=FALSE);
+      ns <- getNamespace(package)
+      clazz <- .getClassByName(className, where="ns", envir=ns, mustExist=FALSE)
       if (!is.null(clazz)) {
-        static <- getStaticInstance(clazz);
-        return(static);
+        static <- getStaticInstance(clazz)
+        return(static)
       }
     }
   }
 
   # (b) Search all loaded namespaces
-  clazz <- .getClassByName(className, where=c("ns*", "search"), mustExist=FALSE);
+  clazz <- .getClassByName(className, where=c("ns*", "search"), mustExist=FALSE)
   if (!is.null(clazz)) {
-    static <- getStaticInstance(clazz);
-    return(static);
+    static <- getStaticInstance(clazz)
+    return(static)
   }
 
   # (c) Search parent environment
-  clazz <- .getClassByName(className, where="ns", envir=parent.frame(2L), mustExist=FALSE);
+  clazz <- .getClassByName(className, where="ns", envir=parent.frame(2L), mustExist=FALSE)
   if (!is.null(clazz)) {
-    static <- getStaticInstance(clazz);
-    return(static);
+    static <- getStaticInstance(clazz)
+    return(static)
   }
 
-  stop("Cannot get static instance. Failed to locate Class object for class '", className, "'.");
+  stop("Cannot get static instance. Failed to locate Class object for class '", className, "'.")
 }, protected=TRUE) # getStaticInstance()
 
 
@@ -1064,13 +1064,13 @@ setMethodS3("getStaticInstance", "Object", function(this, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("getFields", "Object", function(this, private=FALSE, ...) {
-  envir <- attr(this, ".env");
-  ls(envir=envir, all.names=private);
+  envir <- attr(this, ".env")
+  ls(envir=envir, all.names=private)
 }) # getFields()
 
 
 setMethodS3("names", "Object", function(x, ...) {
-  getFields(x, ...);
+  getFields(x, ...)
 }, private=TRUE) # names()
 
 
@@ -1123,7 +1123,7 @@ setMethodS3("names", "Object", function(x, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("hasField", "Object", function(this, field, ...) {
-  !is.na(match(field, getFields(this, private=TRUE)));
+  !is.na(match(field, getFields(this, private=TRUE)))
 }) # hasField()
 
 
@@ -1177,7 +1177,7 @@ setMethodS3("hasField", "Object", function(this, field, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("ll", "Object", function(this, ...) {
-  ll(..., envir=attr(this, ".env"));
+  ll(..., envir=attr(this, ".env"))
 }) # ll()
 
 
@@ -1309,116 +1309,116 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   parseModifiers <- function(args, ...) {
-    names <- names(args);
+    names <- names(args)
 
-    pattern <- "([abcdefghijklmnopqrstuvwxyz ]*):(.*)$";
-    modifiers <- rep("", length(names));
-    idx <- grep(pattern, names);
-    modifiers[idx] <- gsub(pattern, "\\1", names[idx]);
-    modifiers <- strsplit(modifiers, split=" ");
-    modifiers <- lapply(modifiers, gsub, pattern=" *", replacement="");
+    pattern <- "([abcdefghijklmnopqrstuvwxyz ]*):(.*)$"
+    modifiers <- rep("", length(names))
+    idx <- grep(pattern, names)
+    modifiers[idx] <- gsub(pattern, "\\1", names[idx])
+    modifiers <- strsplit(modifiers, split=" ")
+    modifiers <- lapply(modifiers, gsub, pattern=" *", replacement="")
 
     # Get the real names
-    names[idx] <- gsub("[abcdefghijklmnopqrstuvwxyz ]*:", "", names[idx]);
-    names(args) <- names;
+    names[idx] <- gsub("[abcdefghijklmnopqrstuvwxyz ]*:", "", names[idx])
+    names(args) <- names
 
     # Set modifier attributes
-    mods <- list();
+    mods <- list()
     for (type in c("cached")) {
-      mods[[type]] <- names[modifiers == type];
+      mods[[type]] <- names[modifiers == type]
     }
-    attr(args, "modifiers") <- mods;
+    attr(args, "modifiers") <- mods
 
-    args;
+    args
   } # parseModifiers()
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Main
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # The environment of 'this' Object
-  this.env <- attr(this, ".env");
+  this.env <- attr(this, ".env")
 
-  fields <- c(list(...), ...fields);
+  fields <- c(list(...), ...fields)
 
   # Identify and renamed fields that have modifiers in their names
-  fields <- parseModifiers(fields);
+  fields <- parseModifiers(fields)
 
-  names <- names(fields);
+  names <- names(fields)
   for (ii in seq_along(fields)) {
-    name <- names[ii];
+    name <- names[ii]
     if (is.null(name) || nchar(name) == 0) {
-      callNames <- names(sys.call());
-      callNames <- callNames[nchar(callNames) > 0];
-      matchNames <- paste("^", callNames, sep="");
+      callNames <- names(sys.call())
+      callNames <- callNames[nchar(callNames) > 0]
+      matchNames <- paste("^", callNames, sep="")
       for (jj in seq_along(matchNames)) {
         if (regexpr(matchNames[jj], "...className") != -1) {
-          className <- sys.call()[[3]];
+          className <- sys.call()[[3]]
           throw("Could not set field of class (probably called ", className,
                 ") because the field name is a prefix to the argument name ",
-                "\"...className\": ", callNames[jj]);
+                "\"...className\": ", callNames[jj])
         }
       } # for (jj ...)
-      throw("Missing name of field #", ii, " in class definition: ", ...className);
+      throw("Missing name of field #", ii, " in class definition: ", ...className)
     }
-    assign(name, fields[[ii]], envir=this.env);
+    assign(name, fields[[ii]], envir=this.env)
   } # for (ii ...)
 
   # Set class
-  class(this) <- unique(c(...className, class(this)));
+  class(this) <- unique(c(...className, class(this)))
 
   # Should the Object be finalized?
-  finalize <- TRUE;
+  finalize <- TRUE
   if (exists("...finalize", envir=this.env, inherits=FALSE)) {
-    finalize <- get("...finalize", finalize, envir=this.env, inherits=FALSE);
-    finalize <- isTRUE(finalize);
+    finalize <- get("...finalize", finalize, envir=this.env, inherits=FALSE)
+    finalize <- isTRUE(finalize)
   }
   # Override by extend(..., ...finalize=TRUE/FALSE)?
-  if (!is.na(...finalize)) finalize <- isTRUE(...finalize);
+  if (!is.na(...finalize)) finalize <- isTRUE(...finalize)
   if (finalize) {
     # Note, we have to re-register the finalizer here and not in Object(),
     # because here the reference variable 'this' will have the correct
     # class attribute, which it does not in Object().
-    finalizer <- .makeObjectFinalizer(this, reloadRoo=TRUE);
-    onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE);
-    reg.finalizer(this.env, finalizer, onexit=onexit);
+    finalizer <- .makeObjectFinalizer(this, reloadRoo=TRUE)
+    onexit <- getOption("R.oo::Object/finalizeOnExit", FALSE)
+    reg.finalizer(this.env, finalizer, onexit=onexit)
   }
 
   # extend(..., ...finalize=FALSE) should always remove any
   # previously registered finalizers.
   if (!is.na(...finalize) && !isTRUE(...finalize)) {
     # Unregister finalizer (by registering a dummy one)
-    reg.finalizer(this.env, f=function(...) {});
+    reg.finalizer(this.env, f=function(...) {})
   }
 
   # Finally, create the static instance?
   if (!is.element("Class", ...className)) {
-    static <- getStaticInstance(this, envir=...envir);
+    static <- getStaticInstance(this, envir=...envir)
     if (!is.null(static)) {
-      staticCode(static);
+      staticCode(static)
     }
   }
 
   # Record field modifiers
   # Get the field modifiers (always a list)
-  modifiers <- attr(fields, "modifiers");
+  modifiers <- attr(fields, "modifiers")
 
   # Append already existing modifiers?
   if (exists("...modifiers", envir=this.env, inherits=FALSE)) {
-    modifiersT <- get("...modifiers", envir=this.env, inherits=FALSE);
+    modifiersT <- get("...modifiers", envir=this.env, inherits=FALSE)
     for (key in names(modifiersT)) {
-      modifiers[[key]] <- c(modifiers[[key]], modifiersT[[key]]);
+      modifiers[[key]] <- c(modifiers[[key]], modifiersT[[key]])
     }
   }
 
   # Drop duplicated modifier entries and sort
   modifiers <- lapply(modifiers, FUN=function(mods) {
-    sort(unique(mods));
-  });
+    sort(unique(mods))
+  })
 
   # Record modifiers
-  assign("...modifiers", modifiers, envir=this.env);
+  assign("...modifiers", modifiers, envir=this.env)
 
-  this;
+  this
 }) # extend()
 
 
@@ -1498,59 +1498,59 @@ setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) 
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .getStaticInstance <- function(this, static=NULL) {
-    if (!is.null(static)) return(static);
-    getStaticInstance(this);
+    if (!is.null(static)) return(static)
+    getStaticInstance(this)
   } # .getStaticInstance()
 
 
-  memberAccessorOrder <- attr(this, ".memberAccessorOrder");
+  memberAccessorOrder <- attr(this, ".memberAccessorOrder")
   if (is.null(memberAccessorOrder)) {
-    memberAccessorOrder <- c(1L, 2L, 3L, 4L, 5L);
+    memberAccessorOrder <- c(1L, 2L, 3L, 4L, 5L)
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # (a) Check if there is a cache lookup available.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  envir <- attr(this, ".env");
-  cacheName <- paste("...$.lookup", name, sep=".");
+  envir <- attr(this, ".env")
+  cacheName <- paste("...$.lookup", name, sep=".")
   if (!is.null(envir) && exists(cacheName, envir=envir, inherits=FALSE)) {
-    envirCache <- envir;
-    lookup <- get(cacheName, envir=envirCache, inherits=FALSE);
+    envirCache <- envir
+    lookup <- get(cacheName, envir=envirCache, inherits=FALSE)
     if (identical(attr(lookup, "memberAccessorOrder"), memberAccessorOrder)) {
       if (lookup == 1L) {
         # Still to be figured out how to do! /HB 2003-01-18
-#        memberAccessorOrder <- attr(lookup, "possibilities");
+#        memberAccessorOrder <- attr(lookup, "possibilities")
       } else if (lookup == 2L) {
-        envir2 <- envir;
-        return( get(name, envir=envir2) );
+        envir2 <- envir
+        return( get(name, envir=envir2) )
       } else if (lookup == 3L) {
-        return( attr(this, name) );
+        return( attr(this, name) )
       } else if (lookup == 4L) {
-         fcn <- attr(lookup, "fcn");
+         fcn <- attr(lookup, "fcn")
          if (!is.null(fcn)) {
-           return(fcn);
+           return(fcn)
          }
          # Backward compatibility for Object:s saved with R.oo < 1.10.0,
          # which used deprecated attr(lookup, "method").  The below code
          # will NULL the 'lookup' and force an updated.
       } else if (lookup == 5L) {
-         return( get(name, envir=attr(lookup, "static.envir")) );
+         return( get(name, envir=attr(lookup, "static.envir")) )
       }
     } # if (identical(attr(lookup, ...)))
-    lookup <- NULL;
+    lookup <- NULL
   } else {
-    lookup <- NULL;
+    lookup <- NULL
   }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # (b) Otherwise search
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  static <- NULL;
+  static <- NULL
   for (memberAccessor in memberAccessorOrder) {
     if (memberAccessor == 1L) {
       if (is.null(attr(this, "disableGetMethods"))) {
-        firstChar <- substr(name, start=1L, stop=1L);
+        firstChar <- substr(name, start=1L, stop=1L)
         # Do not try to access private fields using a get<Name>() method,
         # because such a functionality means that the user *expects* that
         # there actually is a field called '.<name>', which he or she
@@ -1560,27 +1560,27 @@ setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) 
           # Field names can not contain spaces...
           if (regexpr(" ", name) == -1L) {
             # 1. Is there a get<Name>() method?
-            capitalizedName <- name;
-            substr(capitalizedName, start=1L, stop=1L) <- toupper(firstChar);
-            getMethodNames <- paste("get", capitalizedName, ".", class(this), sep="");
-            static <- .getStaticInstance(this, static=static);
-            envirS <- environment(static);
+            capitalizedName <- name
+            substr(capitalizedName, start=1L, stop=1L) <- toupper(firstChar)
+            getMethodNames <- paste("get", capitalizedName, ".", class(this), sep="")
+            static <- .getStaticInstance(this, static=static)
+            envirS <- environment(static)
             for (getMethodName in getMethodNames) {
-              method <- .getS3Method(getMethodName, envir=envirS, mustExist=FALSE);
+              method <- .getS3Method(getMethodName, envir=envirS, mustExist=FALSE)
               if (!is.null(method)) {
-                ref <- this;
-                attr(ref, "disableGetMethods") <- TRUE;
+                ref <- this
+                attr(ref, "disableGetMethods") <- TRUE
                 # For caching purposes, if the field <name> is trying to be
                 # accessed, we do not want to call get<name>() again! If <name>
                 # is not a virtual field, the it has to be a real field, an
                 # attribute, a static field etc. We do not know in advance,
                 # but we know it is nothing we already tried, hence
-                lookup <- memberAccessor;
-                attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
-                pos <- which(memberAccessorOrder == memberAccessor);
-                attr(lookup, "possibilities") <- memberAccessorOrder[-(1:pos)];
-                assign(cacheName, lookup, envir=envir);
-                return(method(ref));
+                lookup <- memberAccessor
+                attr(lookup, "memberAccessorOrder") <- memberAccessorOrder
+                pos <- which(memberAccessorOrder == memberAccessor)
+                attr(lookup, "possibilities") <- memberAccessorOrder[-(1:pos)]
+                assign(cacheName, lookup, envir=envir)
+                return(method(ref))
               }
             } # for (...)
           } # if ("no space in the name")
@@ -1593,56 +1593,56 @@ setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) 
       # environment assigned and therefore, for now, no static
       # fields.
       if (!is.null(envir) && exists(name, envir=envir, inherits=FALSE)) {
-        lookup <- memberAccessor;
-        attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
-        assign(cacheName, lookup, envir=envir);
-        envirStatic <- envir;
-        return(get(name, envir=envirStatic, inherits=FALSE));
+        lookup <- memberAccessor
+        attr(lookup, "memberAccessorOrder") <- memberAccessorOrder
+        assign(cacheName, lookup, envir=envir)
+        envirStatic <- envir
+        return(get(name, envir=envirStatic, inherits=FALSE))
       }
     } else if (memberAccessor == 3L) {
 
       # 3. Is it an attribute field (slot)?
       if (is.element(name, names(attributes(this)))) {
-        lookup <- memberAccessor;
-        attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
-        assign(cacheName, lookup, envir=envir);
-        return(attr(this, name));
+        lookup <- memberAccessor
+        attr(lookup, "memberAccessorOrder") <- memberAccessorOrder
+        assign(cacheName, lookup, envir=envir)
+        return(attr(this, name))
       }
 
     } else if (memberAccessor == 4L) {
 
       # 4. Is it a static S3 method?
-      static <- .getStaticInstance(this, static=static);
-      envirS <- environment(static);
-      methodNames <- paste(name, class(this), sep=".");
+      static <- .getStaticInstance(this, static=static)
+      envirS <- environment(static)
+      methodNames <- paste(name, class(this), sep=".")
       for (methodName in methodNames) {
-        method <- .getS3Method(methodName, envir=envirS, mustExist=FALSE);
+        method <- .getS3Method(methodName, envir=envirS, mustExist=FALSE)
         if (!is.null(method)) {
           # Using explicit UseMethod() code
-          code <- sprintf("function(...) \"%s\"(this, ...)", name);
-          fcn <- eval(base::parse(text=code));
-##          environment(fcn) <- environment(method);
-          lookup <- memberAccessor;
-          attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
-          attr(lookup, "fcn") <- fcn;
-          assign(cacheName, lookup, envir=envir);
-          return(fcn);
+          code <- sprintf("function(...) \"%s\"(this, ...)", name)
+          fcn <- eval(base::parse(text=code))
+##          environment(fcn) <- environment(method)
+          lookup <- memberAccessor
+          attr(lookup, "memberAccessorOrder") <- memberAccessorOrder
+          attr(lookup, "fcn") <- fcn
+          assign(cacheName, lookup, envir=envir)
+          return(fcn)
         }
       }
     } else if (memberAccessor == 5L) {
 
       # 5. Finally, if nothing is found, it might be that it is a static field
-      static <- .getStaticInstance(this, static=static);
-      static.envir <- attr(static, ".env");
+      static <- .getStaticInstance(this, static=static)
+      static.envir <- attr(static, ".env")
       # For static method calls, e.g. Object$load, 'this' has no
       # environment assigned and therefore, for now, no static
       # fields.
       if (!is.null(static.envir) && exists(name, envir=static.envir, inherits=FALSE)) {
-        lookup <- memberAccessor;
-        attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
-        attr(lookup, "static.envir") <- static.envir;
-        assign(cacheName, lookup, envir=envir);
-        return(get(name, envir=static.envir, inherits=FALSE));
+        lookup <- memberAccessor
+        attr(lookup, "memberAccessorOrder") <- memberAccessorOrder
+        attr(lookup, "static.envir") <- static.envir
+        assign(cacheName, lookup, envir=envir)
+        return(get(name, envir=static.envir, inherits=FALSE))
       }
     }
   } # for (memberAccessor in memberAccessorOrder)
@@ -1651,11 +1651,11 @@ setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # (c) If not found, return NULL.
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  lookup <- -1L;
-  attr(lookup, "memberAccessorOrder") <- memberAccessorOrder;
-  assign(cacheName, lookup, envir=envir);
+  lookup <- -1L
+  attr(lookup, "memberAccessorOrder") <- memberAccessorOrder
+  assign(cacheName, lookup, envir=envir)
 
-  NULL;
+  NULL
 }, private=TRUE) # .subset2Internal()
 
 
@@ -1730,24 +1730,24 @@ setMethodS3("$<-", "Object", function(this, name, value) {
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   .getStaticInstance <- function(this, static=NULL) {
-    if (!is.null(static)) return(static);
-    getStaticInstance(this);
+    if (!is.null(static)) return(static)
+    getStaticInstance(this)
   } # .getStaticInstance()
 
 
-  memberAccessorOrder <- attr(this, ".memberAccessorOrder");
+  memberAccessorOrder <- attr(this, ".memberAccessorOrder")
   if (is.null(memberAccessorOrder)) {
-    memberAccessorOrder <- c(1,2,3,4,5);
+    memberAccessorOrder <- c(1,2,3,4,5)
   }
 
-  static <- NULL;
+  static <- NULL
   for (memberAccessor in memberAccessorOrder) {
     if (memberAccessor == 1) {
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Search for a set<Name>() method
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       if (is.null(attr(this, "disableSetMethods"))) {
-        firstChar <- substr(name, 1,1);
+        firstChar <- substr(name, 1,1)
         # Do not try to access private fields using a set<Name>() method,
         # because such a functionality means that the user *expects* that
         # there actually is a field called '.<name>', which he or she
@@ -1757,18 +1757,18 @@ setMethodS3("$<-", "Object", function(this, name, value) {
           # Field names can not contain spaces...
           if (regexpr(" ", name) == -1) {
             # 1. Is it a set<Name>() method?
-            capitalizedName <- name;
-            substr(capitalizedName,1,1) <- toupper(firstChar);
-            setMethodNames <- paste("set", capitalizedName, ".", class(this), sep="");
-            static <- .getStaticInstance(this, static=static);
-            envirS <- environment(static);
+            capitalizedName <- name
+            substr(capitalizedName,1,1) <- toupper(firstChar)
+            setMethodNames <- paste("set", capitalizedName, ".", class(this), sep="")
+            static <- .getStaticInstance(this, static=static)
+            envirS <- environment(static)
             for (setMethodName in setMethodNames) {
-              method <- .getS3Method(setMethodName, envir=envirS, mustExist=FALSE);
+              method <- .getS3Method(setMethodName, envir=envirS, mustExist=FALSE)
               if (!is.null(method)) {
-                ref <- this;
-                attr(ref, "disableSetMethods") <- TRUE;
-                method(ref, value);
-                return(invisible(this));
+                ref <- this
+                attr(ref, "disableSetMethods") <- TRUE
+                method(ref, value)
+                return(invisible(this))
               }
             }
           } # if ("no space in the name")
@@ -1779,10 +1779,10 @@ setMethodS3("$<-", "Object", function(this, name, value) {
       # Search for a <name> field
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 2. If there exists a field, assign the value to that field.
-      envir <- attr(this, ".env");
+      envir <- attr(this, ".env")
       if (exists(name, envir=envir, inherits=FALSE)) {
-        assign(name, value, envir=envir);
-        return(invisible(this));
+        assign(name, value, envir=envir)
+        return(invisible(this))
       }
     } else if (memberAccessor == 3) {
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1790,41 +1790,41 @@ setMethodS3("$<-", "Object", function(this, name, value) {
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 3. If there exists an attribute field, assign the value to that field.
       if (is.element(name, names(attributes(this)))) {
-        attr(this, name) <- value;
-        return(invisible(this));
+        attr(this, name) <- value
+        return(invisible(this))
       }
     } else if (memberAccessor == 4) {
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Search for a static <name> field
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 4. If not, it might be that it is a static field
-      static <- .getStaticInstance(this, static=static);
-      static.envir <- attr(static, ".env");
+      static <- .getStaticInstance(this, static=static)
+      static.envir <- attr(static, ".env")
       # For static method calls, e.g. Object$load, 'this' has no
       # environment assigned and therefore, for now, no static
       # fields.
       if (!is.null(static.envir) && exists(name, envir=static.envir, inherits=FALSE)) {
-        assign(name, value, envir=static.envir);
-        return(invisible(this));
+        assign(name, value, envir=static.envir)
+        return(invisible(this))
       }
     } else if (memberAccessor == 5) {
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # Create a new field <name>
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # 5. Otherwise, assign the value to a new field.
-      assign(name, value, envir=envir);
-      return(invisible(this));
+      assign(name, value, envir=envir)
+      return(invisible(this))
     }
   } # for (memberAccessor in memberAccessorOrder)
 
-  invisible(this);
+  invisible(this)
 }) # $<-()
 
 
 
 setMethodS3("[[<-", "Object", function(this, name, value) {
-  UseMethod("$<-");
-#   "$<-"(this, name, value);
+  UseMethod("$<-")
+#   "$<-"(this, name, value)
 }) # "[[<-"()
 
 
@@ -1859,7 +1859,7 @@ setMethodS3("[[<-", "Object", function(this, name, value) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("isReferable", "Object", function(this, ...) {
-  TRUE;
+  TRUE
 }, private=TRUE) # isReferable()
 
 
@@ -1894,9 +1894,9 @@ setMethodS3("isReferable", "Object", function(this, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("novirtual", "Object", function(this, ...) {
-  attr(this, "disableGetMethods") <- TRUE;
-  attr(this, "disableSetMethods") <- TRUE;
-  this;
+  attr(this, "disableGetMethods") <- TRUE
+  attr(this, "disableSetMethods") <- TRUE
+  this
 }, private=TRUE)
 
 
@@ -1905,18 +1905,18 @@ setMethodS3("novirtual", "Object", function(this, ...) {
 
 setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrOfClassesAbove=1) {
   if (nbrOfClassesAbove < 0) {
-    throw("Argument 'nbrOfClassesAbove' is negative.");
+    throw("Argument 'nbrOfClassesAbove' is negative.")
   }
 
-  classes <- class(this);
+  classes <- class(this)
   nbrOfClassesAbove <- min(nbrOfClassesAbove, length(classes))
-  classes <- classes[-seq_len(nbrOfClassesAbove)];
+  classes <- classes[-seq_len(nbrOfClassesAbove)]
   if (length(classes) == 0) {
-    methods <- methodName;
+    methods <- methodName
   } else {
-    methods <- c(paste(methodName, classes, sep="."), methodName);
+    methods <- c(paste(methodName, classes, sep="."), methodName)
   }
-  availableMethods <- c(methods(methodName), methodName);
+  availableMethods <- c(methods(methodName), methodName)
   for (method in methods) {
     if (is.element(method, availableMethods)) {
       # TO DO/FIX ME: This part only works when packages are attached.
@@ -1926,7 +1926,7 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
       }
     }
   }
-  throw("No applicable methods '", methodName, "' available among the superclasses: ", classes);
+  throw("No applicable methods '", methodName, "' available among the superclasses: ", classes)
 }, private=TRUE)
 
 
@@ -1964,8 +1964,8 @@ setMethodS3("callSuperMethodS3", "default", function(this, methodName, ..., nbrO
 #*/###########################################################################
 setMethodS3("newInstance", "Object", function(this, ...) {
   # Creates a new instance of the same class
-  clazz <- Class$forName(class(this)[1]);
-  newInstance(clazz, ...);
+  clazz <- Class$forName(class(this)[1])
+  newInstance(clazz, ...)
 }, private=TRUE)
 
 
@@ -2007,9 +2007,9 @@ setMethodS3("newInstance", "Object", function(this, ...) {
 #*/###########################################################################
 setMethodS3("getEnvironment", "Object", function(fun, ...) {
   # To please R CMD check
-  this <- fun;
+  this <- fun
 
-  attr(this, ".env");
+  attr(this, ".env")
 }, protected=TRUE)
 
 
@@ -2045,10 +2045,10 @@ setMethodS3("getEnvironment", "Object", function(fun, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("clearLookupCache", "Object", function(this, ...) {
-  env <- this$.env;
-  names <- ls(envir=env, pattern="^...\\$.lookup", all.names=TRUE);
-  rm(list=names, envir=env);
-  invisible(this);
+  env <- this$.env
+  names <- ls(envir=env, pattern="^...\\$.lookup", all.names=TRUE)
+  rm(list=names, envir=env)
+  invisible(this)
 }, protected=TRUE)
 
 
@@ -2086,36 +2086,36 @@ setMethodS3("clearLookupCache", "Object", function(this, ...) {
 # @keyword methods
 #*/###########################################################################
 setMethodS3("clearCache", "Object", function(this, recursive=TRUE, gc=FALSE, ...) {
-  env <- attr(this, ".env");
+  env <- attr(this, ".env")
 
-  fields <- getFieldModifier(this, "cached");
+  fields <- getFieldModifier(this, "cached")
   for (field in fields) {
     # Or remove them?
-    assign(field, NULL, envir=env);
+    assign(field, NULL, envir=env)
   }
 
-  this <- clearLookupCache(this);
+  this <- clearLookupCache(this)
 
   if (recursive) {
     # Make sure that this object has not already been called
     # earlier in the same clear-cache request.
     if (!exists("...clearCache", envir=env, inherits=FALSE)) {
-      assign("...clearCache", TRUE, envir=env);
-      on.exit(rm(list="...clearCache", envir=env));
-      fields <- getFields(this, private=TRUE);
+      assign("...clearCache", TRUE, envir=env)
+      on.exit(rm(list="...clearCache", envir=env))
+      fields <- getFields(this, private=TRUE)
       for (field in fields) {
-        object <- get(field, envir=env, inherits=FALSE);
+        object <- get(field, envir=env, inherits=FALSE)
         if (inherits(object, "Object")) {
-          clearCache(object, recursive=TRUE, gc=FALSE);
+          clearCache(object, recursive=TRUE, gc=FALSE)
         }
       }
     }
   }
 
   # Run the garbage collector?
-  if (gc) base::gc();
+  if (gc) base::gc()
 
-  invisible(this);
+  invisible(this)
 })
 
 
@@ -2146,18 +2146,18 @@ setMethodS3("clearCache", "Object", function(this, recursive=TRUE, gc=FALSE, ...
 # @keyword methods
 #*/###########################################################################
 setMethodS3("getFieldModifiers", "Object", function(this, ...) {
-  env <- attr(this, ".env");
+  env <- attr(this, ".env")
 
   if (!exists("...modifiers", envir=env, inherits=FALSE)) {
-    return(list());
+    return(list())
   }
 
-  get("...modifiers", envir=env, inherits=FALSE);
+  get("...modifiers", envir=env, inherits=FALSE)
 }, protected=TRUE)
 
 
 setMethodS3("getFieldModifier", "Object", function(this, name, ...) {
-  getFieldModifiers(this, ...)[[name]];
+  getFieldModifiers(this, ...)[[name]]
 }, protected=TRUE)
 
 

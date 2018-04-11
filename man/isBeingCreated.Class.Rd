@@ -52,7 +52,7 @@ setConstructorS3("Car", function(brand=NULL, nbrOfWheels=0) {
 
 setMethodS3("as.character", "Car", function(this, ...) {
   cat(class(this)[1], ":", this$.brand, " with ",
-                     this$.nbrOfWheels, " wheels.", sep="");
+                     this$.nbrOfWheels, " wheels.", sep="")
 })
 
 print(Car("Volvo", 4))

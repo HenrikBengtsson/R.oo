@@ -14,9 +14,9 @@ wasAttached <- isAttached(pkgs)
 
 assertPackages <- function(loaded=c("R.methodsS3", "R.oo")) {
   s <- utils::sessionInfo()
-  s$R.version <- NULL;
-  s$platform <- "";
-  s$locale <- "";
+  s$R.version <- NULL
+  s$platform <- ""
+  s$locale <- ""
   cat("----------------------------------")
   print(s)
   cat("----------------------------------\n\n")

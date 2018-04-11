@@ -94,9 +94,9 @@ setConstructorS3("RccViolationException", function(...) {
 #*/###########################################################################
 setMethodS3("as.character", "RccViolationException", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  paste("[", getWhen(this), "] ", class(this)[1L], ": ", getMessage(this), ", cf. ", getRccUrl(this), sep="");
+  paste("[", getWhen(this), "] ", class(this)[1L], ": ", getMessage(this), ", cf. ", getRccUrl(this), sep="")
 })
 
 

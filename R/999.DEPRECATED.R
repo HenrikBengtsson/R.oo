@@ -36,8 +36,8 @@
 # @keyword methods
 #*/###########################################################################
 setMethodS3("gc", "Object", function(this, ...) {
-  .Deprecated(msg="Use clearCache(..., gc=TRUE) instead.");
-  clearCache(this, gc=TRUE);
+  .Deprecated(msg="Use clearCache(..., gc=TRUE) instead.")
+  clearCache(this, gc=TRUE)
 }, deprecated=TRUE)
 
 
@@ -77,7 +77,7 @@ setMethodS3("gc", "Object", function(this, ...) {
 # @keyword internal
 #*/###########################################################################
 setMethodS3("registerFinalizer", "Object", function(this, ...) {
-  .Defunct("registerFinalizer() for Object is deprecated.");
+  .Defunct("registerFinalizer() for Object is deprecated.")
 }, protected=TRUE, deprecated=TRUE) # registerFinalizer()
 
 
@@ -117,5 +117,5 @@ setMethodS3("registerFinalizer", "Object", function(this, ...) {
 # @keyword internal
 #*/#########################################################################
 setMethodS3("update", "Package", function(object, contribUrl=c(getContribUrl(object), getDevelUrl(object)), force=FALSE, reload=TRUE, verbose=TRUE, ...) {
-  .Defunct(msg=sprintf("update() for Package is defunct. Use update.packages(\"%s\") instead."), getName(object));
+  .Defunct(msg=sprintf("update() for Package is defunct. Use update.packages(\"%s\") instead."), getName(object))
 }, protected=TRUE, deprecated=TRUE)

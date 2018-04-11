@@ -30,5 +30,5 @@
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("throw", "error", function(error, ...) {
-  base::stop(error);
+  base::stop(error)
 })

@@ -37,13 +37,13 @@
 #*/###########################################################################
 setMethodS3("hashCode", "default", function(object, ...) {
   asInt.Java <- function(x) {
-    Integer.MIN.VALUE <- -2147483648;
-    Integer.MAX.VALUE <-  2147483647;
-    Integer.RANGE <- Integer.MAX.VALUE-Integer.MIN.VALUE + 1;
-    x <- (x-Integer.MIN.VALUE) %% Integer.RANGE + Integer.MIN.VALUE;
-    as.integer(x);
+    Integer.MIN.VALUE <- -2147483648
+    Integer.MAX.VALUE <-  2147483647
+    Integer.RANGE <- Integer.MAX.VALUE-Integer.MIN.VALUE + 1
+    x <- (x-Integer.MIN.VALUE) %% Integer.RANGE + Integer.MIN.VALUE
+    as.integer(x)
   }
-  hashCode <- c();
+  hashCode <- c()
   for (obj in object) {
     if (is.character(obj)) {
       #  The hashcode for a character string is computed as
@@ -53,23 +53,23 @@ setMethodS3("hashCode", "default", function(object, ...) {
       #  using int arithmetic, where s[i] is the i:th character of the
       #  string, n is the length of the string. The hash value of the
       #  empty string is zero.
-      s <- obj;
-      n <- nchar(s);
+      s <- obj
+      n <- nchar(s)
       if (n == 0) {
-        hashCode <- c(hashCode, as.integer(0));
+        hashCode <- c(hashCode, as.integer(0))
       } else {
-        s <- unlist(strsplit(as.character(s), NULL));
-        s <- charToInt(s);
-        hashC <- 0;
+        s <- unlist(strsplit(as.character(s), NULL))
+        s <- charToInt(s)
+        hashC <- 0
         for (k in 1:n)
-  	  hashC <- hashC + s[k]*31^(n-k);
+  	  hashC <- hashC + s[k]*31^(n-k)
         # Convert into range of Java int.
 
-        hashCode <- c(hashCode, asInt.Java(hashC));
+        hashCode <- c(hashCode, asInt.Java(hashC))
       }
     } else {
-      hashCode <- c(hashCode, as.integer(obj));
+      hashCode <- c(hashCode, as.integer(obj))
     }
   }
-  hashCode;
+  hashCode
 }) # hashCode.default()

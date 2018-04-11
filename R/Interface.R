@@ -25,9 +25,9 @@
 # @keyword internal
 #*/###########################################################################
 setConstructorS3("Interface", function(core=NA, ...) {
-  this <- core;
-  class(this) <- "Interface";
-  this;
+  this <- core
+  class(this) <- "Interface"
+  this
 }, private=TRUE)
 
 
@@ -61,8 +61,8 @@ setConstructorS3("Interface", function(core=NA, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("extend", "Interface", function(this, ...className, ...) {
-  class(this) <- unique(c(...className, class(this)));
-  this;
+  class(this) <- unique(c(...className, class(this)))
+  this
 })
 
 
@@ -93,33 +93,33 @@ setMethodS3("extend", "Interface", function(this, ...className, ...) {
 # \keyword{methods}
 #*/###########################################################################
 setMethodS3("uses", "Interface", function(this, ...) {
-  res <- setdiff(class(this), "Interface");
+  res <- setdiff(class(this), "Interface")
   if (length(list(...)) > 0) {
-    res <- c(list(res), list(uses(...)));
+    res <- c(list(res), list(uses(...)))
 
     # Order interfaces/classes
-    names <- sort(unique(unlist(res, use.names=FALSE)));
-    idxs <- integer(length(names));
-    names(idxs) <- names;
+    names <- sort(unique(unlist(res, use.names=FALSE)))
+    idxs <- integer(length(names))
+    names(idxs) <- names
     for (kk in seq_along(res)) {
       for (name in res[[kk]]) {
-        idxs[name] <- kk;
+        idxs[name] <- kk
       }
     }
     for (kk in seq_along(res)) {
-      keep <- (idxs[res[[kk]]] == kk);
-      res[[kk]] <- res[[kk]][keep];
+      keep <- (idxs[res[[kk]]] == kk)
+      res[[kk]] <- res[[kk]][keep]
     }
-    res <- unlist(res, use.names=FALSE);
+    res <- unlist(res, use.names=FALSE)
   }
-  res;
+  res
 })
 
 
 setMethodS3("uses", "character", function(className, ...) {
-  clazz <- Class$forName(className);
-  obj <- newInstance(clazz);
-  uses(obj, ...);
+  clazz <- Class$forName(className)
+  obj <- newInstance(clazz)
+  uses(obj, ...)
 })
 
 
@@ -150,17 +150,17 @@ setMethodS3("uses", "character", function(className, ...) {
 #*/###########################################################################
 setMethodS3("as.character", "Interface", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
   # Check if there are class "after" this one
-  pos <- which("Interface" == class(this));
-  isLast <- (pos == length(class(this)));
+  pos <- which("Interface" == class(this))
+  isLast <- (pos == length(class(this)))
   if (isLast) {
-    s <- paste(class(this), collapse=", ");
+    s <- paste(class(this), collapse=", ")
   } else {
-    s <- NextMethod("as.character");
+    s <- NextMethod("as.character")
   }
-  s;
+  s
 }, private=TRUE)
 
 
@@ -192,9 +192,9 @@ setMethodS3("as.character", "Interface", function(x, ...) {
 #*/###########################################################################
 setMethodS3("print", "Interface", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  print(as.character(this), ...);
+  print(as.character(this), ...)
 })
 
 

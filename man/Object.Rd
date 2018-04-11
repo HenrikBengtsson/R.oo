@@ -101,8 +101,8 @@ Object(core=NA, finalize=TRUE)
 # with methods print(), getName(), setName(), getAge() and setAge().
 #########################################################################
 setConstructorS3("Person", function(name, age) {
-  if (missing(name)) name <- NA;
-  if (missing(age))  age <- NA;
+  if (missing(name)) name <- NA
+  if (missing(age))  age <- NA
 
   extend(Object(), "Person",
     .name=name,
@@ -112,39 +112,39 @@ setConstructorS3("Person", function(name, age) {
 
 
 setMethodS3("as.character", "Person", function(this, ...) {
-  paste(this$.name, "is", as.integer(this$.age), "years old.");
+  paste(this$.name, "is", as.integer(this$.age), "years old.")
 })
 
 setMethodS3("equals", "Person", function(this, obj, ...) {
   ( identical(data.class(this), data.class(obj)) &&
     identical(this$getName(), obj$getName()) &&
-    identical(this$getAge() , obj$getAge() )    );
+    identical(this$getAge() , obj$getAge() )    )
 })
 
 setMethodS3("hashCode", "Person", function(this, ...) {
   # Get the hashCode() of the '.name' and the '.age' fields
   # using hashCode.default().
-  hashCode(this$.name) * hashCode(this$.age);
+  hashCode(this$.name) * hashCode(this$.age)
 })
 
 setMethodS3("getName", "Person", function(this, ...) {
-  this$.name;
+  this$.name
 })
 
 setMethodS3("setName", "Person", function(this, newName, ...) {
-  throw("It is not possible to change the name of a Person.");
+  throw("It is not possible to change the name of a Person.")
 })
 
 setMethodS3("getAge", "Person", function(this, ...) {
-  this$.age;
+  this$.age
 })
 
 setMethodS3("setAge", "Person", function(this, newAge, ...) {
   if (!is.numeric(newAge))
-    throw("Age must be numeric: ", newAge);
+    throw("Age must be numeric: ", newAge)
   if (newAge < 0)
-    throw("Trying to set a negative age: ", newAge);
-  this$.age <- newAge;
+    throw("Trying to set a negative age: ", newAge)
+  this$.age <- newAge
 })
 
 
@@ -257,27 +257,27 @@ setConstructorS3("MyClass", function(...) {
 
   # In order for a static field to be updated in the
   # constructor it has to be done after extend().
-  this$count <- this$count + 1;
+  this$count <- this$count + 1
 
   # Return the object
-  this;
+  this
 })
 
 
 setMethodS3("as.character", "MyClass", function(this, ...) {
-  paste(class(this)[1], ": Number of instances: ", this$count, sep="");
+  paste(class(this)[1], ": Number of instances: ", this$count, sep="")
 })
 
 
 # Get virtual field 'count', e.g. obj$count.
 setMethodS3("getCount", "MyClass", function(this, ...) {
-  MyClass$.count;
+  MyClass$.count
 })
 
 
 # Set virtual field 'count', e.g. obj$count <- value.
 setMethodS3("setCount", "MyClass", function(this, value, ...) {
-  MyClass$.count <- value;
+  MyClass$.count <- value
 })
 
 

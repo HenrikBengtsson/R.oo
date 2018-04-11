@@ -47,5 +47,5 @@
 # @keyword internal
 #*/###########################################################################
 setMethodS3("equals", "default", function(object, other, ...) {
-  (is.null(object) && is.null(other)) || identical(object, other);
+  (is.null(object) && is.null(other)) || identical(object, other)
 })

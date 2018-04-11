@@ -37,7 +37,7 @@
 #*/###########################################################################
 setConstructorS3("InternalErrorException", function(..., package=NULL) {
   if (!is.null(package) && !inherits(package, "Package")) {
-    package <- Package(as.character(package));
+    package <- Package(as.character(package))
   }
 
   extend(Exception(...), "InternalErrorException",
@@ -76,7 +76,7 @@ setConstructorS3("InternalErrorException", function(..., package=NULL) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getPackage", "InternalErrorException", function(this, ...) {
-  this$.package;
+  this$.package
 })
 
 
@@ -117,15 +117,15 @@ setMethodS3("getPackage", "InternalErrorException", function(this, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getMessage", "InternalErrorException", function(this, ...) {
-  msg <- getMessage.Exception(this);
-  msg <- paste(msg, " This error is likely to be due to an internal error", sep="");
+  msg <- getMessage.Exception(this)
+  msg <- paste(msg, " This error is likely to be due to an internal error", sep="")
 
-  pkg <- getPackage(this);
+  pkg <- getPackage(this)
   if (!is.null(pkg)) {
-    msg <- paste(msg, " related to package ", getName(pkg), " v", getVersion(pkg), ". Please report this problem to the maintainer ", getMaintainer(pkg), " or the author ", getAuthor(pkg), " of that package", sep="");
+    msg <- paste(msg, " related to package ", getName(pkg), " v", getVersion(pkg), ". Please report this problem to the maintainer ", getMaintainer(pkg), " or the author ", getAuthor(pkg), " of that package", sep="")
   }
 
-  R.oo <- Package("R.oo");
-  msg <- paste(msg, ". Do not forget to report that you are using R v", getVersion(Package("base")), " on a ", R.Version()$platform, " platform together with R.oo v", getVersion(R.oo), ".", sep="");
-  msg;
+  R.oo <- Package("R.oo")
+  msg <- paste(msg, ". Do not forget to report that you are using R v", getVersion(Package("base")), " on a ", R.Version()$platform, " platform together with R.oo v", getVersion(R.oo), ".", sep="")
+  msg
 })
