@@ -1,14 +1,19 @@
 Package: R.oo
 =============
 
-Version: 1.21.0-9000 [2018-04-09]
+Version: 1.21.0-9000 [2018-04-11]
 o Now generic function clone() is always created.  This avoids the
   recurring issues where the creation of generic R.oo::clone() was
   skipped if another clone() generic already existed during package
   installation from source. This would in turn cause for instance
   the R.utils package to fail during loading (R.utils Issue #29).
   Thanks to Matt Dowle for reporting on this and insisting on a fix.
-
+o DEPRECATION & DEFUNCT:
+  - Removed previously defunct update() for Package; use update.packages().
+    Removed previously defunct registerFinalizer() for Object.
+  - Previous deprecated gc() for Object is now defunct; use
+    clearCache(..., gc = TRUE) instead.
+  
 
 Version: 1.21.0 [2016-10-30]
 o Now TAB-completion works on elements of Object, BasicObject

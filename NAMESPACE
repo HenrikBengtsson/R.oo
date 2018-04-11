@@ -202,7 +202,6 @@ S3method("novirtual", "Object")
 S3method("objectSize", "Object")
 S3method("print", "Object")
 S3method("save", "Object")
-S3method("registerFinalizer", "Object")
 S3method("staticCode", "Object")
 S3method(".DollarNames", "Object")
 
@@ -246,7 +245,6 @@ S3method("showHowToCite", "Package")
 S3method("showNews", "Package")
 S3method("startupMessage", "Package")
 S3method("unload", "Package")
-S3method("update", "Package")
 
 # RccViolationException
 S3method("as.character", "RccViolationException")
