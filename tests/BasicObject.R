@@ -30,6 +30,13 @@ value <- obj[["a"]]
 str(value)
 stopifnot(identical(value, 1:100))
 
+obj[["a"]] <- 1:101
+print(obj)
+
+value <- obj[["a"]]
+str(value)
+stopifnot(identical(value, 1:101))
+
 size <- objectSize(obj)
 print(size)
 
@@ -103,6 +110,17 @@ res <- MyObject$foo(y=2L)
 stopifnot(identical(res$x, 1L))
 stopifnot(identical(res$y, 2L))
 
+obj$a <- 3
+print(obj)
+value <- obj[["a"]]
+str(value)
+stopifnot(identical(value, 3))
+
+obj[["a"]] <- 4
+print(obj)
+value <- obj$a
+str(value)
+stopifnot(identical(value, 4))
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - -

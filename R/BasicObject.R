@@ -858,7 +858,8 @@ setMethodS3("$<-", "BasicObject", function(this, name, value) {
 
 
 setMethodS3("[[<-", "BasicObject", function(this, name, value) {
-  UseMethod("$<-")
+  ## Must use do.call() here; see detailed comment for `[[<-.Object`.
+  do.call(`$<-`, args = list(this, name, value))
 }) # "[[<-"()
 
 

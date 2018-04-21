@@ -1823,8 +1823,38 @@ setMethodS3("$<-", "Object", function(this, name, value) {
 
 
 setMethodS3("[[<-", "Object", function(this, name, value) {
-  UseMethod("$<-")
-#   "$<-"(this, name, value)
+  ## (1) R.oo (>= 0.47 && <= 1.21.0) [2002-10-23 -- 2016-10-30]:
+  ##
+  ## Using UseMethod("$<-") will fail in R (>= 3.6.0) with: 
+  ##   _R_S3_METHOD_LOOKUP_BASEENV_AFTER_GLOBALENV_=true
+  ##   _R_S3_METHOD_LOOKUP_USE_TOPENV_AS_DEFENV_=true
+  ## Exactly like that, both need to be TRUE.
+  ##
+  ## Example from aroma.cn R CMD checks:
+  ##  *** S3 method lookup problem ***
+  ##  [1] "$<-"
+  ##  <environment: namespace:base>
+  ##  <environment: namespace:R.oo>
+  ##  Error in UseMethod("$<-") : 
+  ##    no applicable method for '$<-' applied to an object of
+  ##    class "c('CopyNumberRegions', 'Object')"
+  ##  Calls: +.CopyNumberRegions -> [[<- -> [[<-.Object
+  ##  Execution halted
+  ##
+  ##
+  ## (2) R.oo (<= 0.46) [prior to 2002-10-14]:
+  ##
+  ##  `$<-`(this, name, value)
+  ##
+  ## This approach does not work, because the `name` argument will
+  ## carry the value "name", not the value of argument 'name'.
+  ## TESTS: tests/Object.R and tests/BasicObject.R test for this.
+  ##
+  ##
+  ## (3) R.oo (>= 1.22.0) [since 2018-04-21]:
+  ##
+  ## Using do.call() works around the problem in (2).
+  do.call(`$<-`, args = list(this, name, value))
 }) # "[[<-"()
 
 

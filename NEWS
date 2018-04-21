@@ -1,7 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.21.0-9000 [2018-04-11]
+Version: 1.21.0-9000 [2018-04-21]
 o Now generic function clone() is always created.  This avoids the
   recurring issues where the creation of generic R.oo::clone() was
   skipped if another clone() generic already existed during package
@@ -13,6 +13,10 @@ o DEPRECATION & DEFUNCT:
     Removed previously defunct registerFinalizer() for Object.
   - Previous deprecated gc() for Object is now defunct; use
     clearCache(..., gc = TRUE) instead.
+o BUG FIX: Method dispatching of `[[<-` for Object and BasicObject
+  failed when running R CMD check in R-devel (>= 3.6.0) with environment
+  variables '_R_S3_METHOD_LOOKUP_BASEENV_AFTER_GLOBALENV' and
+  '_R_S3_METHOD_LOOKUP_USE_TOPENV_AS_DEFENV' both set to TRUE.
   
 
 Version: 1.21.0 [2016-10-30]
