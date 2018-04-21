@@ -13,3 +13,10 @@
 *.Rproj*
 *.swp
 .covr.rds
+.future
+.ghi
+.issues
+.make
+revdep/data.sqlite
+revdep/checks/*
+revdep/library/*
