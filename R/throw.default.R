@@ -54,36 +54,8 @@
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("throw", "default", function(...) {
-  throw(Exception(...));
+  throw(Exception(...))
 }, overwrite=TRUE, conflict="quiet")
 
 
-## setGenericS3("throw", force=TRUE);
-
-
-############################################################################
-# HISTORY:
-# 2012-06-17
-# o Override generic function throw() of R.methodsS3 with one here.
-# 2012-03-08
-# o Now the default throw() of R.methodsS3 is "quietly" overwritten,
-#   i.e. there is no longer a warning about it when R.oo is loaded.
-# 2005-02-20
-# o Updated broken link to tryCatch().
-# 2005-02-10
-# o Making use of tryCatch() only.
-# 2002-10-17
-# o Now throw() always throws an Exception.
-# 2002-05-25
-# * Bug fix in Rd \examples{}. Forgot a comment.
-# 2002-04-21
-# * Redefined throw.default() so it takes several arguments, which are then
-#   pasted together with sep="". In other words, instead of doing
-#     stop(paste("bla bla", "value:", x, ".\n", sep=""))
-#   one can just do
-#     throw("bla bla", "value:", x, ".\n")
-#   This is also a step towards the new exception model that supports
-#   classes.
-# * Extract the throw() functions from trycatch.R, which relies on them, but
-#   the throw()'s are stand-alone.
-############################################################################
+## setGenericS3("throw", force=TRUE)

@@ -32,11 +32,3 @@ setMethodS3("objectSize", "default", function(...) {
   args$.scannedEnvs <- NULL ## Used by objectSize() for environment
   do.call(object.size, args=args)
 })
-
-
-############################################################################
-# HISTORY:
-# 2005-03-23
-# o Created for completeness. Now objectSize() can be used for all kind
-#   of objects.
-############################################################################

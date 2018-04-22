@@ -34,32 +34,19 @@
 #*/###########################################################################
 setMethodS3("extend", "default", function(this, ...className, ...) {
   # Add class '...className' to the class vector
-  class(this) <- unique(c(...className, class(this)));
+  class(this) <- unique(c(...className, class(this)))
 
   # Add attributes
-  args <- list(...);
-  names <- names(args);
+  args <- list(...)
+  names <- names(args)
   for (kk in seq_along(args)) {
-    name <- names[kk];
+    name <- names[kk]
     if (name == "class")
-      throw("Trying to set class attribute: ", as.character(this));
-    arg <- args[[kk]];
-    attr(this, name) <- arg;
+      throw("Trying to set class attribute: ", as.character(this))
+    arg <- args[[kk]]
+    attr(this, name) <- arg
   }
 
   # Return modified object
-  this;
+  this
 }, conflict="quiet")
-
-
-######################################################################
-# HISTORY:
-# 2006-02-09
-# o Using 'conflict="quiet"' when creating extend.default() to avoid
-#   the warning that the method already exists.  One less warning.
-# 2005-06-14
-# o This will generate a warning that "Method already existed and was
-#   overwritten", but this is ok.
-# 2005-06-08
-# o Created.
-######################################################################

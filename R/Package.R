@@ -28,29 +28,29 @@
 # \keyword{methods}
 #*/###########################################################################
 setConstructorS3("Package", function(name=NULL) {
-  libPath <- NULL;
-  version <- NULL;
+  libPath <- NULL
+  version <- NULL
 
   if (!is.null(name)) {
     tryCatch({
-      package <- packageDescription(name);
-      version <- as.character(package$Version);
-      libPath <- dirname(system.file(package=name));
+      package <- packageDescription(name)
+      version <- as.character(package$Version)
+      libPath <- dirname(system.file(package=name))
     }, warning = function(warn) {
       # installed.packages() may be slow()!
-      packages <- as.data.frame(installed.packages());
-      idxs <- (packages$Package == name);
+      packages <- as.data.frame(installed.packages())
+      idxs <- (packages$Package == name)
       if(!any(idxs)) {
-        throw("Package is not installed: ", name);
+        throw("Package is not installed: ", name)
       }
-      packages <- packages[idxs,,drop=FALSE];
-      libPath <<- as.character(packages$LibPath);
+      packages <- packages[idxs,,drop=FALSE]
+      libPath <<- as.character(packages$LibPath)
       if (length(libPath) > 1) {
-        warning(paste("Multiple installations of package '", name, "' was found. Using the first. Paths to all installations: ", paste(libPath, collapse=", "), sep=""));
-        libPath <<- libPath[1];
+        warning(paste("Multiple installations of package '", name, "' was found. Using the first. Paths to all installations: ", paste(libPath, collapse=", "), sep=""))
+        libPath <<- libPath[1]
       }
-      libPath <<- gsub("/$", "", libPath);
-      version <<- as.character(packages$Version[1]);
+      libPath <<- gsub("/$", "", libPath)
+      version <<- as.character(packages$Version[1])
     })
   }
 
@@ -93,7 +93,7 @@ setConstructorS3("Package", function(name=NULL) {
 #*/#########################################################################
 setMethodS3("as.character", "Package", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
   s <- paste(class(this)[1L], ": ", getName(this), " v", getVersion(this), sep="")
   date <- getDate(this)
@@ -108,7 +108,7 @@ setMethodS3("as.character", "Package", function(x, ...) {
   s <- paste(s, "  Title: ", getTitle(this), ".", sep="")
 
   # Do not call getBundle() here; it can be very slow!
-#  bundle <- getBundle(this);
+#  bundle <- getBundle(this)
 #  if (!is.null(bundle))
 #    s <- paste(s, "  It is part of bundle ", bundle, " (", paste(getBundlePackages(this), collapse=", "), ").", sep="")
 
@@ -160,7 +160,7 @@ setMethodS3("as.character", "Package", function(x, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getName", "Package", function(this, ...) {
-  this$.name;
+  this$.name
 })
 
 
@@ -191,15 +191,15 @@ setMethodS3("getName", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getContents", "Package", function(this, fields=NULL, ...) {
-  pathname <- system.file("CONTENTS", package=this$.name);
+  pathname <- system.file("CONTENTS", package=this$.name)
   if (!file.exists(pathname))
-    throw("CONTENTS file missing for package '", this$.name, "': ", pathname);
+    throw("CONTENTS file missing for package '", this$.name, "': ", pathname)
 
   # DCF format == Debian Control File format
-  contents <- read.dcf(file=pathname, fields=fields);
+  contents <- read.dcf(file=pathname, fields=fields)
 
-  contents <- as.data.frame(contents);
-  contents;
+  contents <- as.data.frame(contents)
+  contents
 }, protected=TRUE)
 
 
@@ -230,14 +230,14 @@ setMethodS3("getContents", "Package", function(this, fields=NULL, ...) {
 # }
 #*/#########################################################################
 setMethodS3("showContents", "Package", function(this, ...) {
-  path <- getPath(this);
-  files <- list.files(path=path);
-  file <- files[tolower(files) == "contents"];
+  path <- getPath(this)
+  files <- list.files(path=path)
+  file <- files[tolower(files) == "contents"]
   if (length(file) == 0)
-    throw("CONTENTS file for package ", getName(this), " does not exist.");
+    throw("CONTENTS file for package ", getName(this), " does not exist.")
 
-  pathname <- file.path(path, file);
-  file.show(pathname, ...);
+  pathname <- file.path(path, file)
+  file.show(pathname, ...)
 }, protected=TRUE)
 
 
@@ -270,7 +270,7 @@ setMethodS3("showContents", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDescriptionFile", "Package", function(this, fields=NULL, ...) {
-  unlist(packageDescription(this$.name, fields=fields));
+  unlist(packageDescription(this$.name, fields=fields))
 }, protected=TRUE)
 
 
@@ -302,14 +302,14 @@ setMethodS3("getDescriptionFile", "Package", function(this, fields=NULL, ...) {
 # }
 #*/#########################################################################
 setMethodS3("showDescriptionFile", "Package", function(this, ...) {
-  path <- getPath(this);
-  files <- list.files(path=path);
-  file <- files[tolower(files) == "description"];
+  path <- getPath(this)
+  files <- list.files(path=path)
+  file <- files[tolower(files) == "description"]
   if (length(file) == 0)
-    throw("DESCRIPTION file for package ", getName(this), " does not exist.");
+    throw("DESCRIPTION file for package ", getName(this), " does not exist.")
 
-  pathname <- file.path(path, file);
-  file.show(pathname, ...);
+  pathname <- file.path(path, file)
+  file.show(pathname, ...)
 })
 
 
@@ -341,7 +341,7 @@ setMethodS3("showDescriptionFile", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getPath", "Package", function(this, ...) {
-  file.path(this$.libPath, getName(this), "");
+  file.path(this$.libPath, getName(this), "")
 })
 
 
@@ -373,7 +373,7 @@ setMethodS3("getPath", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getVersion", "Package", function(this, ...) {
-  this$.version;
+  this$.version
 })
 
 
@@ -406,8 +406,8 @@ setMethodS3("getVersion", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("isOlderThan", "Package", function(this, version, ...) {
-  res <- compareVersion(getVersion(this), version);
-  (res < 0);
+  res <- compareVersion(getVersion(this), version)
+  (res < 0)
 })
 
 
@@ -438,7 +438,7 @@ setMethodS3("isOlderThan", "Package", function(this, version, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDataPath", "Package", function(this, ...) {
-  file.path(this$.libPath, getName(this), "data", "");
+  file.path(this$.libPath, getName(this), "data", "")
 })
 
 
@@ -474,7 +474,7 @@ setMethodS3("getDataPath", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDocPath", "Package", function(this, ...) {
-  file.path(this$.libPath, getName(this), "doc", "");
+  file.path(this$.libPath, getName(this), "doc", "")
 })
 
 
@@ -505,7 +505,7 @@ setMethodS3("getDocPath", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getExamplePath", "Package", function(this, ...) {
-  file.path(this$.libPath, getName(this), "R-ex", "");
+  file.path(this$.libPath, getName(this), "R-ex", "")
 })
 
 
@@ -541,7 +541,7 @@ setMethodS3("getExamplePath", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDate", "Package", function(this, ...) {
-  getDescriptionFile(this, fields="Date");
+  getDescriptionFile(this, fields="Date")
 })
 
 
@@ -578,10 +578,10 @@ setMethodS3("getDate", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDescription", "Package", function(this, replaceNewlines=" ", ...) {
-  value <- getDescriptionFile(this, fields="Description");
+  value <- getDescriptionFile(this, fields="Description")
   if (is.character(replaceNewlines))
-    value <- gsub("[\r\n]", replaceNewlines, value);
-  value;
+    value <- gsub("[\r\n]", replaceNewlines, value)
+  value
 })
 
 
@@ -619,14 +619,14 @@ setMethodS3("getDescription", "Package", function(this, replaceNewlines=" ", ...
 # }
 #*/#########################################################################
 setMethodS3("getPosition", "Package", function(this, ...) {
-  queries <- paste(sep="", "^package:", getName(this), "$");
-  res <- c();
+  queries <- paste(sep="", "^package:", getName(this), "$")
+  res <- c()
   for (query in queries) {
-    pos <- which(regexpr(query, search()) != -1);
-    if (length(pos) == 0) pos <- -1;
-    res <- c(res, pos);
+    pos <- which(regexpr(query, search()) != -1)
+    if (length(pos) == 0) pos <- -1
+    res <- c(res, pos)
   }
-  res;
+  res
 })
 
 
@@ -658,7 +658,7 @@ setMethodS3("getPosition", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getEnvironment", "Package", function(this, ...) {
-  pos.to.env(getPosition(this));
+  pos.to.env(getPosition(this))
 })
 
 
@@ -696,7 +696,7 @@ setMethodS3("getEnvironment", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("isLoaded", "Package", function(this, ...) {
-  (getPosition(this) != -1);
+  (getPosition(this) != -1)
 })
 
 
@@ -778,9 +778,9 @@ setMethodS3("load", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("unload", "Package", function(this, ...) {
-  name <- paste("package:", getName(this), sep="");
-  pos <- which(name == search());
-  if (length(pos) == 1L) detach(pos=pos);
+  name <- paste("package:", getName(this), sep="")
+  pos <- which(name == search())
+  if (length(pos) == 1L) detach(pos=pos)
 })
 
 
@@ -829,13 +829,13 @@ setMethodS3("unload", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("ll", "Package", function(this, envir=pos.to.env(getPosition(this)), ...) {
-  isLoaded <- isLoaded(this);
+  isLoaded <- isLoaded(this)
   if (!isLoaded)
-    load(this);
-  ll <- ll(..., envir=envir);
+    load(this)
+  ll <- ll(..., envir=envir)
   if (!isLoaded)
-    unload(this);
-  ll;
+    unload(this)
+  ll
 })
 
 
@@ -915,7 +915,7 @@ setMethodS3("getClasses", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getUrl", "Package", function(this, ...) {
-  getDescriptionFile(this, fields="URL");
+  getDescriptionFile(this, fields="URL")
 })
 
 
@@ -954,17 +954,17 @@ setMethodS3("getUrl", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getContribUrl", "Package", function(this, ...) {
-  urls <- getDescriptionFile(this, fields="ContribURL");
+  urls <- getDescriptionFile(this, fields="ContribURL")
   if (is.null(urls) || is.na(urls)) {
-    urls <- getDescriptionFile(this, fields="URL");
+    urls <- getDescriptionFile(this, fields="URL")
     if (is.null(urls) || is.na(urls)) {
       return(NA_character_)
     }
   }
-  urls <- strsplit(urls, "[,;]")[[1]];
-  urls <- gsub("^[ \t]*", "", urls);
-  urls <- gsub("[ \t]*$", "", urls);
-  urls;
+  urls <- strsplit(urls, "[,;]")[[1]]
+  urls <- gsub("^[ \t]*", "", urls)
+  urls <- gsub("[ \t]*$", "", urls)
+  urls
 }, private=TRUE)
 
 
@@ -1002,14 +1002,14 @@ setMethodS3("getContribUrl", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDevelUrl", "Package", function(this, ...) {
-  urls <- getDescriptionFile(this, fields="DevelURL");
+  urls <- getDescriptionFile(this, fields="DevelURL")
   if (is.null(urls) || is.na(urls)) {
     return(NA_character_)
   }
-  urls <- strsplit(urls, "[,;]")[[1]];
-  urls <- gsub("^[ \t]*", "", urls);
-  urls <- gsub("[ \t]*$", "", urls);
-  urls;
+  urls <- strsplit(urls, "[,;]")[[1]]
+  urls <- gsub("^[ \t]*", "", urls)
+  urls <- gsub("[ \t]*$", "", urls)
+  urls
 }, private=TRUE)
 
 
@@ -1049,39 +1049,39 @@ setMethodS3("getDevelUrl", "Package", function(this, ...) {
 #*/#########################################################################
 setMethodS3("getMaintainer", "Package", function(this, as=c("character", "person"), include=c("given", "family"), ...) {
   # Argument 'as':
-  as <- match.arg(as);
+  as <- match.arg(as)
 
-  persons <- getDescriptionFile(this, fields=c("Authors@R", "Maintainer"));
-  persons <- persons[!is.na(persons)];
+  persons <- getDescriptionFile(this, fields=c("Authors@R", "Maintainer"))
+  persons <- persons[!is.na(persons)]
   if (length(persons) == 0L) {
     return(NA_character_)
   }
 
-  persons <- persons[1L];
-  key <- names(persons)[1L];
+  persons <- persons[1L]
+  key <- names(persons)[1L]
 
   # Parse?
   if (key == "Authors@R") {
-    personsP <- eval(parse(text=persons));
+    personsP <- eval(parse(text=persons))
     # Find creators
-    isCreator <- sapply(personsP, FUN=function(p) is.element("cre", p$role));
+    isCreator <- sapply(personsP, FUN=function(p) is.element("cre", p$role))
     if (any(isCreator)) {
-       personsP <- personsP[isCreator];
+       personsP <- personsP[isCreator]
     }
-    persons <- format(personsP, include=include, ...);
+    persons <- format(personsP, include=include, ...)
   } else {
-    personsP <- NULL;
+    personsP <- NULL
   }
 
   if (as == "character") {
-    return(persons);
+    return(persons)
   }
 
   if (is.null(personsP)) {
-    personsP <- as.person(persons);
+    personsP <- as.person(persons)
   }
 
-  personsP;
+  personsP
 })
 
 
@@ -1121,33 +1121,33 @@ setMethodS3("getMaintainer", "Package", function(this, as=c("character", "person
 #*/#########################################################################
 setMethodS3("getAuthor", "Package", function(this, as=c("character", "person"), include=c("given", "family"), ...) {
   # Argument 'as':
-  as <- match.arg(as);
+  as <- match.arg(as)
 
-  persons <- getDescriptionFile(this, fields=c("Authors@R", "Author"));
-  persons <- persons[!is.na(persons)];
+  persons <- getDescriptionFile(this, fields=c("Authors@R", "Author"))
+  persons <- persons[!is.na(persons)]
   if (length(persons) == 0L) {
     return(NA_character_)
   }
-  persons <- persons[1L];
-  key <- names(persons)[1L];
+  persons <- persons[1L]
+  key <- names(persons)[1L]
 
   # Parse?
   if (key == "Authors@R") {
-    personsP <- eval(parse(text=persons));
-    persons <- format(personsP, include=include, ...);
+    personsP <- eval(parse(text=persons))
+    persons <- format(personsP, include=include, ...)
   } else {
-    personsP <- NULL;
+    personsP <- NULL
   }
 
   if (as == "character") {
-    return(persons);
+    return(persons)
   }
 
   if (is.null(personsP)) {
-    personsP <- as.person(persons);
+    personsP <- as.person(persons)
   }
 
-  personsP;
+  personsP
 })
 
 
@@ -1183,7 +1183,7 @@ setMethodS3("getAuthor", "Package", function(this, as=c("character", "person"), 
 # }
 #*/#########################################################################
 setMethodS3("getTitle", "Package", function(this, ...) {
-  getDescriptionFile(this, fields="Title");
+  getDescriptionFile(this, fields="Title")
 })
 
 
@@ -1219,7 +1219,7 @@ setMethodS3("getTitle", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getLicense", "Package", function(this, ...) {
-  getDescriptionFile(this, fields="License");
+  getDescriptionFile(this, fields="License")
 })
 
 
@@ -1265,19 +1265,19 @@ setMethodS3("getLicense", "Package", function(this, ...) {
 setMethodS3("getBundle", "Package", function(this, ...) {
   if (is.null(this$.inBundle)) {
     # installed.packages() may be slow()!
-    pkgs <- installed.packages();
+    pkgs <- installed.packages()
     if (is.element("Bundle", colnames(pkgs))) {
-      names <- pkgs[,"Package"];
-      bundle <- pkgs[names == getName(this), "Bundle"];
+      names <- pkgs[,"Package"]
+      bundle <- pkgs[names == getName(this), "Bundle"]
     } else {
-      bundle <- NA;
+      bundle <- NA
     }
-    this$.inBundle <- bundle;
+    this$.inBundle <- bundle
   }
   if (is.na(this$.inBundle)) {
     NULL
   } else {
-    this$.inBundle;
+    this$.inBundle
   }
 }, protected=TRUE)
 
@@ -1320,18 +1320,18 @@ setMethodS3("getBundle", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getBundlePackages", "Package", function(this, ...) {
-  bundle <- getBundle(this);
+  bundle <- getBundle(this)
   if (is.null(bundle))
-    return(NULL);
+    return(NULL)
 
   if (is.null(this$.bundlePackages)) {
-    pkgs <- installed.packages();
-    bundles <- pkgs[,"Bundle"];
-    incl <- !is.na(bundles) & (bundles == bundle);
-    this$.bundlePackages <- pkgs[incl, "Package"];
+    pkgs <- installed.packages()
+    bundles <- pkgs[,"Bundle"]
+    incl <- !is.na(bundles) & (bundles == bundle)
+    this$.bundlePackages <- pkgs[incl, "Package"]
   }
 
-  this$.bundlePackages;
+  this$.bundlePackages
 }, protected=TRUE)
 
 
@@ -1373,37 +1373,37 @@ setMethodS3("getBundlePackages", "Package", function(this, ...) {
 #*/#########################################################################
 setMethodS3("getChangeLog", "Package", function(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), newline="\n", ...) {
   # Argument 'filenames':
-  filenames <- as.character(filenames);
-  filenames <- tolower(filenames);
+  filenames <- as.character(filenames)
+  filenames <- tolower(filenames)
 
-  path <- getPath(this);
-  files <- list.files(path=path);
+  path <- getPath(this)
+  files <- list.files(path=path)
 
   # Find change log files
-  idx <- match(filenames, tolower(files));
-  idx <- idx[!is.na(idx)];
-  files <- files[idx];
+  idx <- match(filenames, tolower(files))
+  idx <- idx[!is.na(idx)]
+  files <- files[idx]
 
   if (length(files) == 0)
-    return(NULL);
+    return(NULL)
 
   # First file
-  file <- files[1];
+  file <- files[1]
 
-  pathname <- file.path(path, file);
-  lines <- readLines(pathname);
-  lines <- paste(lines, collapse=newline);
+  pathname <- file.path(path, file)
+  lines <- readLines(pathname)
+  lines <- paste(lines, collapse=newline)
 
-  lines;
+  lines
 })
 
 
 setMethodS3("getHistory", "Package", function(this, ...) {
-  getChangeLog(this, ...);
+  getChangeLog(this, ...)
 })
 
 setMethodS3("getNews", "Package", function(this, ...) {
-  getChangeLog(this, ...);
+  getChangeLog(this, ...)
 })
 
 
@@ -1441,37 +1441,37 @@ setMethodS3("getNews", "Package", function(this, ...) {
 #*/#########################################################################
 setMethodS3("showChangeLog", "Package", function(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), ...) {
   # Argument 'filenames':
-  filenames <- as.character(filenames);
-  filenames <- tolower(filenames);
+  filenames <- as.character(filenames)
+  filenames <- tolower(filenames)
 
-  path <- getPath(this);
-  files <- list.files(path=path);
+  path <- getPath(this)
+  files <- list.files(path=path)
 
   # Find change log files
-  idx <- match(filenames, tolower(files));
-  idx <- idx[!is.na(idx)];
-  files <- files[idx];
+  idx <- match(filenames, tolower(files))
+  idx <- idx[!is.na(idx)]
+  files <- files[idx]
 
   if (length(files) == 0)
-    return(NULL);
+    return(NULL)
 
   # First file
-  file <- files[1];
+  file <- files[1]
 
   if (length(file) == 0)
-    throw("NEWS/HISTORY/ChangeLog file for package ", getName(this), " does not exist.");
+    throw("NEWS/HISTORY/ChangeLog file for package ", getName(this), " does not exist.")
 
-  pathname <- file.path(path, file);
-  file.show(pathname, ...);
+  pathname <- file.path(path, file)
+  file.show(pathname, ...)
 })
 
 
 setMethodS3("showHistory", "Package", function(this, ...) {
-  showChangeLog(this, ...);
+  showChangeLog(this, ...)
 })
 
 setMethodS3("showNews", "Package", function(this, ...) {
-  showChangeLog(this, ...);
+  showChangeLog(this, ...)
 })
 
 
@@ -1510,13 +1510,13 @@ setMethodS3("showNews", "Package", function(this, ...) {
 #*/#########################################################################
 setMethodS3("getHowToCite", "Package", function(this, newline="\n", ...) {
   if (file.exists(pathname <- file.path(getPath(this), "HOWTOCITE"))) {
-    lines <- readLines(pathname);
+    lines <- readLines(pathname)
   } else {
-    db <- citation(package=getName(this));
-    lines <- format(db, style="textVersion");
+    db <- citation(package=getName(this))
+    lines <- format(db, style="textVersion")
   }
-  lines <- paste(lines, collapse=newline);
-  lines;
+  lines <- paste(lines, collapse=newline)
+  lines
 }, protected=TRUE)
 
 
@@ -1548,14 +1548,14 @@ setMethodS3("getHowToCite", "Package", function(this, newline="\n", ...) {
 # }
 #*/#########################################################################
 setMethodS3("showHowToCite", "Package", function(this, ...) {
-  path <- getPath(this);
-  files <- list.files(path=path);
-  file <- files[tolower(files) == "howtocite"];
+  path <- getPath(this)
+  files <- list.files(path=path)
+  file <- files[tolower(files) == "howtocite"]
   if (length(file) == 0)
-    throw("HOWTOCITE file for package ", getName(this), " does not exist.");
+    throw("HOWTOCITE file for package ", getName(this), " does not exist.")
 
-  pathname <- file.path(path, file);
-  file.show(pathname);
+  pathname <- file.path(path, file)
+  file.show(pathname)
 }, protected=TRUE)
 
 
@@ -1597,152 +1597,3 @@ setMethodS3("startupMessage", "Package", function(this, ...) {
   }
   pkgStartupMessage(msg, ...)
 }, protected=TRUE)
-
-
-
-
-############################################################################
-# HISTORY:
-# 2015-01-05
-# o CLEANUP: Defunct update() for Package.
-# 2013-09-25
-# o CLEANUP: Deprecated update() for Package.
-# 2013-08-29
-# o Now startupMessage() for Package utiliizes new pkgStartupMessage()
-#   of R.methodsS3,  which acknowledge library(..., quietly=TRUE).
-# 2013-08-23
-# o CLEANUP: Made several Package methods protected, i.e. they will
-#   not show up in listings/help by default.
-# o Now getHowToCite() for Package utilizes utils::citation(), if
-#   package don't contain a HOWTOCITE file.  It is recommended to
-#   write packages with CITATION instead of HOWTOCITE.
-# 2013-03-08
-# o Now getAuthor() for Package uses the 'Authors@R' field of DESCRIPTION
-#   and if not found then the 'Author' field.  In addition, using argument
-#   'as="person"' with parse and return the authors list as 'person' object.
-# 2012-12-28
-# o Replaced all data.class(obj) with class(obj)[1].
-# 2012-12-19
-# o Added startupMessage() for Package.
-# 2012-09-10
-# o BUG FIX: getContribUrl() and getDevelUrl() would give an error if
-#   corresponding fields did not exists in the DESCRIPTION file.  Now
-#   they return NAs just as getUrl().
-# 2012-03-08
-# o Now package no longer warnings about renaming existing functions
-#   getMethods() and getClasses() of 'base' to default methods during
-#   installation, iff R.methodsS3 (>= 1.2.3).
-# 2011-12-23
-# o Now Package() loads the 'utils' package, if needed.
-# 2010-11-01
-# o CLEANUP/FIX: Dropped package.description() from getDescriptionFile()
-#   for Package, which was used for pre-R v1.9.0 compatibility reasons.
-# 2010-04-13
-# o BUG FIX: Package(pkg) would throw "Error in Package(pkgname) : object
-#   'package' not found", if 'pkg' is installed in multiple libraries.
-# o LANGUAGE FIX: Warning message of Package() said "too" instead of "to".
-# 2009-11-19
-# o Added isOlderThan() for Package.
-# 2008-10-09
-# BUG FIX: getBundle() of Package gave "Error in getBundle.Package(pkg) :
-# subscript out of bounds" starting with R v2.10.0.
-# 2008-08-11
-# o Replace all 'a %in% b' with is.element(a,b) due to weird bug, cf.
-#   my R-devel post 'Argument "nomatch" matched by multiple actual
-#   arguments ... %in% -> match?!?' on March 6, 2008.
-# 2008-05-08
-# o Added getNews() and showNews(). NEWS files are now detected (first).
-# 2007-06-09
-# o BUG FIX: Queried non-existing object 'error' instead of 'ex' in
-#   the exception handling of update() of the Package class.
-# o Removed (incorrect) argument name 'list' from all substitute() calls.
-# 2007-06-01
-# o Removed already deprecated getData() because there might be a name
-#   clash with the 'nlme' package.
-# 2006-07-13
-# o Now update() returns invisibly.
-# o BUG FIX: update(R.oo) would throw an error and package was detached.
-#   This was because it used trycatch() of R.oo(!).  Now, tryCatch() is
-#   used instead.  However, it was also that the automatic reloading of
-#   a package that was going to be updated failed for non-CRAN packages,
-#   because missing 'add=TRUE' on second on.exit().
-# o Added Note to do "showChangeLog(<pkg>)..." for package history.
-# 2006-03-14
-# o showHistory() was calling itself.
-# 2006-02-08
-# o Added getChangeLog() and showChangeLog(), which search for the ChangeLog
-#   file and then the HISTORY file.  get- and showHistory() are now just
-#   wrappers for these new methods.
-# 2005-06-14
-# o Added argument 'replaceNewline' to getDescription().
-# o Now as.character() of Package reports the title, the license, and the
-#   description, but no longer if the package is part of a bundle. The
-#   latter was too slow since it had to scan all installed packages.
-# 2005-05-02
-# o Added getDevelUrl().
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2005-02-10
-# o Added getDescription() to get the 'Descreption' field of DESCRIPTION.
-# o Renamed get- & showDescription() to get- & showDescriptionFile().
-# o Making use of tryCatch() only.
-# 2004-10-21
-# o Added getEnvironment().
-# 2004-10-18
-# o Added an Rdoc alias for getData().
-# 2004-10-13
-# o Change the example of Package's unload() to use package 'boot'
-#   instead of obsolete 'ts'.
-# 2004-06-27
-# o Substantially decresed the time required for creating a Package object;
-#   packageDescription() is tried first and then if it generates a warning
-#   (==not found), installed.packages() is used, which used to slow down
-#   the constructor.
-# o Now getBundle() and getBundlePackages() cache the result so that only
-#   the first call is slow.
-# o Now file.path() is used where ever applicable. Note: for directories
-#   add "" to assure that an "/" is appended at the end.
-# 2004-04-21
-# o Fix deprecated warning for package.description() by minor internal
-#   updates.
-# o Added argument 'fields' to getDescription().
-# 2004-03-11
-# o Remove argument 'reload' from update() since the package has to be
-#   unloaded anyway before installing a new version. Thus, library() is
-#   always called afterwards.
-# o Added getContents() and showContents().
-# 2004-03-02
-# o BUG FIX: Package class - from R v1.8.1 we noted that R CMD check made
-#   installed.packages() return multiple matches of the same package. This
-#   might have been a problem before too, but R CMD check never complained.
-# 2003-12-31
-# o Added showDescription(), getHistory(), showHistory(), getHowToCite()
-#   and showHowToCite().
-# 2003-12-16
-# o update() does now also reload the updated package by default.
-# 2003-05-04
-# o BUG FIX: update() of Package did not work. Did by mistake add a package
-#   argument to update.packages() too. That argument is only used in
-#   install.packages though.
-# 2003-04-29
-# o Added argument force=FALSE to update().
-# 2003-04-24
-# o BUG FIX: getContribUrl() did not do getUrl() if no ContribURL existed.
-# 2003-04-23
-# o update() now tries all URLs and return TRUE of FALSE.
-# o Update getContribUrl() to be able to return more than one url.
-# 2003-04-13
-# o Added ll() for convience.
-# o Added unload(), update() and getDocPath().
-# o Wrote Rdoc comments for all methods.
-# 2003-01-18
-# o Replaced all occurences of getClass() with data.class(). Will change
-#   the use of getClass() in the future to return a Class object.
-# 2003-01-17
-# o Added getUrl(), getMaintainer(), getAuthor(), getTitle(), getLicense()
-#   and getBundle(). Made the output from as.character() more informative.
-# 2002-10-22
-# o Added load().
-# 2002-10-21
-# o Created.
-############################################################################

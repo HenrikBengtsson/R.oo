@@ -66,7 +66,7 @@ ASCII <- c(
   "\350","\351","\352","\353","\354","\355","\356","\357", # 350-357
   "\360","\361","\362","\363","\364","\365","\366","\367", # 360-367
   "\370","\371","\372","\373","\374","\375","\376","\377"  # 370-377
-);
+)
 
 # We removed ASCII 0x00, because it represents an empty string in
 # R v2.7.0 (and maybe some earlier version) and in R v2.8.0 we will get
@@ -74,26 +74,26 @@ ASCII <- c(
 # for version prior to R v2.7.0.  See also email from Brian Ripley
 # on 2008-04-23 on this problem.
 if (compareVersion(as.character(getRversion()), "2.7.0") < 0) {
-  ASCII[1] <- eval(parse(text="\"\\000\""));
+  ASCII[1] <- eval(parse(text="\"\\000\""))
 }
 
 # Alternatively one can do like this. Idea by Peter Dalgaard,
 # Dept. of Biostatistics, University of Copenhagen, Denmark.
 # ASCII <- c("\000", sapply(1:255, function(i) parse(text=paste("\"\\",
-#                    structure(i,class="octmode"), "\"", sep=""))[[1]]) );
+#                    structure(i,class="octmode"), "\"", sep=""))[[1]]) )
 
 # Some special ASCII characters.
-ASCII.BEL <- "\007";
-ASCII.BS  <- "\010";
-ASCII.HT  <- "\011";
-ASCII.LF  <- "\012";
-ASCII.FF  <- "\014";
-ASCII.CR  <- "\015";
-ASCII.SO  <- "\016";
-ASCII.SI  <- "\017";
-ASCII.DC1 <- "\021";
-ASCII.DC3 <- "\023";
-ASCII.ESC <- "\033";
+ASCII.BEL <- "\007"
+ASCII.BS  <- "\010"
+ASCII.HT  <- "\011"
+ASCII.LF  <- "\012"
+ASCII.FF  <- "\014"
+ASCII.CR  <- "\015"
+ASCII.SO  <- "\016"
+ASCII.SI  <- "\017"
+ASCII.DC1 <- "\021"
+ASCII.DC3 <- "\023"
+ASCII.ESC <- "\033"
 
 
 #########################################################################/**
@@ -136,7 +136,7 @@ ASCII.ESC <- "\033";
 # @keyword internal
 #*/#########################################################################
 setMethodS3("charToInt", "default", function(ch, ...) {
-  match(ch, ASCII) - 1L;
+  match(ch, ASCII) - 1L
 })
 
 
@@ -183,43 +183,5 @@ setMethodS3("charToInt", "default", function(ch, ...) {
 # @keyword internal
 #*/#########################################################################
 setMethodS3("intToChar", "default", function(i, ...) {
-  ASCII[i %% 256 + 1];
+  ASCII[i %% 256 + 1]
 })
-
-
-
-
-############################################################################
-# HISTORY:
-# 2015-01-27
-# o Now charToInt() returns integers (was numerics).
-# 2013-08-23
-# o CLEANUP: Hiding charToInt() and intToChar() from help indices.
-# 2009-05-18
-# o DOC FIX: The titles for intToChar() and charToInt() where mixed up.
-#   Thanks to Jens Philip Hoehmann for reporting this.
-# 2008-05-08
-# o Updated the ASCII vector to deal with updates of '\000'.
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2002-10-20
-# o Added keywords to the Rdoc comments.
-# 2002-05-26
-# * Changed the \keyword{}'s to contain valid keyword as in KEYWORDS.db.
-# 2002-02-04
-# * Added alternative idea of creating the ASCII table.
-# 2002-01-29
-# * Rewritten to make use of setMethodS3.
-# 2001-08-06
-# * Moved ASCII back to R.oo from R.base. It is needed by the String class.
-#   By moving it back R.oo is stand-alone again.
-# 2001-07-28
-# * Also defined up the ASCII.BEL constants etc.
-# * Moved the ASCII stuff from R.oo to R.base.
-# 2001-07-13
-# * Made all methods using UseMethod.
-# 2001-06-07
-# * Added [R] documents to ASCII, charToInt and intToChar.
-# 2001-04-02
-# * Created!
-############################################################################

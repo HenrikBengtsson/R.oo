@@ -37,7 +37,7 @@
 }
 
 \examples{
-  Class$argsToString(plot);
+  Class$argsToString(plot)
 }
 
 \seealso{

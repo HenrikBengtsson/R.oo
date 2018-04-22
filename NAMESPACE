@@ -46,9 +46,6 @@ exportPattern("^[^\\.]")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # DECLARATIONS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# default
-S3method("getClasses", "default") ## Should be renamed/removed from API
-S3method("getMethods", "default") ## Should be renamed/removed from API
 
 # BasicObject
 S3method(".subset2Internal", "BasicObject")
@@ -147,7 +144,7 @@ S3method("throw", "error")
 # Exception
 S3method("as.character", "Exception")
 if (getRversion() >= "2.14.0") {
-  S3method("getCall", "Exception") # Only in R (>= 2.14.0)
+  S3method("getCall", "Exception")
 }
 S3method("getCalls", "Exception")
 S3method("getLastException", "Exception")
@@ -205,7 +202,6 @@ S3method("novirtual", "Object")
 S3method("objectSize", "Object")
 S3method("print", "Object")
 S3method("save", "Object")
-S3method("registerFinalizer", "Object")
 S3method("staticCode", "Object")
 S3method(".DollarNames", "Object")
 
@@ -249,7 +245,6 @@ S3method("showHowToCite", "Package")
 S3method("showNews", "Package")
 S3method("startupMessage", "Package")
 S3method("unload", "Package")
-S3method("update", "Package")
 
 # RccViolationException
 S3method("as.character", "RccViolationException")
@@ -281,3 +276,10 @@ S3method("setNameFormat", "Rdoc")
 # RdocException
 S3method("as.character", "RdocException")
 S3method("getSource", "RdocException")
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+## Should be renamed/removed from API
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# default
+S3method("getClasses", "default")
+S3method("getMethods", "default")

@@ -7,10 +7,10 @@
 #  R.oo v0.52 (2003/04/13) was successfully loaded.
 #
 .onAttach <- function(libname, pkgname) {
-  pkg <- Package(pkgname);
-  assign(pkgname, pkg, pos=getPosition(pkg));
+  pkg <- Package(pkgname)
+  assign(pkgname, pkg, pos=getPosition(pkg))
   cat(getName(pkg), " v", getVersion(pkg), " (", getDate(pkg), ")",
-    " was successfully loaded.\n", sep="");
+    " was successfully loaded.\n", sep="")
 }
 
 # The Package class works for any packages, loaded or not.

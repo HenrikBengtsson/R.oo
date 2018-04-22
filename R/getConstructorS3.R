@@ -29,20 +29,13 @@ setMethodS3("getConstructorS3", "default", function(name, ...) {
   # TO DO/FIX ME: This part only works when packages are attached.
   # /HB 2013-10-08
   if (!exists(name, mode="function")) {
-    throw("No such function found: ", name);
+    throw("No such function found: ", name)
   }
 
-  fcn <- get(name, mode="function");
+  fcn <- get(name, mode="function")
   if (isGenericS3(fcn)) {
-    throw("The function found is an S3 generic function: ", name);
+    throw("The function found is an S3 generic function: ", name)
   }
 
-  fcn;
+  fcn
 })
-
-
-############################################################################
-# HISTORY:
-# 2008-05-08
-# o Added getConstructorS3().
-############################################################################

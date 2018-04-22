@@ -38,27 +38,16 @@
 setMethodS3("getName", "environment", function(env, ...) {
   # base::environmentName() was added to R v2.5.0
   if (exists("environmentName", mode="function")) {
-    name <- environmentName(env);
+    name <- environmentName(env)
   } else {
-    name <- "";
+    name <- ""
   }
 
   if (name == "") {
-    name <- capture.output(print.default(env));
+    name <- capture.output(print.default(env))
     name <- name[1]; # Just in case
-    name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name);
+    name <- gsub("[<]*environment:[ ]*([^>]*)[>]", "\\1", name)
   }
 
-  name;
+  name
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2008-03-25
-# o Added getName() for 'environment':s. It extends base::environmentName()
-#   to return the "pointer" if not a name.  It is used by 
-#   getInternalAddress() of Object in R.oo.
-# o Created.
-############################################################################

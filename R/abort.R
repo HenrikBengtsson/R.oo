@@ -48,63 +48,40 @@
 # @keyword internal
 #*/###########################################################################
 setMethodS3("abort", "condition", function(cond, ..., call.=TRUE, domain=NULL) {
-  message <- conditionMessage(cond);
-  call <- conditionCall(cond);
+  message <- conditionMessage(cond)
+  call <- conditionCall(cond)
   if (is.null(call)) {
-    msg <- sprintf("%s", .makeMessage("Abort", domain=domain));
+    msg <- sprintf("%s", .makeMessage("Abort", domain=domain))
   } else {
-    call <- deparse(call);
-    msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call);
+    call <- deparse(call)
+    msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call)
   }
-  msg <- sprintf("%s: %s\n", msg, message);
-  cat(msg, file=stderr());
-  abort();
+  msg <- sprintf("%s: %s\n", msg, message)
+  cat(msg, file=stderr())
+  abort()
 })
 
 setMethodS3("abort", "default", function(..., call.=TRUE, domain=NULL) {
-  args <- list(...);
+  args <- list(...)
   if (nargs() > 0) {
-    message <- .makeMessage(..., domain=domain);
-    nframe <- sys.nframe();
-    if (nframe <= 2) call. <- FALSE;
+    message <- .makeMessage(..., domain=domain)
+    nframe <- sys.nframe()
+    if (nframe <= 2) call. <- FALSE
     if (call.) {
-      call <- sys.call(which=nframe-2L);
+      call <- sys.call(which=nframe-2L)
       if (is.null(call)) {
-        msg <- sprintf("%s", .makeMessage("Abort", domain=domain));
+        msg <- sprintf("%s", .makeMessage("Abort", domain=domain))
       } else {
-        call <- deparse(call);
-        msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call);
+        call <- deparse(call)
+        msg <- sprintf("%s %s", .makeMessage("Abort in", domain=domain), call)
       }
-      msg <- sprintf("%s: %s\n", msg, message);
+      msg <- sprintf("%s: %s\n", msg, message)
     } else {
-      msg <- sprintf("%s: %s\n", .makeMessage("Abort", domain=domain), message);
+      msg <- sprintf("%s: %s\n", .makeMessage("Abort", domain=domain), message)
     }
-    cat(msg, file=stderr());
+    cat(msg, file=stderr())
   }
 
   # Now abort R.
-  invokeRestart("abort");
+  invokeRestart("abort")
 })
-
-
-
-############################################################################
-# HISTORY:
-# 2012-09-11
-# o Now abort() immitates how stop() works but without the signalling
-#   of a condition.
-# 2012-09-10
-# o ROBUSTNESS/CRAN POLICY: Updated abort() for condition to utilize
-#   invokeRestart("abort").  This avoids having to call
-#   .Internal(.signalCondition(...)).  It also means that the message
-#   outputted by abort() no longer starts with a "Error in ...:" line.
-# 2012-03-05
-# o The abort() method is hidden and is not used by any R.oo methods.
-#   Will keep it until it is fully certain that throw() for Exception
-#   will work as expected without it.
-# 2012-02-29
-# o KNOWN ISSUES: abort() for 'condition' still uses .Internal().
-# o Added abort(), which is available as default function as well as
-#   a method for 'condition' objects.
-# o Created.
-############################################################################

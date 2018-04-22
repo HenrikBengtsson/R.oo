@@ -13,7 +13,7 @@ cache: packages
 warnings_are_errors: false
 r_check_args: --as-cran
 latex: false
-
+ 
 matrix:
   include:
     - os: linux
@@ -27,12 +27,17 @@ matrix:
       env: NB='w/ covr' ## Just a label
     - os: linux
       r: devel
-      env: _R_CHECK_CRAN_INCOMING_=true
+    - os: linux
+      r: devel
+      env:
+      - R_KEEP_PKG_SOURCE=yes
+      - _R_S3_METHOD_LOOKUP_BASEENV_AFTER_GLOBALENV_=true
+      - _R_S3_METHOD_LOOKUP_USE_TOPENV_AS_DEFENV_=true
     - os: osx
       r: oldrel
     - os: osx
       r: release
-    
+
 notifications:
   email:
     on_success: change

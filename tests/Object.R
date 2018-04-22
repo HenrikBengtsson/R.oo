@@ -30,6 +30,13 @@ value <- obj[["a"]]
 str(value)
 stopifnot(identical(value, 1:100))
 
+obj[["a"]] <- 1:101
+print(obj)
+
+value <- obj[["a"]]
+str(value)
+stopifnot(identical(value, 1:101))
+
 size <- objectSize(obj)
 print(size)
 

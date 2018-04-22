@@ -88,24 +88,24 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (enforceRCC) {
     # Assert that the class name is a valid class name.
-    firstLetter <- substring(name, 1,1);
+    firstLetter <- substring(name, 1,1)
     if (!is.element(tolower(firstLetter), letters))
-      throw(RccViolationException("Class names must begin with a letter: ", name));
+      throw(RccViolationException("Class names must begin with a letter: ", name))
 
     # Check first letter
     if (firstLetter == tolower(firstLetter))
-      throw(RccViolationException("Class names should be nouns starting with a capital letter: ", name));
+      throw(RccViolationException("Class names should be nouns starting with a capital letter: ", name))
 
     # Check if name contains . (period)
     if (regexpr("\\.", name) != -1)
-      throw(RccViolationException("Class names must not contain . (period): ", name));
+      throw(RccViolationException("Class names must not contain . (period): ", name))
   }
 
   # Check for forbidden names.
-  ns <- getNamespace("R.methodsS3");
-  R.methodsS3_R.KEYWORDS <- get("R.KEYWORDS", envir=ns);
+  ns <- getNamespace("R.methodsS3")
+  R.methodsS3_R.KEYWORDS <- get("R.KEYWORDS", envir=ns)
   if (is.element(name, R.methodsS3_R.KEYWORDS))
-    throw(RccViolationException("Class names must not be same as a reserved keyword in R: ", name));
+    throw(RccViolationException("Class names must not be same as a reserved keyword in R: ", name))
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -116,15 +116,15 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   else if (protected)
     protection="protected"
   else
-    protection="public";
+    protection="public"
 
   # Create the modifiers
-  modifiers <- protection;
-  if (static == TRUE) modifiers <- c(modifiers, "static");
-  if (abstract == TRUE) modifiers <- c(modifiers, "abstract");
-  if (deprecated == TRUE) modifiers <- c(modifiers, "deprecated");
-  if (trial == TRUE) modifiers <- c(modifiers, "trial");
-  modifiers <- c(modifiers, "class");
+  modifiers <- protection
+  if (static == TRUE) modifiers <- c(modifiers, "static")
+  if (abstract == TRUE) modifiers <- c(modifiers, "abstract")
+  if (deprecated == TRUE) modifiers <- c(modifiers, "deprecated")
+  if (trial == TRUE) modifiers <- c(modifiers, "trial")
+  modifiers <- c(modifiers, "class")
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -132,70 +132,24 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create
   expr <- substitute({
-      ns <- getNamespace("R.oo");
+      ns <- getNamespace("R.oo")
       if (exists("Class", mode="function", envir=ns, inherits=FALSE)) {
-        R.oo_Class <- get("Class", mode="function", envir=ns, inherits=FALSE);
-        fcn <- R.oo_Class(name, definition);
-        rm(list="R.oo_Class");
+        R.oo_Class <- get("Class", mode="function", envir=ns, inherits=FALSE)
+        fcn <- R.oo_Class(name, definition)
+        rm(list="R.oo_Class")
       } else {
         # Only used for/by R.oo itself.
-        fcn <- Class(name, definition);
+        fcn <- Class(name, definition)
       }
-      rm(list="ns");
-      attr(fcn, "export") <- export;
-      attr(fcn, "modifiers") <- modifiers;
+      rm(list="ns")
+      attr(fcn, "export") <- export
+      attr(fcn, "modifiers") <- modifiers
     }, list(fcn=as.name(name), name=name, definition=definition,
             export=export, modifiers=modifiers)
-  );
+  )
 
   # Assign
-  retValue <- eval(expr, envir=envir);
+  retValue <- eval(expr, envir=envir)
 
-  invisible();
+  invisible()
 }) # setConstructorS3()
-
-
-
-
-############################################################################
-# HISTORY:
-# 2012-08-29
-# o Now setConstructorS3() no longer requires that R.oo is attached
-#   ("loaded") - it's enough that it's namespace is loaded.
-# 2012-04-17
-# o Added argument 'export' to setConstructorS3().
-# o CLEANUP: setConstructorS3() no longer sets attribute "formals".  It
-#   has been deprecated since April 2003.
-# 2007-06-09
-# o Removed (incorrect) argument name 'list' from all substitute() calls.
-# 2006-05-30
-# o Renamed class from "ANY" to "default".
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2004-03-03
-# o Moved deprecated setCl assS3() to its own file.
-# 2003-07-17
-# o Added Rdoc comments saying that the constructor function must be able
-#   to be called without any arguments!
-# 2003-04-13
-# o Now setConstructorS3() sets the attribute "modifiers". "formals" will
-#   still be around, but will be phased out.
-# 2002-11-23
-# o Renamed setClassS3() to setConstructorS3(), since this is what it is
-#   actually doing. Keeping setClassS3() for backward compatibility but made
-#   it deprecated.
-# 2002-10-17
-# o Removed obsolete "modifiers<-"().
-# o Added also "Object" to the class attribute to make static methods to
-#   work.
-# 2002-10-16
-# o There are times when
-#     generic <- function(...) UseMethod()
-#   is not working, for example
-#     fcn <- get("generic"); fcn(myObj, ...);
-#   For this reason, always do method dispatching using the name explicitly;
-#     generic <- function(...) UseMethod("generic")
-# 2002-10-15
-# o Created from R.oo Object.R and ideas as described on
-#    http://www.maths.lth.se/help/R/
-############################################################################

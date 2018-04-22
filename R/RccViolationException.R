@@ -94,9 +94,9 @@ setConstructorS3("RccViolationException", function(...) {
 #*/###########################################################################
 setMethodS3("as.character", "RccViolationException", function(x, ...) {
   # To please R CMD check
-  this <- x;
+  this <- x
 
-  paste("[", getWhen(this), "] ", class(this)[1L], ": ", getMessage(this), ", cf. ", getRccUrl(this), sep="");
+  paste("[", getWhen(this), "] ", class(this)[1L], ": ", getMessage(this), ", cf. ", getRccUrl(this), sep="")
 })
 
 
@@ -138,24 +138,3 @@ setMethodS3("as.character", "RccViolationException", function(x, ...) {
 setMethodS3("getRccUrl", "RccViolationException", function(this, ...) {
   "http://aroma-project.org/developers/RCC/"
 }, static=TRUE)
-
-
-
-
-############################################################################
-# HISTORY:
-# 2012-12-28
-# o Replaced all data.class(obj) with class(obj)[1].
-# 2012-11-18
-# o Updated the URL returned by RccViolationException$getRccUrl().
-# 2005-02-15
-# o Added arguments '...' in order to match any generic functions.
-# 2003-03-18
-# o Spell correction: "c.f." -> "cf."
-# 2003-01-18
-# o Replaced all occurences of getClass() with data.class(). Will change
-#   the use of getClass() in the future to return a Class object.
-# 2002-10-18
-# o Created.
-############################################################################
-

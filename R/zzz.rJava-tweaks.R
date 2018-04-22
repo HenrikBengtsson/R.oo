@@ -22,6 +22,8 @@
     a
     b
   }, list(a=expr, b=body(f)))
+
+  attr(f, "S3class") <- class
   assign(method, f, envir=envir, inherits=TRUE)
  
   invisible(f)

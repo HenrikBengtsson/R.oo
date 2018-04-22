@@ -19,27 +19,27 @@ setConstructorS3("MyClass", function(...) {
 
   # In order for a static field to be updated in the 
   # constructor it has to be done after extend().
-  this$count <- this$count + 1;
+  this$count <- this$count + 1
 
   # Return the object
-  this;
+  this
 })
 
 
 setMethodS3("as.character", "MyClass", function(this, ...) {
-  paste(class(this)[1], ": Number of instances: ", this$count, sep="");
+  paste(class(this)[1], ": Number of instances: ", this$count, sep="")
 })
 
 
 # Get virtual field 'count', e.g. obj$count.
 setMethodS3("getCount", "MyClass", function(this, ...) {
-  MyClass$.count;
+  MyClass$.count
 })
 
 
 # Set virtual field 'count', e.g. obj$count <- value.
 setMethodS3("setCount", "MyClass", function(this, value, ...) {
-  MyClass$.count <- value;
+  MyClass$.count <- value
 })
 
 
