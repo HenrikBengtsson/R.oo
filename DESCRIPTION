@@ -8,7 +8,7 @@ Imports:
   utils
 Suggests:
   tools
-Date: 2018-04-09
+Date: 2018-04-21
 Title: R Object-Oriented Programming with or without References
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
                                           email = "henrikb@braju.com"))
