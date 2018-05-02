@@ -55,8 +55,8 @@ RdocException(..., source=NULL)
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{as.character} \tab  -\cr
- \tab \code{getSource} \tab  -\cr
+ \tab \code{\link[R.oo:as.character.RdocException]{as.character}} \tab Gets a character string representing of the RdocException.\cr
+ \tab \code{\link[R.oo:getSource.RdocException]{getSource}} \tab Gets the source of the exception.\cr
 }
 
 

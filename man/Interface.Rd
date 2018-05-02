@@ -42,9 +42,9 @@ Interface(core=NA, ...)
 \section{Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{extend} \tab  -\cr
- \tab \code{print} \tab  -\cr
- \tab \code{uses} \tab  -\cr
+ \tab \code{\link[R.oo:extend.Interface]{extend}} \tab Extends another Interface class.\cr
+ \tab \code{\link[R.oo:print.Interface]{print}} \tab Prints an Interface.\cr
+ \tab \code{\link[R.oo:uses.Interface]{uses}} \tab Specifies that an object uses this Interface.\cr
 }
 
 

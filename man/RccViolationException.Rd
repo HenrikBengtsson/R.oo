@@ -59,8 +59,8 @@ RccViolationException(...)
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{as.character} \tab  -\cr
- \tab \code{getRccUrl} \tab  -\cr
+ \tab \code{\link[R.oo:as.character.RccViolationException]{as.character}} \tab Gets a string representing of the RCC violation.\cr
+ \tab \code{\link[R.oo:getRccUrl.RccViolationException]{getRccUrl}} \tab Static method to get a URL where the RCC can be found.\cr
 }
 
 

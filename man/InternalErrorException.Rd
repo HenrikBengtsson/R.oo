@@ -59,8 +59,8 @@ InternalErrorException(..., package=NULL)
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{getMessage} \tab  -\cr
- \tab \code{getPackage} \tab  -\cr
+ \tab \code{\link[R.oo:getMessage.InternalErrorException]{getMessage}} \tab Gets the message of the exception.\cr
+ \tab \code{\link[R.oo:getPackage.InternalErrorException]{getPackage}} \tab Gets the suspicious package likely to contain an error.\cr
 }
 
 
