@@ -15,7 +15,7 @@
 
 \description{
   Gets the size of the BasicObject in bytes by summing the sizes of all its members. For this reason,
-  the size of memory the BasicObject actually allocates might vary slighty.
+  the size of memory the BasicObject actually allocates might vary slightly.
 }
 
 \usage{

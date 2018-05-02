@@ -15,7 +15,7 @@
 \title{Static method to get the last Exception thrown}
 
 \description{
- Static method to get the last Exception instanciated.
+ Static method to get the last Exception created.
 }
 
 \usage{

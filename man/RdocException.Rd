@@ -48,15 +48,15 @@ RdocException(..., source=NULL)
 
 \arguments{
   \item{...}{Any arguments accepted by \code{\link[R.oo]{Exception}}}.
-  \item{source}{Object specifying the source where the Rdoc error occured.
+  \item{source}{Object specifying the source where the Rdoc error occurred.
     This is commonly a filename \code{\link[base]{character}} string.}.
 }
 
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.oo:as.character.RdocException]{as.character}} \tab Gets a character string representing of the RdocException.\cr
- \tab \code{\link[R.oo:getSource.RdocException]{getSource}} \tab Gets the source of the exception.\cr
+ \tab \code{as.character} \tab  -\cr
+ \tab \code{getSource} \tab  -\cr
 }
 
 

@@ -3,7 +3,7 @@
 #
 # @RdocMethod getRdDeclaration
 #
-# @title "Gets the class declaraction in Rd format"
+# @title "Gets the class declaration in Rd format"
 #
 # \description{
 #   @get "title".

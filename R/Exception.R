@@ -332,9 +332,9 @@ setMethodS3("throw", "Exception", function(this, ...) {
   # abort()
 
   # Alt 2: An alternative is to call stop() again, which will resignal
-  # a condition and then abort.  The resignalled condition should not
+  # a condition and then abort.  The resignaled condition should not
   # really be caught by anything, because if so, it would have been
-  # caught by the above signalling.  This is based on the assumption
+  # caught by the above signaling.  This is based on the assumption
   # that it is not possible to continue after the above signal,
   # iff it is caught. /HB 2012-03-05
   cond <- simpleCondition(getMessage(this))
@@ -350,7 +350,7 @@ setMethodS3("throw", "Exception", function(this, ...) {
 # \title{Static method to get the last Exception thrown}
 #
 # \description{
-#  Static method to get the last Exception instanciated.
+#  Static method to get the last Exception created.
 # }
 #
 # @synopsis

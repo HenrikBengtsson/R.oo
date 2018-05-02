@@ -89,7 +89,7 @@ setMethodS3("getPackage", "InternalErrorException", function(this, ...) {
 # \description{
 #  @get "title" and adds a message that clarifies that the error is likely
 #  due to an internal error and not due to the user. It also gives information
-#  how to contact the maintainer or author of the suspicous package. This 
+#  how to contact the maintainer or author of the suspicious package. This 
 #  information is retrieved from the DESCRIPTION file of the package. To help
 #  the package developer, information about the current version of R, the
 #  current version of the package etc are also returned so the user can 

@@ -13,7 +13,7 @@
 #
 # \arguments{
 #   \item{...}{Any arguments accepted by @Exception}.
-#   \item{source}{Object specifying the source where the Rdoc error occured.
+#   \item{source}{Object specifying the source where the Rdoc error occurred.
 #     This is commonly a filename @character string.}.
 # }
 #

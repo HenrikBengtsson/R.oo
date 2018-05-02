@@ -23,7 +23,7 @@
 #    one can extract any type of property by defining new methods.}
 #   \item{sortBy}{Name or index of column (property) to be sorted by.
 #    If @NULL, the objects are listed in the order they are found.}
-#   \item{decreasing}{A @logical indiciating whether the sorting should
+#   \item{decreasing}{A @logical indicating whether the sorting should
 #    be done in increasing or decreasing order.}
 #   \item{envir}{An @environment, a search path index or a name of a package
 #    to be scanned.}
