@@ -15,7 +15,7 @@
 
 \description{
  Aborts the current expression call and returns to the top level prompt/browser
- \emph{without signalling a condition}.
+ \emph{without signaling a condition}.
 }
 
 \usage{

@@ -8,7 +8,7 @@
 #
 # \description{
 #  @get "title" and returns to the top level prompt/browser
-#  \emph{without signalling a condition}.
+#  \emph{without signaling a condition}.
 # }
 #
 # @synopsis

@@ -17,7 +17,7 @@
 # @synopsis
 #
 # \arguments{
-#   \item{core}{The core value of each \emph{reference} referering to the
+#   \item{core}{The core value of each \emph{reference} referring to the
 #     Object. By default, this is just the smallest possible \R object, but
 #     there are situations where it is useful to have another kind of core,
 #     which is the case with the Class class.
@@ -570,7 +570,7 @@ setMethodS3("attachLocally", "Object", function(this, private=FALSE, fields=NULL
 # \description{
 #  Attach the members of an Object to the \R search path.
 #
-#  If trying to attach the same Object twice without detaching it inbetween,
+#  If trying to attach the same Object twice without detaching it in between,
 #  a @warning will be generated and nothing will be done.
 # }
 #
@@ -878,7 +878,7 @@ setMethodS3("load", "Object", function(static, file, path=NULL, ...) {
 # \description{
 #   @get "title" by summing the sizes of all its
 #   members. For this reason, the size of memory the Object actually
-#   allocates might vary slighty.
+#   allocates might vary slightly.
 # }
 #
 # @synopsis
@@ -1429,10 +1429,10 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 # @RdocMethod $
 # @aliasmethod [[
 #
-# @title "Makes the fields and methods of an Object accessable via the \$ and the [[ operator"
+# @title "Makes the fields and methods of an Object accessible via the \$ and the [[ operator"
 #
 # \description{
-#   Makes the fields and methods of an Object accessable via the \code{$}
+#   Makes the fields and methods of an Object accessible via the \code{$}
 #   operator. This method is never called explicitly, but through an indirect
 #   usage of the \code{$} operator, e.g. \code{obj$name} or
 #   \code{obj$getValue()}.

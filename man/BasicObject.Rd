@@ -37,19 +37,19 @@ BasicObject(core=NULL)
  \tab \code{.subset2Internal} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
- \tab \code{\link[R.oo:as.character.BasicObject]{as.character}} \tab Gets a character string representing the object.\cr
- \tab \code{\link[R.oo:attach.BasicObject]{attach}} \tab Attach an BasicObject to the R search path.\cr
- \tab \code{\link[R.oo:detach.BasicObject]{detach}} \tab Detach an BasicObject from the R search path.\cr
- \tab \code{\link[R.oo:equals.BasicObject]{equals}} \tab Compares an object with another.\cr
- \tab \code{\link[R.oo:extend.BasicObject]{extend}} \tab Extends another class.\cr
- \tab \code{\link[R.oo:getFields.BasicObject]{getFields}} \tab Returns the field names of an BasicObject.\cr
- \tab \code{\link[R.oo:getInstantiationTime.BasicObject]{getInstantiationTime}} \tab Gets the time when the object was instantiated.\cr
- \tab \code{\link[R.oo:hasField.BasicObject]{hasField}} \tab Checks if a field exists or not.\cr
- \tab \code{\link[R.oo:hashCode.BasicObject]{hashCode}} \tab Gets a hash code for the object.\cr
- \tab \code{\link[R.oo:isReferable.BasicObject]{isReferable}} \tab Checks if the object is referable or not.\cr
- \tab \code{\link[R.oo:newInstance.BasicObject]{newInstance}} \tab Creates a new instance of the same class as this object.\cr
- \tab \code{\link[R.oo:objectSize.BasicObject]{objectSize}} \tab Gets the size of the BasicObject in bytes.\cr
- \tab \code{\link[R.oo:print.BasicObject]{print}} \tab Prints an BasicObject.\cr
+ \tab \code{as.character} \tab  -\cr
+ \tab \code{attach} \tab  -\cr
+ \tab \code{detach} \tab  -\cr
+ \tab \code{equals} \tab  -\cr
+ \tab \code{extend} \tab  -\cr
+ \tab \code{getFields} \tab  -\cr
+ \tab \code{getInstantiationTime} \tab  -\cr
+ \tab \code{hasField} \tab  -\cr
+ \tab \code{hashCode} \tab  -\cr
+ \tab \code{isReferable} \tab  -\cr
+ \tab \code{newInstance} \tab  -\cr
+ \tab \code{objectSize} \tab  -\cr
+ \tab \code{print} \tab  -\cr
 }
 
 

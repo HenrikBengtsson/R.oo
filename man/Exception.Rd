@@ -55,17 +55,17 @@ Exception(..., sep="", collapse=", ")
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{\link[R.oo:as.character.Exception]{as.character}} \tab Gets a character string representing of the Exception.\cr
+ \tab \code{as.character} \tab  -\cr
  \tab \code{getCall} \tab  -\cr
- \tab \code{\link[R.oo:getCalls.Exception]{getCalls}} \tab Gets the active calls saved when the exception was created.\cr
- \tab \code{\link[R.oo:getLastException.Exception]{getLastException}} \tab Static method to get the last Exception thrown.\cr
- \tab \code{\link[R.oo:getMessage.Exception]{getMessage}} \tab Gets the message of the Exception.\cr
- \tab \code{\link[R.oo:getStackTrace.Exception]{getStackTrace}} \tab Gets the stack trace saved when the exception was created.\cr
- \tab \code{\link[R.oo:getStackTraceString.Exception]{getStackTraceString}} \tab Gets the stack trace as a string.\cr
- \tab \code{\link[R.oo:getWhen.Exception]{getWhen}} \tab Gets the time when the Exception was created.\cr
- \tab \code{\link[R.oo:print.Exception]{print}} \tab Prints the Exception.\cr
- \tab \code{\link[R.oo:printStackTrace.Exception]{printStackTrace}} \tab Prints the stack trace saved when the exception was created.\cr
- \tab \code{\link[R.oo:throw.Exception]{throw}} \tab Throws an Exception that can be caught.\cr
+ \tab \code{getCalls} \tab  -\cr
+ \tab \code{getLastException} \tab  -\cr
+ \tab \code{getMessage} \tab  -\cr
+ \tab \code{getStackTrace} \tab  -\cr
+ \tab \code{getStackTraceString} \tab  -\cr
+ \tab \code{getWhen} \tab  -\cr
+ \tab \code{print} \tab  -\cr
+ \tab \code{printStackTrace} \tab  -\cr
+ \tab \code{throw} \tab  -\cr
 }
 
 

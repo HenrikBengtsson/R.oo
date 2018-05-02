@@ -52,29 +52,29 @@ Class(name=NULL, constructor=NULL)
  \tab \code{.subset2Internal} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
- \tab \code{\link[R.oo:argsToString.Class]{argsToString}} \tab Gets the arguments of a function as a character string.\cr
- \tab \code{\link[R.oo:as.character.Class]{as.character}} \tab Returns a short string describing the class.\cr
- \tab \code{\link[R.oo:forName.Class]{forName}} \tab Gets a Class object by a name of a class.\cr
- \tab \code{\link[R.oo:getDetails.Class]{getDetails}} \tab Lists the fields and methods of a class.\cr
- \tab \code{\link[R.oo:getFields.Class]{getFields}} \tab Returns the field names of a class.\cr
- \tab \code{\link[R.oo:getKnownSubclasses.Class]{getKnownSubclasses}} \tab Gets all subclasses that are currently loaded.\cr
- \tab \code{\link[R.oo:getMethods.Class]{getMethods}} \tab Returns the method names of class and its super classes.\cr
- \tab \code{\link[R.oo:getName.Class]{getName}} \tab Gets the name of the class.\cr
- \tab \code{\link[R.oo:getPackage.Class]{getPackage}} \tab Gets the package to which the class belongs.\cr
- \tab \code{\link[R.oo:getRdDeclaration.Class]{getRdDeclaration}} \tab Gets the class declaraction in Rd format.\cr
- \tab \code{\link[R.oo:getRdHierarchy.Class]{getRdHierarchy}} \tab Gets the class hierarchy in Rd format.\cr
- \tab \code{\link[R.oo:getRdMethods.Class]{getRdMethods}} \tab Gets the methods of a class in Rd format.\cr
- \tab \code{\link[R.oo:getStaticInstance.Class]{getStaticInstance}} \tab Gets the static instance of this class.\cr
- \tab \code{\link[R.oo:getSuperclasses.Class]{getSuperclasses}} \tab Gets the super classes of this class.\cr
- \tab \code{\link[R.oo:isAbstract.Class]{isAbstract}} \tab Checks if a class is abstract or not.\cr
- \tab \code{\link[R.oo:isBeingCreated.Class]{isBeingCreated}} \tab Checks if a class is currently being initiated initiated.\cr
- \tab \code{\link[R.oo:isDeprecated.Class]{isDeprecated}} \tab Checks if a class is deprecated or not.\cr
- \tab \code{\link[R.oo:isPrivate.Class]{isPrivate}} \tab Checks if a class is defined private or not.\cr
- \tab \code{\link[R.oo:isProtected.Class]{isProtected}} \tab Checks if a class is defined protected or not.\cr
- \tab \code{\link[R.oo:isPublic.Class]{isPublic}} \tab Checks if a class is defined public or not.\cr
- \tab \code{\link[R.oo:isStatic.Class]{isStatic}} \tab Checks if a class is static or not.\cr
- \tab \code{\link[R.oo:newInstance.Class]{newInstance}} \tab Creates a new instance of this class.\cr
- \tab \code{\link[R.oo:print.Class]{print}} \tab Prints detailed information about the class and its fields and methods.\cr
+ \tab \code{argsToString} \tab  -\cr
+ \tab \code{as.character} \tab  -\cr
+ \tab \code{forName} \tab  -\cr
+ \tab \code{getDetails} \tab  -\cr
+ \tab \code{getFields} \tab  -\cr
+ \tab \code{getKnownSubclasses} \tab  -\cr
+ \tab \code{getMethods} \tab  -\cr
+ \tab \code{getName} \tab  -\cr
+ \tab \code{getPackage} \tab  -\cr
+ \tab \code{getRdDeclaration} \tab  -\cr
+ \tab \code{getRdHierarchy} \tab  -\cr
+ \tab \code{getRdMethods} \tab  -\cr
+ \tab \code{getStaticInstance} \tab  -\cr
+ \tab \code{getSuperclasses} \tab  -\cr
+ \tab \code{isAbstract} \tab  -\cr
+ \tab \code{isBeingCreated} \tab  -\cr
+ \tab \code{isDeprecated} \tab  -\cr
+ \tab \code{isPrivate} \tab  -\cr
+ \tab \code{isProtected} \tab  -\cr
+ \tab \code{isPublic} \tab  -\cr
+ \tab \code{isStatic} \tab  -\cr
+ \tab \code{newInstance} \tab  -\cr
+ \tab \code{print} \tab  -\cr
 }
 
 

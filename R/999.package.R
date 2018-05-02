@@ -16,7 +16,7 @@
 #   \code{install.packages("R.oo")}
 # }
 #
-# \section{Dependancies and other requirements}{
+# \section{Dependencies and other requirements}{
 #   This package requires a standard \R installation and
 #   the \pkg{R.methodsS3} package.
 # }

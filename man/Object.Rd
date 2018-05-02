@@ -29,7 +29,7 @@ Object(core=NA, finalize=TRUE)
 }
 
 \arguments{
-  \item{core}{The core value of each \emph{reference} referering to the
+  \item{core}{The core value of each \emph{reference} referring to the
     Object. By default, this is just the smallest possible \R object, but
     there are situations where it is useful to have another kind of core,
     which is the case with the Class class.
@@ -48,35 +48,35 @@ Object(core=NA, finalize=TRUE)
  \tab \code{.subset2Internal} \tab  -\cr
  \tab \code{[[} \tab  -\cr
  \tab \code{[[<-} \tab  -\cr
- \tab \code{\link[R.oo:as.character.Object]{as.character}} \tab Gets a character string representing the object.\cr
- \tab \code{\link[R.oo:attach.Object]{attach}} \tab Attaches an Object to the R search path.\cr
- \tab \code{\link[R.oo:attachLocally.Object]{attachLocally}} \tab Attaches an Object locally to an environment.\cr
- \tab \code{\link[R.oo:clearCache.Object]{clearCache}} \tab Clear fields that are defined to have cached values.\cr
- \tab \code{\link[R.oo:clearLookupCache.Object]{clearLookupCache}} \tab Clear internal fields used for faster lookup.\cr
- \tab \code{\link[R.oo:clone.Object]{clone}} \tab Clones an Object.\cr
- \tab \code{\link[R.oo:detach.Object]{detach}} \tab Detach an Object from the R search path.\cr
- \tab \code{\link[R.oo:equals.Object]{equals}} \tab Compares an object with another.\cr
- \tab \code{\link[R.oo:extend.Object]{extend}} \tab Extends another class.\cr
- \tab \code{\link[R.oo:finalize.Object]{finalize}} \tab Finalizer methods called when object is clean out.\cr
- \tab \code{\link[R.oo:getEnvironment.Object]{getEnvironment}} \tab Gets the environment of this object.\cr
+ \tab \code{as.character} \tab  -\cr
+ \tab \code{attach} \tab  -\cr
+ \tab \code{attachLocally} \tab  -\cr
+ \tab \code{clearCache} \tab  -\cr
+ \tab \code{clearLookupCache} \tab  -\cr
+ \tab \code{clone} \tab  -\cr
+ \tab \code{detach} \tab  -\cr
+ \tab \code{equals} \tab  -\cr
+ \tab \code{extend} \tab  -\cr
+ \tab \code{finalize} \tab  -\cr
+ \tab \code{getEnvironment} \tab  -\cr
  \tab \code{getFieldModifier} \tab  -\cr
- \tab \code{\link[R.oo:getFieldModifiers.Object]{getFieldModifiers}} \tab Gets all types of field modifiers.\cr
- \tab \code{\link[R.oo:getFields.Object]{getFields}} \tab Returns the field names of an Object.\cr
- \tab \code{\link[R.oo:getInstantiationTime.Object]{getInstantiationTime}} \tab Gets the time when the object was instantiated.\cr
- \tab \code{\link[R.oo:getInternalAddress.Object]{getInternalAddress}} \tab Gets the memory location where the Object resides.\cr
- \tab \code{\link[R.oo:getStaticInstance.Object]{getStaticInstance}} \tab Gets the static instance of this objects class.\cr
- \tab \code{\link[R.oo:hasField.Object]{hasField}} \tab Checks if a field exists or not.\cr
- \tab \code{\link[R.oo:hashCode.Object]{hashCode}} \tab Gets a hash code for the Object.\cr
- \tab \code{\link[R.oo:isReferable.Object]{isReferable}} \tab Checks if the object is referable or not.\cr
- \tab \code{\link[R.oo:ll.Object]{ll}} \tab Generates a list of informative properties of all members of an Object.\cr
- \tab \code{\link[R.oo:load.Object]{load}} \tab Static method to load an Object from a file or a connection.\cr
+ \tab \code{getFieldModifiers} \tab  -\cr
+ \tab \code{getFields} \tab  -\cr
+ \tab \code{getInstantiationTime} \tab  -\cr
+ \tab \code{getInternalAddress} \tab  -\cr
+ \tab \code{getStaticInstance} \tab  -\cr
+ \tab \code{hasField} \tab  -\cr
+ \tab \code{hashCode} \tab  -\cr
+ \tab \code{isReferable} \tab  -\cr
+ \tab \code{ll} \tab  -\cr
+ \tab \code{load} \tab  -\cr
  \tab \code{names} \tab  -\cr
- \tab \code{\link[R.oo:newInstance.Object]{newInstance}} \tab Creates a new instance of the same class as this object.\cr
- \tab \code{\link[R.oo:novirtual.Object]{novirtual}} \tab Returns a reference to the same Object with virtual fields turned off.\cr
- \tab \code{\link[R.oo:objectSize.Object]{objectSize}} \tab Gets the size of the Object in bytes.\cr
- \tab \code{\link[R.oo:print.Object]{print}} \tab Prints an Object.\cr
- \tab \code{\link[R.oo:save.Object]{save}} \tab Saves an Object to a file or a connection.\cr
- \tab \code{\link[R.oo:staticCode.Object]{staticCode}} \tab Method that will be call each time a new instance of a class is created.\cr
+ \tab \code{newInstance} \tab  -\cr
+ \tab \code{novirtual} \tab  -\cr
+ \tab \code{objectSize} \tab  -\cr
+ \tab \code{print} \tab  -\cr
+ \tab \code{save} \tab  -\cr
+ \tab \code{staticCode} \tab  -\cr
 }
 
 
