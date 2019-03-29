@@ -44,7 +44,6 @@
 # @alias detach
 # @alias detach.default
 # @alias finalize
-# @alias gc
 # @alias getFields
 # @alias getInstanciationTime
 # @alias getInstanciationTime.default
@@ -133,7 +132,6 @@
 # @alias getSource
 #
 # % Trial functions
-# @alias gc.default
 # @alias callSuperMethodS3
 # @alias callSuperMethodS3.default
 #

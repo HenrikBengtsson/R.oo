@@ -15,7 +15,7 @@
 
 \description{
  Clear internal fields used for faster lookup by removing these fields.
- This method is called whenever \code{\link[R.oo:gc.Object]{*gc}()} is called on the
+ This method is called whenever \code{\link[R.oo:clearCache.Object]{*clearCache}()} is called on the
  object.
 }
 

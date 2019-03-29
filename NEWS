@@ -1,10 +1,12 @@
 Package: R.oo
 =============
 
-Version: 1.22.0-9000 [2018-04-21]
+Version: 1.22.0-9000 [2019-03-28]
 
- * ...
- 
+DEPRECATED AND DEFUNCT:
+
+ * Removed defunct method gc() for Object. Use clearCache(..., gc = TRUE).
+
 
 Version: 1.22.0 [2018-04-21]
  
