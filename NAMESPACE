@@ -4,7 +4,6 @@
 importFrom("R.methodsS3", "setMethodS3")
 importFrom("R.methodsS3", "setGenericS3")
 importFrom("R.methodsS3", "isGenericS3")
-importFrom("R.methodsS3", "throw")
 importFrom("R.methodsS3", "pkgStartupMessage")
 importFrom("R.methodsS3", "appendVarArgs")
 

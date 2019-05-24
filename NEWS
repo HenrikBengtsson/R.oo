@@ -1,8 +1,12 @@
 Package: R.oo
 =============
 
-Version: 1.22.0-9000 [2019-03-28]
+Version: 1.22.0-9000 [2019-05-23]
 
+SIGNIFICANT CHANGES:
+
+ * Exporting generic throw() - previously exported by R.methodsS3.
+ 
 DEPRECATED AND DEFUNCT:
 
  * Removed defunct method gc() for Object. Use clearCache(..., gc = TRUE).
