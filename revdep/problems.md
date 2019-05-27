@@ -908,33 +908,24 @@ Run `revdep_details(,"R.utils")` for more info
 
 <details>
 
-* Version: 0.4-13
+* Version: 0.4-14
 * Source code: https://github.com/cran/rtf
-* Date/Publication: 2018-05-17 04:16:00 UTC
+* URL: https://github.com/schaffman5/rtf
+* BugReports: https://github.com/schaffman5/rtf/issues
+* Date/Publication: 2019-05-27 05:00:03 UTC
 * Number of recursive dependencies: 41
 
 Run `revdep_details(,"rtf")` for more info
 
 </details>
 
-## Newly broken
-
-*   checking whether package ‘rtf’ can be installed ... WARNING
-    ```
-    Found the following significant warnings:
-      Warning: replacing previous import ‘R.methodsS3::throw’ by ‘R.oo::throw’ when loading ‘rtf’
-    Found the following additional notes/warnings:
-      Non-staged installation was used
-    See ‘/home/hb/repositories/R.oo/revdep/checks/rtf/new/rtf.Rcheck/00install.out’ for details.
-    ```
-
-## Newly fixed
+## In both
 
 *   checking whether package ‘rtf’ can be installed ... NOTE
     ```
     Found the following notes/warnings:
       Non-staged installation was used
-    See ‘/home/hb/repositories/R.oo/revdep/checks/rtf/old/rtf.Rcheck/00install.out’ for details.
+    See ‘/home/hb/repositories/R.oo/revdep/checks/rtf/new/rtf.Rcheck/00install.out’ for details.
     ```
 
 # sBIC

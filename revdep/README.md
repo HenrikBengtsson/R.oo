@@ -10,7 +10,7 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Los_Angeles          |
-|date     |2019-05-23                   |
+|date     |2019-05-27                   |
 
 # Dependencies
 
@@ -21,14 +21,13 @@
 
 # Revdeps
 
-## New problems (4)
+## New problems (3)
 
 |package                          |version |error |warning |note |
 |:--------------------------------|:-------|:-----|:-------|:----|
 |[cgdsr](problems.md#cgdsr)       |1.2.10  |      |__+1__  |-1   |
 |[NPCD](problems.md#npcd)         |1.0-10  |      |__+1__  |-1   |
 |[phylosim](problems.md#phylosim) |3.0.2   |      |__+1__  |-1   |
-|[rtf](problems.md#rtf)           |0.4-13  |      |__+1__  |-1   |
 
 ## All (30)
 
@@ -60,7 +59,7 @@
 |[R.matlab](problems.md#rmatlab)                      |3.6.2   |      |        |1    |
 |[R.rsp](problems.md#rrsp)                            |0.43.1  |      |        |1    |
 |[R.utils](problems.md#rutils)                        |2.8.0   |      |        |1    |
-|[rtf](problems.md#rtf)                               |0.4-13  |      |__+1__  |-1   |
+|[rtf](problems.md#rtf)                               |0.4-14  |      |        |1    |
 |[sBIC](problems.md#sbic)                             |0.2.0   |      |        |1    |
 |[SEMID](problems.md#semid)                           |0.3.2   |      |        |1    |
 |[tmle.npvi](problems.md#tmlenpvi)                    |0.10.0  |      |        |2    |
