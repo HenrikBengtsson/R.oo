@@ -1,11 +1,14 @@
 Package: R.oo
 =============
 
-Version: 1.22.0-9000 [2019-05-23]
+Version: 1.22.0-9000 [2019-09-24]
 
 SIGNIFICANT CHANGES:
 
- * Exporting generic throw() - previously exported by R.methodsS3.
+ * Exporting generic throw(), which previously was a re-export of ditto from
+   R.methodsS3.  This change prevents the message 'Registered S3 method
+   overwritten by 'R.oo': ... throw.default R.methodsS3' from appearing when
+   the R.oo package is loaded (directly or indirectly).
  
 DEPRECATED AND DEFUNCT:
 
