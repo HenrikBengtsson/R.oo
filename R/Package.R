@@ -1251,10 +1251,10 @@ setMethodS3("getLicense", "Package", function(this, ...) {
 #  faster.
 # }
 #
-# \examples{
+# \examples{\donttest{
 #   pkg <- Package("R.oo")
 #   print(getBundle(pkg))
-# }
+# }}
 #
 # @author
 #

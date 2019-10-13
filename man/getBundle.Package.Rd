@@ -37,10 +37,10 @@
  faster.
 }
 
-\examples{
+\examples{\donttest{
   pkg <- Package("R.oo")
   print(getBundle(pkg))
-}
+}}
 
 \author{Henrik Bengtsson}
 
