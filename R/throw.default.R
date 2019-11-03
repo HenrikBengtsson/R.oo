@@ -58,4 +58,4 @@ setMethodS3("throw", "default", function(...) {
 }, overwrite=TRUE, conflict="quiet")
 
 
-## setGenericS3("throw", force=TRUE)
+setGenericS3("throw", overwrite=TRUE, force=TRUE)
