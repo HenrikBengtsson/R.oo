@@ -29,7 +29,7 @@ Object(core=NA, finalize=TRUE)
 }
 
 \arguments{
-  \item{core}{The core value of each \emph{reference} referering to the
+  \item{core}{The core value of each \emph{reference} referring to the
     Object. By default, this is just the smallest possible \R object, but
     there are situations where it is useful to have another kind of core,
     which is the case with the Class class.

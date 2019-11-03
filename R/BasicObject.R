@@ -292,7 +292,7 @@ setMethodS3("print", "BasicObject", function(x, ...) {
 #
 # \description{
 #   @get "title" by summing the sizes of all its members. For this reason,
-#   the size of memory the BasicObject actually allocates might vary slighty.
+#   the size of memory the BasicObject actually allocates might vary slightly.
 # }
 #
 # @synopsis
@@ -410,7 +410,7 @@ setMethodS3("hasField", "BasicObject", function(this, field, ...) {
 #  Attach the members of an BasicObject to the \R search path.
 #
 #  If trying to attach the same BasicObject twice without detaching it
-#  inbetween, a @warning will be generated and nothing will be done.
+#  in between, a @warning will be generated and nothing will be done.
 # }
 #
 # @synopsis
@@ -620,7 +620,7 @@ setMethodS3("newInstance", "BasicObject", function(this, ...) {
 # @RdocMethod $
 # @aliasmethod [[
 #
-# @title "Makes the fields and methods of an BasicObject accessable via the \$ and the [[ operator"
+# @title "Makes the fields and methods of an BasicObject accessible via the \$ and the [[ operator"
 #
 # \description{
 #   @get "title".

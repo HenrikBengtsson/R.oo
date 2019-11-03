@@ -48,7 +48,7 @@ RdocException(..., source=NULL)
 
 \arguments{
   \item{...}{Any arguments accepted by \code{\link[R.oo]{Exception}}}.
-  \item{source}{Object specifying the source where the Rdoc error occured.
+  \item{source}{Object specifying the source where the Rdoc error occurred.
     This is commonly a filename \code{\link[base]{character}} string.}.
 }
 

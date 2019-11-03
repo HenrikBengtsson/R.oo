@@ -61,7 +61,7 @@ Class(name=NULL, constructor=NULL)
  \tab \code{\link[R.oo:getMethods.Class]{getMethods}} \tab Returns the method names of class and its super classes.\cr
  \tab \code{\link[R.oo:getName.Class]{getName}} \tab Gets the name of the class.\cr
  \tab \code{\link[R.oo:getPackage.Class]{getPackage}} \tab Gets the package to which the class belongs.\cr
- \tab \code{\link[R.oo:getRdDeclaration.Class]{getRdDeclaration}} \tab Gets the class declaraction in Rd format.\cr
+ \tab \code{\link[R.oo:getRdDeclaration.Class]{getRdDeclaration}} \tab Gets the class declaration in Rd format.\cr
  \tab \code{\link[R.oo:getRdHierarchy.Class]{getRdHierarchy}} \tab Gets the class hierarchy in Rd format.\cr
  \tab \code{\link[R.oo:getRdMethods.Class]{getRdMethods}} \tab Gets the methods of a class in Rd format.\cr
  \tab \code{\link[R.oo:getStaticInstance.Class]{getStaticInstance}} \tab Gets the static instance of this class.\cr

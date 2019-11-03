@@ -16,7 +16,7 @@
 \description{
  Attach the members of an Object to the \R search path.
 
- If trying to attach the same Object twice without detaching it inbetween,
+ If trying to attach the same Object twice without detaching it in between,
  a \code{\link[base]{warning}} will be generated and nothing will be done.
 }
 

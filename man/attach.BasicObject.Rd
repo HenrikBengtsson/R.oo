@@ -17,7 +17,7 @@
  Attach the members of an BasicObject to the \R search path.
 
  If trying to attach the same BasicObject twice without detaching it
- inbetween, a \code{\link[base]{warning}} will be generated and nothing will be done.
+ in between, a \code{\link[base]{warning}} will be generated and nothing will be done.
 }
 
 \usage{

@@ -15,10 +15,10 @@
 \alias{[[,Object-method}
 
 
-\title{Makes the fields and methods of an Object accessable via the \$ and the [[ operator}
+\title{Makes the fields and methods of an Object accessible via the \$ and the [[ operator}
 
 \description{
-  Makes the fields and methods of an Object accessable via the \code{$}
+  Makes the fields and methods of an Object accessible via the \code{$}
   operator. This method is never called explicitly, but through an indirect
   usage of the \code{$} operator, e.g. \code{obj$name} or
   \code{obj$getValue()}.

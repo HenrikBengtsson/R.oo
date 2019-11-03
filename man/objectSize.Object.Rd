@@ -16,7 +16,7 @@
 \description{
   Gets the size of the Object in bytes by summing the sizes of all its
   members. For this reason, the size of memory the Object actually
-  allocates might vary slighty.
+  allocates might vary slightly.
 }
 
 \usage{

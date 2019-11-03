@@ -13,10 +13,10 @@
 \alias{Class.getRdDeclaration}
 \alias{getRdDeclaration,Class-method}
 
-\title{Gets the class declaraction in Rd format}
+\title{Gets the class declaration in Rd format}
 
 \description{
-  Gets the class declaraction in Rd format.
+  Gets the class declaration in Rd format.
 }
 
 \usage{

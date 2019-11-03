@@ -29,12 +29,6 @@ setMethodS3("save", "default", function(..., envir=parent.frame()) {
   base::save(..., envir=envir)
 })
 
-# USED TO DO: gc <- appendVarArgs(gc)
-gc <- function(...) UseMethod("gc")
-setMethodS3("gc", "default", function(...) {
-  base::gc(...)
-})
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Methods in 'methods'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -6,7 +6,7 @@
 # \description{
 #  Throws an exception similar to \code{stop()}, but with support for
 #  @see "Exception" classes. The first argument (\code{object}) is by 
-#  default pasted together with other arguments (@...) and with seperator
+#  default pasted together with other arguments (@...) and with separator
 #  \code{sep=""}.  For instance, to throw an exception, write
 #
 #    \code{throw("Value out of range: ", value, ".")}.
@@ -58,4 +58,4 @@ setMethodS3("throw", "default", function(...) {
 }, overwrite=TRUE, conflict="quiet")
 
 
-## setGenericS3("throw", force=TRUE)
+setGenericS3("throw", overwrite=TRUE, force=TRUE)
