@@ -2,11 +2,11 @@
 
 <details>
 
-* Version: 1.56.0
+* Version: 1.58.0
 * Source code: https://github.com/cran/affxparser
 * URL: https://github.com/HenrikBengtsson/affxparser
 * BugReports: https://github.com/HenrikBengtsson/affxparser/issues
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 4
 
 Run `revdep_details(,"affxparser")` for more info
@@ -55,9 +55,9 @@ Run `revdep_details(,"affxparser")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 16.4Mb
+      installed size is 16.8Mb
       sub-directories of 1Mb or more:
-        libs  15.7Mb
+        libs  16.0Mb
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -91,6 +91,12 @@ Run `revdep_details(,"aroma.affymetrix")` for more info
         testScripts   1.3Mb
     ```
 
+*   checking dependencies in R code ... NOTE
+    ```
+    Error in setGeneric("getX", function(object, type) standardGeneric("getX")) : 
+      could not find function "setGeneric"
+    ```
+
 # aroma.core
 
 <details>
@@ -100,7 +106,7 @@ Run `revdep_details(,"aroma.affymetrix")` for more info
 * URL: https://github.com/HenrikBengtsson/aroma.core, https://www.aroma-project.org/
 * BugReports: https://github.com/HenrikBengtsson/aroma.core/issues
 * Date/Publication: 2019-06-17 18:20:03 UTC
-* Number of recursive dependencies: 45
+* Number of recursive dependencies: 46
 
 Run `revdep_details(,"aroma.core")` for more info
 
@@ -124,11 +130,11 @@ Run `revdep_details(,"aroma.core")` for more info
 
 <details>
 
-* Version: 3.14.0
+* Version: 3.16.0
 * Source code: https://github.com/cran/aroma.light
-* URL: https://github.com/HenrikBengtsson/aroma.light, http://www.aroma-project.org
+* URL: https://github.com/HenrikBengtsson/aroma.light, https://www.aroma-project.org
 * BugReports: https://github.com/HenrikBengtsson/aroma.light/issues
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 6
 
 Run `revdep_details(,"aroma.light")` for more info
@@ -220,9 +226,9 @@ Run `revdep_details(,"DATforDCEMRI")` for more info
 
 <details>
 
-* Version: 1.28.0
+* Version: 1.30.0
 * Source code: https://github.com/cran/IdMappingAnalysis
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 9
 
 Run `revdep_details(,"IdMappingAnalysis")` for more info
@@ -291,10 +297,10 @@ Run `revdep_details(,"IdMappingAnalysis")` for more info
 
 <details>
 
-* Version: 1.32.0
+* Version: 1.34.0
 * Source code: https://github.com/cran/IdMappingRetrieval
-* Date/Publication: 2019-05-02
-* Number of recursive dependencies: 51
+* Date/Publication: 2019-10-29
+* Number of recursive dependencies: 62
 
 Run `revdep_details(,"IdMappingRetrieval")` for more info
 
@@ -335,6 +341,93 @@ Run `revdep_details(,"IdMappingRetrieval")` for more info
     manual.
     ```
 
+# lilikoi
+
+<details>
+
+* Version: 0.1.0
+* Source code: https://github.com/cran/lilikoi
+* URL: https://github.com/lanagarmire/lilikoi
+* BugReports: https://github.com/lanagarmire/lilikoi/issues
+* Date/Publication: 2018-07-30 11:10:03 UTC
+* Number of recursive dependencies: 147
+
+Run `revdep_details(,"lilikoi")` for more info
+
+</details>
+
+## In both
+
+*   checking whether the package can be unloaded cleanly ... WARNING
+    ```
+    Error in globalVariables("naresid.omit") : 
+      could not find function "globalVariables"
+    Error: package or namespace load failed for ‘lilikoi’:
+     unable to load R code in package ‘Hmisc’
+    Execution halted
+    ```
+
+*   checking whether the namespace can be loaded with stated dependencies ... WARNING
+    ```
+    Error in globalVariables("naresid.omit") : 
+      could not find function "globalVariables"
+    Error: unable to load R code in package ‘Hmisc’
+    Execution halted
+    
+    A namespace must be able to be loaded with just the base namespace
+    loaded: otherwise if the namespace gets loaded by a saved object, the
+    session will be unable to start.
+    
+    Probably some imports need to be declared in the NAMESPACE file.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.0Mb
+      sub-directories of 1Mb or more:
+        data      3.8Mb
+        extdata   1.1Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    ...
+    Call sequence:
+    6: stop(msg, call. = FALSE, domain = NA)
+    5: value[[3L]](cond)
+    4: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    3: tryCatchList(expr, classes, parentenv, handlers)
+    2: tryCatch({
+           attr(package, "LibPath") <- which.lib.loc
+           ns <- loadNamespace(package, lib.loc)
+           env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+       }, error = function(e) {
+           P <- if (!is.null(cc <- conditionCall(e))) 
+               paste(" in", deparse(cc)[1L])
+           else ""
+           msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+               sQuote(package), P, conditionMessage(e))
+           if (logical.return) 
+               message(paste("Error:", msg), domain = NA)
+           else stop(msg, call. = FALSE, domain = NA)
+       })
+    1: library(package, lib.loc = lib.loc, character.only = TRUE, verbose = FALSE)
+    Execution halted
+    ```
+
+*   checking R code for possible problems ... NOTE
+    ```
+    Error in globalVariables("naresid.omit") : 
+      could not find function "globalVariables"
+    Error: unable to load R code in package ‘Hmisc’
+    Execution halted
+    ```
+
+*   checking data for non-ASCII characters ... NOTE
+    ```
+      Note: found 3837 marked UTF-8 strings
+    ```
+
 # NPCD
 
 <details>
@@ -361,9 +454,9 @@ Run `revdep_details(,"NPCD")` for more info
 
 <details>
 
-* Version: 1.22.0
+* Version: 1.24.0
 * Source code: https://github.com/cran/pathifier
-* Date/Publication: 2019-05-02
+* Date/Publication: 2019-10-29
 * Number of recursive dependencies: 4
 
 Run `revdep_details(,"pathifier")` for more info
