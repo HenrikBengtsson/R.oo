@@ -33,6 +33,8 @@
 
 .fixMethodS3("names", "Object")
 .fixMethodS3("$", "Object")
+.fixMethodS3("$<-", "Object")
 .fixMethodS3("[[", "Object")
+.fixMethodS3("[[<-", "Object")
 .fixMethodS3("print", "Object")
 .fixMethodS3("print", "Exception")
