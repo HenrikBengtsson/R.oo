@@ -14,7 +14,7 @@
 \title{Gets a string representing of the RCC violation}
 
 \description{
- Gets a string representing of the RCC violation of format "[\{POSIX date string\}] \{class name\}: \{msg\}, cf. http://aroma-project.org/developers/RCC/".
+ Gets a string representing of the RCC violation of format "[\{POSIX date string\}] \{class name\}: \{msg\}, cf. https://aroma-project.org/developers/RCC/".
 }
 
 \usage{

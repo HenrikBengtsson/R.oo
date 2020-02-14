@@ -1,5 +1,5 @@
 # Set default author
-author <- "Henrik Bengtsson, \\url{http://www.braju.com/R/}"
+author <- "Henrik Bengtsson, \\url{https://github.com/HenrikBengtsson/R.oo}"
 
 # Show the file containing the Rdoc comments
 rdocFile <- system.file("misc", "ASCII.R", package="R.oo")

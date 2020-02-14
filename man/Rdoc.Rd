@@ -72,7 +72,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
 \author{Henrik Bengtsson}
 
 \examples{\dontrun{# Set default author
-author <- "Henrik Bengtsson, \\url{http://www.braju.com/R/}"
+author <- "Henrik Bengtsson, \\url{https://github.com/HenrikBengtsson/R.oo}"
 
 # Show the file containing the Rdoc comments
 rdocFile <- system.file("misc", "ASCII.R", package="R.oo")
@@ -96,7 +96,7 @@ file.remove(rdFiles)
 \references{
   R developers,
   \emph{Guidelines for Rd files},
-  \url{http://developer.r-project.org/Rds.html},
+  \url{https://developer.r-project.org/Rds.html},
   2003
 }
 

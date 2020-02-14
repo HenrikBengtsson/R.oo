@@ -17,7 +17,7 @@
 \description{
  Static method to get a URL where one can find details about the
  R Code Convention (RCC).
- Currently the URL is \url{http://aroma-project.org/developers/RCC/}.
+ Currently the URL is \url{https://aroma-project.org/developers/RCC/}.
 }
 
 \usage{

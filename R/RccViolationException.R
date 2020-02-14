@@ -136,5 +136,5 @@ setMethodS3("as.character", "RccViolationException", function(x, ...) {
 # \keyword{error}
 #*/###########################################################################
 setMethodS3("getRccUrl", "RccViolationException", function(this, ...) {
-  "http://aroma-project.org/developers/RCC/"
+  "https://aroma-project.org/developers/RCC/"
 }, static=TRUE)
