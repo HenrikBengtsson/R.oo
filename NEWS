@@ -1,7 +1,7 @@
 Package: R.oo
 =============
 
-Version: 1.23.0-9000 [2020-02-13]
+Version: 1.23.0-9000 [2020-07-09]
 
 NEW FEATURES:
 
@@ -11,6 +11,11 @@ NEW FEATURES:
    which are non-R.oo objects.  Other S3 Object methods already do this since
    R.oo 1.20.0 to workaround similar issues with the 'rJava' package.
 
+BUG FIXES:
+
+ * getDate() for Package returned NA because it was looking for DESCRIPTION
+   field 'Date', which has been renamed to 'Date/Publication'.
+   
 
 Version: 1.23.0 [2019-11-02]
 
