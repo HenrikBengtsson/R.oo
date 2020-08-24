@@ -1,66 +1,53 @@
 # Platform
 
-|field    |value                                       |
-|:--------|:-------------------------------------------|
-|version  |R version 3.6.1 Patched (2019-10-31 r77348) |
-|os       |Ubuntu 18.04.3 LTS                          |
-|system   |x86_64, linux-gnu                           |
-|ui       |X11                                         |
-|language |en                                          |
-|collate  |en_US.UTF-8                                 |
-|ctype    |en_US.UTF-8                                 |
-|tz       |America/Los_Angeles                         |
-|date     |2019-11-02                                  |
+|field    |value                        |
+|:--------|:----------------------------|
+|version  |R version 4.0.2 (2020-06-22) |
+|os       |CentOS Linux 7 (Core)        |
+|system   |x86_64, linux-gnu            |
+|ui       |X11                          |
+|language |en                           |
+|collate  |en_US.UTF-8                  |
+|ctype    |en_US.UTF-8                  |
+|tz       |America/Los_Angeles          |
+|date     |2020-08-24                   |
 
 # Dependencies
 
 |package     |old    |new         |Δ  |
 |:-----------|:------|:-----------|:--|
-|R.oo        |1.22.0 |1.22.0-9000 |*  |
-|R.methodsS3 |1.7.1  |1.7.1       |   |
+|R.oo        |1.23.0 |1.23.0-9000 |*  |
+|R.methodsS3 |1.8.0  |1.8.0       |   |
 
 # Revdeps
 
-## New problems (2)
+## All (25)
 
-|package                          |version |error |warning |note |
-|:--------------------------------|:-------|:-----|:-------|:----|
-|[NPCD](problems.md#npcd)         |1.0-10  |      |__+1__  |     |
-|[phylosim](problems.md#phylosim) |3.0.4   |      |__+1__  |     |
-
-## All (31)
-
-|package                                              |version |error |warning |note |
-|:----------------------------------------------------|:-------|:-----|:-------|:----|
-|ACNE                                                 |0.8.1   |      |        |     |
-|[affxparser](problems.md#affxparser)                 |1.58.0  |      |1       |3    |
-|[aroma.affymetrix](problems.md#aromaaffymetrix)      |3.2.0   |      |        |2    |
-|aroma.apd                                            |0.6.0   |      |        |     |
-|aroma.cn                                             |1.6.1   |      |        |     |
-|[aroma.core](problems.md#aromacore)                  |3.2.0   |      |        |2    |
-|[aroma.light](problems.md#aromalight)                |3.16.0  |      |        |1    |
-|calmate                                              |0.12.1  |      |        |     |
-|cgdsr                                                |1.3.0   |      |        |     |
-|[DATforDCEMRI](problems.md#datfordcemri)             |0.55    |      |        |4    |
-|galgo                                                |1.4     |      |        |     |
-|[IdMappingAnalysis](problems.md#idmappinganalysis)   |1.30.0  |      |        |5    |
-|[IdMappingRetrieval](problems.md#idmappingretrieval) |1.34.0  |      |        |4    |
-|knitrProgressBar                                     |1.1.0   |      |        |     |
-|[lilikoi](problems.md#lilikoi)                       |0.1.0   |      |2       |4    |
-|[NPCD](problems.md#npcd)                             |1.0-10  |      |__+1__  |     |
-|[pathifier](problems.md#pathifier)                   |1.24.0  |      |        |1    |
-|[phylosim](problems.md#phylosim)                     |3.0.4   |      |__+1__  |     |
-|PSCBS                                                |0.65.0  |      |        |     |
-|R.cache                                              |0.13.0  |      |        |     |
-|R.devices                                            |2.16.1  |      |        |     |
-|R.filesets                                           |2.13.0  |      |        |     |
-|R.huge                                               |0.9.0   |      |        |     |
-|R.matlab                                             |3.6.2   |      |        |     |
-|R.rsp                                                |0.43.2  |      |        |     |
-|R.utils                                              |2.9.0   |      |        |     |
-|rtf                                                  |0.4-14  |      |        |     |
-|sBIC                                                 |0.2.0   |      |        |     |
-|SEMID                                                |0.3.2   |      |        |     |
-|[tmle.npvi](problems.md#tmlenpvi)                    |0.10.0  |      |        |1    |
-|WeibullFit                                           |0.1.0   |      |        |     |
+|package                               |version  |error |warning |note |
+|:-------------------------------------|:--------|:-----|:-------|:----|
+|ACNE                                  |0.8.1    |      |        |     |
+|[affxparser](problems.md#affxparser)  |1.60.0   |      |1       |3    |
+|aroma.affymetrix                      |3.2.0    |      |        |     |
+|aroma.apd                             |0.6.0    |      |        |     |
+|[aroma.cn](problems.md#aromacn)       |1.6.1    |      |        |1    |
+|[aroma.core](problems.md#aromacore)   |3.2.1    |      |        |2    |
+|[aroma.light](problems.md#aromalight) |3.18.0   |      |        |1    |
+|calmate                               |0.12.1   |      |        |     |
+|[cgdsr](problems.md#cgdsr)            |1.3.0    |3     |        |     |
+|knitrProgressBar                      |1.1.0    |      |        |     |
+|[pathifier](problems.md#pathifier)    |1.26.0   |      |        |1    |
+|PSCBS                                 |0.65.0   |      |        |     |
+|R.cache                               |0.14.0   |      |        |     |
+|R.devices                             |2.16.1   |      |        |     |
+|R.filesets                            |2.13.0   |      |        |     |
+|R.huge                                |0.9.0    |      |        |     |
+|R.matlab                              |3.6.2    |      |        |     |
+|R.rsp                                 |0.44.0   |      |        |     |
+|R.utils                               |2.9.2    |      |        |     |
+|roxygen2                              |7.1.1    |      |        |     |
+|rtf                                   |0.4-14.1 |      |        |     |
+|sBIC                                  |0.2.0    |      |        |     |
+|SEMID                                 |0.3.2    |      |        |     |
+|[tmle.npvi](problems.md#tmlenpvi)     |0.10.0   |      |        |1    |
+|WeibullFit                            |0.1.0    |      |        |     |
 
