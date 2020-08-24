@@ -2,6 +2,8 @@
 
 on 2020-08-24
 
+I've verified that this submission does not cause issues for the 25 reverse package dependencies available on CRAN and Bioconductor.
+
 Thanks in advance
 
 
