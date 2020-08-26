@@ -1,6 +1,22 @@
 Package: R.oo
 =============
 
+Version: 1.24.0 [2020-08-24]
+
+NEW FEATURES:
+
+ * Added '$<-' and '[[<-' for Object to the list of S3 methods that tries to
+   ignore objects of class 'Object' that are of the kind that R.oo creates.
+   This fixes conflicts with 'Object' objects that the 'arrow' package produces,
+   which are non-R.oo objects.  Other S3 Object methods already do this since
+   R.oo 1.20.0 to workaround similar issues with the 'rJava' package.
+
+BUG FIXES:
+
+ * getDate() for Package returned NA because it was looking for DESCRIPTION
+   field 'Date', which has been renamed to 'Date/Publication'.
+   
+
 Version: 1.23.0 [2019-11-02]
 
 SIGNIFICANT CHANGES:

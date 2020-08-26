@@ -22,7 +22,7 @@
 # \references{
 #   R developers,
 #   \emph{Guidelines for Rd files},
-#   \url{http://developer.r-project.org/Rds.html},
+#   \url{https://developer.r-project.org/Rds.html},
 #   2003
 # }
 #
@@ -1566,7 +1566,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
       value <- attr(bfr, "value")
       title <<- as.character(value)
 
-      # Check the title for correctness according to http://developer.r-project.org/Rds.html
+      # Check the title for correctness according to https://developer.r-project.org/Rds.html
       firstLetter <- substring(title, 1,1)
       if (firstLetter != toupper(firstLetter))
         throw(RdocException("Titles shoule be capitalized: ", title, source=sourcefile))

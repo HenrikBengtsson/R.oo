@@ -541,7 +541,10 @@ setMethodS3("getExamplePath", "Package", function(this, ...) {
 # }
 #*/#########################################################################
 setMethodS3("getDate", "Package", function(this, ...) {
-  getDescriptionFile(this, fields="Date")
+  date <- getDescriptionFile(this, fields=c("Date", "Date/Publication"))
+  date <- unname(unlist(date, use.names=FALSE))
+  date <- date[!is.na(date)]
+  date[1]
 })
 
 
