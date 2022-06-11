@@ -2,11 +2,10 @@
 
 <details>
 
-* Version: 1.60.0
+* Version: 1.68.1
+* GitHub: https://github.com/HenrikBengtsson/affxparser
 * Source code: https://github.com/cran/affxparser
-* URL: https://github.com/HenrikBengtsson/affxparser
-* BugReports: https://github.com/HenrikBengtsson/affxparser/issues
-* Date/Publication: 2020-04-27
+* Date/Publication: 2022-04-29
 * Number of recursive dependencies: 4
 
 Run `revdep_details(, "affxparser")` for more info
@@ -15,24 +14,46 @@ Run `revdep_details(, "affxparser")` for more info
 
 ## In both
 
+*   checking whether package ‘affxparser’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      fusion/file/CELFileData.cpp:2409:27: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2414:27: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2419:28: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2445:37: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2451:37: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2457:38: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2506:23: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2509:23: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2512:24: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2551:24: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2554:24: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3194:16: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3199:16: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3204:17: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3251:17: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3255:16: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3294:28: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+    See ‘/home/hb/repositories/R.oo/revdep/checks/affxparser/new/affxparser.Rcheck/00install.out’ for details.
+    ```
+
 *   checking compiled code ... WARNING
     ```
+    File ‘affxparser/libs/affxparser.so’:
+      Found ‘_ZSt4cerr’, possibly from ‘std::cerr’ (C++)
+        Object: ‘fusion/util/Verbose.o’
+      Found ‘_ZSt4cout’, possibly from ‘std::cout’ (C++)
+        Objects: ‘fusion/file/TsvFile/TsvFile.o’, ‘fusion/util/Err.o’
+      Found ‘abort’, possibly from ‘abort’ (C)
+        Objects: ‘fusion/calvin_files/fusion/src/FusionCHPData.o’,
+          ‘fusion/calvin_files/fusion/src/GCOSAdapter/GCOSCHPDataAdapter.o’,
+          ‘fusion/calvin_files/parameter/src/ParameterNameValueType.o’,
+          ‘fusion/file/BPMAPFileWriter.o’
     ...
-      Found ‘exit’, possibly from ‘exit’ (C)
-        Objects: ‘fusion_sdk/util/Err.o’, ‘R_affx_clf_pgf_parser.o’
-      Found ‘printf’, possibly from ‘printf’ (C)
-        Object: ‘fusion_sdk/file/TsvFile/TsvFile.o’
-      Found ‘putchar’, possibly from ‘putchar’ (C)
-        Object: ‘fusion_sdk/file/TsvFile/TsvFile.o’
-      Found ‘puts’, possibly from ‘printf’ (C), ‘puts’ (C)
-        Object: ‘fusion_sdk/file/TsvFile/TsvFile.o’
-      Found ‘rand’, possibly from ‘rand’ (C)
-        Objects: ‘fusion_sdk/calvin_files/utils/src/AffymetrixGuid.o’,
-          ‘fusion_sdk/util/Verbose.o’
       Found ‘srand’, possibly from ‘srand’ (C)
-        Object: ‘fusion_sdk/calvin_files/utils/src/AffymetrixGuid.o’
+        Object: ‘fusion/calvin_files/utils/src/AffymetrixGuid.o’
       Found ‘stdout’, possibly from ‘stdout’ (C)
-        Object: ‘fusion_sdk/util/Util.o’
+        Object: ‘fusion/util/Util.o’
     
     Compiled code should not call entry points which might terminate R nor
     write to stdout/stderr instead of to the console, nor use Fortran I/O
@@ -41,42 +62,29 @@ Run `revdep_details(, "affxparser")` for more info
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
-*   checking for portable file names ... NOTE
-    ```
-    Found the following non-portable file paths:
-      affxparser/src/fusion_sdk/calvin_files/writers/src/CalvinCHPQuantificationDetectionFileBufferWriter.cpp
-      affxparser/src/fusion_sdk/calvin_files/writers/src/CalvinCHPQuantificationDetectionFileBufferWriter.h
-    
-    Tarballs are only required to store paths of up to 100 bytes and cannot
-    store those of more than 256 bytes, with restrictions including to 100
-    bytes for the final component.
-    See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
-    ```
-
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.7Mb
+      installed size is 18.8Mb
       sub-directories of 1Mb or more:
-        libs   8.3Mb
+        libs  18.2Mb
     ```
 
 *   checking Rd cross-references ... NOTE
     ```
-    Unknown package ‘affy’ in Rd xrefs
+    Package unavailable to check Rd xrefs: ‘affy’
     ```
 
-# aroma.cn
+# aroma.affymetrix
 
 <details>
 
-* Version: 1.6.1
-* Source code: https://github.com/cran/aroma.cn
-* URL: http://www.aroma-project.org/, https://github.com/HenrikBengtsson/aroma.cn
-* BugReports: https://github.com/HenrikBengtsson/aroma.cn/issues
-* Date/Publication: 2015-10-28 00:08:16
-* Number of recursive dependencies: 24
+* Version: 3.2.0
+* GitHub: https://github.com/HenrikBengtsson/aroma.affymetrix
+* Source code: https://github.com/cran/aroma.affymetrix
+* Date/Publication: 2019-06-23 06:00:14 UTC
+* Number of recursive dependencies: 73
 
-Run `revdep_details(, "aroma.cn")` for more info
+Run `revdep_details(, "aroma.affymetrix")` for more info
 
 </details>
 
@@ -84,19 +92,33 @@ Run `revdep_details(, "aroma.cn")` for more info
 
 *   checking package dependencies ... NOTE
     ```
-    Package suggested but not available for checking: ‘GLAD’
+    Packages suggested but not available for checking:
+      'affy', 'affyPLM', 'gcrma', 'oligo', 'oligoClasses', 'pdInfoBuilder'
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.8Mb
+      sub-directories of 1Mb or more:
+        R             2.3Mb
+        help          1.1Mb
+        testScripts   1.3Mb
+    ```
+
+*   checking Rd cross-references ... NOTE
+    ```
+    Unknown packages ‘affy’, ‘gcrma’, ‘affyPLM’, ‘oligo’, ‘oligoClasses’ in Rd xrefs
     ```
 
 # aroma.core
 
 <details>
 
-* Version: 3.2.1
+* Version: 3.2.2
+* GitHub: https://github.com/HenrikBengtsson/aroma.core
 * Source code: https://github.com/cran/aroma.core
-* URL: https://github.com/HenrikBengtsson/aroma.core, https://www.aroma-project.org/
-* BugReports: https://github.com/HenrikBengtsson/aroma.core/issues
-* Date/Publication: 2020-02-04 15:20:21 UTC
-* Number of recursive dependencies: 46
+* Date/Publication: 2021-01-05 05:10:12 UTC
+* Number of recursive dependencies: 48
 
 Run `revdep_details(, "aroma.core")` for more info
 
@@ -107,23 +129,17 @@ Run `revdep_details(, "aroma.core")` for more info
 *   checking package dependencies ... NOTE
     ```
     Packages suggested but not available for checking:
-      'GLAD', 'sfit', 'expectile', 'HaarSeg', 'mpcbs'
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Unknown package ‘GLAD’ in Rd xrefs
+      'sfit', 'expectile', 'HaarSeg', 'mpcbs'
     ```
 
 # aroma.light
 
 <details>
 
-* Version: 3.18.0
+* Version: 3.26.0
+* GitHub: https://github.com/HenrikBengtsson/aroma.light
 * Source code: https://github.com/cran/aroma.light
-* URL: https://github.com/HenrikBengtsson/aroma.light, https://www.aroma-project.org
-* BugReports: https://github.com/HenrikBengtsson/aroma.light/issues
-* Date/Publication: 2020-04-27
+* Date/Publication: 2022-04-26
 * Number of recursive dependencies: 6
 
 Run `revdep_details(, "aroma.light")` for more info
@@ -140,17 +156,156 @@ Run `revdep_details(, "aroma.light")` for more info
     structure’ in the ‘Writing R Extensions’ manual.
     ```
 
-# cgdsr
+# bioCancer
 
 <details>
 
-* Version: 1.3.0
-* Source code: https://github.com/cran/cgdsr
-* URL: https://github.com/cBioPortal/cgdsr
-* Date/Publication: 2019-06-26 11:50:22 UTC
-* Number of recursive dependencies: 33
+* Version: 1.24.01
+* GitHub: https://github.com/kmezhoud/bioCancer
+* Source code: https://github.com/cran/bioCancer
+* Date/Publication: 2022-04-27
+* Number of recursive dependencies: 220
 
-Run `revdep_details(, "cgdsr")` for more info
+Run `revdep_details(, "bioCancer")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  8.5Mb
+      sub-directories of 1Mb or more:
+        app       3.4Mb
+        doc       2.8Mb
+        extdata   1.6Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘AlgDesign’ ‘GO.db’ ‘R.methodsS3’ ‘import’ ‘methods’ ‘org.Bt.eg.db’
+      ‘shinythemes’
+      All declared Imports should be used.
+    ```
+
+# canceR
+
+<details>
+
+* Version: 1.30.01
+* GitHub: https://github.com/kmezhoud/canceR
+* Source code: https://github.com/cran/canceR
+* Date/Publication: 2022-04-27
+* Number of recursive dependencies: 166
+
+Run `revdep_details(, "canceR")` for more info
+
+</details>
+
+## In both
+
+*   checking whether package ‘canceR’ can be installed ... WARNING
+    ```
+    Found the following significant warnings:
+      Warning: loading Rplot failed
+      Warning: no DISPLAY variable so Tk is not available
+    See ‘/home/hb/repositories/R.oo/revdep/checks/canceR/new/canceR.Rcheck/00install.out’ for details.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 19.8Mb
+      sub-directories of 1Mb or more:
+        doc  18.2Mb
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘R.methodsS3’
+      All declared Imports should be used.
+    ```
+
+# knitrProgressBar
+
+<details>
+
+* Version: 1.1.0
+* GitHub: https://github.com/rmflight/knitrProgressBar
+* Source code: https://github.com/cran/knitrProgressBar
+* Date/Publication: 2018-02-20 04:04:54 UTC
+* Number of recursive dependencies: 60
+
+Run `revdep_details(, "knitrProgressBar")` for more info
+
+</details>
+
+## In both
+
+*   checking LazyData ... NOTE
+    ```
+      'LazyData' is specified without a 'data' directory
+    ```
+
+*   checking for non-standard things in the check directory ... NOTE
+    ```
+    Found the following files/directories:
+      ‘Killed after ’
+    ```
+
+# MPAgenomics
+
+<details>
+
+* Version: 1.2.3
+* GitHub: NA
+* Source code: https://github.com/cran/MPAgenomics
+* Date/Publication: 2021-03-30 15:50:07 UTC
+* Number of recursive dependencies: 52
+
+Run `revdep_details(, "MPAgenomics")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘CGHcall’
+    ```
+
+# PSCBS
+
+<details>
+
+* Version: 0.66.0
+* GitHub: https://github.com/HenrikBengtsson/PSCBS
+* Source code: https://github.com/cran/PSCBS
+* Date/Publication: 2021-10-23 07:40:02 UTC
+* Number of recursive dependencies: 74
+
+Run `revdep_details(, "PSCBS")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package suggested but not available for checking: ‘Hmisc’
+    ```
+
+# R.rsp
+
+<details>
+
+* Version: 0.44.0
+* GitHub: https://github.com/HenrikBengtsson/R.rsp
+* Source code: https://github.com/cran/R.rsp
+* Date/Publication: 2020-07-09 16:20:02 UTC
+* Number of recursive dependencies: 18
+
+Run `revdep_details(, "R.rsp")` for more info
 
 </details>
 
@@ -158,142 +313,96 @@ Run `revdep_details(, "cgdsr")` for more info
 
 *   checking examples ... ERROR
     ```
-    Running examples in ‘cgdsr-Ex.R’ failed
+    Running examples in ‘R.rsp-Ex.R’ failed
     The error most likely occurred in:
     
-    > ### Name: cgdsr-CGDS
-    > ### Title: Construct a CGDS connection object
-    > ### Aliases: cgdsr-CGDS CGDS
+    > ### Name: RRspPackage$capabilitiesOf
+    > ### Title: Checks which tools are supported
+    > ### Aliases: RRspPackage$capabilitiesOf capabilitiesOf.RRspPackage
+    > ###   RRspPackage.capabilitiesOf capabilitiesOf,RRspPackage-method
+    > ###   RRspPackage.isCapableOf isCapableOf.RRspPackage
+    > ###   isCapableOf,RRspPackage-method
+    > ### Keywords: internal methods
     > 
     > ### ** Examples
     > 
-    > # Create CGDS object
-    > mycgds = CGDS("http://www.cbioportal.org/")
-    > 
-    > # Test the CGDS endpoint URL using a few simple API tests
-    > test(mycgds) 
-    Error in curl::curl_fetch_memory(url, handle = handle) : 
-      Could not resolve host: www.cbioportal.org; Name or service not known
-    Calls: test ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+    >   # Display which tools are supported by the package
+    >   print(capabilitiesOf(R.rsp))
+    Error in findAsciiDoc.default(mustExist = FALSE) : 
+      Failed to parse version of %s based on captured output: ‘asciidoc’“asciidoc 9.0.0rc1”
+    Calls: print ... capabilitiesOf.RRspPackage -> findAsciiDoc -> findAsciiDoc.default
     Execution halted
     ```
 
 *   checking tests ...
     ```
-    ...
-        1. testthat::expect_identical(...) tests/test_cgdsr.R:51:2
-        7. cgdsr::getProfileData.CGDS(mycgds, "NF1", "gbm_tcga_mrna", "gbm_tcga_all")
-        9. cgdsr::processURL.CGDS(x, url)
-       10. httr::GET(url, headers)
-       11. httr:::request_perform(req, hu$handle$handle)
-       13. httr:::request_fetch.write_memory(req$output, req$url, handle)
-       14. curl::curl_fetch_memory(url, handle = handle)
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      [ OK: 0 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 6 ]
-      1. Error: getCancerStudies (@test_cgdsr.R#6) 
-      2. Error: getCaseLists (@test_cgdsr.R#12) 
-      3. Error: getGeneticProfiles (@test_cgdsr.R#23) 
-      4. Error: getMutationData (@test_cgdsr.R#38) 
-      5. Error: getClinicalData (@test_cgdsr.R#44) 
-      6. Error: getProfileData (@test_cgdsr.R#51) 
-      
-      Error: testthat unit tests failed
-      In addition: Warning message:
-      Placing tests in `inst/tests` is deprecated. Please use `tests/testthat` instead 
+      Running ‘000.session_information.R’
+      Running ‘LoremIpsum.R’
+      Running ‘RspConstruct.R’
+      Running ‘RspProduct.R’
+      Running ‘RspString.R’
+      Running ‘capabilities.R’
+     ERROR
+    Running the tests in ‘tests/capabilities.R’ failed.
+    Complete output:
+      > library("R.rsp")
+      R.rsp v0.44.0 (2020-07-09 16:20:02 UTC) successfully loaded. See ?R.rsp for help.
+      > 
+      > cat("Tools supported by the package:\n")
+      Tools supported by the package:
+      > print(capabilitiesOf(R.rsp))
+      Error in findAsciiDoc.default(mustExist = FALSE) : 
+        Failed to parse version of %s based on captured output: 'asciidoc'"asciidoc 9.0.0rc1"
+      Calls: print ... capabilitiesOf.RRspPackage -> findAsciiDoc -> findAsciiDoc.default
       Execution halted
     ```
 
-*   checking running R code from vignettes ...
-    ```
-      ‘cgdsr.Rnw’... failed
-     ERROR
-    Errors in running code in vignettes:
-    when running code in ‘cgdsr.Rnw’
-      ...
-    > library(cgdsr)
-    Please send questions to cbioportal@googlegroups.com
-    
-    > mycgds = CGDS("http://www.cbioportal.org/")
-    
-    > test(mycgds)
-    
-      When sourcing ‘cgdsr.R’:
-    Error: Could not resolve host: www.cbioportal.org; Name or service not known
-    Execution halted
-    ```
-
-# pathifier
+# roxygen2
 
 <details>
 
-* Version: 1.26.0
-* Source code: https://github.com/cran/pathifier
-* Date/Publication: 2020-04-27
-* Number of recursive dependencies: 4
+* Version: 7.2.0
+* GitHub: https://github.com/r-lib/roxygen2
+* Source code: https://github.com/cran/roxygen2
+* Date/Publication: 2022-05-13 07:30:02 UTC
+* Number of recursive dependencies: 63
 
-Run `revdep_details(, "pathifier")` for more info
+Run `revdep_details(, "roxygen2")` for more info
 
 </details>
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking Rd cross-references ... NOTE
     ```
-    .getpathway: no visible global function definition for ‘var’
-    .samplings_stdev: no visible binding for global variable ‘sd’
-    .score_pathway: no visible binding for global variable ‘sd’
-    .score_pathway: no visible global function definition for ‘aggregate’
-    .score_pathway: no visible global function definition for ‘dist’
-    quantify_pathways_deregulation: no visible binding for global variable
-      ‘sd’
-    quantify_pathways_deregulation: no visible global function definition
-      for ‘prcomp’
-    Undefined global functions or variables:
-      aggregate dist prcomp sd var
-    Consider adding
-      importFrom("stats", "aggregate", "dist", "prcomp", "sd", "var")
-    to your NAMESPACE file.
+    Package unavailable to check Rd xrefs: ‘devtools’
     ```
 
-# tmle.npvi
+# rtf
 
 <details>
 
-* Version: 0.10.0
-* Source code: https://github.com/cran/tmle.npvi
-* Date/Publication: 2015-05-22 18:59:02
-* Number of recursive dependencies: 43
+* Version: 0.4-14.1
+* GitHub: https://github.com/schaffman5/rtf
+* Source code: https://github.com/cran/rtf
+* Date/Publication: 2020-03-22 09:32:44 UTC
+* Number of recursive dependencies: 36
 
-Run `revdep_details(, "tmle.npvi")` for more info
+Run `revdep_details(, "rtf")` for more info
 
 </details>
 
 ## In both
 
-*   checking R code for possible problems ... NOTE
+*   checking package dependencies ... NOTE
     ```
-    ...
-    tmle.npvi.: no visible global function definition for ‘update’
-    update.NPVI: no visible global function definition for ‘gaussian’
-    updateConv.NPVI: no visible global function definition for ‘tail’
-    updateGNonTab.NPVI : g1: no visible binding for global variable
-      ‘qlogis’
-    updateGNonTab.NPVI : g1: no visible binding for global variable
-      ‘plogis’
-    updateGTab.NPVI: no visible binding for global variable ‘qlogis’
-    updateGTab.NPVI: no visible binding for global variable ‘plogis’
-    updatePsi.NPVI: no visible global function definition for ‘str’
-    Undefined global functions or variables:
-      as.formula binomial dnorm gaussian glm head integrate model.matrix
-      optimize plogis pnorm qlogis qnorm quantile rnorm runif sd str tail
-      update var
-    Consider adding
-      importFrom("stats", "as.formula", "binomial", "dnorm", "gaussian",
-                 "glm", "integrate", "model.matrix", "optimize", "plogis",
-                 "pnorm", "qlogis", "qnorm", "quantile", "rnorm", "runif",
-                 "sd", "update", "var")
-      importFrom("utils", "head", "str", "tail")
-    to your NAMESPACE file.
+    Package suggested but not available for checking: ‘gsubfn’
+    ```
+
+*   checking for non-standard things in the check directory ... NOTE
+    ```
+    Found the following files/directories:
+      ‘test_addPageBreak.doc’ ‘test_addPlot.doc’ ‘test_addSessionInfo.doc’
+      ‘test_addTable.doc’
     ```
 
