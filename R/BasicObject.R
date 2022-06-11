@@ -620,7 +620,7 @@ setMethodS3("newInstance", "BasicObject", function(this, ...) {
 # @RdocMethod $
 # @aliasmethod [[
 #
-# @title "Makes the fields and methods of an BasicObject accessible via the \$ and the [[ operator"
+# @title "Makes the fields and methods of an BasicObject accessible via the $ and the [[ operator"
 #
 # \description{
 #   @get "title".
@@ -777,7 +777,7 @@ setMethodS3(".subset2Internal", "BasicObject", function(this, name, exact=TRUE, 
 # @RdocMethod $<-
 # @aliasmethod [[<-
 #
-# @title "Makes the fields and methods of an BasicObject assignable via the \$<- and the [[<- operator"
+# @title "Makes the fields and methods of an BasicObject assignable via the $<- and the [[<- operator"
 #
 # \description{
 #  @get "title".

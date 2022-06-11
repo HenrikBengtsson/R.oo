@@ -1337,7 +1337,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # @RdocMethod $
 # @aliasmethod [[
 #
-# @title "Makes the fields and methods of an Class accessible via the \$ and the [[ operator"
+# @title "Makes the fields and methods of an Class accessible via the $ and the [[ operator"
 #
 # \usage{
 #   \method{$}{Class}(this, name)
@@ -1482,7 +1482,7 @@ setMethodS3(".subset2Internal", "Class", function(this, name, exact=TRUE, ...) {
 # @RdocMethod $<-
 # @aliasmethod [[<-
 #
-# @title "Makes the fields and methods of an Class assignable via the \$<- and the [[<- operator"
+# @title "Makes the fields and methods of an Class assignable via the $<- and the [[<- operator"
 #
 # \usage{
 #   \method{$}{Class}(this, name) <- value

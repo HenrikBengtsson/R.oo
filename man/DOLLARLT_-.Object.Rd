@@ -15,7 +15,7 @@
 \alias{[[<-,Object-method}
 
 
-\title{Makes the fields and methods of an Object assignable via the \$<- and the [[<- operator}
+\title{Makes the fields and methods of an Object assignable via the $<- and the [[<- operator}
 
 \description{
   Makes the fields and methods of an Object assignable via the \code{$<-}

@@ -1429,7 +1429,7 @@ setMethodS3("extend", "Object", function(this, ...className, ..., ...fields=NULL
 # @RdocMethod $
 # @aliasmethod [[
 #
-# @title "Makes the fields and methods of an Object accessible via the \$ and the [[ operator"
+# @title "Makes the fields and methods of an Object accessible via the $ and the [[ operator"
 #
 # \description{
 #   Makes the fields and methods of an Object accessible via the \code{$}
@@ -1666,7 +1666,7 @@ setMethodS3(".subset2Internal", "Object", function(this, name, exact=TRUE, ...) 
 # @RdocMethod $<-
 # @aliasmethod [[<-
 #
-# @title "Makes the fields and methods of an Object assignable via the \$<- and the [[<- operator"
+# @title "Makes the fields and methods of an Object assignable via the $<- and the [[<- operator"
 #
 # \description{
 #   Makes the fields and methods of an Object assignable via the \code{$<-}
