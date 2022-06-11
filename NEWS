@@ -1,9 +1,15 @@
 Package: R.oo
 =============
 
-Version: 1.24.0-9000 [2020-08-26]
+Version: 1.24.0-9001 [2022-06-11]
 
- * ...
+BUG FIXES:
+
+ * Rdoc no longer injects a dummy '\emph{}' at the end of @howtocite
+   sections, because it now triggers an 'R CMD check --as-cran' NOTE.
+   The workaround was used to workaround an 'R CMD check' false
+   positive way back in 2004, which has since been fixed.
+ 
 
 
 Version: 1.24.0 [2020-08-24]
