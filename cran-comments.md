@@ -1,4 +1,4 @@
-# CRAN submission R.oo 1.24.1
+# CRAN submission R.oo 1.25.0
 
 on 2022-06-11
 
