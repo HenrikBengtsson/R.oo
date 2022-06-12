@@ -1311,10 +1311,10 @@ setMethodS3("getBundle", "Package", function(this, ...) {
 #  faster.
 # }
 #
-# \examples{
+# \examples{\donttest{
 #   pkg <- Package("R.oo")
 #   print(getBundle(pkg))
-# }
+# }}
 #
 # @author
 #
@@ -1442,7 +1442,7 @@ setMethodS3("getNews", "Package", function(this, ...) {
 #   @seeclass
 # }
 #*/#########################################################################
-setMethodS3("showChangeLog", "Package", function(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), ...) {
+setMethodS3("showChangeLog", "Package", function(this, filenames=c("NEWS", "NEWS.md", "HISTORY", "ChangeLog"), ...) {
   # Argument 'filenames':
   filenames <- as.character(filenames)
   filenames <- tolower(filenames)
@@ -1462,7 +1462,7 @@ setMethodS3("showChangeLog", "Package", function(this, filenames=c("NEWS", "HIST
   file <- files[1]
 
   if (length(file) == 0)
-    throw("NEWS/HISTORY/ChangeLog file for package ", getName(this), " does not exist.")
+    throw("NEWS/NEWS.md/HISTORY/ChangeLog file for package ", getName(this), " does not exist.")
 
   pathname <- file.path(path, file)
   file.show(pathname, ...)

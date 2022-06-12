@@ -15,7 +15,7 @@
 \alias{[[<-,Class-method}
 
 
-\title{Makes the fields and methods of an Class assignable via the \$<- and the [[<- operator}
+\title{Makes the fields and methods of an Class assignable via the $<- and the [[<- operator}
 
 \usage{
   \method{$}{Class}(this, name) <- value

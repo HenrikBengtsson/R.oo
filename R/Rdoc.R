@@ -1400,9 +1400,15 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
         line <- unlist(line, use.names=FALSE)
         line <- paste(line, collapse="\n\n")
         line <- paste("\\preformatted{\n", line, "\n}\n", sep="")
-        # Add the following line to fix a "R CMD check-bug" in LaTeX.
-        # /HB 2004-03-10
-        line <- paste(line, "\\emph{}\n", sep="")
+
+        ## Not sure exactly when this was fixed in R, but now the workaround
+        ## triggers an 'R CMD check' NOTE on "Warning: trimming empty <p>".
+        ## /HB 2022-06-11
+        if (getRversion() < "4.0.0") {
+          # Add the following line to fix a "R CMD check-bug" in LaTeX.
+          # /HB 2004-03-10
+          line <- paste(line, "\\emph{}\n", sep="")
+        }
       }
       rd <<- paste(rd, line, sep="")
       bfr
