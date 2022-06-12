@@ -14,6 +14,7 @@ CONDUCT[.]md
 # devtools
 #----------------------------
 ^revdep
+^docs
 
 #----------------------------
 # Travis-CI et al.

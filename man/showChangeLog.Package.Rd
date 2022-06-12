@@ -27,7 +27,7 @@
 }
 
 \usage{
-\method{showChangeLog}{Package}(this, filenames=c("NEWS", "HISTORY", "ChangeLog"), ...)
+\method{showChangeLog}{Package}(this, filenames=c("NEWS", "NEWS.md", "HISTORY", "ChangeLog"), ...)
 }
 
 \arguments{
