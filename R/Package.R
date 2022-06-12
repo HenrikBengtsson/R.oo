@@ -1311,10 +1311,10 @@ setMethodS3("getBundle", "Package", function(this, ...) {
 #  faster.
 # }
 #
-# \examples{
+# \examples{\donttest{
 #   pkg <- Package("R.oo")
 #   print(getBundle(pkg))
-# }
+# }}
 #
 # @author
 #
