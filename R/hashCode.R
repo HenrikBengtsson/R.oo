@@ -26,7 +26,7 @@
 #   of the string, \code{n} is the length of the string. The hash value of
 #   the empty string is zero.
 #
-#   For all other objects, by default \code{as.integer()} is called.
+#   For all other types, \code{as.integer()} is called by default.
 # }
 #
 # @author
@@ -43,6 +43,7 @@ setMethodS3("hashCode", "default", function(object, ...) {
     x <- (x-Integer.MIN.VALUE) %% Integer.RANGE + Integer.MIN.VALUE
     as.integer(x)
   }
+  
   hashCode <- c()
   for (obj in object) {
     if (is.character(obj)) {
@@ -61,11 +62,12 @@ setMethodS3("hashCode", "default", function(object, ...) {
         s <- unlist(strsplit(as.character(s), NULL))
         s <- charToInt(s)
         hashC <- 0
-        for (k in 1:n)
-  	  hashC <- hashC + s[k]*31^(n-k)
+        for (k in 1:n) {
+  	  hashC <- 31 * hashC + s[k]
+          hashC <- asInt.Java(hashC)
+        }
         # Convert into range of Java int.
-
-        hashCode <- c(hashCode, asInt.Java(hashC))
+        hashCode <- c(hashCode, hashC)
       }
     } else {
       hashCode <- c(hashCode, as.integer(obj))

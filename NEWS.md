@@ -1,6 +1,16 @@
 # Version (development version)
 
- * ...
+## Significant Changes
+
+ * The hashCode(s) implementation for strings was rewritten to avoid
+   integer overflow (see below bug fix).  As a consequence, the computed
+   hash is no longer the same for some strings.
+
+## Bug Fixes
+
+ * hashCode(s) could return NA, due to integer overflow, for strings
+   with more than 13-15 symbols, e.g.  `hashCode("abcdefghijklmno")`
+   resulted in a missing value and a warning.
  
 
 # Version 1.25.0 [2022-06-11]

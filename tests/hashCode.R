@@ -8,6 +8,7 @@ y <- hashCode(NULL)
 print(y)
 stopifnot(is.null(y))
 
+
 message("- empty vectors")
 
 y <- hashCode(character(0L))
@@ -29,76 +30,115 @@ stopifnot(is.null(y))
 
 message("- strings")
 
-y <- hashCode("")
+x <- ""
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
+  length(y) == length(x),
+  !anyNA(y),
   y == 0L
 )
 
-y <- hashCode(base::letters)
+x <- base::letters
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
+  length(y) == length(x),
+  !anyNA(y),
   all(y == charToInt(base::letters))
 )
 
-y <- hashCode("abcdefghijklmno")
+x <- "abcdefghij"
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
-  all(y == 469762048L)
+  length(y) == length(x),
+  !anyNA(y),
+  y == -634317659L
 )
 
-y <- hashCode("abcdefghij")
+x <- "abcdefghijklmno"
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
-  all(y == -634317659L)
+  length(y) == length(x),
+  !anyNA(y),
+  y == 486644840L
 )
 
+
+## Assert no integer overflow => NA
+for (n in seq_along(base::letters)) {
+  x <- paste(base::letters[seq_len(n)], collapse = "")
+  y <- hashCode(x)
+  cat(sprintf("%s => %d\n", x, y))
+  stopifnot(
+    is.integer(y),
+    length(y) == length(x),
+    !anyNA(y)
+  )
+}
 
 message("- integers")
 
-y <- hashCode(1:10)
+x <- 1:10
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
-  all(y == 1:10)
+  length(y) == length(x),
+  !anyNA(y),
+  all(y == x)
 )
 
 message("- doubles")
 
-y <- hashCode(as.numeric(1:10))
+x <- as.numeric(1:10)
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
-  all(y == 1:10)
+  length(y) == length(x),
+  !anyNA(y),
+  all(y == as.integer(x))
 )
 
 
 message("- complex")
 
-y <- hashCode(1:10 + 0.1)
+x <- 1:10 + 0.1
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
+  length(y) == length(x),
+  !anyNA(y),
   all(y == 1:10)
 )
 
 message("- miscellaneous types")
 
-y <- hashCode(list(0L))
+x <- list(0L)
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
+  length(y) == length(x),
+  !anyNA(y),
   y == 0L
 )
 
-y <- hashCode(as.list(1:10))
+x <- as.list(1:10)
+y <- hashCode(x)
 print(y)
 stopifnot(
   is.integer(y),
+  length(y) == length(x),
+  !anyNA(y),
   all(y == 1:10)
 )
 
