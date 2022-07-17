@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.oo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0-9002</span>
       </span>
     </div>
 
@@ -53,8 +53,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for Object</span>
-<span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">this</span>, recursive<span class="op">=</span><span class="cn">TRUE</span>, gc<span class="op">=</span><span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for Object</span></span>
+<span><span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">this</span>, recursive<span class="op">=</span><span class="cn">TRUE</span>, gc<span class="op">=</span><span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -87,112 +87,112 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span>
-<span class="r-in"><span class="co"># Defining a class with a 'cached' fields</span></span>
-<span class="r-in"><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span>
-<span class="r-in"><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"CachedObject"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu"><a href="Object.html">Object</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"CachedObject"</span>,</span>
-<span class="r-in">    <span class="va">...</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"CachedObject"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">s</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/UseMethod.html" class="external-link">NextMethod</a></span><span class="op">(</span><span class="st">"as.character"</span>, <span class="va">this</span>, <span class="va">...</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%s RAM: %.2fkb."</span>, <span class="va">s</span>, <span class="fu"><a href="objectSize.html">objectSize</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span><span class="op">/</span><span class="fl">1024</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">s</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
+<span class="r-in"><span><span class="co"># Defining a class with a 'cached' fields</span></span></span>
+<span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"CachedObject"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu"><a href="Object.html">Object</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"CachedObject"</span>,</span></span>
+<span class="r-in"><span>    <span class="va">...</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"CachedObject"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/UseMethod.html" class="external-link">NextMethod</a></span><span class="op">(</span><span class="st">"as.character"</span>, <span class="va">this</span>, <span class="va">...</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%s RAM: %.2fkb."</span>, <span class="va">s</span>, <span class="fu"><a href="objectSize.html">objectSize</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span><span class="op">/</span><span class="fl">1024</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">s</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span>
-<span class="r-in"><span class="co"># Example of clearing a cache fields, reassigning it,</span></span>
-<span class="r-in"><span class="co"># and then clearing it again</span></span>
-<span class="r-in"><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span>
-<span class="r-in"><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">1</span>, b<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">5</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x55a484441878"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
+<span class="r-in"><span><span class="co"># Example of clearing a cache fields, reassigning it,</span></span></span>
+<span class="r-in"><span><span class="co"># and then clearing it again</span></span></span>
+<span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
+<span class="r-in"><span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">1</span>, b<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">5</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x5561c883d710"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a    numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      b    numeric    100000     400048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      c    numeric   1000000    4000048</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">obj</span>, gc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x55a484441878"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">obj</span>, gc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x5561c883d710"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a    numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      b    numeric    100000     400048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      c       NULL         0          0</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">obj</span><span class="op">$</span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">obj</span><span class="op">$</span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'CachedObject'.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x55a484441878"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x5561c883d710"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a    numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      b    numeric    100000     400048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      c       NULL         0          0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">obj</span>, gc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x55a484441878"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">obj</span>, gc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CachedObject: 0x5561c883d710"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a    numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      b    numeric    100000     400048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      c       NULL         0          0</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span>
-<span class="r-in"><span class="co"># Clearing cached fields recursively and make sure it</span></span>
-<span class="r-in"><span class="co"># avoids race conditions due to circular dependences</span></span>
-<span class="r-in"><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span>
-<span class="r-in"><span class="va">objA</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">2</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, prev<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objA</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
+<span class="r-in"><span><span class="co"># Clearing cached fields recursively and make sure it</span></span></span>
+<span class="r-in"><span><span class="co"># avoids race conditions due to circular dependences</span></span></span>
+<span class="r-in"><span><span class="co"># - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span></span></span>
+<span class="r-in"><span><span class="va">objA</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">2</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, prev<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objA</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a    numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      c    numeric   1000000    4000048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   prev       NULL         0          0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">objB</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">2</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, prev<span class="op">=</span><span class="va">objA</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objB</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">objB</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">2</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, prev<span class="op">=</span><span class="va">objA</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objB</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member   data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a      numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      c      numeric   1000000    4000048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   prev CachedObject         1    4000552</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">objC</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">3</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, prev<span class="op">=</span><span class="va">objB</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objC</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">objC</span> <span class="op">&lt;-</span> <span class="fu">CachedObject</span><span class="op">(</span>a<span class="op">=</span><span class="fl">3</span>, <span class="st">"cached:c"</span><span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>, prev<span class="op">=</span><span class="va">objB</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objC</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member   data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a      numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      c      numeric   1000000    4000048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   prev CachedObject         1    4001072</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">objA</span><span class="op">$</span><span class="va">prev</span> <span class="op">&lt;-</span> <span class="va">objC</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">objA</span><span class="op">$</span><span class="va">prev</span> <span class="op">&lt;-</span> <span class="va">objC</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'CachedObject'.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">objA</span>, gc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objA</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">clearCache</a></span><span class="op">(</span><span class="va">objA</span>, gc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objA</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a    numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      c       NULL         0          0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   prev       NULL         0          0</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objB</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objB</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member   data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a      numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      c      numeric   1000000    4000048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   prev CachedObject         1        504</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objC</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">objC</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   member   data.class dimension objectSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      a      numeric         1         56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      c      numeric   1000000    4000048</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3   prev CachedObject         1    4001072</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -207,7 +207,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
 </div>
 
       </footer></div>

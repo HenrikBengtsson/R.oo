@@ -29,7 +29,7 @@ Creates a Package that can be thrown and caught. The Package
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.oo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0-9002</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@ extends <a href="Object.html">Object</a><br></p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Package</span><span class="op">(</span>name<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Package</span><span class="op">(</span>name<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -96,50 +96,50 @@ $, $&lt;-, [[, [[&lt;-, as.character, attach, attachLocally, clearCache, clearLo
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co"># By defining .onAttach() as follows in zzz.R for a package, an</span></span>
-<span class="r-in"><span class="co"># instance of class Package with the same name as the package will</span></span>
-<span class="r-in"><span class="co"># be made available on the search path. More over, the code below</span></span>
-<span class="r-in"><span class="co"># will also inform the user that the package has been loaded:</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="co">#  &gt; library(R.oo)</span></span>
-<span class="r-in"><span class="co">#  R.oo v0.52 (2003/04/13) was successfully loaded.</span></span>
-<span class="r-in"><span class="co">#</span></span>
-<span class="r-in"><span class="va">.onAttach</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">libname</span>, <span class="va">pkgname</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">pkg</span> <span class="op">&lt;-</span> <span class="fu">Package</span><span class="op">(</span><span class="va">pkgname</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="va">pkgname</span>, <span class="va">pkg</span>, pos<span class="op">=</span><span class="fu"><a href="Non-documented_objects.html">getPosition</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="Non-documented_objects.html">getName</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span>, <span class="st">" v"</span>, <span class="fu"><a href="Non-documented_objects.html">getVersion</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span>, <span class="st">" ("</span>, <span class="fu"><a href="Non-documented_objects.html">getDate</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span>, <span class="st">")"</span>,</span>
-<span class="r-in">    <span class="st">" was successfully loaded.\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># The Package class works for any packages, loaded or not.</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Some information about the base package</span></span>
-<span class="r-in"><span class="va">pkg</span> <span class="op">&lt;-</span> <span class="fu">Package</span><span class="op">(</span><span class="st">"base"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Package: base v4.2.0 is loaded (pos=12).  Title: The R Base Package.  The official webpage is NA and the maintainer is R Core Team &lt;do-use-Contact-address@r-project.org&gt;.  The package is installed in /home/hb/shared/software/CBI/R-4.2.0-gcc9/lib/R/library/base/.  License: Part of R 4.2.0.  Description: Base R functions.  Type showNews(base) for package history, and ?base for help."</span>
-<span class="r-in"><span class="co"># [1] "Package: base v3.6.2 is loaded (pos=14).  Title: The R Base Package.</span></span>
-<span class="r-in"><span class="co"># The official webpage is NA and the maintainer is R Core Team &lt;R-core@</span></span>
-<span class="r-in"><span class="co"># r-project.org&gt;.  The package is installed in /usr/lib/R/library/base/.</span></span>
-<span class="r-in"><span class="co"># License: Part of R 3.6.2.  Description: Base R functions.  Type</span></span>
-<span class="r-in"><span class="co"># showNews(base) for package history, and ?base for help."</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="fu">Package</span><span class="op">(</span><span class="st">"base"</span><span class="op">)</span><span class="op">$</span><span class="va">dataPath</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co"># By defining .onAttach() as follows in zzz.R for a package, an</span></span></span>
+<span class="r-in"><span><span class="co"># instance of class Package with the same name as the package will</span></span></span>
+<span class="r-in"><span><span class="co"># be made available on the search path. More over, the code below</span></span></span>
+<span class="r-in"><span><span class="co"># will also inform the user that the package has been loaded:</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co">#  &gt; library(R.oo)</span></span></span>
+<span class="r-in"><span><span class="co">#  R.oo v0.52 (2003/04/13) was successfully loaded.</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="va">.onAttach</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">libname</span>, <span class="va">pkgname</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">pkg</span> <span class="op">&lt;-</span> <span class="fu">Package</span><span class="op">(</span><span class="va">pkgname</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="va">pkgname</span>, <span class="va">pkg</span>, pos<span class="op">=</span><span class="fu"><a href="Non-documented_objects.html">getPosition</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="Non-documented_objects.html">getName</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span>, <span class="st">" v"</span>, <span class="fu"><a href="Non-documented_objects.html">getVersion</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span>, <span class="st">" ("</span>, <span class="fu"><a href="Non-documented_objects.html">getDate</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span>, <span class="st">")"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">" was successfully loaded.\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The Package class works for any packages, loaded or not.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Some information about the base package</span></span></span>
+<span class="r-in"><span><span class="va">pkg</span> <span class="op">&lt;-</span> <span class="fu">Package</span><span class="op">(</span><span class="st">"base"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pkg</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Package: base v4.2.1 is loaded (pos=12).  Title: The R Base Package.  The official webpage is NA and the maintainer is R Core Team &lt;do-use-Contact-address@r-project.org&gt;.  The package is installed in /home/hb/shared/software/CBI/R-4.2.1-gcc9/lib/R/library/base/.  License: Part of R 4.2.1.  Description: Base R functions.  Type showNews(base) for package history, and ?base for help."</span>
+<span class="r-in"><span><span class="co"># [1] "Package: base v3.6.2 is loaded (pos=14).  Title: The R Base Package.</span></span></span>
+<span class="r-in"><span><span class="co"># The official webpage is NA and the maintainer is R Core Team &lt;R-core@</span></span></span>
+<span class="r-in"><span><span class="co"># r-project.org&gt;.  The package is installed in /usr/lib/R/library/base/.</span></span></span>
+<span class="r-in"><span><span class="co"># License: Part of R 3.6.2.  Description: Base R functions.  Type</span></span></span>
+<span class="r-in"><span><span class="co"># showNews(base) for package history, and ?base for help."</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="fu">Package</span><span class="op">(</span><span class="st">"base"</span><span class="op">)</span><span class="op">$</span><span class="va">dataPath</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Some information about the R.oo package</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">R.oo</span><span class="fu">::</span><span class="va"><a href="R.oo-package.html">R.oo</a></span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Package: R.oo v1.25.0 is loaded (pos=2).  Title: R Object-Oriented Programming with or without References.  The official webpage is https://github.com/HenrikBengtsson/R.oo and the maintainer is Henrik Bengtsson.  The package is installed in /tmp/hb/Rtmp1Gpost/temp_libpath3ebed159e772ec/R.oo/.  License: LGPL (&gt;= 2.1).  Description: Methods and classes for object-oriented programming in R with or without references.  Large effort has been made on making definition of methods as simple as possible with a minimum of maintenance for package developers.  The package has been developed since 2001 and is now considered very stable.  This is a cross-platform package implemented in pure R that defines standard S3 classes without any tricks.  Type showNews(R.oo) for package history, and ?R.oo for help."</span>
-<span class="r-in"><span class="co"># [1] "Package: R.oo v1.23.0-9000 .  Title: R Object-Oriented Programming</span></span>
-<span class="r-in"><span class="co"># with or without References.  The official webpage is https://github.com/</span></span>
-<span class="r-in"><span class="co"># HenrikBengtsson/R.oo and the maintainer is Henrik Bengtsson.  The package</span></span>
-<span class="r-in"><span class="co"># is installed in /home/alice/R/x86_64-pc-linux-gnu-library/3.6/R.oo/.</span></span>
-<span class="r-in"><span class="co"># License: LGPL (&gt;= 2.1).  Description: Methods and classes for object-</span></span>
-<span class="r-in"><span class="co"># oriented programming in R with or without references.  Large effort has</span></span>
-<span class="r-in"><span class="co"># been made on making definition of methods as simple as possible with a</span></span>
-<span class="r-in"><span class="co"># minimum of maintenance for package developers.  The package has been</span></span>
-<span class="r-in"><span class="co"># developed since 2001 and is now considered very stable.  This is a</span></span>
-<span class="r-in"><span class="co"># cross-platform package implemented in pure R that defines standard S3</span></span>
-<span class="r-in"><span class="co"># classes without any tricks.  Type showNews(R.oo) for package history,</span></span>
-<span class="r-in"><span class="co"># and ?R.oo for help."</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Some information about the R.oo package</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">R.oo</span><span class="fu">::</span><span class="va"><a href="R.oo-package.html">R.oo</a></span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Package: R.oo v1.25.0-9002 is loaded (pos=2).  Title: R Object-Oriented Programming with or without References.  The official webpage is https://github.com/HenrikBengtsson/R.oo and the maintainer is Henrik Bengtsson.  The package is installed in /tmp/hb/Rtmpmrzm53/temp_libpath993724595dcf0/R.oo/.  License: LGPL (&gt;= 2.1).  Description: Methods and classes for object-oriented programming in R with or without references.  Large effort has been made on making definition of methods as simple as possible with a minimum of maintenance for package developers.  The package has been developed since 2001 and is now considered very stable.  This is a cross-platform package implemented in pure R that defines standard S3 classes without any tricks.  Type showNews(R.oo) for package history, and ?R.oo for help."</span>
+<span class="r-in"><span><span class="co"># [1] "Package: R.oo v1.23.0-9000 .  Title: R Object-Oriented Programming</span></span></span>
+<span class="r-in"><span><span class="co"># with or without References.  The official webpage is https://github.com/</span></span></span>
+<span class="r-in"><span><span class="co"># HenrikBengtsson/R.oo and the maintainer is Henrik Bengtsson.  The package</span></span></span>
+<span class="r-in"><span><span class="co"># is installed in /home/alice/R/x86_64-pc-linux-gnu-library/3.6/R.oo/.</span></span></span>
+<span class="r-in"><span><span class="co"># License: LGPL (&gt;= 2.1).  Description: Methods and classes for object-</span></span></span>
+<span class="r-in"><span><span class="co"># oriented programming in R with or without references.  Large effort has</span></span></span>
+<span class="r-in"><span><span class="co"># been made on making definition of methods as simple as possible with a</span></span></span>
+<span class="r-in"><span><span class="co"># minimum of maintenance for package developers.  The package has been</span></span></span>
+<span class="r-in"><span><span class="co"># developed since 2001 and is now considered very stable.  This is a</span></span></span>
+<span class="r-in"><span><span class="co"># cross-platform package implemented in pure R that defines standard S3</span></span></span>
+<span class="r-in"><span><span class="co"># classes without any tricks.  Type showNews(R.oo) for package history,</span></span></span>
+<span class="r-in"><span><span class="co"># and ?R.oo for help."</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -154,7 +154,7 @@ $, $&lt;-, [[, [[&lt;-, as.character, attach, attachLocally, clearCache, clearLo
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
 </div>
 
       </footer></div>

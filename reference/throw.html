@@ -26,7 +26,7 @@ Note that throw() can be defined for classes inheriting
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.oo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0-9002</span>
       </span>
     </div>
 
@@ -71,8 +71,8 @@ Note that throw() can be defined for classes inheriting
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for default</span>
-<span class="fu">throw</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">throw</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -99,18 +99,18 @@ Note that throw() can be defined for classes inheriting
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="va">rbern</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">=</span><span class="fl">1</span>, <span class="va">prob</span><span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="kw">if</span> <span class="op">(</span><span class="va">prob</span> <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">||</span> <span class="va">prob</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">      <span class="fu">throw</span><span class="op">(</span><span class="st">"Argument 'prob' is out of range: "</span>, <span class="va">prob</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">n</span>, size<span class="op">=</span><span class="fl">1</span>, prob<span class="op">=</span><span class="va">prob</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">rbern</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0.4</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0 0 1 0 0 1 1 0 1 1</span>
-<span class="r-in">  <span class="co"># [1] 0 1 0 0 0 1 0 0 1 0</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">rbern</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">*</span><span class="fl">0.4</span><span class="op">)</span>,</span>
-<span class="r-in">    error<span class="op">=</span><span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span>
-<span class="r-in">  <span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">rbern</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">=</span><span class="fl">1</span>, <span class="va">prob</span><span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="kw">if</span> <span class="op">(</span><span class="va">prob</span> <span class="op">&lt;</span> <span class="fl">0</span> <span class="op">||</span> <span class="va">prob</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu">throw</span><span class="op">(</span><span class="st">"Argument 'prob' is out of range: "</span>, <span class="va">prob</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">n</span>, size<span class="op">=</span><span class="fl">1</span>, prob<span class="op">=</span><span class="va">prob</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">rbern</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0.4</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0 1 0 0 1 1 1 0 0 0</span>
+<span class="r-in"><span>  <span class="co"># [1] 0 1 0 0 0 1 0 0 1 0</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">rbern</span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">*</span><span class="fl">0.4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    error<span class="op">=</span><span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 </code></pre></div>
     </div>
@@ -126,7 +126,7 @@ Note that throw() can be defined for classes inheriting
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
 </div>
 
       </footer></div>

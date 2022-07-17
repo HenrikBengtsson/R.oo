@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.oo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0-9002</span>
       </span>
     </div>
 
@@ -48,14 +48,26 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="1.25.0" id="version-1250">Version 1.25.0<a class="anchor" aria-label="anchor" href="#version-1250"></a></h2>
+<h2 class="page-header" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
+<div class="section level3">
+<h3 id="significant-changes-development-version">Significant Changes<a class="anchor" aria-label="anchor" href="#significant-changes-development-version"></a></h3>
+<ul><li>The <code>hashCode(s)</code> implementation for strings was rewritten to avoid integer overflow (see below bug fix). As a consequence, the computed hash is no longer the same for some strings.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li>
+<code>hashCode(s)</code> could return NA, due to integer overflow, for strings with more than 13-15 symbols, e.g. <code>hashCode("abcdefghijklmno")</code> resulted in a missing value and a warning.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="1.25.0" id="version-1250">Version 1.25.0<small>2022-06-12</small><a class="anchor" aria-label="anchor" href="#version-1250"></a></h2>
 <div class="section level3">
 <h3 id="new-features-1-25-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-25-0"></a></h3>
 <ul><li>Now <code><a href="../reference/Non-documented_objects.html">showNews()</a></code> for <code>Package</code> recognizes ‘NEWS.md’ files too.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-1-25-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-25-0"></a></h3>
-<ul><li>Rdoc no longer injects a dummy <code>\emph{}</code> at the end of <code><a href="https://github.com/howtocite" class="external-link">@howtocite</a></code> sections, because it now triggers an <code>R CMD check --as-cran</code> NOTE. The workaround was used to workaround an <code>R CMD check</code> false positive way back in 2004, which has since been fixed.</li>
+<ul><li>Rdoc no longer injects a dummy <code>\emph{}</code> at the end of <code>@howtocite</code> sections, because it now triggers an <code>R CMD check --as-cran</code> NOTE. The workaround was used to workaround an <code>R CMD check</code> false positive way back in 2004, which has since been fixed.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -168,7 +180,7 @@
 <div class="section level3">
 <h3 id="bug-fixes-1-18-3">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-18-3"></a></h3>
 <ul><li>
-<code>Rdoc$compile()</code> and Rdoc tag <code><a href="https://github.com/allmethods" class="external-link">@allmethods</a></code> failed to provide links and titles on non-exported S3 methods.</li>
+<code>Rdoc$compile()</code> and Rdoc tag <code>@allmethods</code> failed to provide links and titles on non-exported S3 methods.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -223,7 +235,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-1-16-2">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-16-2"></a></h3>
-<ul><li>The temporary <code><a href="https://rdrr.io/r/base/reg.finalizer.html" class="external-link">finalizer()</a></code> registered for <code>Object</code> while loading the <strong>R.oo</strong> package itself would cause cyclic loading of <strong>R.oo</strong>. The reason was that it checked whether <strong>R.oo</strong> was available or not, by only looking at attached namespaces but not loaded ones. This bug was introduced in <strong>R.oo</strong> 1.16.0.</li>
+<ul><li>The temporary <code>finalizer()</code> registered for <code>Object</code> while loading the <strong>R.oo</strong> package itself would cause cyclic loading of <strong>R.oo</strong>. The reason was that it checked whether <strong>R.oo</strong> was available or not, by only looking at attached namespaces but not loaded ones. This bug was introduced in <strong>R.oo</strong> 1.16.0.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -245,7 +257,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-1-16-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-16-0"></a></h3>
-<ul><li>Now <code>Object</code> finalizers will no longer try to re-attach the <strong>R.oo</strong> package if <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> is in the process of trying to attach another package, because otherwise a cyclic loading of namespaces may occur. This was observed for a package that allocated a temporary <code>Object</code> <code><a href="https://rdrr.io/r/base/ns-hooks.html" class="external-link">.onAttach()</a></code> which then was garbage collected and finalized.</li>
+<ul><li>Now <code>Object</code> finalizers will no longer try to re-attach the <strong>R.oo</strong> package if <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> is in the process of trying to attach another package, because otherwise a cyclic loading of namespaces may occur. This was observed for a package that allocated a temporary <code>Object</code> <code>.onAttach()</code> which then was garbage collected and finalized.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -266,7 +278,7 @@
 <h2 class="page-header" data-toc-text="1.15.6" id="version-1156">Version 1.15.6<a class="anchor" aria-label="anchor" href="#version-1156"></a></h2>
 <div class="section level3">
 <h3 id="new-features-1-15-6">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-15-6"></a></h3>
-<ul><li>Now Rdoc tag <code><a href="https://github.com/howToCite" class="external-link">@howToCite</a></code> does a better job when there are multiple citations in CITATION.</li>
+<ul><li>Now Rdoc tag <code>@howToCite</code> does a better job when there are multiple citations in CITATION.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="software-quality-1-15-6">Software Quality<a class="anchor" aria-label="anchor" href="#software-quality-1-15-6"></a></h3>
@@ -369,7 +381,7 @@
 <h2 class="page-header" data-toc-text="1.13.8" id="version-1138">Version 1.13.8<a class="anchor" aria-label="anchor" href="#version-1138"></a></h2>
 <div class="section level3">
 <h3 id="new-features-1-13-8">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-13-8"></a></h3>
-<ul><li>Added a trial version of Rdoc tag <code><a href="https://github.com/usage" class="external-link">@usage</a></code>.</li>
+<ul><li>Added a trial version of Rdoc tag <code>@usage</code>.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -402,14 +414,14 @@
 <h2 class="page-header" data-toc-text="1.13.4" id="version-1134">Version 1.13.4<a class="anchor" aria-label="anchor" href="#version-1134"></a></h2>
 <div class="section level3">
 <h3 id="new-features-1-13-4">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-13-4"></a></h3>
-<ul><li>Now the <code><a href="https://github.com/RdocData" class="external-link">@RdocData</a></code> Rdoc tag also adds an <code>\docType{data}</code> Rd tag.</li>
+<ul><li>Now the <code>@RdocData</code> Rdoc tag also adds an <code>\docType{data}</code> Rd tag.</li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.13.3" id="version-1133">Version 1.13.3<a class="anchor" aria-label="anchor" href="#version-1133"></a></h2>
 <div class="section level3">
 <h3 id="bug-fixes-1-13-3">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-13-3"></a></h3>
-<ul><li>In <strong>R.oo</strong> v1.13.1, a bug was introduced causing the value of Rdoc tag <code><a href="https://github.com/allmethods" class="external-link">@allmethods</a></code> not to be parsed and instead treated as text.</li>
+<ul><li>In <strong>R.oo</strong> v1.13.1, a bug was introduced causing the value of Rdoc tag <code>@allmethods</code> not to be parsed and instead treated as text.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -436,7 +448,7 @@
 <h2 class="page-header" data-toc-text="1.13.0" id="version-1130">Version 1.13.0<small>2013-03-11</small><a class="anchor" aria-label="anchor" href="#version-1130"></a></h2>
 <div class="section level3">
 <h3 id="new-features-1-13-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-13-0"></a></h3>
-<ul><li><p>Added support for Rdoc tag <code><a href="https://github.com/author" class="external-link">@author</a></code> to have an optional value, e.g. <code><a href="https://github.com/author" class="external-link">@author</a> "John Doe"</code> as well as <code><a href="https://github.com/author" class="external-link">@author</a> "JD, FB"</code> where the initials are inferred from the package’s DESCRIPTION file.</p></li>
+<ul><li><p>Added support for Rdoc tag <code>@author</code> to have an optional value, e.g. <code>@author "John Doe"</code> as well as <code>@author "JD, FB"</code> where the initials are inferred from the package’s DESCRIPTION file.</p></li>
 <li><p>Added <code><a href="../reference/compileRdoc.html">compileRdoc()</a></code> to make it easier to compile Rdoc comments into Rd help files, e.g. <code>Rscript -e "R.oo::compileRdoc()"</code>.</p></li>
 <li><p>Now <code><a href="../reference/Non-documented_objects.html">getAuthor()</a></code> and <code><a href="../reference/Non-documented_objects.html">getMaintainer()</a></code> for <code>Package</code> use the <code>Authors@R</code> field of DESCRIPTION and if not found, then the <code>Author</code>/<code>Maintainer</code> fields. In addition, using argument <code>as =    "person"</code> will parse and return the results as a <code>person</code> list.</p></li>
 </ul></div>
@@ -678,7 +690,7 @@
 <h2 class="page-header" data-toc-text="1.8.3" id="version-183">Version 1.8.3<small>2011-11-02</small><a class="anchor" aria-label="anchor" href="#version-183"></a></h2>
 <div class="section level3">
 <h3 id="software-quality-1-8-3">Software Quality<a class="anchor" aria-label="anchor" href="#software-quality-1-8-3"></a></h3>
-<ul><li>CLEANUP/FIX: Dropped <code><a href="https://rdrr.io/r/base/base-defunct.html" class="external-link">package.description()</a></code> from <code><a href="../reference/Non-documented_objects.html">getDescriptionFile()</a></code> for <code>Package</code>, which was done for compatibility reasons when it was deprecated in R v1.9.0. It will be dropped completely in R v2.15.0.</li>
+<ul><li>CLEANUP/FIX: Dropped <code>package.description()</code> from <code><a href="../reference/Non-documented_objects.html">getDescriptionFile()</a></code> for <code>Package</code>, which was done for compatibility reasons when it was deprecated in R v1.9.0. It will be dropped completely in R v2.15.0.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -1030,7 +1042,7 @@
 <div class="section level3">
 <h3 id="new-features-1-1-8">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-1-8"></a></h3>
 <ul><li><p>Added <code><a href="../reference/Non-documented_objects.html">isBeingCreated()</a></code> to <code>Class</code> in order to check if the constructor was called to create the static instance or just any instance.</p></li>
-<li><p>Now the Rdoc tag <code><a href="https://github.com/allmethods" class="external-link">@allmethods</a></code> takes an optional argument specifying if private, protected or public methods should be listed.</p></li>
+<li><p>Now the Rdoc tag <code>@allmethods</code> takes an optional argument specifying if private, protected or public methods should be listed.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="deprecated-and-defunct-1-1-8">Deprecated and Defunct<a class="anchor" aria-label="anchor" href="#deprecated-and-defunct-1-1-8"></a></h3>
@@ -1073,7 +1085,7 @@
 <h2 class="page-header" data-toc-text="1.1.4" id="version-114">Version 1.1.4<a class="anchor" aria-label="anchor" href="#version-114"></a></h2>
 <div class="section level3">
 <h3 id="new-features-1-1-4">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-1-4"></a></h3>
-<ul><li>Now the Rdoc compiler also escapes Rd filenames for <code><a href="https://github.com/see" class="external-link">@see</a></code> and <code><a href="https://github.com/seemethod" class="external-link">@seemethod</a></code> tags.</li>
+<ul><li>Now the Rdoc compiler also escapes Rd filenames for <code>@see</code> and <code>@seemethod</code> tags.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -1081,7 +1093,7 @@
 <div class="section level3">
 <h3 id="new-features-1-1-3">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-1-3"></a></h3>
 <ul><li><p>Added <code><a href="../reference/Non-documented_objects.html">getChangeLog()</a></code> and <code><a href="../reference/Non-documented_objects.html">showChangeLog()</a></code> to the <code>Package</code> class. The <code>get-</code> and <code><a href="../reference/Non-documented_objects.html">showHistory()</a></code>, which are to be made deprecated in the future, are now wrappers for these two methods.</p></li>
-<li><p>Added Rdoc tag <code><a href="https://github.com/RdocPackage" class="external-link">@RdocPackage</a></code> to generate <code>&lt;pkg&gt;-package.Rd</code> files.</p></li>
+<li><p>Added Rdoc tag <code>@RdocPackage</code> to generate <code>&lt;pkg&gt;-package.Rd</code> files.</p></li>
 <li><p>Now the Rdoc compiler makes sure that the generated Rd files all starts with a letter or a digit. If not, it adds a default prefix (currently <code>000</code>). If not, the new R v2.3.0 <code>R CMD check</code> may complaint about missing objects.</p></li>
 </ul></div>
 <div class="section level3">
@@ -1136,8 +1148,8 @@
 <div class="section level3">
 <h3 id="new-features-1-0-5">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-0-5"></a></h3>
 <ul><li><p>Now the static <code><a href="../reference/Non-documented_objects.html">load()</a></code> method in <code>Object</code> asserts that the loaded <code>Object</code> inherits from the class that the static object, which is used to call <code><a href="../reference/Non-documented_objects.html">load()</a></code>, is of. Thus, <code>Object$load(...)</code> will load all <code>Object</code>:s, whereas <code>MyClass$load(...)</code> will only load objects inheriting from <code>MyClass</code>.</p></li>
-<li><p>Now an <code><a href="https://github.com/RdocMethod" class="external-link">@RdocMethod</a></code> tag will not add keyword “internal” if the class starts with a lower case, e.g. <code>matrix</code>.</p></li>
-<li><p>A <code><a href="https://github.com/keyword" class="external-link">@keyword</a> foo</code> can now be removed with <code><a href="https://github.com/keyword" class="external-link">@keyword</a> -foo</code>. Order is irrelevant, since <code><a href="https://github.com/keyword" class="external-link">@keyword</a></code>:s are added at the very end.</p></li>
+<li><p>Now an <code>@RdocMethod</code> tag will not add keyword “internal” if the class starts with a lower case, e.g. <code>matrix</code>.</p></li>
+<li><p>A <code>@keyword foo</code> can now be removed with <code>@keyword -foo</code>. Order is irrelevant, since <code>@keyword</code>:s are added at the very end.</p></li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -1219,7 +1231,7 @@
 <h3 id="new-features-0-68">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-68"></a></h3>
 <ul><li><p>By default, now <code>Rdoc$compile()</code> runs <code>Rdoc$check()</code> at the end.</p></li>
 <li><p>Rdoc: Added a first simple test for undefined top-level tags in the generated Rd code. Utilizes <code><a href="https://rdrr.io/r/tools/tools-defunct.html" class="external-link">tools::Rd_parse()</a></code>, which might be renamed etc. according to its help page.</p></li>
-<li><p>Tag-variables such as <code><a href="https://github.com/author" class="external-link">@author</a></code> now search for value in <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> too.</p></li>
+<li><p>Tag-variables such as <code>@author</code> now search for value in <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> too.</p></li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -1271,7 +1283,7 @@
 <h2 class="page-header" data-toc-text="0.64" id="version-064">Version 0.64<a class="anchor" aria-label="anchor" href="#version-064"></a></h2>
 <div class="section level3">
 <h3 id="bug-fixes-0-64">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-64"></a></h3>
-<ul><li>Fixed deprecated warning about <code><a href="https://rdrr.io/r/base/base-defunct.html" class="external-link">package.description()</a></code> that occured R v1.9.0 such that the code still works for older versions of R. This was needed for the <code>Package</code> class.</li>
+<ul><li>Fixed deprecated warning about <code>package.description()</code> that occured R v1.9.0 such that the code still works for older versions of R. This was needed for the <code>Package</code> class.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -1312,7 +1324,7 @@
 <h3 id="new-features-0-61">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-61"></a></h3>
 <ul><li><p>Package: <code><a href="https://rdrr.io/r/stats/update.html" class="external-link">update()</a></code> does now also reload the updated package by default.</p></li>
 <li><p>Exception: Now the <code><a href="../reference/throw.html">throw()</a></code> method includes the complete stacktrace too when generating a error signal. In other words, the user will automatically see the stacktrace of the error if the error is not caught. Same for <code><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop()</a></code>.</p></li>
-<li><p>Rdoc: Added the tag <code><a href="https://github.com/RdocDocumentation" class="external-link">@RdocDocumentation</a></code> for general documentation.</p></li>
+<li><p>Rdoc: Added the tag <code>@RdocDocumentation</code> for general documentation.</p></li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -1424,7 +1436,7 @@
 <h2 class="page-header" data-toc-text="0.50" id="version-050">Version 0.50<a class="anchor" aria-label="anchor" href="#version-050"></a></h2>
 <div class="section level3">
 <h3 id="new-features-0-50">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-50"></a></h3>
-<ul><li>Updated <code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code>, which a slight modification to the <code><a href="https://rdrr.io/r/base/try.html" class="external-link">base::try()</a></code> for improved exception handling, to have its own internal <code><a href="https://rdrr.io/r/base/base-defunct.html" class="external-link">restart()</a></code> function (just like <code><a href="https://rdrr.io/r/base/try.html" class="external-link">base::try()</a></code>), because <code><a href="https://rdrr.io/r/base/base-defunct.html" class="external-link">restart()</a></code> has been made deprecated from R v1.6.0. This is how the <code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code> in the base package does it.</li>
+<ul><li>Updated <code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code>, which a slight modification to the <code><a href="https://rdrr.io/r/base/try.html" class="external-link">base::try()</a></code> for improved exception handling, to have its own internal <code>restart()</code> function (just like <code><a href="https://rdrr.io/r/base/try.html" class="external-link">base::try()</a></code>), because <code>restart()</code> has been made deprecated from R v1.6.0. This is how the <code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code> in the base package does it.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -1630,7 +1642,7 @@
 <h3 id="new-features-0-34">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-34"></a></h3>
 <ul><li><p>Renamed the (still) internal class <code>.Reference</code> to <code>Reference</code>.</p></li>
 <li><p>Added the <code>setInterfaceS3()</code> method. Makes it easier to define interfaces.</p></li>
-<li><p>Static method <code>buildClass()</code> in class <code>Rdoc</code> now also creates a list of methods and saves the result in the file <code>&lt;class&gt;.methods.Rdoc</code>, which can be included in the Rdoc comments by <code><a href="https://github.com/include" class="external-link">@include</a> "&lt;class&gt;.methods.Rdoc"</code>. Hopefully, this will mean that the list of methods in the help files will be more up to date.</p></li>
+<li><p>Static method <code>buildClass()</code> in class <code>Rdoc</code> now also creates a list of methods and saves the result in the file <code>&lt;class&gt;.methods.Rdoc</code>, which can be included in the Rdoc comments by <code>@include "&lt;class&gt;.methods.Rdoc"</code>. Hopefully, this will mean that the list of methods in the help files will be more up to date.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="documentation-0-34">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-34"></a></h3>
@@ -1849,7 +1861,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
 </div>
 
       </footer></div>

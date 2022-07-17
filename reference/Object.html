@@ -22,7 +22,7 @@ Object is the root class of all other classes. All classes
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.oo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0-9002</span>
       </span>
     </div>
 
@@ -62,7 +62,7 @@ Object is the root class of all other classes. All classes
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Object</span><span class="op">(</span>core<span class="op">=</span><span class="cn">NA</span>, finalize<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Object</span><span class="op">(</span>core<span class="op">=</span><span class="cn">NA</span>, finalize<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -106,228 +106,228 @@ Object is the root class of all other classes. All classes
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"> </span>
-<span class="r-in"><span class="co">#########################################################################</span></span>
-<span class="r-in"><span class="co"># Defines the class Person with private fields .name and .age, and</span></span>
-<span class="r-in"><span class="co"># with methods print(), getName(), setName(), getAge() and setAge().</span></span>
-<span class="r-in"><span class="co">#########################################################################</span></span>
-<span class="r-in"><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">name</span>, <span class="va">age</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="va">name</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span>  <span class="va">age</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu">Object</span><span class="op">(</span><span class="op">)</span>, <span class="st">"Person"</span>,</span>
-<span class="r-in">    .name<span class="op">=</span><span class="va">name</span>,</span>
-<span class="r-in">    .age<span class="op">=</span><span class="va">age</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.name</span>, <span class="st">"is"</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.age</span><span class="op">)</span>, <span class="st">"years old."</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co">#########################################################################</span></span></span>
+<span class="r-in"><span><span class="co"># Defines the class Person with private fields .name and .age, and</span></span></span>
+<span class="r-in"><span><span class="co"># with methods print(), getName(), setName(), getAge() and setAge().</span></span></span>
+<span class="r-in"><span><span class="co">#########################################################################</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">name</span>, <span class="va">age</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="va">name</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span><span class="op">)</span>  <span class="va">age</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu">Object</span><span class="op">(</span><span class="op">)</span>, <span class="st">"Person"</span>,</span></span>
+<span class="r-in"><span>    .name<span class="op">=</span><span class="va">name</span>,</span></span>
+<span class="r-in"><span>    .age<span class="op">=</span><span class="va">age</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.name</span>, <span class="st">"is"</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.age</span><span class="op">)</span>, <span class="st">"years old."</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"equals"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">obj</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="fu">getName</span><span class="op">(</span><span class="op">)</span>, <span class="va">obj</span><span class="op">$</span><span class="fu">getName</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="fu">getAge</span><span class="op">(</span><span class="op">)</span> , <span class="va">obj</span><span class="op">$</span><span class="fu">getAge</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span>    <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"equals"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">obj</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="fu">getName</span><span class="op">(</span><span class="op">)</span>, <span class="va">obj</span><span class="op">$</span><span class="fu">getName</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="fu">getAge</span><span class="op">(</span><span class="op">)</span> , <span class="va">obj</span><span class="op">$</span><span class="fu">getAge</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span>    <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"hashCode"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># Get the hashCode() of the '.name' and the '.age' fields</span></span>
-<span class="r-in">  <span class="co"># using hashCode.default().</span></span>
-<span class="r-in">  <span class="fu"><a href="hashCode.html">hashCode</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.name</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="hashCode.html">hashCode</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.age</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"hashCode"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Get the hashCode() of the '.name' and the '.age' fields</span></span></span>
+<span class="r-in"><span>  <span class="co"># using hashCode.default().</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="hashCode.html">hashCode</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.name</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="hashCode.html">hashCode</a></span><span class="op">(</span><span class="va">this</span><span class="op">$</span><span class="va">.age</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getName"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">this</span><span class="op">$</span><span class="va">.name</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getName"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">this</span><span class="op">$</span><span class="va">.name</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"setName"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">newName</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="st">"It is not possible to change the name of a Person."</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getAge"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">this</span><span class="op">$</span><span class="va">.age</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"setAge"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">newAge</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">newAge</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="st">"Age must be numeric: "</span>, <span class="va">newAge</span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="va">newAge</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="st">"Trying to set a negative age: "</span>, <span class="va">newAge</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">this</span><span class="op">$</span><span class="va">.age</span> <span class="op">&lt;-</span> <span class="va">newAge</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#########################################################################</span></span>
-<span class="r-in"><span class="co"># Code demonstrating different properties of the Object class using</span></span>
-<span class="r-in"><span class="co"># the example class Person.</span></span>
-<span class="r-in"><span class="co">#########################################################################</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Create an object (instance of) the class Person.</span></span>
-<span class="r-in"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">Person</span><span class="op">(</span><span class="st">"Dalai Lama"</span>, <span class="fl">67</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># 'p1' is an Object of class Person.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">)</span>  <span class="co"># "Person"</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"setName"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">newName</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="st">"It is not possible to change the name of a Person."</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getAge"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">this</span><span class="op">$</span><span class="va">.age</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"setAge"</span>, <span class="st">"Person"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">newAge</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">is.numeric</a></span><span class="op">(</span><span class="va">newAge</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="st">"Age must be numeric: "</span>, <span class="va">newAge</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="va">newAge</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="st">"Trying to set a negative age: "</span>, <span class="va">newAge</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">this</span><span class="op">$</span><span class="va">.age</span> <span class="op">&lt;-</span> <span class="va">newAge</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#########################################################################</span></span></span>
+<span class="r-in"><span><span class="co"># Code demonstrating different properties of the Object class using</span></span></span>
+<span class="r-in"><span><span class="co"># the example class Person.</span></span></span>
+<span class="r-in"><span><span class="co">#########################################################################</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Create an object (instance of) the class Person.</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">Person</span><span class="op">(</span><span class="st">"Dalai Lama"</span>, <span class="fl">67</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 'p1' is an Object of class Person.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">)</span>  <span class="co"># "Person"</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Prints information about the Person object.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span>            <span class="co"># "Dalai Lama is 67 years old."</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x55a4810597e0"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># or equivalent (except that no generic method has to exist):</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p1</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="op">)</span>           <span class="co"># "Dalai Lama is 67 years old."</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Prints information about the Person object.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span>            <span class="co"># "Dalai Lama is 67 years old."</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x5561c85d3840"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># or equivalent (except that no generic method has to exist):</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p1</span><span class="op">$</span><span class="fu">print</span><span class="op">(</span><span class="op">)</span>           <span class="co"># "Dalai Lama is 67 years old."</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'Person'.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Shows that no generic method is required if the \$ operator is used:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="fu">getName</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  <span class="co"># "Dalai Lama"</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Shows that no generic method is required if the \$ operator is used:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="fu">getName</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  <span class="co"># "Dalai Lama"</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'Person'.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># The following will call p1$getName() since there exists a get-()</span></span>
-<span class="r-in"><span class="co"># method for the 'name' property.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>       <span class="co"># "Dalai Lama"</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The following will call p1$getName() since there exists a get-()</span></span></span>
+<span class="r-in"><span><span class="co"># method for the 'name' property.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>       <span class="co"># "Dalai Lama"</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'Person'.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># and equivalent when using the [[ operator.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>  <span class="co"># "Dalai Lama"</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># and equivalent when using the [[ operator.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>  <span class="co"># "Dalai Lama"</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'Person'.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># The following shows that p1$setName(68) is called, simply because</span></span>
-<span class="r-in"><span class="co"># there exists a set-() method for the 'name' property.</span></span>
-<span class="r-in"><span class="va">p1</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">68</span>         <span class="co"># Will call p1$setAge(68)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The following shows that p1$setName(68) is called, simply because</span></span></span>
+<span class="r-in"><span><span class="co"># there exists a set-() method for the 'name' property.</span></span></span>
+<span class="r-in"><span><span class="va">p1</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">68</span>         <span class="co"># Will call p1$setAge(68)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'Person'.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Shows that the age of the Person has been updated:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span>            <span class="co"># "Dalai Lama is 68 years old."</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x55a4810597e0"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># If there would not exists such a set-() method or field a new</span></span>
-<span class="r-in"><span class="co"># field would be created:</span></span>
-<span class="r-in"><span class="va">p1</span><span class="op">$</span><span class="va">country</span> <span class="op">&lt;-</span> <span class="st">"Tibet"</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Shows that the age of the Person has been updated:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span>            <span class="co"># "Dalai Lama is 68 years old."</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x5561c85d3840"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># If there would not exists such a set-() method or field a new</span></span></span>
+<span class="r-in"><span><span class="co"># field would be created:</span></span></span>
+<span class="r-in"><span><span class="va">p1</span><span class="op">$</span><span class="va">country</span> <span class="op">&lt;-</span> <span class="st">"Tibet"</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'Person'.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Lists all (non-private) members of the Person object:</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Lists all (non-private) members of the Person object:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># which gives</span></span>
-<span class="r-in"><span class="co">#      member class      mode    typeof length  dim bytes</span></span>
-<span class="r-in"><span class="co">#   1 country  NULL character character      1 NULL    44</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># The following will call p1$setName("Lalai Dama") which will</span></span>
-<span class="r-in"><span class="co"># throw an exception saying one can not change the name of</span></span>
-<span class="r-in"><span class="co"># a Person.</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"Lalai Dama"</span>, error<span class="op">=</span><span class="va">print</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># which gives</span></span></span>
+<span class="r-in"><span><span class="co">#      member class      mode    typeof length  dim bytes</span></span></span>
+<span class="r-in"><span><span class="co">#   1 country  NULL character character      1 NULL    44</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The following will call p1$setName("Lalai Dama") which will</span></span></span>
+<span class="r-in"><span><span class="co"># throw an exception saying one can not change the name of</span></span></span>
+<span class="r-in"><span><span class="co"># a Person.</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"Lalai Dama"</span>, error<span class="op">=</span><span class="va">print</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;simpleError in getStaticInstance.Object(this): Cannot get static instance. Failed to locate Class object for class 'Person'.&gt;</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># The following will call p1$setAge(-4) which will throw an</span></span>
-<span class="r-in"><span class="co"># exception saying that the age must be a non-negative number.</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">100</span>, error<span class="op">=</span><span class="va">print</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># The following will call p1$setAge(-4) which will throw an</span></span></span>
+<span class="r-in"><span><span class="co"># exception saying that the age must be a non-negative number.</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">100</span>, error<span class="op">=</span><span class="va">print</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;simpleError in getStaticInstance.Object(this): Cannot get static instance. Failed to locate Class object for class 'Person'.&gt;</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Attaches Object 'p1' to the search path.</span></span>
-<span class="r-in"><span class="kw"><a href="Non-documented_objects.html">attach</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Accesses the newly created field 'country'.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span>       <span class="co"># "Tibet"</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Attaches Object 'p1' to the search path.</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="Non-documented_objects.html">attach</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Accesses the newly created field 'country'.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span>       <span class="co"># "Tibet"</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in print(country):</span> object 'country' not found</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Detaches Object 'p1' from the search path. Note that all</span></span>
-<span class="r-in"><span class="co"># modifications to 'country' are lost.</span></span>
-<span class="r-in"><span class="va">country</span> <span class="op">&lt;-</span> <span class="st">"Sweden"</span></span>
-<span class="r-in"><span class="kw"><a href="Non-documented_objects.html">detach</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>    <span class="co"># "Tibet"</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Detaches Object 'p1' from the search path. Note that all</span></span></span>
+<span class="r-in"><span><span class="co"># modifications to 'country' are lost.</span></span></span>
+<span class="r-in"><span><span class="va">country</span> <span class="op">&lt;-</span> <span class="st">"Sweden"</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="Non-documented_objects.html">detach</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>    <span class="co"># "Tibet"</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'Person'.</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Saves the Person object to a tempory file.</span></span>
-<span class="r-in"><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"R.methodsS3.example"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="Non-documented_objects.html">save</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">filename</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Deletes the object</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Loads an Object (of "unknown" class) from file using the</span></span>
-<span class="r-in"><span class="co"># static method load() of class Object.</span></span>
-<span class="r-in"><span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">Object</span><span class="op">$</span><span class="fu">load</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Prints information about the new Object.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x55a484529a98"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Lists all (non-private) members of the new Object.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Saves the Person object to a tempory file.</span></span></span>
+<span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"R.methodsS3.example"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Non-documented_objects.html">save</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">filename</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Deletes the object</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Loads an Object (of "unknown" class) from file using the</span></span></span>
+<span class="r-in"><span><span class="co"># static method load() of class Object.</span></span></span>
+<span class="r-in"><span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="va">Object</span><span class="op">$</span><span class="fu">load</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Prints information about the new Object.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x5561c66dc248"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Lists all (non-private) members of the new Object.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="co"># Example illustrating how to "emulate" static fields using virtual</span></span>
-<span class="r-in"><span class="co"># fields, i.e. get- and set-methods.  Here we use a private static</span></span>
-<span class="r-in"><span class="co"># field '.count' of the static class instance 'MyClass', i.e.</span></span>
-<span class="r-in"><span class="co"># MyClass$.count.  Then we define a virtual field 'count' via method</span></span>
-<span class="r-in"><span class="co"># getCount() to access this static field.  This will make all queries</span></span>
-<span class="r-in"><span class="co"># for 'count' of any object to use the static field instead.  In the</span></span>
-<span class="r-in"><span class="co"># same way is assignment controlled via the setCount() method.  A</span></span>
-<span class="r-in"><span class="co"># side effect of this way of coding is that all MyClass instances will</span></span>
-<span class="r-in"><span class="co"># also have the private field '.count' (set to zero except for the</span></span>
-<span class="r-in"><span class="co"># static field that is).</span></span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># Create an instance (the static class instance included)</span></span>
-<span class="r-in">  <span class="va">this</span> <span class="op">&lt;-</span> <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu">Object</span><span class="op">(</span><span class="op">)</span>, <span class="st">"MyClass"</span>,</span>
-<span class="r-in">    .count <span class="op">=</span> <span class="fl">0</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># In order for a static field to be updated in the</span></span>
-<span class="r-in">  <span class="co"># constructor it has to be done after extend().</span></span>
-<span class="r-in">  <span class="va">this</span><span class="op">$</span><span class="va">count</span> <span class="op">&lt;-</span> <span class="va">this</span><span class="op">$</span><span class="va">count</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Return the object</span></span>
-<span class="r-in">  <span class="va">this</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="st">": Number of instances: "</span>, <span class="va">this</span><span class="op">$</span><span class="va">count</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="co"># Example illustrating how to "emulate" static fields using virtual</span></span></span>
+<span class="r-in"><span><span class="co"># fields, i.e. get- and set-methods.  Here we use a private static</span></span></span>
+<span class="r-in"><span><span class="co"># field '.count' of the static class instance 'MyClass', i.e.</span></span></span>
+<span class="r-in"><span><span class="co"># MyClass$.count.  Then we define a virtual field 'count' via method</span></span></span>
+<span class="r-in"><span><span class="co"># getCount() to access this static field.  This will make all queries</span></span></span>
+<span class="r-in"><span><span class="co"># for 'count' of any object to use the static field instead.  In the</span></span></span>
+<span class="r-in"><span><span class="co"># same way is assignment controlled via the setCount() method.  A</span></span></span>
+<span class="r-in"><span><span class="co"># side effect of this way of coding is that all MyClass instances will</span></span></span>
+<span class="r-in"><span><span class="co"># also have the private field '.count' (set to zero except for the</span></span></span>
+<span class="r-in"><span><span class="co"># static field that is).</span></span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Create an instance (the static class instance included)</span></span></span>
+<span class="r-in"><span>  <span class="va">this</span> <span class="op">&lt;-</span> <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu">Object</span><span class="op">(</span><span class="op">)</span>, <span class="st">"MyClass"</span>,</span></span>
+<span class="r-in"><span>    .count <span class="op">=</span> <span class="fl">0</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># In order for a static field to be updated in the</span></span></span>
+<span class="r-in"><span>  <span class="co"># constructor it has to be done after extend().</span></span></span>
+<span class="r-in"><span>  <span class="va">this</span><span class="op">$</span><span class="va">count</span> <span class="op">&lt;-</span> <span class="va">this</span><span class="op">$</span><span class="va">count</span> <span class="op">+</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Return the object</span></span></span>
+<span class="r-in"><span>  <span class="va">this</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="st">": Number of instances: "</span>, <span class="va">this</span><span class="op">$</span><span class="va">count</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Get virtual field 'count', e.g. obj$count.</span></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getCount"</span>, <span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">MyClass</span><span class="op">$</span><span class="va">.count</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Set virtual field 'count', e.g. obj$count &lt;- value.</span></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"setCount"</span>, <span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">value</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">MyClass</span><span class="op">$</span><span class="va">.count</span> <span class="op">&lt;-</span> <span class="va">value</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Create four instances of class 'MyClass'</span></span>
-<span class="r-in"><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">MyClass</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get virtual field 'count', e.g. obj$count.</span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getCount"</span>, <span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">MyClass</span><span class="op">$</span><span class="va">.count</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Set virtual field 'count', e.g. obj$count &lt;- value.</span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"setCount"</span>, <span class="st">"MyClass"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">value</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">MyClass</span><span class="op">$</span><span class="va">.count</span> <span class="op">&lt;-</span> <span class="va">value</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Create four instances of class 'MyClass'</span></span></span>
+<span class="r-in"><span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">MyClass</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'MyClass'.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x55a484529a98"</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">MyClass</span><span class="op">$</span><span class="va">count</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x5561c66dc248"</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">MyClass</span><span class="op">$</span><span class="va">count</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'MyClass'.</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">count</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">count</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `substr&lt;-`(`*tmp*`, start = 1L, stop = 1L, value = toupper(firstChar)):</span> replacing substrings in a non-character object</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="va">obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="va">obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `substr&lt;-`(`*tmp*`, start = 1L, stop = 1L, value = toupper(firstChar)):</span> replacing substrings in a non-character object</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="va">MyClass</span><span class="op">$</span><span class="va">count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="va">MyClass</span><span class="op">$</span><span class="va">count</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'MyClass'.</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -342,7 +342,7 @@ Object is the root class of all other classes. All classes
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
 </div>
 
       </footer></div>

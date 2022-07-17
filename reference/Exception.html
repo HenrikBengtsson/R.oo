@@ -37,7 +37,7 @@ Creates an Exception that can be thrown and caught. The Exception
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">R.oo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.25.0-9002</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ extends simpleError<br></p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Exception</span><span class="op">(</span><span class="va">...</span>, sep<span class="op">=</span><span class="st">""</span>, collapse<span class="op">=</span><span class="st">", "</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Exception</span><span class="op">(</span><span class="va">...</span>, sep<span class="op">=</span><span class="st">""</span>, collapse<span class="op">=</span><span class="st">", "</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -119,89 +119,89 @@ $, $&lt;-, [[, [[&lt;-, as.character, attach, attachLocally, clearCache, clearLo
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="co"># 1. To catch a regular "error" exception thrown by e.g. stop().</span></span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ex</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="co"># 1. To catch a regular "error" exception thrown by e.g. stop().</span></span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ex</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;simpleError in log("a"): non-numeric argument to mathematical function&gt;</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.812184</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="co"># 2. Always run a "final" expression regardless or error or not.</span></span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"R.methodsS3.example"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">file</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">open</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"r"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Could not open "</span>, <span class="va">filename</span>, <span class="st">" for reading.\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span>, finally <span class="op">=</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">close</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The id of the connection is "</span>,</span>
-<span class="r-in">       <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span>, <span class="st">"NULL"</span>, <span class="va">con</span><span class="op">)</span>, <span class="st">".\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file '/tmp/hb/Rtmp5yAn4p/R.methodsS3.example3ebfb12ebbffcd': No such file or directory</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Could not open /tmp/hb/Rtmp5yAn4p/R.methodsS3.example3ebfb12ebbffcd for reading.</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="co"># 2. Always run a "final" expression regardless or error or not.</span></span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"R.methodsS3.example"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">file</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">open</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"r"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Could not open "</span>, <span class="va">filename</span>, <span class="st">" for reading.\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span>, finally <span class="op">=</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">close</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The id of the connection is "</span>,</span></span>
+<span class="r-in"><span>       <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span>, <span class="st">"NULL"</span>, <span class="va">con</span><span class="op">)</span>, <span class="st">".\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file '/tmp/hb/RtmpFApDnF/R.methodsS3.example994685b674d11': No such file or directory</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Could not open /tmp/hb/RtmpFApDnF/R.methodsS3.example994685b674d11 for reading.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The id of the connection is 4.</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="co"># 3. Creating your own Exception class</span></span>
-<span class="r-in"><span class="co">######################################################################</span></span>
-<span class="r-in"><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"NegativeLogValueException"</span>, <span class="kw">function</span><span class="op">(</span></span>
-<span class="r-in">  <span class="va">msg</span><span class="op">=</span><span class="st">"Trying to calculate the logarithm of a negative value"</span>, <span class="va">value</span><span class="op">=</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu">Exception</span><span class="op">(</span>msg<span class="op">=</span><span class="va">msg</span><span class="op">)</span>, <span class="st">"NegativeLogValueException"</span>,</span>
-<span class="r-in">    .value <span class="op">=</span> <span class="va">value</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"NegativeLogValueException"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="as.character.Exception.html">as.character.Exception</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span>, <span class="st">": "</span>, <span class="fu">getValue</span><span class="op">(</span><span class="va">this</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="co"># 3. Creating your own Exception class</span></span></span>
+<span class="r-in"><span><span class="co">######################################################################</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="setConstructorS3.html">setConstructorS3</a></span><span class="op">(</span><span class="st">"NegativeLogValueException"</span>, <span class="kw">function</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">msg</span><span class="op">=</span><span class="st">"Trying to calculate the logarithm of a negative value"</span>, <span class="va">value</span><span class="op">=</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="extend.html">extend</a></span><span class="op">(</span><span class="fu">Exception</span><span class="op">(</span>msg<span class="op">=</span><span class="va">msg</span><span class="op">)</span>, <span class="st">"NegativeLogValueException"</span>,</span></span>
+<span class="r-in"><span>    .value <span class="op">=</span> <span class="va">value</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"as.character"</span>, <span class="st">"NegativeLogValueException"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="as.character.Exception.html">as.character.Exception</a></span><span class="op">(</span><span class="va">this</span><span class="op">)</span>, <span class="st">": "</span>, <span class="fu">getValue</span><span class="op">(</span><span class="va">this</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getValue"</span>, <span class="st">"NegativeLogValueException"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">this</span><span class="op">$</span><span class="va">.value</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">mylog</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">base</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="fu">NegativeLogValueException</span><span class="op">(</span>value<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw">else</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">x</span>, base<span class="op">=</span><span class="va">base</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Note that the order of the catch list is important:</span></span>
-<span class="r-in"><span class="va">l</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">123</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">  <span class="va">l</span> <span class="op">&lt;-</span> <span class="fu">mylog</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span>, NegativeLogValueException <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ex</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span>, <span class="st">"try-error"</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"try-error: Could not calculate the logarithm of "</span>, <span class="va">x</span>, <span class="st">".\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"error: Could not calculate the logarithm of "</span>, <span class="va">x</span>, <span class="st">".\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The logarithm of "</span>, <span class="va">x</span>, <span class="st">" is "</span>, <span class="va">l</span>, <span class="st">".\n\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">setMethodS3</span><span class="op">(</span><span class="st">"getValue"</span>, <span class="st">"NegativeLogValueException"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">this</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">this</span><span class="op">$</span><span class="va">.value</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mylog</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">base</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="throw.html">throw</a></span><span class="op">(</span><span class="fu">NegativeLogValueException</span><span class="op">(</span>value<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">else</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">x</span>, base<span class="op">=</span><span class="va">base</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Note that the order of the catch list is important:</span></span></span>
+<span class="r-in"><span><span class="va">l</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">123</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">l</span> <span class="op">&lt;-</span> <span class="fu">mylog</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span>, NegativeLogValueException <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">ex</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span>, <span class="st">"try-error"</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"try-error: Could not calculate the logarithm of "</span>, <span class="va">x</span>, <span class="st">".\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span>, error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">ex</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"error: Could not calculate the logarithm of "</span>, <span class="va">x</span>, <span class="st">".\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"The logarithm of "</span>, <span class="va">x</span>, <span class="st">" is "</span>, <span class="va">l</span>, <span class="st">".\n\n"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The logarithm of 123 is 4.812184.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -216,7 +216,7 @@ $, $&lt;-, [[, [[&lt;-, as.character, attach, attachLocally, clearCache, clearLo
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9004.</p>
 </div>
 
       </footer></div>
