@@ -34,7 +34,7 @@ Run `revdep_details(, "affxparser")` for more info
       fusion/file/CELFileData.cpp:3251:17: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
       fusion/file/CELFileData.cpp:3255:16: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
       fusion/file/CELFileData.cpp:3294:28: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-    See ‘/home/hb/repositories/R.oo/revdep/checks/affxparser/new/affxparser.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/R.oo/revdep/checks/affxparser/new/affxparser.Rcheck/00install.out’ for details.
     ```
 
 *   checking compiled code ... WARNING
@@ -64,50 +64,14 @@ Run `revdep_details(, "affxparser")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 18.8Mb
+      installed size is 18.0Mb
       sub-directories of 1Mb or more:
-        libs  18.2Mb
+        libs  17.5Mb
     ```
 
 *   checking Rd cross-references ... NOTE
     ```
     Package unavailable to check Rd xrefs: ‘affy’
-    ```
-
-# aroma.affymetrix
-
-<details>
-
-* Version: 3.2.0
-* GitHub: https://github.com/HenrikBengtsson/aroma.affymetrix
-* Source code: https://github.com/cran/aroma.affymetrix
-* Date/Publication: 2019-06-23 06:00:14 UTC
-* Number of recursive dependencies: 73
-
-Run `revdep_details(, "aroma.affymetrix")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Packages suggested but not available for checking:
-      'affy', 'affyPLM', 'gcrma', 'oligo', 'oligoClasses', 'pdInfoBuilder'
-    ```
-
-*   checking installed package size ... NOTE
-    ```
-      installed size is  5.8Mb
-      sub-directories of 1Mb or more:
-        R             2.3Mb
-        help          1.1Mb
-        testScripts   1.3Mb
-    ```
-
-*   checking Rd cross-references ... NOTE
-    ```
-    Unknown packages ‘affy’, ‘gcrma’, ‘affyPLM’, ‘oligo’, ‘oligoClasses’ in Rd xrefs
     ```
 
 # aroma.core
@@ -174,11 +138,11 @@ Run `revdep_details(, "bioCancer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.5Mb
+      installed size is  8.1Mb
       sub-directories of 1Mb or more:
-        app       3.4Mb
+        app       3.2Mb
         doc       2.8Mb
-        extdata   1.6Mb
+        extdata   1.5Mb
     ```
 
 *   checking dependencies in R code ... NOTE
@@ -197,7 +161,7 @@ Run `revdep_details(, "bioCancer")` for more info
 * GitHub: https://github.com/kmezhoud/canceR
 * Source code: https://github.com/cran/canceR
 * Date/Publication: 2022-04-27
-* Number of recursive dependencies: 166
+* Number of recursive dependencies: 169
 
 Run `revdep_details(, "canceR")` for more info
 
@@ -210,12 +174,12 @@ Run `revdep_details(, "canceR")` for more info
     Found the following significant warnings:
       Warning: loading Rplot failed
       Warning: no DISPLAY variable so Tk is not available
-    See ‘/home/hb/repositories/R.oo/revdep/checks/canceR/new/canceR.Rcheck/00install.out’ for details.
+    See ‘/c4/home/henrik/repositories/R.oo/revdep/checks/canceR/new/canceR.Rcheck/00install.out’ for details.
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 19.8Mb
+      installed size is 19.6Mb
       sub-directories of 1Mb or more:
         doc  18.2Mb
     ```
@@ -234,7 +198,7 @@ Run `revdep_details(, "canceR")` for more info
 * GitHub: https://github.com/rmflight/knitrProgressBar
 * Source code: https://github.com/cran/knitrProgressBar
 * Date/Publication: 2018-02-20 04:04:54 UTC
-* Number of recursive dependencies: 60
+* Number of recursive dependencies: 59
 
 Run `revdep_details(, "knitrProgressBar")` for more info
 
@@ -247,116 +211,6 @@ Run `revdep_details(, "knitrProgressBar")` for more info
       'LazyData' is specified without a 'data' directory
     ```
 
-*   checking for non-standard things in the check directory ... NOTE
-    ```
-    Found the following files/directories:
-      ‘Killed after ’
-    ```
-
-# MPAgenomics
-
-<details>
-
-* Version: 1.2.3
-* GitHub: NA
-* Source code: https://github.com/cran/MPAgenomics
-* Date/Publication: 2021-03-30 15:50:07 UTC
-* Number of recursive dependencies: 52
-
-Run `revdep_details(, "MPAgenomics")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘CGHcall’
-    ```
-
-# PSCBS
-
-<details>
-
-* Version: 0.66.0
-* GitHub: https://github.com/HenrikBengtsson/PSCBS
-* Source code: https://github.com/cran/PSCBS
-* Date/Publication: 2021-10-23 07:40:02 UTC
-* Number of recursive dependencies: 74
-
-Run `revdep_details(, "PSCBS")` for more info
-
-</details>
-
-## In both
-
-*   checking package dependencies ... NOTE
-    ```
-    Package suggested but not available for checking: ‘Hmisc’
-    ```
-
-# R.rsp
-
-<details>
-
-* Version: 0.44.0
-* GitHub: https://github.com/HenrikBengtsson/R.rsp
-* Source code: https://github.com/cran/R.rsp
-* Date/Publication: 2020-07-09 16:20:02 UTC
-* Number of recursive dependencies: 18
-
-Run `revdep_details(, "R.rsp")` for more info
-
-</details>
-
-## In both
-
-*   checking examples ... ERROR
-    ```
-    Running examples in ‘R.rsp-Ex.R’ failed
-    The error most likely occurred in:
-    
-    > ### Name: RRspPackage$capabilitiesOf
-    > ### Title: Checks which tools are supported
-    > ### Aliases: RRspPackage$capabilitiesOf capabilitiesOf.RRspPackage
-    > ###   RRspPackage.capabilitiesOf capabilitiesOf,RRspPackage-method
-    > ###   RRspPackage.isCapableOf isCapableOf.RRspPackage
-    > ###   isCapableOf,RRspPackage-method
-    > ### Keywords: internal methods
-    > 
-    > ### ** Examples
-    > 
-    >   # Display which tools are supported by the package
-    >   print(capabilitiesOf(R.rsp))
-    Error in findAsciiDoc.default(mustExist = FALSE) : 
-      Failed to parse version of %s based on captured output: ‘asciidoc’“asciidoc 9.0.0rc1”
-    Calls: print ... capabilitiesOf.RRspPackage -> findAsciiDoc -> findAsciiDoc.default
-    Execution halted
-    ```
-
-*   checking tests ...
-    ```
-      Running ‘000.session_information.R’
-      Running ‘LoremIpsum.R’
-      Running ‘RspConstruct.R’
-      Running ‘RspProduct.R’
-      Running ‘RspString.R’
-      Running ‘capabilities.R’
-     ERROR
-    Running the tests in ‘tests/capabilities.R’ failed.
-    Complete output:
-      > library("R.rsp")
-      R.rsp v0.44.0 (2020-07-09 16:20:02 UTC) successfully loaded. See ?R.rsp for help.
-      > 
-      > cat("Tools supported by the package:\n")
-      Tools supported by the package:
-      > print(capabilitiesOf(R.rsp))
-      Error in findAsciiDoc.default(mustExist = FALSE) : 
-        Failed to parse version of %s based on captured output: 'asciidoc'"asciidoc 9.0.0rc1"
-      Calls: print ... capabilitiesOf.RRspPackage -> findAsciiDoc -> findAsciiDoc.default
-      Execution halted
-    ```
-
 # roxygen2
 
 <details>
@@ -365,7 +219,7 @@ Run `revdep_details(, "R.rsp")` for more info
 * GitHub: https://github.com/r-lib/roxygen2
 * Source code: https://github.com/cran/roxygen2
 * Date/Publication: 2022-05-13 07:30:02 UTC
-* Number of recursive dependencies: 63
+* Number of recursive dependencies: 62
 
 Run `revdep_details(, "roxygen2")` for more info
 
@@ -378,31 +232,44 @@ Run `revdep_details(, "roxygen2")` for more info
     Package unavailable to check Rd xrefs: ‘devtools’
     ```
 
-# rtf
+# tmle.npvi
 
 <details>
 
-* Version: 0.4-14.1
-* GitHub: https://github.com/schaffman5/rtf
-* Source code: https://github.com/cran/rtf
-* Date/Publication: 2020-03-22 09:32:44 UTC
-* Number of recursive dependencies: 36
+* Version: 0.10.0
+* GitHub: NA
+* Source code: https://github.com/cran/tmle.npvi
+* Date/Publication: 2015-05-22 18:59:02
+* Number of recursive dependencies: 41
 
-Run `revdep_details(, "rtf")` for more info
+Run `revdep_details(, "tmle.npvi")` for more info
 
 </details>
 
 ## In both
 
-*   checking package dependencies ... NOTE
+*   checking R code for possible problems ... NOTE
     ```
-    Package suggested but not available for checking: ‘gsubfn’
-    ```
-
-*   checking for non-standard things in the check directory ... NOTE
-    ```
-    Found the following files/directories:
-      ‘test_addPageBreak.doc’ ‘test_addPlot.doc’ ‘test_addSessionInfo.doc’
-      ‘test_addTable.doc’
+    NPVI: no visible global function definition for ‘quantile’
+    SL.glm.condExpX2givenW: no visible global function definition for
+      ‘as.formula’
+    SL.glm.condExpX2givenW: no visible global function definition for ‘glm’
+    SL.glm.condExpXYgivenW: no visible global function definition for
+      ‘as.formula’
+    SL.glm.condExpXYgivenW: no visible global function definition for ‘glm’
+    SL.glm.g: no visible global function definition for ‘as.formula’
+    SL.glm.g: no visible global function definition for ‘glm’
+    SL.glm.theta: no visible global function definition for ‘as.formula’
+    ...
+      as.formula binomial dnorm gaussian glm head integrate model.matrix
+      optimize plogis pnorm qlogis qnorm quantile rnorm runif sd str tail
+      update var
+    Consider adding
+      importFrom("stats", "as.formula", "binomial", "dnorm", "gaussian",
+                 "glm", "integrate", "model.matrix", "optimize", "plogis",
+                 "pnorm", "qlogis", "qnorm", "quantile", "rnorm", "runif",
+                 "sd", "update", "var")
+      importFrom("utils", "head", "str", "tail")
+    to your NAMESPACE file.
     ```
 
