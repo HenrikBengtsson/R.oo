@@ -991,7 +991,7 @@ setMethodS3("getFields", "Class", function(this, private=FALSE, ...) {
 #   \item{private}{If @TRUE, private methods are also returned,
 #     otherwise only public ones are returned.}
 #   \item{deprecated}{If @TRUE, deprecated methods are also returned.}
-#   \item{unqiue}{If @TRUE, only methods that are not implemented
+#   \item{unique}{If @TRUE, only methods that are not implemented
 #     in one of the subclasses are returned for each class.}
 #   \item{...}{Not used.}
 # }
