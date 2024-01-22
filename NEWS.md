@@ -6,6 +6,10 @@
    integer overflow (see below bug fix).  As a consequence, the
    computed hash is no longer the same for some strings.
 
+## Documentation
+
+ * Fixed a few small mistakes in the help pages.
+
 ## Bug Fixes
 
  * `hashCode(s)` could return NA, due to integer overflow, for strings
