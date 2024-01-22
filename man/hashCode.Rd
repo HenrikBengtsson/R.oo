@@ -37,7 +37,7 @@
   of the string, \code{n} is the length of the string. The hash value of
   the empty string is zero.
 
-  For all other objects, by default \code{as.integer()} is called.
+  For all other types, \code{as.integer()} is called by default.
 }
 
 \author{Henrik Bengtsson}
