@@ -51,7 +51,6 @@
 
 \arguments{
   \item{name}{The name of the field or method to be accessed.}
-  \item{...}{Not used.}
 }
 
 \value{

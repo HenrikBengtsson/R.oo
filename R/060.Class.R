@@ -991,7 +991,7 @@ setMethodS3("getFields", "Class", function(this, private=FALSE, ...) {
 #   \item{private}{If @TRUE, private methods are also returned,
 #     otherwise only public ones are returned.}
 #   \item{deprecated}{If @TRUE, deprecated methods are also returned.}
-#   \item{unqiue}{If @TRUE, only methods that are not implemented
+#   \item{unique}{If @TRUE, only methods that are not implemented
 #     in one of the subclasses are returned for each class.}
 #   \item{...}{Not used.}
 # }
@@ -1373,7 +1373,6 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 #
 # \arguments{
 #   \item{name}{The name of the field or method to be accessed.}
-#   \item{...}{Not used.}
 # }
 #
 # \value{
@@ -1519,7 +1518,6 @@ setMethodS3(".subset2Internal", "Class", function(this, name, exact=TRUE, ...) {
 #   \item{name}{The name of the \preformatted{set<Name>()} method or the
 #     name of the field to be assigned the new value.}
 #   \item{value}{The value to be assigned.}
-#   \item{...}{Not used.}
 # }
 #
 # \value{

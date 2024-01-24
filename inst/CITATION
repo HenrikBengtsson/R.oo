@@ -1,10 +1,10 @@
-citHeader("Please cite R.oo/R.methodsS3 as");
+utils::bibentry(
+  header = "Please cite R.oo/R.methodsS3 as:",
 
-citEntry(
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # BibTeX entry:
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  entry="InProceedings",
+  bibtype      = "InProceedings",
   author       = "Henrik Bengtsson",
   title        = "The {R.oo} package - Object-Oriented Programming with References Using Standard {R} Code",
   booktitle    = "Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003)",
@@ -16,9 +16,6 @@ citEntry(
   url          = "https://www.r-project.org/conferences/DSC-2003/Proceedings/Bengtsson.pdf",
   howpublished = "https://www.r-project.org/conferences/DSC-2003/Proceedings/",
 
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Plain-text citation:
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   textVersion = paste(sep="",
     "Bengtsson, H. ",
     "The R.oo package - Object-Oriented Programming with References Using Standard R Code, ",
@@ -27,4 +24,4 @@ citEntry(
     "Hornik, K.; Leisch, F. & Zeileis, A. (ed.), ",
     "2003"
   )
-);
+)

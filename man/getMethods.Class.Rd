@@ -25,7 +25,7 @@
   \item{private}{If \code{\link[base:logical]{TRUE}}, private methods are also returned,
     otherwise only public ones are returned.}
   \item{deprecated}{If \code{\link[base:logical]{TRUE}}, deprecated methods are also returned.}
-  \item{unqiue}{If \code{\link[base:logical]{TRUE}}, only methods that are not implemented
+  \item{unique}{If \code{\link[base:logical]{TRUE}}, only methods that are not implemented
     in one of the subclasses are returned for each class.}
   \item{...}{Not used.}
 }
