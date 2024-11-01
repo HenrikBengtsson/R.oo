@@ -2,13 +2,13 @@
 
 <details>
 
-* Version: 1.68.1
+* Version: 1.78.0
 * GitHub: https://github.com/HenrikBengtsson/affxparser
 * Source code: https://github.com/cran/affxparser
-* Date/Publication: 2022-04-29
+* Date/Publication: 2024-10-29
 * Number of recursive dependencies: 4
 
-Run `revdep_details(, "affxparser")` for more info
+Run `revdepcheck::revdep_details(, "affxparser")` for more info
 
 </details>
 
@@ -17,23 +17,23 @@ Run `revdep_details(, "affxparser")` for more info
 *   checking whether package ‘affxparser’ can be installed ... WARNING
     ```
     Found the following significant warnings:
-      fusion/file/CELFileData.cpp:2409:27: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:2414:27: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:2419:28: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2409:41: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2414:41: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2419:42: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
       fusion/file/CELFileData.cpp:2445:37: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
       fusion/file/CELFileData.cpp:2451:37: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
       fusion/file/CELFileData.cpp:2457:38: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:2506:23: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:2509:23: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:2512:24: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:2551:24: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:2554:24: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:3194:16: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:3199:16: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:3204:17: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:3251:17: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:3255:16: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
-      fusion/file/CELFileData.cpp:3294:28: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2506:37: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2509:37: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2512:38: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2551:38: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:2554:38: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3194:30: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3199:30: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3204:31: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3251:31: warning: taking address of packed member of ‘affxcel::_CELFileTranscriptomeEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3255:30: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+      fusion/file/CELFileData.cpp:3294:42: warning: taking address of packed member of ‘affxcel::_CELFileEntryType’ may result in an unaligned pointer value [-Waddress-of-packed-member]
     See ‘/c4/home/henrik/repositories/R.oo/revdep/checks/affxparser/new/affxparser.Rcheck/00install.out’ for details.
     ```
 
@@ -47,8 +47,8 @@ Run `revdep_details(, "affxparser")` for more info
       Found ‘abort’, possibly from ‘abort’ (C)
         Objects: ‘fusion/calvin_files/fusion/src/FusionCHPData.o’,
           ‘fusion/calvin_files/fusion/src/GCOSAdapter/GCOSCHPDataAdapter.o’,
-          ‘fusion/calvin_files/parameter/src/ParameterNameValueType.o’,
-          ‘fusion/file/BPMAPFileWriter.o’
+          ‘fusion/calvin_files/parameter/src/ParameterNameValueType.o’
+      Found ‘exit’, possibly from ‘exit’ (C)
     ...
       Found ‘srand’, possibly from ‘srand’ (C)
         Object: ‘fusion/calvin_files/utils/src/AffymetrixGuid.o’
@@ -57,16 +57,22 @@ Run `revdep_details(, "affxparser")` for more info
     
     Compiled code should not call entry points which might terminate R nor
     write to stdout/stderr instead of to the console, nor use Fortran I/O
-    nor system RNGs.
+    nor system RNGs nor [v]sprintf.
     
     See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
     ```
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 18.0Mb
+      installed size is 18.8Mb
       sub-directories of 1Mb or more:
-        libs  17.5Mb
+        libs  18.2Mb
+    ```
+
+*   checking Rd files ... NOTE
+    ```
+    checkRd: (-1) applyCdfGroups.Rd:37-46: Lost braces in \itemize; meant \describe ?
+    checkRd: (-1) applyCdfGroups.Rd:47-59: Lost braces in \itemize; meant \describe ?
     ```
 
 *   checking Rd cross-references ... NOTE
@@ -74,17 +80,42 @@ Run `revdep_details(, "affxparser")` for more info
     Package unavailable to check Rd xrefs: ‘affy’
     ```
 
-# aroma.core
+# aroma.affymetrix
 
 <details>
 
 * Version: 3.2.2
+* GitHub: https://github.com/HenrikBengtsson/aroma.affymetrix
+* Source code: https://github.com/cran/aroma.affymetrix
+* Date/Publication: 2024-02-18 20:40:03 UTC
+* Number of recursive dependencies: 85
+
+Run `revdepcheck::revdep_details(, "aroma.affymetrix")` for more info
+
+</details>
+
+## In both
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.4Mb
+      sub-directories of 1Mb or more:
+        R             2.3Mb
+        help          1.1Mb
+        testScripts   1.1Mb
+    ```
+
+# aroma.core
+
+<details>
+
+* Version: 3.3.1
 * GitHub: https://github.com/HenrikBengtsson/aroma.core
 * Source code: https://github.com/cran/aroma.core
-* Date/Publication: 2021-01-05 05:10:12 UTC
-* Number of recursive dependencies: 48
+* Date/Publication: 2024-02-19 08:40:02 UTC
+* Number of recursive dependencies: 67
 
-Run `revdep_details(, "aroma.core")` for more info
+Run `revdepcheck::revdep_details(, "aroma.core")` for more info
 
 </details>
 
@@ -100,13 +131,13 @@ Run `revdep_details(, "aroma.core")` for more info
 
 <details>
 
-* Version: 3.26.0
+* Version: 3.36.0
 * GitHub: https://github.com/HenrikBengtsson/aroma.light
 * Source code: https://github.com/cran/aroma.light
-* Date/Publication: 2022-04-26
+* Date/Publication: 2024-10-29
 * Number of recursive dependencies: 6
 
-Run `revdep_details(, "aroma.light")` for more info
+Run `revdepcheck::revdep_details(, "aroma.light")` for more info
 
 </details>
 
@@ -124,13 +155,13 @@ Run `revdep_details(, "aroma.light")` for more info
 
 <details>
 
-* Version: 1.24.01
+* Version: 1.34.0
 * GitHub: https://github.com/kmezhoud/bioCancer
 * Source code: https://github.com/cran/bioCancer
-* Date/Publication: 2022-04-27
-* Number of recursive dependencies: 220
+* Date/Publication: 2024-10-29
+* Number of recursive dependencies: 261
 
-Run `revdep_details(, "bioCancer")` for more info
+Run `revdepcheck::revdep_details(, "bioCancer")` for more info
 
 </details>
 
@@ -138,32 +169,30 @@ Run `revdep_details(, "bioCancer")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is  8.1Mb
+      installed size is  9.4Mb
       sub-directories of 1Mb or more:
-        app       3.2Mb
+        app       3.3Mb
         doc       2.8Mb
-        extdata   1.5Mb
+        extdata   2.5Mb
     ```
 
-*   checking dependencies in R code ... NOTE
+*   checking Rd metadata ... NOTE
     ```
-    Namespaces in Imports field not imported from:
-      ‘AlgDesign’ ‘GO.db’ ‘R.methodsS3’ ‘import’ ‘methods’ ‘org.Bt.eg.db’
-      ‘shinythemes’
-      All declared Imports should be used.
+    Invalid package aliases in Rd file 'bioCancer.Rd':
+      ‘-package’
     ```
 
 # canceR
 
 <details>
 
-* Version: 1.30.01
+* Version: 1.40.0
 * GitHub: https://github.com/kmezhoud/canceR
 * Source code: https://github.com/cran/canceR
-* Date/Publication: 2022-04-27
-* Number of recursive dependencies: 169
+* Date/Publication: 2024-10-29
+* Number of recursive dependencies: 219
 
-Run `revdep_details(, "canceR")` for more info
+Run `revdepcheck::revdep_details(, "canceR")` for more info
 
 </details>
 
@@ -179,97 +208,173 @@ Run `revdep_details(, "canceR")` for more info
 
 *   checking installed package size ... NOTE
     ```
-      installed size is 19.6Mb
+      installed size is 21.9Mb
       sub-directories of 1Mb or more:
-        doc  18.2Mb
+        doc      18.2Mb
+        extdata   3.1Mb
     ```
 
-*   checking dependencies in R code ... NOTE
+*   checking Rd \usage sections ... NOTE
     ```
-    Namespace in Imports field not imported from: ‘R.methodsS3’
-      All declared Imports should be used.
-    ```
-
-# knitrProgressBar
-
-<details>
-
-* Version: 1.1.0
-* GitHub: https://github.com/rmflight/knitrProgressBar
-* Source code: https://github.com/cran/knitrProgressBar
-* Date/Publication: 2018-02-20 04:04:54 UTC
-* Number of recursive dependencies: 59
-
-Run `revdep_details(, "knitrProgressBar")` for more info
-
-</details>
-
-## In both
-
-*   checking LazyData ... NOTE
-    ```
-      'LazyData' is specified without a 'data' directory
+    S3 methods shown with full name in Rd file 'cbind.na.Rd':
+      ‘cbind.na’
+    
+    S3 methods shown with full name in Rd file 'rbind.na.Rd':
+      ‘rbind.na’
+    
+    The \usage entries for S3 methods should use the \method markup and not
+    their full name.
+    See chapter ‘Writing R documentation files’ in the ‘Writing R
+    Extensions’ manual.
     ```
 
-# roxygen2
-
-<details>
-
-* Version: 7.2.0
-* GitHub: https://github.com/r-lib/roxygen2
-* Source code: https://github.com/cran/roxygen2
-* Date/Publication: 2022-05-13 07:30:02 UTC
-* Number of recursive dependencies: 62
-
-Run `revdep_details(, "roxygen2")` for more info
-
-</details>
-
-## In both
-
-*   checking Rd cross-references ... NOTE
+*   checking Rd contents ... NOTE
     ```
-    Package unavailable to check Rd xrefs: ‘devtools’
-    ```
-
-# tmle.npvi
-
-<details>
-
-* Version: 0.10.0
-* GitHub: NA
-* Source code: https://github.com/cran/tmle.npvi
-* Date/Publication: 2015-05-22 18:59:02
-* Number of recursive dependencies: 41
-
-Run `revdep_details(, "tmle.npvi")` for more info
-
-</details>
-
-## In both
-
-*   checking R code for possible problems ... NOTE
-    ```
-    NPVI: no visible global function definition for ‘quantile’
-    SL.glm.condExpX2givenW: no visible global function definition for
-      ‘as.formula’
-    SL.glm.condExpX2givenW: no visible global function definition for ‘glm’
-    SL.glm.condExpXYgivenW: no visible global function definition for
-      ‘as.formula’
-    SL.glm.condExpXYgivenW: no visible global function definition for ‘glm’
-    SL.glm.g: no visible global function definition for ‘as.formula’
-    SL.glm.g: no visible global function definition for ‘glm’
-    SL.glm.theta: no visible global function definition for ‘as.formula’
+    Argument items with no description in Rd file 'GSEA.EnrichmentScore.Rd':
+      ‘gene.list’ ‘gene.set’ ‘weighted.score.type’ ‘correl.vector’
+    Argument items with no description in Rd file 'GSEA.EnrichmentScore2.Rd':
+      ‘gene.list’ ‘gene.set’ ‘weighted.score.type’ ‘correl.vector’
+    Argument items with no description in Rd file 'GSEA.Gct2Frame.Rd':
+      ‘filename’
+    Argument items with no description in Rd file 'GSEA.Gct2Frame2.Rd':
+      ‘filename’
+    Argument items with no description in Rd file 'GSEA.GeneRanking.Rd':
+      ‘A’ ‘class.labels’ ‘gene.labels’ ‘nperm’ ‘permutation.type’
     ...
-      as.formula binomial dnorm gaussian glm head integrate model.matrix
-      optimize plogis pnorm qlogis qnorm quantile rnorm runif sd str tail
-      update var
-    Consider adding
-      importFrom("stats", "as.formula", "binomial", "dnorm", "gaussian",
-                 "glm", "integrate", "model.matrix", "optimize", "plogis",
-                 "pnorm", "qlogis", "qnorm", "quantile", "rnorm", "runif",
-                 "sd", "update", "var")
-      importFrom("utils", "head", "str", "tail")
-    to your NAMESPACE file.
+    Argument items with no description in Rd file 'GSEA.Res2Frame.Rd':
+      ‘filename’
+    Argument items with no description in Rd file 'GSEA.Threshold.Rd':
+      ‘V’ ‘thres’ ‘ceil’
+    Argument items with no description in Rd file 'GSEA.VarFilter.Rd':
+      ‘V’ ‘fold’ ‘delta’ ‘gene.names’
+    Argument items with no description in Rd file 'GSEA.write.gct.Rd':
+      ‘gct’ ‘filename’
+    Argument items with no description in Rd file 'OLD.GSEA.EnrichmentScore.Rd':
+      ‘gene.list’ ‘gene.set’
+    ```
+
+# NCIgraph
+
+<details>
+
+* Version: 1.54.0
+* GitHub: NA
+* Source code: https://github.com/cran/NCIgraph
+* Date/Publication: 2024-10-29
+* Number of recursive dependencies: 49
+
+Run `revdepcheck::revdep_details(, "NCIgraph")` for more info
+
+</details>
+
+## In both
+
+*   checking package dependencies ... NOTE
+    ```
+    Package which this enhances but not available for checking: ‘DEGraph’
+    ```
+
+*   checking for hidden files and directories ... NOTE
+    ```
+    Found the following hidden files and directories:
+      .BBSoptions
+    These were most likely included in error. See section ‘Package
+    structure’ in the ‘Writing R Extensions’ manual.
+    ```
+
+*   checking Rd files ... NOTE
+    ```
+    checkRd: (-1) NCIgraph.Rd:13: Lost braces
+        13 |    extends graphNEL{Object}\cr
+           |                    ^
+    ```
+
+# R.cache
+
+<details>
+
+* Version: 0.16.0
+* GitHub: https://github.com/HenrikBengtsson/R.cache
+* Source code: https://github.com/cran/R.cache
+* Date/Publication: 2022-07-21 16:20:02 UTC
+* Number of recursive dependencies: 4
+
+Run `revdepcheck::revdep_details(, "R.cache")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd files ... NOTE
+    ```
+    checkRd: (-1) R.cache-package.Rd:28-30: Lost braces in \itemize; meant \describe ?
+    checkRd: (-1) R.cache-package.Rd:31-34: Lost braces in \itemize; meant \describe ?
+    ```
+
+# R.matlab
+
+<details>
+
+* Version: 3.7.0
+* GitHub: https://github.com/HenrikBengtsson/R.matlab
+* Source code: https://github.com/cran/R.matlab
+* Date/Publication: 2022-08-25 21:52:34 UTC
+* Number of recursive dependencies: 6
+
+Run `revdepcheck::revdep_details(, "R.matlab")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd files ... NOTE
+    ```
+    checkRd: (-1) setOption.Matlab.Rd:37-39: Lost braces in \itemize; meant \describe ?
+    checkRd: (-1) setOption.Matlab.Rd:40-41: Lost braces in \itemize; meant \describe ?
+    ```
+
+# sBIC
+
+<details>
+
+* Version: 0.2.0
+* GitHub: https://github.com/Lucaweihs/sBIC
+* Source code: https://github.com/cran/sBIC
+* Date/Publication: 2016-10-01 14:31:14
+* Number of recursive dependencies: 52
+
+Run `revdepcheck::revdep_details(, "sBIC")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd files ... NOTE
+    ```
+    checkRd: (-1) setData.ReducedRankRegressions.Rd:14-16: Lost braces in \itemize; meant \describe ?
+    checkRd: (-1) setData.ReducedRankRegressions.Rd:17-18: Lost braces in \itemize; meant \describe ?
+    ```
+
+# WeibullFit
+
+<details>
+
+* Version: 0.1.0
+* GitHub: NA
+* Source code: https://github.com/cran/WeibullFit
+* Date/Publication: 2019-07-26 08:40:02 UTC
+* Number of recursive dependencies: 35
+
+Run `revdepcheck::revdep_details(, "WeibullFit")` for more info
+
+</details>
+
+## In both
+
+*   checking Rd files ... NOTE
+    ```
+    checkRd: (-1) busTrace.Rd:15: Lost braces
+        15 | /href{https://crawdad.org/coppe-ufrj/RioBuses/20180319/}
+           |      ^
     ```
 
