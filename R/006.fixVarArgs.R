@@ -33,4 +33,8 @@ setMethodS3("save", "default", function(..., envir=parent.frame()) {
 # Methods in 'methods'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 getClasses <- appendVarArgs(getClasses)
-getMethods <- appendVarArgs(getMethods)
+
+## Defunct in R (>= 4.5.0)
+if (getRversion() < "4.5.0") {
+  getMethods <- appendVarArgs(getMethods)
+}

@@ -8,7 +8,9 @@ importFrom("R.methodsS3", "pkgStartupMessage")
 importFrom("R.methodsS3", "appendVarArgs")
 
 importFrom("methods", "getClasses")
-importFrom("methods", "getMethods")
+if (getRversion() < "4.5.0") {
+  importFrom("methods", "getMethods")
+}
 importFrom("methods", "getClass")
 importFrom("methods", "isClass")
 
@@ -279,4 +281,6 @@ S3method("getSource", "RdocException")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # default
 S3method("getClasses", "default")
-S3method("getMethods", "default")
+if (getRversion() < "4.5.0") {
+  S3method("getMethods", "default")
+}  

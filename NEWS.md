@@ -1,6 +1,9 @@
 # Version (development version)
 
- * ...
+## Significant Changes
+
+ * `getMethods()` is an **R.oo** generic in R (>= 4.5.0), whereas in
+   versions before that it is an **methods** generic.
  
 
 # Version 1.26.0 [2024-01-23]

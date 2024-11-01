@@ -974,6 +974,9 @@ setMethodS3("getFields", "Class", function(this, private=FALSE, ...) {
 
 
 
+if (getRversion() >= "4.5.0") {
+  setGenericS3("getMethods", overwrite = TRUE)
+}
 
 
 ###########################################################################/**
