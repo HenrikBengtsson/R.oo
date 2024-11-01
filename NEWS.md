@@ -1,3 +1,8 @@
+# Version (development version)
+
+ * ...
+ 
+
 # Version 1.27.0 [2024-11-01]
 
 ## Significant Changes
