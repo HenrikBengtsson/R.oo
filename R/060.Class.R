@@ -1340,7 +1340,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # @RdocMethod $
 # @aliasmethod [[
 #
-# @title "Makes the fields and methods of an Class accessible via the $ and the [[ operator"
+# @title "Makes the fields and methods of a Class accessible via the $ and the [[ operator"
 #
 # \usage{
 #   \method{$}{Class}(this, name)
@@ -1348,7 +1348,7 @@ setMethodS3("getDetails", "Class", function(this, private=FALSE, ...) {
 # }
 #
 # \description{
-#   Makes the fields and methods of an Class accessible via the \code{$}
+#   Makes the fields and methods of a Class accessible via the \code{$}
 #   operator. This method is never called explicitly, but through an indirect
 #   usage of the \code{$} operator, e.g. \code{obj$name} or
 #   \code{obj$getValue()}.
@@ -1484,7 +1484,7 @@ setMethodS3(".subset2Internal", "Class", function(this, name, exact=TRUE, ...) {
 # @RdocMethod $<-
 # @aliasmethod [[<-
 #
-# @title "Makes the fields and methods of an Class assignable via the $<- and the [[<- operator"
+# @title "Makes the fields and methods of a Class assignable via the $<- and the [[<- operator"
 #
 # \usage{
 #   \method{$}{Class}(this, name) <- value
@@ -1492,7 +1492,7 @@ setMethodS3(".subset2Internal", "Class", function(this, name, exact=TRUE, ...) {
 # }
 #
 # \description{
-#   Makes the fields and methods of an Class assignable via the \code{$<-}
+#   Makes the fields and methods of a Class assignable via the \code{$<-}
 #   operator. This method is never called explicitly, but through an indirect
 #   usage of the \code{$<-} operator, e.g. \code{obj$name <- "foo"}.
 #

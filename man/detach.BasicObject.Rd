@@ -11,10 +11,10 @@
 \alias{BasicObject.detach}
 \alias{detach,BasicObject-method}
 
-\title{Detach an BasicObject from the R search path}
+\title{Detach a BasicObject from the R search path}
 
 \description{
- Detach, from the \R search path, an BasicObject that has previously been
+ Detach, from the \R search path, a BasicObject that has previously been
  attached. If the BasicObject was not attached, a \code{\link[base]{warning}} will be
  generated and nothing will be done.
 }

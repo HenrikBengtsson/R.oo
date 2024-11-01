@@ -15,7 +15,7 @@
 \alias{[[<-,Class-method}
 
 
-\title{Makes the fields and methods of an Class assignable via the $<- and the [[<- operator}
+\title{Makes the fields and methods of a Class assignable via the $<- and the [[<- operator}
 
 \usage{
   \method{$}{Class}(this, name) <- value
@@ -23,7 +23,7 @@
 }
 
 \description{
-  Makes the fields and methods of an Class assignable via the \code{$<-}
+  Makes the fields and methods of a Class assignable via the \code{$<-}
   operator. This method is never called explicitly, but through an indirect
   usage of the \code{$<-} operator, e.g. \code{obj$name <- "foo"}.
 

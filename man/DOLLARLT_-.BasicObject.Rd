@@ -15,10 +15,10 @@
 \alias{[[<-,BasicObject-method}
 
 
-\title{Makes the fields and methods of an BasicObject assignable via the $<- and the [[<- operator}
+\title{Makes the fields and methods of a BasicObject assignable via the $<- and the [[<- operator}
 
 \description{
- Makes the fields and methods of an BasicObject assignable via the $<- and the [[<- operator.
+ Makes the fields and methods of a BasicObject assignable via the $<- and the [[<- operator.
 }
 
 \usage{

@@ -11,10 +11,10 @@
 \alias{BasicObject.getFields}
 \alias{getFields,BasicObject-method}
 
-\title{Returns the field names of an BasicObject}
+\title{Returns the field names of a BasicObject}
 
 \description{
-  Returns the field names of an BasicObject.
+  Returns the field names of a BasicObject.
 }
 
 \usage{
