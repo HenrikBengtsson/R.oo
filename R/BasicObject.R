@@ -254,7 +254,7 @@ setMethodS3("equals", "BasicObject", function(this, other, ...) {
 ###########################################################################/**
 # @RdocMethod print
 #
-# @title "Prints an BasicObject"
+# @title "Prints a BasicObject"
 #
 # \description{
 #  For all objects of class @see "BasicObject", this method will print the
@@ -325,7 +325,7 @@ setMethodS3("objectSize", "BasicObject", function(this, ...) {
 ###########################################################################/**
 # @RdocMethod getFields
 #
-# @title "Returns the field names of an BasicObject"
+# @title "Returns the field names of a BasicObject"
 #
 # \description{
 #   @get "title".
@@ -404,10 +404,10 @@ setMethodS3("hasField", "BasicObject", function(this, field, ...) {
 ###########################################################################/**
 # @RdocMethod attach
 #
-# @title "Attach an BasicObject to the R search path"
+# @title "Attach a BasicObject to the R search path"
 #
 # \description{
-#  Attach the members of an BasicObject to the \R search path.
+#  Attach the members of a BasicObject to the \R search path.
 #
 #  If trying to attach the same BasicObject twice without detaching it
 #  in between, a @warning will be generated and nothing will be done.
@@ -468,10 +468,10 @@ setMethodS3("attach", "BasicObject", function(this, private=FALSE, pos=2, ...) {
 ###########################################################################/**
 # @RdocMethod detach
 #
-# @title "Detach an BasicObject from the R search path"
+# @title "Detach a BasicObject from the R search path"
 #
 # \description{
-#  Detach, from the \R search path, an BasicObject that has previously been
+#  Detach, from the \R search path, a BasicObject that has previously been
 #  attached. If the BasicObject was not attached, a @warning will be
 #  generated and nothing will be done.
 # }
@@ -535,7 +535,7 @@ setMethodS3("detach", "BasicObject", function(this, ...) {
 # }
 #
 # \value{
-#  Returns an BasicObject of class \code{className}.
+#  Returns a BasicObject of class \code{className}.
 # }
 #
 # @author
@@ -620,7 +620,7 @@ setMethodS3("newInstance", "BasicObject", function(this, ...) {
 # @RdocMethod $
 # @aliasmethod [[
 #
-# @title "Makes the fields and methods of an BasicObject accessible via the $ and the [[ operator"
+# @title "Makes the fields and methods of a BasicObject accessible via the $ and the [[ operator"
 #
 # \description{
 #   @get "title".
@@ -777,7 +777,7 @@ setMethodS3(".subset2Internal", "BasicObject", function(this, name, exact=TRUE, 
 # @RdocMethod $<-
 # @aliasmethod [[<-
 #
-# @title "Makes the fields and methods of an BasicObject assignable via the $<- and the [[<- operator"
+# @title "Makes the fields and methods of a BasicObject assignable via the $<- and the [[<- operator"
 #
 # \description{
 #  @get "title".
