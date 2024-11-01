@@ -34,7 +34,7 @@
 }
 
 \value{
- Returns an BasicObject of class \code{className}.
+ Returns a BasicObject of class \code{className}.
 }
 
 \author{Henrik Bengtsson}

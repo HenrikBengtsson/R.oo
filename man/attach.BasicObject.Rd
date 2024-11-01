@@ -11,10 +11,10 @@
 \alias{BasicObject.attach}
 \alias{attach,BasicObject-method}
 
-\title{Attach an BasicObject to the R search path}
+\title{Attach a BasicObject to the R search path}
 
 \description{
- Attach the members of an BasicObject to the \R search path.
+ Attach the members of a BasicObject to the \R search path.
 
  If trying to attach the same BasicObject twice without detaching it
  in between, a \code{\link[base]{warning}} will be generated and nothing will be done.

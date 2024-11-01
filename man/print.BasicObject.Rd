@@ -11,7 +11,7 @@
 \alias{BasicObject.print}
 \alias{print,BasicObject-method}
 
-\title{Prints an BasicObject}
+\title{Prints a BasicObject}
 
 \description{
  For all objects of class \code{\link{BasicObject}}, this method will print the
