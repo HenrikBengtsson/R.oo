@@ -1474,7 +1474,7 @@ setMethodS3("compile", "Rdoc", function(this, filename=".*[.]R$", destPath=getMa
     tagSee <- function(bfr) {
       bfr <- getTagValue(bfr)
       value <- attr(bfr, "value")
-      pkgObject <- strsplit(value, "::", value)[[1]]
+      pkgObject <- strsplit(value, "::")[[1]]
       fcn <- ""
       if (length(pkgObject) == 1) {
         pkg <- NULL
