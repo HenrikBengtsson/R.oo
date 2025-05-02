@@ -1,5 +1,7 @@
 # Version (development version)
 
+## Bug Fixes
+
  * `Rdoc$compile()` would produce `Error in strsplit(x,
    as.character(split), fixed, perl, useBytes)` for any `@see` tag of
    format `<pkg>::<object>`.
