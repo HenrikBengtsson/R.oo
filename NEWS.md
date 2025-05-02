@@ -1,4 +1,4 @@
-# Version (development version)
+# Version 1.27.1 [2025-05-02]
 
 ## Bug Fixes
 
