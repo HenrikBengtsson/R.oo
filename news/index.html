@@ -1633,7 +1633,7 @@
 <h2 class="page-header" data-toc-text="0.37" id="version-037">Version 0.37<a class="anchor" aria-label="anchor" href="#version-037"></a></h2>
 <div class="section level3">
 <h3 id="new-features-0-37">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-37"></a></h3>
-<ul><li><p>IMPROVEMENT: Since <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(methods)</a></code> might be loaded after <code><a href="https://github.com/HenrikBengtsson/R.oo" class="external-link">library(R.oo)</a></code> the function <code>extends()</code> breaks down. Worked this out a little bit by detaching and reloading <strong>R.oo</strong> in function <code>createClass()</code> if it is detected that extends() has changed.</p></li>
+<ul><li><p>IMPROVEMENT: Since <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(methods)</a></code> might be loaded after <code><a href="https://henrikbengtsson.github.io/R.oo/" class="external-link">library(R.oo)</a></code> the function <code>extends()</code> breaks down. Worked this out a little bit by detaching and reloading <strong>R.oo</strong> in function <code>createClass()</code> if it is detected that extends() has changed.</p></li>
 <li><p>IMPROVEMENT: Forces <code>extends &lt;- function(...)    UseMethod("extends")</code>. The reason for doing this is that if we have anything but <code>...</code> that argument might be matched by an attribute. Not good!</p></li>
 </ul></div>
 </div>

@@ -180,7 +180,7 @@ Object is the root class of all other classes. All classes
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Prints information about the Person object.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span>            <span class="co"># "Dalai Lama is 67 years old."</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x57952ae36938"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x600f7bbff6e8"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># or equivalent (except that no generic method has to exist):</span></span></span>
 <span class="r-in"><span></span></span>
@@ -207,7 +207,7 @@ Object is the root class of all other classes. All classes
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Shows that the age of the Person has been updated:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span>            <span class="co"># "Dalai Lama is 68 years old."</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x57952ae36938"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x600f7bbff6e8"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If there would not exists such a set-() method or field a new</span></span></span>
 <span class="r-in"><span><span class="co"># field would be created:</span></span></span>
@@ -261,7 +261,7 @@ Object is the root class of all other classes. All classes
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Prints information about the new Object.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x57952c324110"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x600f79b0faf0"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Lists all (non-private) members of the new Object.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="ll.html">ll</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -318,7 +318,7 @@ Object is the root class of all other classes. All classes
 <span class="r-in"><span><span class="va">obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="va">MyClass</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'MyClass'.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x57952c324110"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Person: 0x600f79b0faf0"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">MyClass</span><span class="op">$</span><span class="va">count</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in getStaticInstance.Object(this):</span> Cannot get static instance. Failed to locate Class object for class 'MyClass'.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">obj</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">count</span><span class="op">)</span></span></span>
