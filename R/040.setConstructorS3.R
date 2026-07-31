@@ -89,7 +89,7 @@ setMethodS3("setConstructorS3", "default", function(name, definition, private=FA
   if (enforceRCC) {
     # Assert that the class name is a valid class name.
     firstLetter <- substring(name, 1,1)
-    if (!is.element(tolower(firstLetter), letters))
+    if (!is.element(tolower(firstLetter), tolower(LETTERS)))
       throw(RccViolationException("Class names must begin with a letter: ", name))
 
     # Check first letter
